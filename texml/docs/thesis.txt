@@ -78,7 +78,7 @@ TeXML benefits
 
    There are several projects that create LaTeX from XML using XSLT, for
    example: tbook, xsltml, dblatex, db2latex. History of these projects
-   demonstrates following problems:
+   demonstrates following problems when generating the TeX fragment:
 
      * unescaped special symbols,
      * no space after command name (getting "\ittext" instead of "\it text"),
@@ -86,3 +86,14 @@ TeXML benefits
      * only latin-1 encoding is supported.
 
    These and some other problems do not appear when using TeXML.
+
+Other versions of TeXML
+
+   During search for a solution for XML publishing through LaTeX I found that
+   Douglas Lovell introduced TeXML approach in the year 1999, and there was
+   even an implementation in Java. This project, TeXMLatte, was abandoned a
+   lot of years ago, but its specification survived. Our TeXML is heavely
+   based on this specification.
+
+   There is also TeXMLapis, a Perl-processor of a subset of TeXML, but its
+   functionality is limited.
