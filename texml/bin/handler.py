@@ -1,11 +1,12 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.37 2005-02-18 19:20:12 olpa Exp $
+# $Id: handler.py,v 1.38 2005-02-21 17:29:09 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
 import specmap
 import StringIO
 import string
+import os
 
 #
 # TeXML SAX handler works correct but misfeaturely when SAX parser
@@ -128,6 +129,13 @@ class handler:
       'math':   self.on_math_end,
       'dmath':  self.on_dmath_end
     }
+
+    # added by Paul Tremblay on 2004-02-19
+    # Set the variable texml_usecontext in your shell if you want to 
+    # convert an XML document to conTeXt. See
+    # http://sourceforge.net/tracker/index.php?func=detail&aid=1145206&group_id=102261&atid=631462
+    # http://sourceforge.net/forum/message.php?msg_id=3007157
+    self.__use_context = os.getenv('texml_usecontext')
 
   # -------------------------------------------------------------------
   
@@ -330,17 +338,34 @@ class handler:
     name = attrs.get('name', '')
     if 0 == len(name):
       raise ValueError('Attribute env/@name is empty')
-    begenv = attrs.get('begin', 'begin')
+    # added by Paul Tremblay on 2004-02-19
+    # the environment in context is \startenvironmentname ...
+    # \stopenvironmentname
+    if self.__use_context:
+        begenv = attrs.get('start', 'start')
+    else:
+        begenv = attrs.get('begin', 'begin')
     self.cmdname_stack.append(self.cmdname)
     self.endenv_stack.append(self.endenv)
     self.cmdname = name
-    self.endenv  = attrs.get('end',   'end')
+
+    # added by Paul Tremblay on 2004-02-19
+    if self.__use_context:
+        self.endenv  = attrs.get('stop',   'stop')
+    else:
+        self.endenv  = attrs.get('end',   'end')
     #
     # Write <env/> and setup newline processing
     #
     if self.get_boolean(attrs, 'nl1', 1):
       self.writer.conditionalNewline()
-    self.writer.write('\%s{%s}' % (begenv, name), 0)
+
+    # added by Paul Tremblay on 2004-02-19
+    # See note above
+    if self.__use_context:
+        self.writer.write('\%s%s' % (begenv, name), 0)
+    else:
+        self.writer.write('\%s{%s}' % (begenv, name), 0)
     if self.get_boolean(attrs, 'nl2', 1):
       self.writer.writeWeakWS(texmlwr.WEAK_WS_IS_NEWLINE)
     self.nl_spec_stack.append(self.nl_spec)
@@ -351,7 +376,12 @@ class handler:
     self.nl_spec = self.nl_spec_stack.pop()
     if nl3:
       self.writer.conditionalNewline()
-    self.writer.write('\%s{%s}' % (self.endenv, self.cmdname), 0)
+
+    # added by Paul Tremblay on 2004-02-19
+    if self.__use_context:
+        self.writer.write('\%s%s' % (self.endenv, self.cmdname), 0)
+    else:
+        self.writer.write('\%s{%s}' % (self.endenv, self.cmdname), 0)
     if nl4:
       self.writer.conditionalNewline()
     self.cmdname = self.cmdname_stack.pop()
