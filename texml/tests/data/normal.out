@@ -1,7 +1,7 @@
-category 0: $\backslash$
+category 0: \textbackslash 
 category 1: \{
 category 2: \}
-category 3: \$
+category 3: \textdollar 
 category 4: \&
 category 5:
 category 6: \#
@@ -11,9 +11,9 @@ category 9:
 category a:
 category b:
 category c:
-category d: \~{}
+category d: \textasciitilde 
 category e: \%
 category f:
-also:       $|$
-also:       $<$
-also:       $>$
+also:       \textvert 
+also:       \textless 
+also:       \textgreater 
