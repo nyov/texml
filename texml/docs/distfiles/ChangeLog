@@ -9,10 +9,13 @@ Version 1.1 (????? 2004)
 * New attributes of <cmd/>: @nl1 and @nl2, new attributes of
   <env/>: @nl1, @nl2, @nl3 and @nl4. They are responsible for
   creation of new lines.
-* New <spec/> symbols: new line and whitespace.
+* New <spec/> symbols: new line, whitespace and nothing.
 * A new command-line paramater '-w' (or '--width') specifies
   minimal width of lines that are subject to an automatical line
   breaking.
+* Translation of special characters is now more LaTeXish.
+  For example, teh symbol '<' is being translated into '\textless'
+  instead of '$<$'.
 
 
 Version 1.01.devel (06 May 2004)
