@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.4 2004-03-16 08:45:03 olpa Exp $
+# $Id: texml.py,v 1.5 2004-03-26 12:02:08 olpa Exp $
 
 usage = """Convert TeXML markup to [La]TeX markup. Usage:
 python texml.py [-e encoding] input_file output_file"""
@@ -15,7 +15,8 @@ if len(sys.argv) < 3:
 #
 # Parse command line options
 #
-encoding = 'utf8'
+#encoding = 'utf8'
+encoding = 'ascii'
 import getopt
 try:
   opts, args = getopt.getopt(sys.argv[1:], 'he:', ['help', 'encoding='])
