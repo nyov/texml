@@ -31,7 +31,7 @@
 			<td><lst>$\backslash$section\{No~break\}</lst></td>
 		</tr>
 	</table>
-	<p>Default output encoding is utf8. TeXML processor escapes out-of-encoding chars automatically.</p>
+	<p>The TeXML processor supports different output encodings and escapes out-of-encoding chars automatically.</p>
 	<table border="1" width="100%">
 		<caption>Example of translation of non-ASCII characters</caption>
 		<tr>
@@ -54,7 +54,7 @@
 		<title>Getting TeXML</title>
 		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.3 run the script. Additional modules are not required.</p>
 		<p>You can download Python TeXML in the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in line endings (Unix or DOS style).</p>
-		<p>Current version is 0.91 beta. Although it is marked as beta, bugs are not expected and the processor should work well.</p>
+		<p>Current version is 0.95 beta. Although it is marked as beta, bugs are not expected and the processor should work well.</p>
 		<p>The software is released under the <a href="http://www.gnu.org/licenses/gpl.html"> GNU Public License</a>.</p>
 		<p>Support is available through the SourceForge <a href="http://sourceforge.net/projects/getfo/"> project area</a> (TeXML is a part of the GetFO project).</p>
 	</sect>
