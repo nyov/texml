@@ -1,4 +1,4 @@
-In \textvert{}text\textvert{} mode. Still in \textvert{}text\textvert{} mode In |math| mode: |\hat .
+In \textvert{}text\textvert{} mode. Still in \textvert{}text\textvert{} mode In |math| mode: |\hat{}.
 In \textvert{}text\textvert{} mode inside math mode Still in |math| mode
 In \textvert{}text\textvert{} mode: \textvert{}\^. $a<b$ $$c>d$$ $$ latex math: \hat{a}
 latex text: \longleftarrow{}

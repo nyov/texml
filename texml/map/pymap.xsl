@@ -16,6 +16,7 @@
 : There are no need to escape codes below this value
 -->
 
+<!--<x:template match="character[latex and (@dec &gt; 122) and (@mode != 'math')]" mode="text">-->
 <x:template match="character[latex and (@dec &gt; 122)]" mode="text">
 	<x:call-template name="mapitem">
 		<x:with-param name="code" select="@id"/>
@@ -64,7 +65,7 @@
 		<x:if test="contains('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', $lastchar)">
 			<!--<x:text>:::::</x:text>
 			<x:value-of select="$lastchar"/>-->
-			<x:text> </x:text>
+			<x:text>{}</x:text>
 		</x:if>
 	</x:if>
 	<x:value-of select="concat($quot, ',&#xa;')"/>
