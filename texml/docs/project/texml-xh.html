@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>TeXML</title>
+	</head>
+	<body>
+		<h1>TeXML: an XML vocabulary for TeX</h1>
+		<p><a href="http://getfo.org/texml/">TeXML</a> is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Intended audience is developers who convert documents from XML to TeX.</p>
+			<table border="1" width="100%">
+		<caption>Example of TeXML to TeX translation</caption>
+		<tr>
+			<th width="50%">TeXML</th>
+			<th>TeX</th>
+		</tr>
+		<tr>
+			<td>
+<pre>&lt;cmd name="documentclass"&gt;
+  &lt;opt&gt;12pt&lt;/opt&gt;
+  &lt;parm&gt;letter&lt;/parm&gt;
+&lt;/cmd&gt;</pre>
+			</td>
+			<td>
+<pre>\documentclass[12pt]{letter}</pre>
+			</td>
+		</tr>
+	</table>
+	<p>One of the main benefits of TeXML usage is automatic translation of the TeX special symbols.</p>
+	<table border="1" width="100%">
+		<caption>Example of translation of special TeX symbols</caption>
+		<tr>
+			<th width="50%">TeXML</th>
+			<th>TeX</th>
+		</tr>
+		<tr>
+			<td><pre>&lt;TeXML&gt;\section{No&amp;#xa0;break}&lt;/TeXML&gt;</pre></td>
+			<td><pre>$\backslash$section\{No~break\}</pre></td>
+		</tr>
+	</table>
+	<p>The TeXML processor supports different output encodings and escapes out-of-encoding chars automatically.</p>
+	<table border="1" width="100%">
+		<caption>Example of translation of non-ASCII characters</caption>
+		<tr>
+			<th width="38%" align="left">TeXML</th>
+			<td><pre>&lt;TeXML&gt;&amp;#x422;&amp;#x435;&amp;#x425;&lt;/TeXML&gt;</pre></td>
+		</tr>
+		<tr>
+			<th align="left">TeX in ASCII encoding</th>
+			<td><pre>\cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH </pre></td>
+		</tr>
+		<tr>
+			<th align="left">TeX in Russian encoding</th>
+			<td><pre>TeX</pre></td>
+		</tr>
+	</table>
+	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on the TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb). He also wrote TeXMLatt&eacute;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now his realization &#8220;has been retired&#8221;.</p>
+	<p>The new TeXML processor is written in Python and is published under GPL. Software can be downloaded from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261">project files area</a>.</p>
+	</body>
+</html>
