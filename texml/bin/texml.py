@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.6 2004-05-06 10:00:35 olpa Exp $
+# $Id: texml.py,v 1.7 2004-06-21 09:04:42 olpa Exp $
 
 VERSION = "1.01.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
@@ -67,7 +67,7 @@ except Exception, e:
 # Create transformer and run process
 #
 import handler
-h = handler.handler(f)
+h = handler.glue_handler(f)
 xml.sax.parse(infile, h)
 
 #
