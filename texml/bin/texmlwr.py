@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.6 2004-03-16 11:39:35 olpa Exp $
+# $Id: texmlwr.py,v 1.7 2004-03-22 07:29:18 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -12,6 +12,7 @@ ASIS    = 3;
 import unimap
 import specmap
 import codecs
+import os
 
 #
 # Writer&Co class
@@ -90,9 +91,10 @@ class texmlwr:
       else:
         self.after_char0d = 1
       #
-      # Write line end char and return
+      # Write line end char (only once for \r\n) and return
       #
-      self.stream.write(ch)
+      if (0 == self.after_char0a) or (0 == self.after_char0d):
+	self.stream.write(os.linesep)
       return                                               # return
     #
     # Not end-of-line symbol. If it has to be escaped, we write
