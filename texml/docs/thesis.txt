@@ -25,3 +25,43 @@ The need for TeXML
    This problem can be solved using an intermediate step. At first, XSLT
    efficiently transforms XML into the TeXML, and then TeXML processor
    serializes TeXML into the TeX format.
+
+Brief overview of TeXML
+
+   Basic constructions of TeXML are demonstrated by an example:
+
+ <TeXML>
+  <cmd name="documentclass">
+   <opt>a4paper</opt>
+   <parm>minimal</parm>
+  </cmd>
+  <env name="document">
+   Eto&nbsp;&mdash; primer.
+  </env>
+ </TeXML>
+
+   Result of serialization:
+
+ \begin{verbatim}
+ \documentclass[a4paper]{minimal}
+ \begin{document}
+ Eto~\textemdash{} primer.
+ \end{document}
+
+   Main tasks of the serializer:
+
+     * escaping of the TeX special characters (for example, escaping "<" to
+       "\textless"),
+     * unicode processing (for example, printing russian letter "d" as is or
+       as "\cyrchar\cyrd{}"),
+     * disjoining of ligatures (for example, replacing "---" by "-{}-{}-"),
+       and
+     * avoiding empty lines in TeX output.
+
+   In addition to these essential transformations, TeXML provides also
+   extended functionality.
+
+     * The TeXML language reflects the structured constructions of the LaTeX
+       such as environments or commands with parameters.
+     * Automatic layouting of TeX code produces nice human-readable
+       documents.
