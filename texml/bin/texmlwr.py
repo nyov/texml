@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.9 2004-03-26 14:26:14 olpa Exp $
+# $Id: texmlwr.py,v 1.10 2004-03-26 14:35:36 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -25,6 +25,8 @@ class texmlwr:
   # Empty line detection by end-of-line symbols
   # after_ch09
   # after_ch0a
+  # Handling of '--' and '---'
+  # after_minus
   #
   # Stream and mode. They can be temporary substituted,
   # so stacks of streams and modes are used.
@@ -46,6 +48,7 @@ class texmlwr:
     self.stream = stream
     self.after_char0d     = 1;
     self.after_char0a     = 1;
+    self.after_minus      = 0;
     self.mode             = TEXT;
     self.mode_stack       = [];
     self.stream           = stream
@@ -147,6 +150,20 @@ class texmlwr:
     #
     self.after_char0d = 0
     self.after_char0a = 0
+    #
+    # Handle ligatures "--" and "---"
+    #
+    if '-' == ch:
+      if self.after_minus and (not self.ligatures):
+        self.stream.write('{}')
+      self.after_minus = 1
+      self.stream.write('-')
+      return                                               # return
+    else:
+      self.after_minus = 0
+    #
+    # Handle specials
+    #
     if esc_specials:
       try:
         if self.mode == TEXT:
