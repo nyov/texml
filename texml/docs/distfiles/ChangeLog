@@ -1,3 +1,12 @@
+Version 1.01.devel (06 May 2004)
+
+* The program now prints its version.
+* The program now deletes leading spaces in <env/>.
+* Element <env/> now supports children <opt/> and <parm/>.
+  Elements <parm/> and <opt/> now support child <group/>.
+  Thanks to Stephen Robertson for request for improvements.
+
+
 Version 1.00 (09 April 2004)
 
 * More ligatures are being processed: ``, '', ?`, !`. With -- and ---
