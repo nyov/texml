@@ -16,6 +16,7 @@ TeXML tests
 + ctrl       control symbols
 + spec       special symbols
 + entity     check that entities are expanded
++ cmdnest    test nested commands (incorrect, but possible)
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
