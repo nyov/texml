@@ -162,13 +162,32 @@ Your comments are welcome.
 Regards, Oleg
 
 =====================================================================
-for SourceForge announce
+for SourceForge announce (0.91.beta)
 
 TeXML 0.91.beta
 
 TeXML v.0.91.beta, the first public version of TeXML, is released. A Python processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Although the release is marked as beta, code is considered as stable and good.
 
 TeXML homepage: http://getfo.sourceforge.net/texml/
+
+=====================================================================
+for SourceForge announce (0.95.beta)
+
+TeXML 0.95.beta
+
+TeXML v.0.95.beta is released. A Python processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. There is a set of improvements comparing to the 0.91 beta:
+
+* Ligatures "--" and "---" are being processed. This is configurable.
+* Escaping of TeX specials is configurable.
+* Translation of empty line is configurable.
+* Default encoding of output now is ascii, not utf8.
+* ChangeLog file is created.
+
+Many thanks to Torsten Bronger from the DB2LaTeX-devel mailing list for good questions. Improvements are appeared mostly due to the discussion.
+
+TeXML homepage: http://getfo.sourceforge.net/texml/
+
+DB2LaTeX-devel discussion of the TeXML: http://sourceforge.net/mailarchive/forum.php?thread_id=4116171&forum_id=22902 (unfortunaly, not all messages are archived).
 
 =====================================================================
 ru_RU.KOI8-R: (html)  (for xmlhack.ru announce)
