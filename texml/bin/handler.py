@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.22 2004-06-21 12:56:11 olpa Exp $
+# $Id: handler.py,v 1.23 2004-06-21 13:34:13 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -149,17 +149,12 @@ class handler:
   def startElement(self, name, attrs):
     """ Handle start of an element"""
     if name in self.model:
-      # 6 May 2004, olpa: (see also 'characters' handler)
-      # Now we eat leading spaces in <env/>. Any new element
-      # should stop such behaviour. Ugly hack, but should work.
-      self.text_is_only_spaces = 0
       self.model[name](attrs)
     else:
       raise ValueError("Element '%s' is not expected" % name)
 
   def characters(self, content):
     """ Handle text data """
-    #print '[chars: [[[[[[[[[[[%s]]]]]]]]]]]' % content
     #
     # First, check if content allowed at all
     #
@@ -171,16 +166,6 @@ class handler:
     if self.text_is_only_spaces:
       stripped = content.lstrip(" \t\n\r\f\v")
       if 0 != len(stripped):
-        # 6 May 2004, olpa: now <env/> also have <parm/> and <opt/>
-        # (for environments like 'tabular'). In LaTeX document, parameters
-        # should go immediately after start of environment. The program
-        # should delete possible (due to XML indenting) spaces. Here
-        # we implement a "hack", in future we should introduce
-        # smart handling of spaces.
-        if self.model == self.model_env:
-          self.text_is_only_spaces = 0
-          self.writer.write(stripped)
-          return                                           # return
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
     #
@@ -311,13 +296,15 @@ class handler:
  
   def on_opt_end(self):
     self.writer.writech(']', 0)
-    self.text_is_only_spaces = 1 # Because returns to <cmd/>
     self.has_parm            = 1 # At the end to avoid collision of nesting
+    # <opt/> can be only inside <cmd/> or (very rarely) in <env/>
+    # text is not allowed in <cmd/> and allowed in <env/>
+    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
 
   def on_parm_end(self):
     self.writer.writech('}', 0)
-    self.text_is_only_spaces = 1
     self.has_parm            = 1
+    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
 
   # -----------------------------------------------------------------
 
@@ -345,8 +332,6 @@ class handler:
       self.writer.conditionalNewline()
     self.nl_spec_stack.append(self.nl_spec)
     self.nl_spec = (self.get_boolean(attrs, 'nl3', 1), self.get_boolean(attrs, 'nl4', 1))
-    # See '6 May 2004' comment in 'characters' handler
-    self.text_is_only_spaces = 1
 
   def on_env_end(self):
     nl3, nl4 = self.nl_spec
@@ -358,8 +343,6 @@ class handler:
       self.writer.conditionalNewline()
     self.cmdname = self.cmdname_stack.pop()
     self.endenv  = self.endenv_stack.pop()
-    # See '6 May 2004' comment in 'characters' handler
-    self.text_is_only_spaces = 0
 
   def on_group(self, attrs):
     """ Handle 'group' element """
