@@ -17,10 +17,10 @@
 		<title>Text translation</title>
 		<a name="texttrans"/><p>Characters are processed as follows:</p>
 		<ul>
-			<li>If a character has a special meaning for TeX, then the character is translated according to the table below.</li>
+			<li>If a character has a special meaning for TeX, then the character is translated as shown in the table below.</li>
 			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
 			<li>If the character exists in a LaTeX mapping table, then a corresponding substitution for the character is used.</li>
-			<li>The character is dumped as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is a hexadecimal code of the character.</li>
+			<li>Otherwise the character is output as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is the hexadecimal code for the character.</li>
 		</ul>
 		<table border="1">
 			<caption>Mapping of special symbols</caption>
@@ -100,8 +100,8 @@
 				<td></td>
 			</tr>
 		</table>
-		<p>LaTeX mapping table is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
-		<p>Empty lines also have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. In order to avoid it, processor instead of a empty line prints a line with the one symbol <tt>%</tt> (TeX comment).</p>
+		<p>The LaTeX mapping table is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
+		<p>Empty lines also have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>The TeXML processor does not disconnect ligatures except &#x201c;<tt>--</tt>&#x201d; and &#x201c;<tt>---</tt>&#x201d;. These ligatures are converted into &#x201c;-{}-&#x201d; and &#x201c;-{}-{}-&#x201d;.</p>
 		<p>It is possible to tune text translation:</p>
 		<ul>
@@ -109,14 +109,14 @@
 			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves &#x201c;<tt>--</tt>&#x201d; and &#x201c;<tt>---</tt>&#x201d; as is,</li>
 			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
 		</ul>
-		<p>Elements <tt>TeXML</tt> can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
+		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
 	</sect>
 
 	<sect>
 		<title>Switching between modes</title>
 		<a name="mode"/><p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
-		<p>Modes affect only translation of text.</p>
-		<p>Default mode is the <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. Possible values of this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then mode is not changed.</p>
+		<p>Modes only affect translation of text.</p>
+		<p>The default mode is <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then mode is not changed.</p>
 		<lst><![CDATA[<?xml version="1.0" encoding="..."?>
 <TeXML>
   ... text mode here ...
@@ -132,7 +132,7 @@
 		<title>Encoding commands</title>
 		<p>The TeXML <e>cmd</e> element encodes TeX commands.</p>
 		<ul>
-			<li>To write a command with no parameters, such as <tt>\par</tt>, write <code>&lt;cmd name="par"/&gt;</code>.</li>
+			<li>To write a command with no parameters, such as <tt>\par</tt>, use <code>&lt;cmd name="par"/&gt;</code>.</li>
 			<li>To add parameters to a command, add <e>parm</e> children to the <e>cmd</e> element. The processor places <e>parm</e> children within TeX groups, that is, curly braces.</li>
 			<li>To add options to a command, add <e>opt</e> children to the <e>cmd</e> element. The processor places <e>opt</e> children within square braces, as LaTeX style options.</li>
 		</ul>
@@ -156,7 +156,7 @@
 <lst>&lt;env name="document"&gt;
   ...
 &lt;/env&gt;</lst>
-		<p>By default processor uses command <tt>begin</tt> to start the environment and uses command <tt>end</tt> to finish the environment. If you have another conventions for the environment block, you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
+		<p>By default the processor uses the <tt>begin</tt> command to start the environment and uses command <tt>end</tt> to finish it. If you have different conventions for the environment block you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
 	</sect>
 
 
@@ -180,7 +180,7 @@ $$\sqrt 2$$</lst>
 
 	<sect>
 		<title>Encoding special symbols</title>
-		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described above</a>. But there are cases when you need these specials literally, as is. In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described above</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
 		<table border="1">
 			<caption><e>cat</e> attribute values</caption>
 			<tr>
@@ -259,9 +259,13 @@ $$\sqrt 2$$</lst>
 
 	<sect>
 		<title>Running the processor</title>
-		<p>The processor is a Python program <tt>texml.py</tt>. Usage:</p>
+		<p>The processor is a Python program <tt>texml.py</tt>. </p>
+
+<p><br></p>
+<p>Usage:</p>
 <lst>python texml.py [-e <i>encoding</i>] <i>input_file</i> <i>output_file</i></lst>
+<p><br></p>
 		<p>The processor parses the <i>input_file</i> and saves result of transformation into the <i>output_file</i>.</p>
-		<p>You can specify any encoding supported by Python codecs. Default encoding is <tt>ascii</tt>.</p>
+		<p>You can specify any encoding supported by Python codecs. The default encoding is <tt>ascii</tt>.</p>
 	</sect>
 </doc>
