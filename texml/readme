@@ -1,0 +1,11 @@
+TeXML project
+
+http://getfo.org/text/
+
+bin     the program
+dist    distribution packages are stored here
+docs    documentation
+dtd     DTD (document type definition) for TeXML
+map     mapping of Unicode to other encodings, generatino of Python map
+mkdist  scripts to build distribution packages
+tests   TeXML tests and examples
