@@ -1,0 +1,20 @@
+% customizing a  list
+\starttext
+\def\Inbetween{\blank[48pt]}
+\def\Before{\blank[24pt]}
+\setupitemize[width=40pt, 
+inbetween=\Inbetween,
+before=\Before,
+]
+\setuppagenumbering[state=stop, way=bytext]
+% enable utf documents
+These Names of Virtues with their Precepts were\par
+\enableregime[utf]
+text before item\par
+\startitemize[n]
+\item {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+\item {\sl Silence.} Speak not but what may benefit other or yourself.
+Avoid trifling Conversation.
+\stopitemize
+
+\stoptext
