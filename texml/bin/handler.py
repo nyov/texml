@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.13 2004-04-09 10:14:05 olpa Exp $
+# $Id: handler.py,v 1.14 2004-05-06 09:42:17 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -44,17 +44,20 @@ class handler(xml.sax.handler.ContentHandler):
       'ctrl':   self.on_ctrl,
       'spec':   self.on_spec
     }
-    self.model_content          = self.model_nomath.copy();
-    self.model_content['math']  = self.on_math;
-    self.model_content['dmath'] = self.on_dmath;
+    self.model_content          = self.model_nomath.copy()
+    self.model_content['math']  = self.on_math
+    self.model_content['dmath'] = self.on_dmath
     self.model_cmd    = {
       'opt':    self.on_opt,
       'parm':   self.on_parm
     }
+    self.model_env = self.model_nomath.copy()
+    self.model_env.update(self.model_cmd)
     self.model_opt    = {
       'spec':   self.on_spec,
       'ctrl':   self.on_ctrl,
       'cmd':    self.on_cmd,
+      'group':  self.on_group,
       'math':   self.on_math
     }
     self.model_parm   = self.model_opt
@@ -81,16 +84,34 @@ class handler(xml.sax.handler.ContentHandler):
   def startElement(self, name, attrs):
     """ Handle start of an element"""
     if name in self.model:
+      # 6 May 2004, olpa: (see also 'characters' handler)
+      # Now we eat leading spaces in <env/>. Any new element
+      # should stop such behaviour. Ugly hack, but should work.
+      self.text_is_only_spaces = 0
       self.model[name](attrs)
     else:
       raise ValueError("Element '%s' is not expected" % name)
 
   def characters(self, content):
     """ Handle text data """
+    # Elements like <spec/> should be empty
     if self.no_text_content:
       raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
+    # Element <cmd/> should not have text content,
+    # but it also may contain spaces due to indenting
     if self.text_is_only_spaces:
-      if 0 != len(content.strip(" \t\n\r\f\v")):
+      stripped = content.lstrip(" \t\n\r\f\v")
+      if 0 != len(stripped):
+        # 6 May 2004, olpa: now <env/> also have <parm/> and <opt/>
+        # (for environments like 'tabular'). In LaTeX document, parameters
+        # should go immediately after start of environment. The program
+        # should delete possible (due to XML indenting) spaces. Here
+        # we implement a "hack", in future we should introduce
+        # smart handling of spaces.
+        if self.model == self.model_env:
+          self.text_is_only_spaces = 0
+          self.writer.write(stripped)
+          return                                           # return
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
     self.writer.write(content)
@@ -205,7 +226,7 @@ class handler(xml.sax.handler.ContentHandler):
 
   def on_env(self, attrs):
     """ Handle 'cmd' element """
-    self.stack_model(self.model_content)
+    self.stack_model(self.model_env)
     #
     # Get name of the environment, and begin and end commands
     #
@@ -218,11 +239,15 @@ class handler(xml.sax.handler.ContentHandler):
     self.cmdname = name
     self.endenv  = attrs.get('end',   'end')
     self.writer.write('\%s{%s}' % (begenv, name), 0)
+    # See '6 May 2004' comment in 'characters' handler
+    self.text_is_only_spaces = 1
 
   def on_env_end(self):
     self.writer.write('\%s{%s}' % (self.endenv, self.cmdname), 0)
     self.cmdname = self.cmdname_stack.pop()
     self.endenv  = self.endenv_stack.pop()
+    # See '6 May 2004' comment in 'characters' handler
+    self.text_is_only_spaces = 0
 
   def on_group(self, attrs):
     """ Handle 'group' element """
