@@ -37,6 +37,7 @@
   name    CDATA  #REQUIRED
   nl1     (0|1)  #IMPLIED
   nl2     (0|1)  #IMPLIED
+	gr      (0|1)  #IMPLIED
 >
 
 <!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math|group">
