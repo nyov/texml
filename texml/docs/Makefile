@@ -3,7 +3,7 @@
 # We use GetFO stylesheets
 getfo=../../getfo/docs/xslt
 
-all: index.html index.txt spec.html spec.txt
+all: index.html index.txt spec.html spec.txt quick.html quick.txt
 
 distclean:
 	rm -f *~ *.txt *.html
