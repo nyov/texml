@@ -1,6 +1,6 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.7 2004-03-26 11:46:32 olpa Exp $
-version=0.95.beta
+# $Id: Makefile,v 1.8 2004-04-02 15:24:05 olpa Exp $
+version=0.98.beta
 
 txtext = .txt
 outdir=../dist
