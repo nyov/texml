@@ -149,4 +149,11 @@ line
 
 <env name="=================" nl2="0" nl3="0"/>
 
+<TeXML>
+two nl:  [<spec cat="nl"/><spec cat="nl"/>]
+two nl?: [<spec cat="nl?"/><spec cat="nl?"/>]
+</TeXML>
+
+<env name="=================" nl2="0" nl3="0"/>
+
 </TeXML>
