@@ -5,12 +5,14 @@
 	<sect>
 		<title>Root element</title>
 		<p>The root element of a TeXML document is the element <e>TeXML</e>.</p>
-		<p>A basic template of a TeXML document:</p>
+		<blockquote>
+			<p>A basic template of a TeXML document:</p>
 <lst><![CDATA[<?xml version="1.0" encoding="..."?>
 <TeXML>
   ... your content here ...
 </TeXML>
 ]]></lst>
+		</blockquote>
 	</sect>
 
 	<sect>
@@ -22,6 +24,12 @@
 			<li>If the character exists in a LaTeX mapping table, then a corresponding substitution for the character is used.</li>
 			<li>Otherwise the character is output as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is the hexadecimal code for the character.</li>
 		</ul>
+		<blockquote>
+			<p>Example. TeXML:</p>
+			<lst><![CDATA[<TeXML>$a \/\/ $b</TeXML>]]></lst>
+			<p>TeX:</p>
+			<lst>\$a $\backslash$/$\backslash$/ \$b</lst>
+		</blockquote>
 		<table border="1">
 			<caption>Mapping of special symbols</caption>
 			<tr>
@@ -109,6 +117,12 @@
 			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves &#x201c;<tt>--</tt>&#x201d; and &#x201c;<tt>---</tt>&#x201d; as is,</li>
 			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
 		</ul>
+		<blockquote>
+			<p>Example. For TeXML</p>
+			<lst><![CDATA[<TeXML escape="0">$a \/\/ $b</TeXML>]]></lst>
+			<p>TeX output now looks like this:</p>
+			<lst>$a \/\/ $b</lst>
+		</blockquote>
 		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
 	</sect>
 
@@ -118,7 +132,7 @@
 		<p>Modes only affect translation of text.</p>
 		<p>The default mode is <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then mode is not changed.</p>
 <blockquote>
-	<p>TeXML:</p>
+	<p>Example. TeXML:</p>
 <lst><![CDATA[<?xml version="1.0" encoding="..."?>
 <TeXML>
   text mode here: |&#x302;
@@ -152,6 +166,7 @@
 			<li>To add parameters to a command, add <e>parm</e> children to the <e>cmd</e> element. The processor places <e>parm</e> children within TeX groups, that is, curly braces.</li>
 			<li>To add options to a command, add <e>opt</e> children to the <e>cmd</e> element. The processor places <e>opt</e> children within square braces, as LaTeX style options.</li>
 		</ul>
+		<blockquote>
 		<p>As an example, the TeX code</p>
 <lst>\documentclass[12pt]{letter}</lst>
 		<p>will look like this in XML:</p>
@@ -159,12 +174,24 @@
   <opt>12pt</opt>
   <parm>letter</parm>
 </cmd>]]></lst>
+		</blockquote>
+		<p>The TeXML <e>cmd</e> can have several commands <e>parm</e> or <e>opt</e>.</p>
+		<blockquote>
+			<p>TeXML:</p>
+<lst><![CDATA[... Visit <cmd name="href">
+  <parm>TeXML homepage</parm>
+  <parm>http://getfo.org/texml/</parm></cmd> ...]]></lst>
+			<p>TeX:</p>
+			<lst>... Visit \href{TeXML homepage}{http://getfo.org/texml/} ...</lst>
+		</blockquote>
 	</sect>
 
 
 	<sect>
 		<title>Encoding environments</title>
-		<p>The element <e>env</e> is a convenience for expressing LaTeX environments. In order to get</p>
+		<p>The element <e>env</e> is a convenience for expressing LaTeX environments.</p>
+		<blockquote>
+			<p>In order to get in TeX</p>
 <lst>\begin{document}
   ...
 \end{document}</lst>
@@ -172,21 +199,40 @@
 <lst>&lt;env name="document"&gt;
   ...
 &lt;/env&gt;</lst>
+</blockquote>
 		<p>By default the processor uses the <tt>begin</tt> command to start the environment and uses command <tt>end</tt> to finish it. If you have different conventions for the environment block you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
+		<blockquote>
+			<p>Custom LaTeX environment</p>
+<lst>\start{list}
+  ...
+\finish{list}</lst>
+		<p>can be generated from this TeXML:</p>
+<lst>&lt;env name="list" begin="start" end="finish"&gt;
+  ...
+&lt;/env&gt;</lst>
+</blockquote>
 	</sect>
 
 
 	<sect>
 		<title>Encoding groups</title>
-		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an open brace at the beginning, and a close brace at the end of the group. The TeX scrap, <code>{\it italics}</code> may appear as</p>
-		<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
-		<p>in TeXML.</p>
-		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor writes appropriate math shift symbol at the beginning and at the end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group. The TeXML code</p>
+		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an open brace at the beginning, and a close brace at the end of the group.</p>
+		<blockquote>
+			<p>The TeX scrap,</p>
+			<lst>{\it italics}</lst>
+			<p>may appear as</p>
+			<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
+			<p>in TeXML.</p>
+		</blockquote>
+		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor writes appropriate math shift symbol at the beginning and at the end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group.</p>
+		<blockquote>
+			<p>The TeXML code</p>
 <lst><![CDATA[<math>a+b</math>
 <dmath><cmd name="sqrt"/>2</dmath>]]></lst>
 		<p>translates to the following TeX code:</p>
 <lst>$a+b$
 $$\sqrt 2$$</lst>
+</blockquote>
 	</sect>
 
 	<sect>
