@@ -1,0 +1,17 @@
+Plan of work:
+
+* TeX serializator.
+* Investigation of JadeTeX and PassiveTeX, implementation of minimal formatting (paragraphs, bold and other small things).
+* Simple draft experimental diff/patch functionality.
+* Distribution autobuild, documentation, site. Milestone release 0.01.
+* unicode// Milestone release 0.10.
+* experiments with overheight blocks, finding some solution
+* right-to-left etc texts // Milestone release 0.20.
+* realization of the lists, blockquotes, images (all except tables)
+* support of images
+* support of master pages // Milestone release 0.30.
+* adding tables  // Milestone release 0.40.
+* font management, tests of baseline distances etc // Milestone release 0.50.
+* Many DocBook documents should be processed
+* ... too far to plan ...
+
