@@ -1,4 +1,6 @@
-<!ENTITY % content "TeXML|cmd|env">
+<!ENTITY % nomath "TeXML|cmd|env|group">
+
+<!ENTITY % content "%nomath|math|dmath">
 
 <!ELEMENT TeXML (%content)*>
 
@@ -12,7 +14,13 @@
 	end   CDATA #IMPLIED
 >
 
-<!ELEMENT cmd (opt|parm)*>
+<!ELEMENT group (%content)*>
+
+<!ELEMENT math  (%nomath)*>
+
+<!ELEMENT dmath (%nomath)*>
+
+<!ELEMENT cmd   (opt|parm)*>
 
 <!ATTLIST cmd name CDATA #REQUIRED>
 
