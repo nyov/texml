@@ -1,9 +1,15 @@
-* ChangeLog is created.
+Version 0.95.beta (26 March 2004)
+
+* Ligatures "--" and "---" are being processed. This is configurable.
+* Escaping of TeX specials is configurable.
+* Translation of empty line is configurable.
+* Default encoding of output now is ascii, not utf8.
+* ChangeLog file is created.
 
 
 Version 0.91.beta (22 March 2004)
 
-* Under Window, TeXML processor now creates lines with DOS endings.
+* Under Windows, TeXML processor now creates lines with DOS endings.
   Code should also work correctly in other systems (MacOS etc).
 
 
