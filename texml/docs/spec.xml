@@ -243,6 +243,14 @@ $$\sqrt 2$$</lst>
 	<sect>
 		<title>Encoding special symbols</title>
 		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described above</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<blockquote>
+			<p>The TeX scrap,</p>
+			<lst>{\it italics}</lst>
+			<p>may also appear as</p>
+			<lst><![CDATA[<spec cat="bg"/><spec cat="esc"/>it italics<spec cat="eg"/>]]></lst>
+			<p>in TeXML. But doing so is not recommended!</p>
+		</blockquote>
+		<p>Encode special symbols directly only if you really have to do so. In most cases all you need is the set of elements <e>cmd</e>, <e>env</e> and <e>group</e>. These elements provide a logical markup and minimize chances to get wrong. For example, in the example above, you can forget to write a closing brace or you can mistype and produce an incorrect symbol. But if you use <e>group</e>, you are assured from such errors.</p>
 		<table border="1">
 			<caption><e>cat</e> attribute values</caption>
 			<tr>
