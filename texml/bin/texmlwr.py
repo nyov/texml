@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.15 2004-06-18 13:19:16 olpa Exp $
+# $Id: texmlwr.py,v 1.16 2004-06-18 13:50:19 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -40,10 +40,15 @@ class texmlwr:
   #
   # Current length of a line that is being written. Value usually
   # incorrect, but always correct to detect the start of a line (0)
-  # approx_current_line_len
+  # > approx_current_line_len
   # If length of a current line is greater the value
   # then writer converts weak whitespaces into newlines
-  # autonewline_after_len
+  # >autonewline_after_len
+  # Total number of printed characters (incorrect, but can be
+  # used to detect one weak whitespace after another)
+  # > approx_total_len
+  # Position of last weak whitespace
+  # > last_weak_ws_pos
   
   def __init__(self, stream):
     """ Remember output stream, initialize data structures """
@@ -61,6 +66,8 @@ class texmlwr:
     self.emptylines_stack = []
     self.approx_current_line_len = 0
     self.autonewline_after_len   = 50
+    self.approx_total_len        = 0
+    self.last_weak_ws_pos        = -2 # anything less than 1
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -109,9 +116,26 @@ class texmlwr:
 
   def writeWeakWS(self):
     """ Write a whitespace instead of whitespaces deleted from source XML """
+    #
+    # Break line if it is too long
+    #
     if self.approx_current_line_len > self.autonewline_after_len:
       self.conditionalNewline()
       return                                               # return
+    #
+    # Ignore weak whitespace at the beginning of a line
+    #
+    if self.approx_current_line_len == 0:
+      return                                               # return
+    #
+    # Ignore weak whitespace after another another weak whitespace
+    #
+    if self.last_weak_ws_pos + 1 == self.approx_total_len:
+      return                                               # return
+    #
+    # Finally, write a space
+    #
+    self.last_weak_ws_pos = self.approx_total_len
     self.writech(' ', 0)
 
   def writech(self, ch, esc_specials):
@@ -120,6 +144,7 @@ class texmlwr:
     # Update counters
     #
     self.approx_current_line_len = self.approx_current_line_len + 1
+    self.approx_total_len        = self.approx_total_len        + 1
     #
     # Handle ligatures
     #
