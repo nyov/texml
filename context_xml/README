@@ -1,1 +1,9 @@
-Sat Apr  2 18:22:20 EST 2005
+This directory contains all the files to create
+documentation for using ConTeXt to format XML documents. To create the
+documents. Type:
+
+./make_docs.py 
+
+Or
+
+python make_docs.py
