@@ -1,13 +1,13 @@
 <TeXML>
- <cmd name="documentclass">
+ <cmd name="documentclass" nl2="1">
   <parm>article</parm>
  </cmd>
  <cmd name="title">
   <parm>Edward Weston</parm>
  </cmd>
  <env name="document">
-  <cmd name="maketitle"/>
-  <cmd name="section*">
+  <cmd name="maketitle" nl2="1"/>
+  <cmd name="section*" nl2="1">
    <parm>Some biographical information</parm>
   </cmd>
   Edward Weston
@@ -16,10 +16,10 @@
   Weston
   lived until
   1958.
-  <cmd name="par"/>
+  <cmd name="par" nl2="1"/>
   Weston was a photographer who pioneered the modern use of photography
   as an art form in the United States.
-  <cmd name="section*">
+  <cmd name="section*" nl1="1">
    <parm>Some short quotes from Weston</parm>
   </cmd>
   <env name="enumerate">
