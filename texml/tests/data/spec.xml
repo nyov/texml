@@ -3,7 +3,7 @@ category 0: <spec cat="esc"/>
 category 1: <spec cat="bg"/>
 category 2: <spec cat="eg"/>
 category 3: <spec cat="mshift"/>
-category 4: <spec cat="align"/>&amp;
+category 4: <spec cat="align"/>
 category 5: n/a
 category 6: <spec cat="parm"/>
 category 7: <spec cat="sup"/>

@@ -1,7 +1,7 @@
 %
 \documentclass[12pt]{letter}
-\par
-o[o1]
-p{p1}
-op[o1,o2]{p1,p2}
-\unusual[b\b][a\ a]
+\par 
+\o[o1]
+\p{p1}
+\op[o1,o2]{p1,p2}
+\unusual[b\b]{a\ a}
