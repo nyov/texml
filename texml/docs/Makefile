@@ -5,6 +5,9 @@ getfo=../../getfo/docs/xslt
 
 all: index.html index.txt spec.html spec.txt
 
+distclean:
+	rm -f *~ *.txt *.html
+
 clean:
 	rm -f *~
 
