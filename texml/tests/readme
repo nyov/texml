@@ -23,6 +23,7 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + entity     check that entities are expanded
 + cmdnest    test nested commands (incorrect, but possible)
 + envenv     environment in environment
++ v101       test of changes from version 1.00 to version 1.01
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
