@@ -1,0 +1,22 @@
+<doc id="texml.index">
+	<title>TeXML: an XML vocabulary for TeX</title>
+	<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
+	<table border="1">
+		<caption>Example of TeXML to TeX translation</caption>
+		<tr>
+			<th>TeXML</th>
+			<th>TeX</th>
+		</tr>
+		<tr>
+			<td>
+<lst><![CDATA[<cmd name="documentclass">
+  <opt>12pt</opt>
+  <parm>letter</parm>
+</cmd>]]></lst>
+			</td>
+			<td>
+<lst>\documentclass[12pt]{letter}</lst>
+			</td>
+		</tr>
+	</table>
+</doc>
