@@ -1,6 +1,16 @@
-<!ELEMENT TeXML (TeXML|cmd)*>
+<!ENTITY % content "TeXML|cmd|env">
+
+<!ELEMENT TeXML (%content)*>
 
 <!ATTLIST TeXML mode (text|math) #IMPLIED>
+
+<!ELEMENT env (%content)*>
+
+<!ATTLIST env
+  name  CDATA #REQUIRED
+	begin CDATA #IMPLIED
+	end   CDATA #IMPLIED
+>
 
 <!ELEMENT cmd (opt|parm)*>
 
@@ -12,5 +22,5 @@
 
 <!ELEMENT spec TODO>
 
-<!ELEMENT parm TODO>
+<!ELEMENT ctrl TODO>
 
