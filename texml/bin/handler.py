@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.7 2004-03-18 06:55:56 olpa Exp $
+# $Id: handler.py,v 1.8 2004-03-18 07:05:08 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -231,11 +231,13 @@ class handler(xml.sax.handler.ContentHandler):
     self.cmdname = self.cmdname_stack.pop()
     self.endenv  = self.endenv_stack.pop()
 
-  def on_group(self):
-    pass
+  def on_group(self, attrs):
+    """ Handle 'group' element """
+    self.stack_model(self.model_content)
+    self.writer.writech('{', 0)
 
   def on_group_end(self):
-    pass
+    self.writer.writech('}', 0)
 
   # -----------------------------------------------------------------
 
