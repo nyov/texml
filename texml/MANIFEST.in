@@ -1,0 +1,9 @@
+include dtd/*
+include tests/*
+include tests/data/*
+include tests/data/quick/
+include tests/data/quick/*
+include tests/faildata/*
+include docs/html/*
+include license.txt
+

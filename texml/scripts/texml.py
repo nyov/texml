@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.5 2005-03-21 05:49:38 paultremblay Exp $
+# $Id: texml.py,v 1.6 2005-03-22 01:01:13 paultremblay Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
@@ -74,14 +74,6 @@ if '-' == outfile:
   f = sys.stdout
 else:
   f = file(outfile, 'wb')
-"""
-import Texml.texmlwr
-try:
-  f = Texml.texmlwr.stream_encoder(f, encoding)
-except Exception, e:
-  print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
-  sys.exit(5)
-"""
 
 def quit(msg):
     print

@@ -12,3 +12,17 @@ tests   TeXML tests and examples
 Texml   the libraries for the latest version
 scripts scripts for the latest version
 
+Installation
+=============
+
+To install the latest version:
+
+1. unpack the tar file
+
+2. change to the directory created by the tar file.
+
+3. type 
+
+   python setup.py install
+
+That should be it.

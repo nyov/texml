@@ -27,7 +27,7 @@ def get_version():
     For now, hard-code this.
 
     """
-    return '1.23'
+    return '1.24.devel'
     temp_module =  os.getcwd()
     sys.path.insert(0, temp_module)
     import texml.version
