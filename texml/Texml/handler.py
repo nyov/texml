@@ -50,7 +50,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.8 2005-03-25 00:20:12 paultremblay Exp $
+# $Id: handler.py,v 1.9 2005-04-05 05:14:32 paultremblay Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -99,7 +99,7 @@ class ParseFile:
         parser = xml.sax.make_parser()
         parser.setFeature(feature_namespaces, 1)
         parser.setContentHandler(handle)
-        parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
+        parser.setFeature("http://xml.org/sax/features/external-general-entities", True)
 
 
         parser.parse(read_obj)             

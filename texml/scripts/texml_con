@@ -1,9 +1,12 @@
-#!/usr/local/bin/env python
-# $Id: texml_con,v 1.1 2005-04-01 17:41:36 paultremblay Exp $
+#!/usr/bin/env python
+# $Id: texml_con,v 1.2 2005-04-05 05:14:33 paultremblay Exp $
 """
 
 This script uses the TeXML libraries to convert a file to ConTeXt. It then
-runs the texexec command on that convertd file
+runs the texexec command on that converted file.
+
+It will only convert one file. You can use any options with this script that
+you would use with texexec.
 
 """
 import os, sys, commands
