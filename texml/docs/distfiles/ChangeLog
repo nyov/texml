@@ -3,7 +3,7 @@ Version 1.10 (????? 2004)
 * Documentation is proofread by Simon Goodson.
 
 
-Version 1.08.devel (28 June 2004)
+Version 1.08.devel (29 June 2004)
 
 * Advanced whitespace processing is implemented: the program
   (a) removes what XML regards as insignificant whitespace, and
