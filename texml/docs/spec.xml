@@ -14,9 +14,16 @@
 	</sect>
 
 	<sect>
-		<title>Special symbols</title>
-		<p>Some symbols have special meaning for TeX. Processor escapes such symbols according to the current mode.</p>
+		<title>Text translation</title>
+		<p>Characters are processed as follows:</p>
+		<ul>
+			<li>If a character has a special meaning for TeX, then the character is translated according to the table below.</li>
+			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
+			<li>If the character exists in a LaTeX mapping table, then a corresponding substitution for the character is used.</li>
+			<li>The character is dumped as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is a hexadecimal code of the character.</li>
+		</ul>
 		<table border="1">
+			<caption>Mapping of special symbols</caption>
 			<tr>
 				<th>symbol</th>
 				<th>text mode</th>
@@ -93,9 +100,8 @@
 				<td></td>
 			</tr>
 		</table>
-		<p>In current encoding</p>
-		<p>Out of encoding</p>
-		<p>Mapping (latex and ams)</p>
+		<p>LaTeX mapping table is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
+		<p>Empty lines also have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. In order to avoid it, processor instead of a empty line prints a line with the one symbol <tt>%</tt> (TeX comment).</p>
 	</sect>
 
 	<sect>
