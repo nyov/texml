@@ -15,6 +15,7 @@ TeXML tests
 + mathgr     math group
 + ctrl       control symbols
 + spec       special symbols
++ entity     check that entities are expanded
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
