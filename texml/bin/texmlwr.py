@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.4 2004-03-16 08:43:24 olpa Exp $
+# $Id: texmlwr.py,v 1.5 2004-03-16 09:36:34 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -80,19 +80,52 @@ class texmlwr:
       # Write line end char and return
       #
       self.stream.write(ch)
-      return                                         # return
+      return                                               # return
     #
-    # Not end-of-line symbol
+    # Not end-of-line symbol. If it has to be escaped, we write
+    # plain ASCII substitution and return
     #
     self.after_char0d = 0
     self.after_char0a = 0
-    if not esc_specials:
+    if esc_specials:
+      try:
+	if self.mode == TEXT:
+	  self.stream.write(specmap.textescmap[ch])
+	else:
+	  self.stream.write(specmap.mathescmap[ch])
+	return                                             # return
+      except:
+	pass
+    #
+    # First attempt to write symbol as-is
+    #
+    try:
       self.stream.write(ch)
-    else:
-      if self.mode == TEXT:
-        self.stream.write(specmap.textescmap.get(ch, ch))
-      else:
-        self.stream.write(specmap.mathescmap.get(ch, ch))
+      return                                               # return
+    except:
+      pass
+    #
+    # In math mode, we try both math and text rewriting
+    #
+    chord = ord(ch)
+    if self.mode == MATH:
+      try:
+	self.stream.write(unimap.mathmap[chord])
+	return                                             # return
+      except:
+	pass
+    #
+    # Find symbol in text map
+    #
+    try:
+      self.stream.write(unimap.textmap[chord])
+      return                                               # return
+    except:
+      pass
+    #
+    # Finally, write symbol in &#xNNN; form
+    #
+    self.stream.write('&#x%X;' % chord)
 
   def write(self, str):
     """ Write symbols char-by-char in current mode of escaping """
