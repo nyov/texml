@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.25 2004-06-22 09:14:29 olpa Exp $
+# $Id: handler.py,v 1.26 2004-06-22 09:19:34 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -94,7 +94,6 @@ class handler:
     self.process_ws_stack    = []
     self.nl_spec             = None
     self.nl_spec_stack       = []
-    self.last_content        = ''
     #
     # Create handler maps
     #
