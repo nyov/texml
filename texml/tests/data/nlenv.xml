@@ -1,11 +1,11 @@
 <TeXML>
 	<!-- Default is nlX=1 -->
 	x <env name="y">?</env> z
-	<!-- Explicit nlX=1 -->
+	<!-- Explicit nlX=1 --><spec cat="nil"/>
 	x <env name="y" nl1="1" nl2="1" nl3="1" nl4="1">?</env> z
-	<!-- No newlines at all -->
+	<!-- No newlines at all --><spec cat="nil"/>
 	x <env name="y" nl1="0" nl2="0" nl3="0" nl4="0">?</env> z
-	<!-- Check each attribute -->
+	<!-- Check each attribute --><spec cat="nil"/>
 	x <env name="y" nl1="1" nl2="0" nl3="0" nl4="0">?</env> z
 	x <env name="y" nl1="0" nl2="1" nl3="0" nl4="0">?</env> z
 	x <env name="y" nl1="0" nl2="0" nl3="1" nl4="0">?</env> z
