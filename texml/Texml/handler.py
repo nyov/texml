@@ -2,63 +2,55 @@
 
 Use:
 
+    from xml.sax.handler import feature_namespaces
     import xml.sax 
     import Texml.handler
-    import Texml.texmlwr
 
-    # set up a write object
-    # can also be standard out:
-    # write_obj = sys.stdout
-    write_obj  = file('outfile.xml', 'wb')
-
-    # set up the input
-    # can also be standard in:
+    # create an infile, which should be a path or standard in
     # in_file = sys.stdin
     in_file = 'in_file.xml'
 
-    # encoding 
-    ecoding = 'utf8'
+    # create a write object. This should be a write obj or standard out
+    # write_obj = sys.stdout
+    write_obj =  file('out_file.tex', 'wb')
+
+    # encoding
+    # encoding = 'ascii'
+    # I'm not sure about other values
+    encoding = 'utf8'
 
     # any integer for width of text
     width = 55
 
-    # whether the form of TeX is ConTeXt
+    # whether or not to use context. Choose 1 to run in context mode; choose 
+    # 0 or None otherwise
+    # use_context = 1
     use_context = 0
 
-    # create a parser object
-    p = xml.sax.make_parser()
+    # create a transform object
+    transform_obj = Texml.handler.ParseFile()
 
-    # try to set encoding
+    # parse the file
     try:
-      f = Texml.texmlwr.stream_encoder(f, encoding)
-    except Exception, e:
-      print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
-      sys.exit(5)
+        transform_obj.parse_file(
+            encoding = encoding, 
+            read_obj = in_file, 
+            write_obj = write_obj, 
+            width = width, 
+            use_context = use_context,
 
-    #
-    # Create transformer and run process
-    #
+        )
 
-    handle = Texml.handler.glue_handler(write_obj, width, use_context)
-
-    parser = xml.sax.make_parser()
-    parser.setFeature(feature_namespaces, 1)
-    parser.setContentHandler(handle)
-    parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
-
-    try:
-        parser.parse(infile)             
     except xml.sax._exceptions.SAXParseException, msg:
         print msg
     except Texml.handler.InvalidXmlException, msg:
         print msg
 
-    write_obj.close()
-
+   write_obj.close()
 
 
 """
-# $Id: handler.py,v 1.6 2005-03-21 05:49:36 paultremblay Exp $
+# $Id: handler.py,v 1.7 2005-03-21 23:11:09 paultremblay Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -120,6 +112,11 @@ class InvalidXmlException(Exception):
     pass
 
 class glue_handler(xml.sax.ContentHandler):
+
+  """
+  Not really a public class. use ParseFile instead.
+
+  """
   
   def __init__(self, stream, autonl_width, use_context, 
         name_space = 'http://getfo.sourceforge.net/texml/ns1'):
@@ -207,6 +204,14 @@ class glue_handler(xml.sax.ContentHandler):
 # WS processing is allowed or disallowed by "process_ws".
 
 class Handler:
+
+  """
+  Not really a public class.
+
+  Handles the infile, using the glue_handle class to get the data as 
+  elements or characters.
+
+  """
 
   # Object variables
   # writer
