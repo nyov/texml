@@ -7,7 +7,7 @@ getfo_files=index.html objectives.html workplan.html
 texml_dir=$(getfo_dir)/texml
 texml_out_dir=$(out_dir)/texml
 texml_projdoc_files=spec.txt lovell.pdf
-texml_files=index.html $(texml_projdoc_files)
+texml_files=index.html spec.html $(texml_projdoc_files)
 texml_projdoc_dir=../../texml/docs/project
 
 getfo_out_files=$(addprefix $(out_dir)/,$(getfo_files))
