@@ -12,9 +12,9 @@
 
 <x:template match="body">
 	<body>
-		<x:apply-templates select="document('inc/menu.xml',/)"/>
+		<x:apply-templates select="document('../inc/menu.xml')"/>
 		<x:apply-templates select="node()|@*"/>
-		<x:apply-templates select="document('inc/footer.xml',/)"/>
+		<x:apply-templates select="document('../inc/footer.xml')"/>
 	</body>
 </x:template>
 
@@ -34,7 +34,13 @@
 			<x:value-of select="."/>
 		</x:when>
 		<x:otherwise>
-			<a href="{concat(@id,'.html')}">
+			<a>
+				<x:attribute name="href">
+					<x:if test="contains($docid,'.')">
+						<x:text>../</x:text>
+					</x:if>
+					<x:value-of select="concat(translate(@id,'.','/'),'.html')"/>
+				</x:attribute>
 				<x:value-of select="."/>
 			</a>
 		</x:otherwise>
