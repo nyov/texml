@@ -76,7 +76,7 @@ class MakeDocs:
         sys.stdout.write('Converting XML to TEI...\n')
         convert_obj = txt2xml.Text2xml.TextToXml(processor='xsltproc-command')
         list_of_files = [os.path.join(self.__home_dir,'xml', 'fragments.xml'),]
-        outfile = os.path.join(self.__home_dir, 'xml', 'context_notes.xml')
+        outfile = os.path.join(self.__home_dir, 'xml', 'context_xml.xml')
         style_sheet = os.path.join(self.__home_dir, 'xslt', 'to_tei.xsl')
         list_of_stylesheets = [style_sheet ]
 

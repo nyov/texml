@@ -420,38 +420,45 @@ the value to 450 should discourage most widows and orphans.
  ...
  </env>
 
-Making sure a title or subtitle does not become an orphan requires the
-[:cm: testpage] command.  The [:cm: testpage] command takes one
-option, an integer, which seems to roughly correspond to the number of
-minimum additional lines the page should contain.
+Keeping text with next
+-----------------------
 
-This command has the affect of allowing text to stick together. If you
-set its option to  2, and issue it right before a title, [:ab:
-context] checks to see if it can fit two lines on the page. If it
-can't, it puts the text on the next page, avoiding an orphan
-sub-title. If you set the number to three, [:ab: context] will force a
-break if it can't fit 3 additional lines on a page.
+Many commercial programs such as Microsft Word, as well as FO, allow
+for you to keep section headings with the text that follows, so that
+they won't become stuck by themselves at the bottom of the page.  You
+can achieve the same thing with the [:cm: testpage] command.
 
-The actual number in the option is acutally an aproxtimation, since
-any extra space seems to count as lines. The higher the number, the
-most text that will stick with the title or subtitle. If you use too
-high a number, pages may contain blank spaces at then end. If you use
-a number too low, the title may become an orphan.
+The [:cm: testpage] command takes one option, a number, which
+roughly correspond to the number of minimum additional "lines" the page
+should contain. If the number of the option were 2, [:ab: context
+checks to see if it can fit two more "lines" on the page. If not,
+it breaks the page at the [:ab: testpage] command and puts the text on
+the next page.
+
+This command has the affect of allowing text to stick together. 
+If you issued this command right before a section title, and used the
+number 3, [:ab: context] would check to see if the heading and two
+addtional "lines" below it can fit on the page. If not, it breaks the
+page, preventing the heading from becoming an orphan.
+
+I put the "lines" in quotes because [:ab: context] doesn't also counts
+white space as "lines." If you use white space after your title (an
+most likely you will), you will have to increase the number in the
+option. Too high a number will certainly prevent orphans of the title,
+but will also restul an ugly empty spaces at the bottom of pages. 5 or
+6 will probably work in most situations.
 
 
 :t2x-no-process:
 
  % sapce before the sub-title
  \blank[12pt]
-
- % make sure the page can contain 3 more virtual lines
+ % make sure the page can contain 5 more virtual lines
  % if not, break
- \testpage[3]
-
+ \testpage[5]
  % the title (which normally would appear in larger 
  % font)
  Thoreau's Lifestyle\par
-
  % space after the title
  \blank[12pt]
 .. end block code
@@ -462,26 +469,41 @@ a number too low, the title may become an orphan.
  <cmd name="blank">
   <opt>12pt</opt>
  </cmd>
-
  <!--
-  make sure the page can contain 3 more virtual lines
+  make sure the page can contain 5 more virtual lines
   if not, break
  -->
  <cmd name="testpage">
   <opt>3</opt>
  </cmd>
- \testpage[3]
-
  <!--
  the title (which normally would appear in larger 
   font)
  -->
  Thoreau's Lifestyle
  <cmd name="par" gr="0"/>
-
  <!--space after the title-->
  <cmd name="blank">
   <opt>12pt</opt>
  </cmd>
 
 
+----------
+Footnotes
+----------
+
+The [:cm: footnote] command creates footnotes. Put the text of the
+footnote in the parameter.
+
+:t2x-no-process:
+ 
+ At present I am a sojourner in civilized life
+ again. \footnote{Thoreau...}
+
+:t2x-no-process rend=xml:
+ 
+ At present I am a sojourner in civilized life
+ again. 
+  <cmd name="footnote">
+   Thoreau...
+  </cmd>
