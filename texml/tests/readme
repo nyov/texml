@@ -1,5 +1,7 @@
 TeXML tests
 
+Long examples are data/texmlatte.xml and data/texmlapis.xml.
+
 + empty      no data, only a root element
 + hello      text "Hello, World!"
 + normal     escaping of special chars in tex mode
@@ -26,6 +28,7 @@ Tests to be failed:
 + badxml     unparsable XML
 + unkelem    unknown element
 + errmode    incorrect mode specification
++ errmode2   incorrect mode specification
 + cmdname    no name for "cmd"
 + cmdcont    "cmd" contains something other than "opt" or "parm"
 + misopt     "opt" is not a child of "cmd" or "env"
@@ -43,3 +46,4 @@ Tests to be failed:
 + spec2      "spec" with unknown value of "cat"
 + ctrlcont   "ctrl" element have content
 + speccont   "spec" element have content
+
