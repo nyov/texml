@@ -10,6 +10,8 @@
 		<dl>
 			<dt><a href="spec.txt">spec.txt</a></dt>
 			<dd>Preliminary specification dated by 25 February 2004.</dd>
+			<dt><a href="spec.html">spec.html</a> 1.0 alpha</dt>
+			<dd>Alpha version of specification dated by 11 March 2004.</dd>
 			<dt><a href="lovell.pdf">TeXML: Typesetting XML with TeX</a> (PDF) by Douglas Lovell</dt>
 			<dd>This document describes the TeXML document format and the processor, TeXMLatt&#xE9; that produces TeX source from TeXML markup. The GetFO TeXML project reuses this specification.</dd>
 		</dl>
