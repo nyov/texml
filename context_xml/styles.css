@@ -1,0 +1,16 @@
+body {width:7in;}
+
+p.index-toc-level1{position:relative; left:20pt;}
+h2.page-head{text-align:center}
+
+p.index-toc-level2{position:relative; left:35pt;}
+p.index-toc-level3{position:relative; left:45pt;}
+p.index-toc-level4{position:relative; left:55pt;}
+
+div.xml{background-color:#EBF5FC}
+div.context-block-code{background-color:#f0ffe8}
+p.figure-caption{position:relative;font-family:"Verdana", "Helvetica", sans-serif; margin-topx:-15pt; font-weight:bold;font-size:10pt; text-align:center}
+div.img{border-left:0px solid black;border-right:0px solid black; border-top:0px solid black; border-bottom: 0px solid black;background-color:#ECECEC;padding:20px; text-align:center}
+img {text-align:center;}
+
+
