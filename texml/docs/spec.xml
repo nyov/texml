@@ -137,4 +137,18 @@
 </cmd>]]></lst>
 	</sect>
 
+
+	<sect>
+		<title>Encoding environments</title>
+		<p>The element <e>env</e> is a convenience for expressing LaTeX environments. In order to get</p>
+<lst>\begin{document}
+  ...
+\end{document}</lst>
+		<p>write in TeXML:</p>
+<lst>&lt;env name="document"&gt;
+  ...
+&lt;/env&gt;</lst>
+		<p>By default processor uses command <tt>begin</tt> to start the environment and uses command <tt>end</tt> to finish the environment. If you have another conventions for the environment block, you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
+	</sect>
+
 </doc>
