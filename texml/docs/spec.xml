@@ -401,7 +401,33 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 
 	<sect>
 		<title>Whitespace processing</title>
-		<a name="wsproc"/><p>Characters are processed as follows:</p>
+		<a name="wsproc"/><p>The TeXML processor performs advanced whitespace processing. The program</p>
+		<ul>
+			<li>removes what can be regarded as insignificant whitespace, and</li>
+			<li>introduces its own whitespace which would look reasonable from a human point of view.</li>
+		</ul>
+		<p>Resulting documents are very good, but after some tuning they can be even better. This section describes how whitespace is handled and introduces some hints to make resulting documents as good as handcrafted.</p>
+		<p>An elimination of insignificant whitespace is a task of an XML reader, and the reader does this task quite aggressive. If you find that something goes wrong you can switch off whitespace elimination using attribute <e>ws</e> of tag <e>TeXML</e>. Example:</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[<TeXML>
+<TeXML>
+  <group>
+    <cmd name="it"/> text
+  </group>
+</TeXML>
+<TeXML ws="1">
+  <group>
+    <cmd name="it"/> text
+  </group>
+</TeXML>
+</TeXML>]]></lst>
+			<p>TeX result:</p>
+			<lst>{ \it text }
+  {
+    \it text
+  }</lst>
+		</blockquote>
 	</sect>
 
 </doc>
