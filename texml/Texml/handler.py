@@ -58,10 +58,10 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.5 2005-03-20 17:19:38 paultremblay Exp $
+# $Id: handler.py,v 1.6 2005-03-21 05:49:36 paultremblay Exp $
 
 import xml.sax.handler
-
+from xml.sax.handler import feature_namespaces
 
 
 import texmlwr
@@ -75,6 +75,42 @@ import os, sys
 # reports characters in several calls instead of one call.
 # This wrappers fixes the problem
 #
+
+class ParseFile:
+    """
+
+    Wrapper class to make the library easier to use.
+
+    See the above notes for use.
+
+    """
+
+    def __init__(self):
+        pass
+
+
+    def __encode(self, write_obj, encoding):
+        import Texml.texmlwr
+        try:
+            write_obj = Texml.texmlwr.stream_encoder(write_obj, encoding)
+        except Exception, e:
+            print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
+            sys.exit(5)
+        return write_obj
+
+    def parse_file(self, encoding, write_obj, read_obj, width, use_context):
+
+        write_obj = self.__encode(write_obj, encoding)
+
+        handle = glue_handler(write_obj, width, use_context)
+
+        parser = xml.sax.make_parser()
+        parser.setFeature(feature_namespaces, 1)
+        parser.setContentHandler(handle)
+        parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
+
+
+        parser.parse(read_obj)             
 
 class InvalidXmlException(Exception):
     """

@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.4 2005-03-20 17:19:41 paultremblay Exp $
+# $Id: texml.py,v 1.5 2005-03-21 05:49:38 paultremblay Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
@@ -64,8 +64,6 @@ if len(args) != 2:
 #
 import xml.sax 
 
-p = xml.sax.make_parser()
-# p = xml.sax.make_parser(['drv_libxml2']) # for libxml2
 if '-' == infile:
   infile = sys.stdin
 
@@ -76,24 +74,14 @@ if '-' == outfile:
   f = sys.stdout
 else:
   f = file(outfile, 'wb')
+"""
 import Texml.texmlwr
 try:
   f = Texml.texmlwr.stream_encoder(f, encoding)
 except Exception, e:
   print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
   sys.exit(5)
-
-#
-# Create transformer and run process
-#
-import Texml.handler
-
-h = Texml.handler.glue_handler(f, width, use_context)
-
-parser = xml.sax.make_parser()
-parser.setFeature(feature_namespaces, use_namespace)
-parser.setContentHandler(h)
-parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
+"""
 
 def quit(msg):
     print
@@ -101,22 +89,26 @@ def quit(msg):
     f.close()
     sys.exit(1)
 
-
+# import main class and parse
+import Texml.handler
+transform_obj = Texml.handler.ParseFile()
 try:
-    parser.parse(infile)             
+    transform_obj.parse_file(
+        encoding = encoding, 
+        read_obj = infile, 
+        write_obj = f, 
+        width = width, 
+        use_context = use_context,
+
+    )
+
 except xml.sax._exceptions.SAXParseException, msg:
-    msg = 'ill-formed XML\n'
-    msg += '%s\n' % (str(msg))
+    msg = '%s\n' % (str(msg))
     quit(msg)
 except Texml.handler.InvalidXmlException, msg:
     msg = '%s\n' % (str(msg))
     quit(msg)
 
-
-
-#
-# Ok
-#
 f.close()
 sys.exit(0)
 
