@@ -19,7 +19,7 @@ texml/thesis.xml: $(texml_docs)/thesis.xml ../xslt/tohtml.xsl
 	xsltproc -o $@ $(word 2,$+) $<
 
 texml/quick.xml: $(texml_docs)/quick.xml ../xslt/tohtml.xsl
-	xsltproc -o $@ $(word 2,$+) $<
+	xsltproc -o $@ --xinclude $(word 2,$+) $<
 
 clean:
 	rm -f *~ */*~
