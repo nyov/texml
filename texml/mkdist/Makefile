@@ -1,6 +1,6 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.6 2004-03-22 09:03:08 olpa Exp $
-version=0.91.beta
+# $Id: Makefile,v 1.7 2004-03-26 11:46:32 olpa Exp $
+version=0.95.beta
 
 txtext = .txt
 outdir=../dist
@@ -10,7 +10,7 @@ distdir=$(outdir)/$(texmlname)
 all: init copy pack
 
 bin_files = $(addprefix bin/,handler.py texml.py unimap.py specmap.py  texmlwr.py)
-docs_files = $(addprefix docs/,index.html spec.html index$(txtext) spec$(txtext)) readme$(txtext) license$(txtext)
+docs_files = $(addprefix docs/,index.html spec.html index$(txtext) spec$(txtext)) readme$(txtext) license$(txtext) ChangeLog$(txtext)
 good_tests_files := $(wildcard ../tests/data/*xml) $(wildcard ../tests/data/*out)
 fail_tests_files := $(wildcard ../tests/faildata/*xml) $(wildcard ../tests/faildata/*grep)
 tests_files = $(patsubst ../%,%,$(good_tests_files) $(fail_tests_files)) tests/Makefile tests/readme$(txtext)
@@ -43,6 +43,9 @@ $(distdir)/readme$(txtext): ../docs/distfiles/readme
 	cat $< | sed 's/__VERSION__/$(version)/g' >$@
 
 $(distdir)/license$(txtext): ../docs/distfiles/license
+	cp $< $@
+
+$(distdir)/ChangeLog$(txtext): ../docs/distfiles/ChangeLog
 	cp $< $@
 
 $(distdir)/tests/readme$(txtext): ../tests/readme
