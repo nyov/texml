@@ -47,4 +47,6 @@
 			<td><lst>TeX</lst></td>
 		</tr>
 	</table>
+	<p>There is a <a href="spec.html">TeXML specification</a>.</p>
+	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb). There was a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now this realization &#8220;has been retired&#8221;.</p>
 </doc>
