@@ -1,0 +1,19 @@
+all: to_dist
+
+out_dir=../dist/site
+
+getfo_dir=../docs/site
+getfo_files=index.html
+
+getfo_out_files=$(addprefix $(out_dir)/,$(getfo_files))
+site_files=$(getfo_out_files)
+
+to_dist: $(site_files)
+
+x:
+	echo $(getfo_out_files)
+	echo $(site_files)
+
+$(out_dir)/%: $(getfo_dir)/%
+	mkdir -p $(out_dir)
+	cp $< $@
