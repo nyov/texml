@@ -10,10 +10,16 @@ site_files=$(getfo_out_files)
 
 to_dist: $(site_files)
 
-x:
-	echo $(getfo_out_files)
-	echo $(site_files)
-
 $(out_dir)/%: $(getfo_dir)/%
 	mkdir -p $(out_dir)
 	cp $< $@
+
+# -------
+
+ifeq ($(MAKECMDGOALS),sync)
+sfuname = $(shell cat CVS/Root | sed 's/:ext://' | sed 's/@.*//')
+endif
+
+sync: all
+	rsync -e ssh -rtl $(out_dir)/ $(sfuname)@shell.sourceforge.net:/home/groups/g/ge/getfo/htdocs/
+
