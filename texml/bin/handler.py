@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.31 2004-07-07 10:08:46 olpa Exp $
+# $Id: handler.py,v 1.32 2004-07-07 10:57:59 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -157,11 +157,16 @@ class handler:
       raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
     # Element <cmd/> should not have text content,
     # but it also may contain spaces due to indenting
+    # Element <env/> may have <opt/> and <parm/>, so we do
+    # magic to delete whitespace at beginning of environment
     if self.text_is_only_spaces:
+      if self.model == self.model_env:
+        self.text_is_only_spaces = 0
       stripped = content.lstrip(string.whitespace)
-      if 0 != len(stripped):
+      if 0 == len(stripped):
+        return                                             # return
+      if self.model != self.model_env:
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
-      return                                               # return
     #
     # Eliminate whitespaces
     #
@@ -169,10 +174,10 @@ class handler:
     if self.process_ws:
       content2 = content.lstrip()
       if len(content2) != len(content):
-	self.writer.writeWeakWS()
+        self.writer.writeWeakWS()
       content  = content2.rstrip()
       if len(content2) != len(content):
-	post_content_ws = 1
+        post_content_ws = 1
     #
     # Finally, write content
     #
@@ -276,9 +281,9 @@ class handler:
     self.nl_spec = self.nl_spec_stack.pop()
     if not(self.has_parm):
       if gr:
-	self.writer.write('{}', 0)
+        self.writer.write('{}', 0)
       else:
-	self.writer.writeWeakWS()
+        self.writer.writeWeakWS()
     if nl:
       self.writer.conditionalNewline()
 
@@ -298,13 +303,12 @@ class handler:
     self.writer.writech(']', 0)
     self.has_parm            = 1 # At the end to avoid collision of nesting
     # <opt/> can be only inside <cmd/> or (very rarely) in <env/>
-    # text is not allowed in <cmd/> and allowed in <env/>
-    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
+    self.text_is_only_spaces = 1
 
   def on_parm_end(self):
     self.writer.writech('}', 0)
     self.has_parm            = 1
-    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
+    self.text_is_only_spaces = 1
 
   # -----------------------------------------------------------------
 
@@ -332,6 +336,10 @@ class handler:
       self.writer.conditionalNewline()
     self.nl_spec_stack.append(self.nl_spec)
     self.nl_spec = (self.get_boolean(attrs, 'nl3', 1), self.get_boolean(attrs, 'nl4', 1))
+    #
+    # Delete whitespaces at the beginning of an environment
+    #
+    self.text_is_only_spaces = 1
 
   def on_env_end(self):
     nl3, nl4 = self.nl_spec
