@@ -15,8 +15,8 @@
 
 <!ATTLIST env
   name    CDATA  #REQUIRED
-	begin   CDATA  #IMPLIED
-	end     CDATA  #IMPLIED
+  begin   CDATA  #IMPLIED
+  end     CDATA  #IMPLIED
 >
 
 <!ELEMENT group  (%content;)*>
