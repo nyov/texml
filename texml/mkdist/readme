@@ -1,0 +1,17 @@
+Say
+
+$ make
+
+to generate distrubution packages
+
+texml.XX, texml.XX-windows.zip and texml.1.24.devel-unix.tar.gz
+in the folder "../dist"
+
+"XX" is automatically taken from the "../script/texml.py"
+
+
+Say
+
+$ make clean
+
+to delete distrubution packages for the current version
