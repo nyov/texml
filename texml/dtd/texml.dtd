@@ -11,7 +11,7 @@
   ligatures   (0|1)        #IMPLIED
 >
 
-<!ELEMENT env    (%content;)*>
+<!ELEMENT env    (%content;|opt|parm)*>
 
 <!ATTLIST env
   name    CDATA  #REQUIRED
@@ -31,7 +31,7 @@
   name    CDATA  #REQUIRED
 >
 
-<!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math">
+<!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math|group">
 
 <!ELEMENT opt    (%inopt;)*>
 
