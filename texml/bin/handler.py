@@ -1,10 +1,16 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.14 2004-05-06 09:42:17 olpa Exp $
+# $Id: handler.py,v 1.15 2004-06-03 12:22:27 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
 import specmap
 import StringIO
+
+# WhiteSpace (WS) elimination
+# In most cases, WS around tags (both opening and closing) are removed.
+# But these tags save ws: <ctrl/> and <spec/>.
+# Current mode of WS mode is a boolean "eliminate_ws".
+# WS processing is allowed or disallowed by "process_ws".
 
 class handler(xml.sax.handler.ContentHandler):
 
@@ -12,6 +18,9 @@ class handler(xml.sax.handler.ContentHandler):
   # writer
   # no_text_content
   # text_is_only_spaces
+  # eliminate_ws
+  # process_ws
+  # process_ws_stack
   # 
   # For <env/> support:
   # cmdname
@@ -33,6 +42,9 @@ class handler(xml.sax.handler.ContentHandler):
     self.has_parm      = 0
     self.no_text_content     = 0
     self.text_is_only_spaces = 0
+    self.eliminate_ws        = 1
+    self.process_ws          = 1
+    self.process_ws_stack    = []
     #
     # Create handler maps
     #
@@ -81,6 +93,10 @@ class handler(xml.sax.handler.ContentHandler):
     self.model       = {'TeXML': self.on_texml}
     self.model_stack = []
 
+  def endDocument(self):
+    """ Finalize document """
+    self.writer.conditionalNewline()
+
   def startElement(self, name, attrs):
     """ Handle start of an element"""
     if name in self.model:
@@ -94,6 +110,10 @@ class handler(xml.sax.handler.ContentHandler):
 
   def characters(self, content):
     """ Handle text data """
+    #print '[[[[[[[[[[[[%s]]]]]]]]]]]' % content // FIXME
+    #
+    # First, check if content allowed at all
+    #
     # Elements like <spec/> should be empty
     if self.no_text_content:
       raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
@@ -114,6 +134,15 @@ class handler(xml.sax.handler.ContentHandler):
           return                                           # return
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
+    #
+    # Eliminate whitespaces
+    #
+    if self.process_ws:
+      if self.eliminate_ws:
+	content = content.strip()
+    #
+    # Finally, write content
+    #
     self.writer.write(content)
 
   def endElement(self, name):
@@ -165,6 +194,10 @@ class handler(xml.sax.handler.ContentHandler):
     self.writer.stack_emptylines(emptylines)
     self.writer.stack_escape(escape)
     self.writer.stack_ligatures(ligatures)
+    ws = self.get_boolean(attrs, 'ws')
+    self.process_ws_stack.append(self.process_ws)
+    if ws != None:
+      self.process_ws = 0 == ws
 
   def on_texml_end(self):
     """ Handle TeXML element. Restore old mode. """
@@ -172,6 +205,7 @@ class handler(xml.sax.handler.ContentHandler):
     self.writer.unstack_escape()
     self.writer.unstack_emptylines()
     self.writer.unstack_mode()
+    self.process_ws = self.process_ws_stack.pop()
 
   # -----------------------------------------------------------------
 
