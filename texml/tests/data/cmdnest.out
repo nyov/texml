@@ -1,1 +1,8 @@
-\par1[\par2[\par3{\par4}]]{aaa}
+%
+	\par1[
+			\par2[
+					\par3[&#x7C0;]{
+							\par4 
+						}
+				]
+		]{aaa}
