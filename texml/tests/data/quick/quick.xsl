@@ -20,7 +20,7 @@
         <parm><xsl:value-of
             select="/html/head/title"/></parm>
       </cmd>
-      <cmd name="maketitle" nl2="1"/>
+			<cmd name="maketitle" nl2="1" gr="0"/>
       <!-- document body -->
       <xsl:apply-templates select="/html/body"/>
     </env>
@@ -39,7 +39,7 @@
 <xsl:template match="p">
   <TeXML>
     <xsl:apply-templates/>
-    <cmd name="par" nl2="1"/>
+    <cmd name="par" nl2="1" gr="0"/>
   </TeXML>
 </xsl:template>
 
@@ -52,8 +52,8 @@
 
 <!-- line -->
 <xsl:template match="hr">
-  <cmd name="bigskip"/>
-  <cmd name="hrule"/>
+  <cmd name="bigskip" gr="0" nl2="1"/>
+	<cmd name="hrule"   gr="0" nl2="1"/>
 </xsl:template>
 
 <!-- ignore h1 and author in body -->
