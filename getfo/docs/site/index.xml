@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h1>GetFO: XSL-FO in TeX</h1>
-		<p>Realization of the XSL-FO formatting dictionary in TeX. First results expected <i>some time</i>.</p>
+		<p>Realization of the XSL-FO formatting dictionary in TeX. First results are expected in the end of summer.</p>
 		<h2><a href="texml/index.html">TeXML subproject</a></h2>
 		<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
 		<h2>GetFO documentation</h2>
@@ -13,5 +13,7 @@
 			<li><a href="workplan.html">Work Plan</a></li>
 			<li><a href="http://xmlhack.ru/forum/xml/viewtopic.php?t=1001" lang="ru">&#1048;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1094;&#1080;&#1103; TeX &#1080; XSL-FO</a> (in Russian)</li>
 		</ul>
+		<p><em>Note.</em> It is realized that TeX layout model and XSL-FO box layout model are very different. In order to realize XSL-FO in TeX, a new approach should be invented. The project is frozen till real ideas appear.</p>
+		<p><a href="http://sourceforge.net/forum/forum.php?forum_id=352892">Discuss in forum!</a></p>
 	</body>
 </html>
