@@ -18,7 +18,7 @@
 	
 	<sect>
 		<title>Encoding commands</title>
-		<p>The TeXML <e>cmd</e> element encodes TeX commands.</p>
+		<a name="cmd"/><p>The TeXML <e>cmd</e> element encodes TeX commands.</p>
 		<ul>
 			<li>To write a command with no parameters, such as <tt>\par</tt>, use <code>&lt;cmd name="par"/&gt;</code>.</li>
 			<li>To add parameters to a command, add <e>parm</e> children to the <e>cmd</e> element. The processor places <e>parm</e> children within TeX groups, that is, curly braces.</li>
@@ -61,7 +61,7 @@ fourth ...</lst>
 
 	<sect>
 		<title>Encoding environments</title>
-		<p>The element <e>env</e> is a convenience for expressing LaTeX environments.</p>
+		<a name="env"/><p>The element <e>env</e> is a convenience for expressing LaTeX environments.</p>
 		<blockquote>
 			<p>In order to get this in TeX</p>
 <lst>\begin{document}
@@ -126,7 +126,7 @@ $$\sqrt 2$$</lst>
 
 	<sect>
 		<title>Encoding special symbols</title>
-		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described below</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<a name="spec"/><p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described below</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
 		<blockquote>
 			<p>The TeX scrap,</p>
 			<lst>{\it italics}</lst>
@@ -432,6 +432,44 @@ again text mode: \textvert{}\^</lst>
 			<li>If a weak space appears far enough from the beginning of line then a new line is started.</li>
 		</ul>
 		<p>By default &#x201c;far enough&#x201d; is 50. You can set another value by using command line parameter &#x201c;<tt>-w</tt>&#x201d; or &#x201c;<tt>--width</tt>&#x201d;. This setting is not strict: lines can be much longer than a specified width.</p>
+		<p>You can tune line breaking by using attributes <tt>nl1</tt> and <tt>nl2</tt> of the element <tt><a href="#cmd">cmd</a></tt> and attributes <tt>nl1</tt>, <tt>nl2</tt>, <tt>nl3</tt> and <tt>nl4</tt> of the element <tt><a href="#env">env</a></tt>.</p>
+		<p>You can affect whitespace presentation by using special categories of the element <tt><a href="#spec">spec</a></tt>: <tt>nl</tt>, <tt>space</tt> and <tt>nil</tt>.</p>
+		<p>The <tt>nl</tt> stands for a new line:</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[... here. <spec cat="nl"/> More, ...]]></lst>
+			<p>TeX result:</p>
+			<lst>... here.
+More, ...</lst>
+		</blockquote>
+		<p>The <tt>space</tt> stands for the space. You can use it to print several consequent spaces or to create the space at the beginning or the end of a line.</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[<TeXML>
+   One line<spec cat="nl"/>
+<spec cat="space"/><spec cat="space"/>Another line<spec cat="nl"/>
+   Last line
+</TeXML>]]></lst>
+			<p>TeX result:</p>
+			<lst>One line
+  Another line
+Last line</lst>
+		</blockquote>
+		<p>The <tt>nil</tt> stands for nothing. The only purpose of it is a side effect: whitespace around it is collapsed.</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[<TeXML>
+line
+line
+also
+<spec cat="nil"/>
+line
+</TeXML>]]></lst>
+			<p>TeX result:</p>
+			<lst>line
+line
+also line</lst>
+		</blockquote>
 	</sect>
 
 
