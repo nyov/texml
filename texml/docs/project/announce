@@ -1,17 +1,17 @@
 =====================================================================
 Sourceforge news for 1.00
 
-TeXML 1.00 released
+Subject: TeXML 1.00 released
 
-After several betas, final version of a TeXML processor in Python is released. TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Intended audience is developers who automatically generate TeX files.
+After several betas, the final version of a TeXML processor in Python is released. TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Intended audience is developers who automatically generate TeX files.
 
-TeXML home page: http://getfo.sourceforge.net/texml/
-TeXML specification: http://getfo.sourceforge.net/texml/spec.html
+TeXML home page: http://getfo.org/texml/
+TeXML specification: http://getfo.org/texml/spec.html
 
 =====================================================================
 Announce of 1.00 in newsgroups, maillists etc
 
-Subj: TeXML, the XML vocabulary for TeX
+Subject: TeXML, the XML vocabulary for TeX
 
   Hello colleagues,
 
@@ -63,24 +63,23 @@ http://getfo.sourceforge.net/texml/
 |
 | TeX
 
-  If you automatically generate TeX files, there are some benefits to generate TeXML instead of TeX:
+  If you automatically generate TeX files, there are some benefits to generating TeXML instead of TeX:
 
 * you avoid painful handling of TeX special characters,
-* you should not bother about encodings,
-* there are chances to write more error-free code.
+* you don't have to bother about encodings,
+* you can write error-free code more easily.
 
-  About last item. For example, you want to generate
+  To expand on the last point, if for example, you want to generate
 
 | {\bf bold}
 
-  One of the approaches is to generate "{", then "\bf " (with trailing space) and then "}". It is easy enough to miss space or to forget a brace or write an incorrect symbol. But when you use TeXML, it cares for you:
+  One of the approaches is to generate "{", then "\bf " (with trailing space) and then "}". It is easy to miss the space or to forget a brace or write an incorrect symbol. But when you use TeXML, it takes care of it for you:
 
 | <group><cmd name="bf"/>bold</group>
 
-  Hope you will find TeXML useful. Your comments are welcome.
+  I hope you will find TeXML useful. Your comments are welcome.
 
   Regards, Oleg
-
 
 =====================================================================
 For db2latex, dblatex and other projects that use XSLT to generate TeX
