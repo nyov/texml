@@ -479,10 +479,12 @@ also line</lst>
 
 		<blockquote>
 <p>Usage:</p>
-<lst>python texml.py [-e <i>encoding</i>] <i>input_file</i> <i>output_file</i></lst>
+<lst>python texml.py [-e <i>encoding</i>] [-w <i>width</i>] <i>input_file</i> <i>output_file</i></lst>
 </blockquote>
-		<p>The processor parses the <i>input_file</i> and saves result of transformation into the <i>output_file</i>.</p>
+		<p>The processor parses the <i>input_file</i> and saves a result of transformation into the <i>output_file</i>.</p>
+		<p>The program follows unix conventions and interprets file name &#x201c;-&#x201d; as standard input or standard output.</p>
 		<p>You can specify any encoding supported by Python codecs. The default encoding is <tt>ascii</tt>.</p>
+		<p>Parameter <i>width</i> specifies a minimal line length after which a weak space creates a new line.</p>
 	</sect>
 
 </doc>
