@@ -2,7 +2,7 @@ TeXML tests
 
 Long examples are data/texmlatte.xml and data/texmlapis.xml.
 
-+ empty      no data, only a root element
++ empty      no data, only the root element
 + hello      text "Hello, World!"
 + normal     escaping of special chars in tex mode
 + math       escaping of special chars in math mode
@@ -10,10 +10,10 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + nopara     output should not contain empty lines
 + koi8       conversion from unicode to koi8 encoding
 + koi8bad    conversion from unicode to koi8 with out of range chars
-+ latex      out of encoding chars as latex commands
++ latex      out-of-encoding chars as latex commands
 + escape     escaping and not escaping of specials
 + emptyline  leaving and commenting-out of empty lines
-+ ligatures  leaving and breaking ligatures (currently -- and ---)
++ ligatures  leaving and breaking ligatures
 + cmd        command
 + env        environment
 + group      group
@@ -49,6 +49,6 @@ Tests to be failed:
 + spec2      "spec" with unknown value of "cat"
 + ctrlcont   "ctrl" element have content
 + speccont   "spec" element have content
-+ badesc     Value of TeXML/@escape is not 0 or 1
-+ badlig     Value of TeXML/@ligatures is not 0 or 1
-+ badtyline  Value of TeXML/@emptylines is not 0 or 1
++ badesc     value of TeXML/@escape is not 0 or 1
++ badlig     value of TeXML/@ligatures is not 0 or 1
++ badtyline  value of TeXML/@emptylines is not 0 or 1
