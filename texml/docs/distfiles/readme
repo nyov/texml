@@ -3,6 +3,7 @@
 TeXML is an XML vocabulary for TeX. A processor translates TeXML
 source into TeX, escaping TeX special symbols and Unicode.
 
+
 Example:
 
 | TeXML:
@@ -16,7 +17,8 @@ Example:
 | TeX:
 | 
 | \documentclass[12pt]{letter}
-| $\backslash$section\{No~break\}
+| \textbackslash{}section\{No~break\}
+
 
 Files:
 
@@ -25,8 +27,11 @@ Files:
 ./tests  examples of good (data) and bad (faildata) TeXML files
 ./dtd    document type definition (DTD) for TeXML
 
+
 Homepage: http://getfo.org/texml/
 Support:  http://getfo.sourceforge.net/  -->  Support
+License:  GNU Lesser GPL
+
 
 --
 Oleg Paraschenko  olpa@ http://uucode.com/
