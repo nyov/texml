@@ -1,0 +1,17 @@
+<html id="texml.index">
+	<head>
+		<title>TeXML: an XML vocabulary for TeX</title>
+	</head>
+	<body>
+		<h1>TeXML: an XML vocabulary for TeX</h1>
+		<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
+		<p>The project is currently under development. It expected to be finished in the end of the March, 2004.</p>
+		<h2>TeXML documentation</h2>
+		<dl>
+			<dt><a href="spec.txt">spec.txt</a></dt>
+			<dd>Preliminary specification dated by 25 February 2004.</dd>
+			<dt><a href="lovell.pdf">TeXML: Typesetting XML with TeX</a> (PDF) by Douglas Lovell</dt>
+			<dd>This document describes the TeXML document format and the processor, TeXMLatt&#xE9; that produces TeX source from TeXML markup. The GetFO TeXML project reuses this specification.</dd>
+		</dl>
+	</body>
+</html>
