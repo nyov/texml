@@ -7,17 +7,19 @@ Use:
     import Texml.texmlwr
 
     # set up a write object
-    # can also be standard out
+    # can also be standard out:
+    # write_obj = sys.stdout
     write_obj  = file('outfile.xml', 'wb')
 
     # set up the input
-    # can also be standard in
+    # can also be standard in:
+    # in_file = sys.stdin
     in_file = 'in_file.xml'
 
     # encoding 
     ecoding = 'utf8'
 
-    # any integer within reason
+    # any integer for width of text
     width = 55
 
     # whether the form of TeX is ConTeXt
@@ -26,6 +28,7 @@ Use:
     # create a parser object
     p = xml.sax.make_parser()
 
+    # try to set encoding
     try:
       f = Texml.texmlwr.stream_encoder(f, encoding)
     except Exception, e:
@@ -39,17 +42,23 @@ Use:
     handle = Texml.handler.glue_handler(write_obj, width, use_context)
 
     parser = xml.sax.make_parser()
-    parser.setFeature(feature_namespaces, use_namespace)
+    parser.setFeature(feature_namespaces, 1)
     parser.setContentHandler(handle)
     parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
-    parser.parse(in_file)             
+
+    try:
+        parser.parse(infile)             
+    except xml.sax._exceptions.SAXParseException, msg:
+        print msg
+    except Texml.handler.InvalidXmlException, msg:
+        print msg
 
     write_obj.close()
 
 
 
 """
-# $Id: handler.py,v 1.4 2005-03-20 07:29:12 paultremblay Exp $
+# $Id: handler.py,v 1.5 2005-03-20 17:19:38 paultremblay Exp $
 
 import xml.sax.handler
 
@@ -66,6 +75,14 @@ import os, sys
 # reports characters in several calls instead of one call.
 # This wrappers fixes the problem
 #
+
+class InvalidXmlException(Exception):
+    """
+    handle invalid xml
+
+    """
+    pass
+
 class glue_handler(xml.sax.ContentHandler):
   
   def __init__(self, stream, autonl_width, use_context, 
@@ -227,13 +244,17 @@ class Handler:
       'dmath':  self.on_dmath_end
     }
 
+  def __print_error(self, msg):
+      sys.stderr.write(msg)
+
   def invalid_xml(self, col_num, line_num, local_name, ns=None):
-      sys.stderr.write('Invalid XML %s, %s:\n' % (col_num, line_num))
+      msg = 'Invalid XML %s, %s:\n' % (col_num, line_num)
       if ns:
-        sys.stderr.write('Element "%s" for namespace "%s" not expected\n' % (local_name, ns))
+        msg += 'Element "%s" for namespace "%s" not expected' % (local_name, ns)
       else:
-        sys.stderr.write('%s not expected\n' % (local_name))
-      sys.exit(1)
+        msg += '%s not expected' % (local_name)
+
+      raise InvalidXmlException, self.__print_error(msg)
 
   # -------------------------------------------------------------------
   
