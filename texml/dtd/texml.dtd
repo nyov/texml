@@ -28,9 +28,11 @@
   name    CDATA  #REQUIRED
 >
 
-<!ELEMENT opt    (#PCDATA|spec|ctrl|cmd)*>
+<!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math">
 
-<!ELEMENT parm   (#PCDATA|spec|ctrl|cmd)*>
+<!ELEMENT opt    (%inopt;)*>
+
+<!ELEMENT parm   (%inopt;)*>
 
 <!ELEMENT ctrl   EMPTY>
 
