@@ -36,6 +36,8 @@ An example from the quick start document is data/quick.xml.
 + nlenv      newline attributes of <env/>
 + wspi       tests whitespace handling near processing instruction
 + specandws  a regression test for a space after a rewritten character
++ v109       test of changes from version 1.08 to version 1.09
++ fordocs    test of examples from documentation
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 + quick      example from the quick start document
