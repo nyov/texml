@@ -117,14 +117,30 @@
 		<a name="mode"/><p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
 		<p>Modes only affect translation of text.</p>
 		<p>The default mode is <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then mode is not changed.</p>
-		<lst><![CDATA[<?xml version="1.0" encoding="..."?>
+<blockquote>
+	<p>TeXML:</p>
+<lst><![CDATA[<?xml version="1.0" encoding="..."?>
 <TeXML>
-  ... text mode here ...
+  text mode here: |&#x302;
   <TeXML mode="math">
-    ... math mode here ...
+    math mode here: |&#x302;
+    <TeXML mode="text">text in math in text: |&#x302;</TeXML>
+    again math mode: |&#x302;
   </TeXML>
+  again text mode: |&#x302;
 </TeXML>
 ]]></lst>
+<p>Symbol &#x201c;<tt>|</tt>&#x201d; being translated to &#x201c;<tt>$|$</tt>&#x201d; in text mode and to &#x201c;<tt>|</tt>&#x201d; in math mode. Symbol &#x201c;<tt>&amp;#x302;</tt>&#x201d; (circumflex) being translated to &#x201c;<tt>\^</tt>&#x201d; in text mode and to &#x201c;<tt>\hat </tt>&#x201d; in math mode. So the TeX result is:</p>
+<lst>%
+  text mode here: $|$\^
+  
+    math mode here: |\hat 
+    text in math in text: $|$\^
+    again math mode: |\hat 
+  
+  again text mode: $|$\^
+</lst>
+</blockquote>
 		<p>Elements <e><a href="#math">math</a></e> and <e><a href="#dmath">dmath</a></e> also change mode to <tt>math</tt>. These elements are described below.</p>
 	</sect>
 
@@ -259,12 +275,12 @@ $$\sqrt 2$$</lst>
 
 	<sect>
 		<title>Running the processor</title>
-		<p>The processor is a Python program <tt>texml.py</tt>. </p>
+		<p>The processor is a Python program <tt>texml.py</tt>.</p>
 
-<p><br></p>
+		<blockquote>
 <p>Usage:</p>
 <lst>python texml.py [-e <i>encoding</i>] <i>input_file</i> <i>output_file</i></lst>
-<p><br></p>
+</blockquote>
 		<p>The processor parses the <i>input_file</i> and saves result of transformation into the <i>output_file</i>.</p>
 		<p>You can specify any encoding supported by Python codecs. The default encoding is <tt>ascii</tt>.</p>
 	</sect>
