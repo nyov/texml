@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.11 2004-04-02 13:02:50 olpa Exp $
+# $Id: texmlwr.py,v 1.12 2004-04-06 15:27:16 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -25,8 +25,8 @@ class texmlwr:
   # Empty line detection by end-of-line symbols
   # after_ch09
   # after_ch0a
-  # Handling of '--' and '---'
-  # after_minus
+  # Handling of '--', '---' and other ligatures
+  # last_char
   #
   # Modes of transformation can be tuned and nested
   # mode
@@ -43,7 +43,7 @@ class texmlwr:
     self.stream = stream
     self.after_char0d     = 1;
     self.after_char0a     = 1;
-    self.after_minus      = 0;
+    self.last_ch          = None;
     self.mode             = TEXT;
     self.mode_stack       = [];
     self.escape           = 1;
@@ -96,6 +96,20 @@ class texmlwr:
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
     #
+    # Handle ligatures
+    #
+    if not(self.ligatures):
+      if '-' == ch:
+	if '-' == self.last_ch:
+	  self.stream.write('{}')
+      elif "'" == ch:
+	if "'" == self.last_ch:
+	  self.stream.write('{}')
+      elif '`' == ch:
+	if ('`' == self.last_ch) or ('!' == self.last_ch) or ('?' == self.last_ch):
+	  self.stream.write('{}')
+    self.last_ch = ch
+    #
     # Handle end-of-line symbols in special way
     # We automagically process "\n", "\r", "\n\r" and "\r\n" line ends
     #
@@ -131,17 +145,6 @@ class texmlwr:
     #
     self.after_char0d = 0
     self.after_char0a = 0
-    #
-    # Handle ligatures "--" and "---"
-    #
-    if '-' == ch:
-      if self.after_minus and (not self.ligatures):
-        self.stream.write('{}')
-      self.after_minus = 1
-      self.stream.write('-')
-      return                                               # return
-    else:
-      self.after_minus = 0
     #
     # Handle specials
     #
