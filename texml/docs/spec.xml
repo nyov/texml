@@ -164,4 +164,9 @@
 <lst>$a+b$
 $$\sqrt 2$$</lst>
 	</sect>
+
+	<sect>
+		<title>Encoding control symbols</title>
+		<p>The <e>ch</e> attibute of the <e>ctrl</e> element encodes a control symbol, such as <code>&lt;ctrl ch="&#xa0;"/&gt;</code> for a control space (<code>\&#xa0;</code>).</p>
+	</sect>
 </doc>
