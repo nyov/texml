@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.22 2004-06-29 06:01:21 olpa Exp $
+# $Id: texmlwr.py,v 1.23 2004-06-29 06:18:03 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -112,7 +112,7 @@ class texmlwr:
   def conditionalNewline(self):
     """ Write a new line unless already at the start of a line """
     if self.approx_current_line_len != 0:
-      self.write(os.linesep, 0)
+      self.writech('\n', 0)
 
   def writeWeakWS(self):
     """ Write a whitespace instead of whitespaces deleted from source XML """
@@ -155,44 +155,34 @@ class texmlwr:
         if ('`' == self.last_ch) or ('!' == self.last_ch) or ('?' == self.last_ch):
           self.writech('{', 0)
           self.writech('}', 0)
-    self.last_ch = ch
     #
-    # Handle end-of-line symbols in special way
-    # We automagically process "\n", "\r", "\n\r" and "\r\n" line ends
+    # Handle end-of-line symbols.
+    # XML spec says: 2.11 End-of-Line Handling:
+    # ... contains either the literal two-character sequence "#xD#xA" or
+    # a standalone literal #xD, an XML processor must pass to the
+    # application the single character #xA.
     #
     if ('\n' == ch) or ('\r' == ch):
       #
-      # line end symbol of the same type starts new line
+      # We should never get '\r', but only '\n'.
+      # Anyway, someone will copy and paste this code, and code will
+      # get '\r'. In this case rewrite '\r' as '\n'.
       #
-      if not self.emptylines:
-        if (('\n' == ch) and self.after_char0a) or (('\r' == ch) and self.after_char0d):
-          self.stream.write('%')
+      if '\r' == ch:
+        ch = '\n'
       #
-      # Two different line end symbols clean each other
+      # TeX interprets empty line as \par, fix this problem
       #
-      if self.after_char0a and self.after_char0d:
-        self.after_char0a = 0
-        self.after_char0d = 0
+      if (self.last_ch == '\n') and (not self.emptylines):
+        self.writech('%', 0)
       #
-      # Remember that end of line has happended
+      # Now create newline, update counters and return
       #
-      if '\n' == ch:
-        self.after_char0a = 1
-      else:
-        self.after_char0d = 1
-      #
-      # Write line end char (only once for \r\n) and return
-      #
-      if (0 == self.after_char0a) or (0 == self.after_char0d):
-        self.stream.write(os.linesep)
-        self.approx_current_line_len = 0
+      self.stream.write(os.linesep)
+      self.approx_current_line_len = 0
+      self.last_ch                 = ch
       return                                               # return
-    #
-    # Not end-of-line symbol. If it has to be escaped, we write
-    # plain ASCII substitution and return
-    #
-    self.after_char0d = 0
-    self.after_char0a = 0
+    self.last_ch = ch
     #
     # Handle specials
     #
