@@ -11,6 +11,9 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + koi8       conversion from unicode to koi8 encoding
 + koi8bad    conversion from unicode to koi8 with out of range chars
 + latex      out of encoding chars as latex commands
++ escape     escaping and not escaping of specials
++ emptyline  leaving and commenting-out of empty lines
++ ligatures  leaving and breaking ligatures (currently -- and ---)
 + cmd        command
 + env        environment
 + group      group
@@ -46,4 +49,6 @@ Tests to be failed:
 + spec2      "spec" with unknown value of "cat"
 + ctrlcont   "ctrl" element have content
 + speccont   "spec" element have content
-
++ badesc     Value of TeXML/@escape is not 0 or 1
++ badlig     Value of TeXML/@ligatures is not 0 or 1
++ badtyline  Value of TeXML/@emptylines is not 0 or 1
