@@ -1,6 +1,14 @@
+=====================================================================
+for SourceForge announce
+
+TeXML 0.91.beta
+
+TeXML v.0.91.beta, the first public version of TeXML, is released. A Python processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Although the release is marked as beta, code is considered as stable and good.
+
+TeXML homepage: http://getfo.sourceforge.net/texml/
 
 =====================================================================
-ru_RU.KOI8-R: (html)
+ru_RU.KOI8-R: (html)  (for xmlhack.ru announce)
 
 TeXML на Питоне
 
