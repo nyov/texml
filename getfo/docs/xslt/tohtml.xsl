@@ -2,7 +2,7 @@
 <!-- creates HTML from a pre-HTML -->
 <x:output method="xml"/>
 
-<x:template match="*|node()">
+<x:template match="node()|@*">
 	<x:copy>
 		<x:apply-templates select="node()|@*" />
 	</x:copy>
