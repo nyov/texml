@@ -1,0 +1,5 @@
+<TeXML>
+	Use <cmd name="it"/> italic
+	or <cmd name="bf" nl="1"/> bold
+	or <cmd name="tt" nl="0"/> tt.
+</TeXML>
