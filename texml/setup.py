@@ -18,6 +18,7 @@ def get_dtd_location():
     For now, this is not used
 
     """
+    return
     return '/home/paul/Documents/data/dtds/'
 
 
@@ -37,6 +38,7 @@ def get_version():
 
 if 'build' in sys.argv:
     test_for_sax()
+
 version = get_version()
 
 # where you want to put the dtd
@@ -49,7 +51,8 @@ version = get_version()
 setup(name="texml",
     version= version ,
     description="Convert XML to LaTeX or ConTeXt",
-    author="Oleg Paraschenko",
+    long_description = """TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate TeX files.""",
+    author="Oleg Paraschenko, Paul Tremblay",
     author_email="olpa@ http://uucode.com/",
     license = 'GNU GPL',
     url = 'http://getfo.sourceforge.net/texml/index.html',

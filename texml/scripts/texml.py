@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.7 2005-03-23 19:29:08 olpa Exp $
+# $Id: texml.py,v 1.8 2005-03-24 03:44:20 paultremblay Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
@@ -75,7 +75,6 @@ else:
   f = file(outfile, 'wb')
 
 def quit(msg):
-    print
     sys.stderr.write(msg)
     f.close()
     sys.exit(1)
