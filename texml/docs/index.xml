@@ -58,4 +58,13 @@
 		<p>The software is released under the <a href="http://www.gnu.org/licenses/gpl.html"> GNU Public License</a>.</p>
 		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/"> project area</a> (TeXML is a part of the GetFO project).</p>
 	</sect>
+	<sect>
+		<title>Thanks</title>
+		<ul>
+			<li>Douglas Lovell for TeXMLatt&#xE9; and original TeXML specification</li>
+			<li>Heinz Pommer and <a href="http://bitplant.de/">bitplant.de</a> for supporting the project</li>
+			<li>Vitaly Ostanin for discussions on XML publishing</li>
+			<li>Simon Goodson for documentation proofreading and suggestions</li>
+		</ul>
+	</sect>
 </doc>
