@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2004-06-21 11:56:36 olpa Exp $
+# $Id: Makefile,v 1.9 2004-06-28 12:57:25 olpa Exp $
 
 python=python
 
@@ -7,7 +7,7 @@ all: tests
 clean:
 	rm -rf *~ */*~ tmp
 
-good_xml_tests:=$(notdir $(wildcard data/*xml))
+good_xml_tests:=$(notdir $(wildcard data/*xml)) quick.xml
 good_test_stamps=$(addprefix tmp/data/,$(good_xml_tests:.xml=.stamp))
 fail_xml_tests:=$(notdir $(wildcard faildata/*xml))
 fail_test_stamps=$(addprefix tmp/faildata/,$(fail_xml_tests:.xml=.stamp))
@@ -43,7 +43,7 @@ FORCE:
 #
 # Running "good" tests
 #
-tmp/data/%.out: data/%.xml ../bin/texml.py ../bin/*py $(init)
+tmp/data/%.out: data/%.xml ../bin/texml.py ../bin/*py data/%.out $(init)
 	$(python) $(word 2,$+) $(call params-$*) $< $@
 
 tmp/data/%.stamp: tmp/data/%.out FORCE
@@ -57,3 +57,13 @@ tmp/faildata/%.err: faildata/%.xml ../bin/texml.py ../bin/*py $(init)
 
 tmp/faildata/%.stamp: tmp/faildata/%.err FORCE
 	grep -q -f faildata/$(notdir $*).grep $<
+
+#
+# Dependencies for quick start files
+#
+data/quick.xml: data/quick/quick.texml
+	cp $< $@
+
+data/quick.out: data/quick/quick.tex
+	cp $< $@
+
