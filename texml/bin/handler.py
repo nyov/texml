@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.27 2004-06-23 12:28:30 olpa Exp $
+# $Id: handler.py,v 1.28 2004-06-25 13:43:19 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -278,10 +278,10 @@ class handler:
     #
     # Write additional space or newline if command has no parameters
     #
+    if not(self.has_parm):
+      self.writer.write('{}', 0)
     if self.nl_spec:
       self.writer.conditionalNewline()
-    elif not(self.has_parm):
-      self.writer.writeWeakWS()
     self.nl_spec = self.nl_spec_stack.pop()
 
   def on_opt(self, attrs):

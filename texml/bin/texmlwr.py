@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.20 2004-06-23 12:28:30 olpa Exp $
+# $Id: texmlwr.py,v 1.21 2004-06-25 13:43:20 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -47,13 +47,7 @@ class texmlwr:
   # And flag if it is possible
   # > autonewline_after_len
   # > allow_weak_ws_to_nl
-  # Total number of printed characters (incorrect, but can be
-  # used to detect one weak whitespace after another)
-  # > approx_total_len
-  # Position of last weak whitespace
-  # > last_weak_ws_pos (autonl_width)
-  # A ws suspend flag to avoid weak whitespaces at end of line
-  # > weak_ws_is_suspended
+  # > is_after_weak_ws
   
   def __init__(self, stream, autonl_width):
     """ Remember output stream, initialize data structures """
@@ -72,9 +66,7 @@ class texmlwr:
     self.approx_current_line_len = 0
     self.autonewline_after_len   = autonl_width
     self.allow_weak_ws_to_nl     = 1
-    self.approx_total_len        = 0
-    self.last_weak_ws_pos        = -2 # anything less than 1
-    self.weak_ws_is_suspended    = 0
+    self.is_after_weak_ws        = 0
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -127,6 +119,8 @@ class texmlwr:
 
   def writeWeakWS(self):
     """ Write a whitespace instead of whitespaces deleted from source XML """
+    self.is_after_weak_ws = 1
+    self.last_ch          = ' '
     #
     # Break line if it is too long
     # We should not break lines if we regard spaces
@@ -134,37 +128,20 @@ class texmlwr:
     if (self.approx_current_line_len > self.autonewline_after_len) and self.allow_weak_ws_to_nl:
       self.conditionalNewline()
       return                                               # return
-    #
-    # Ignore weak whitespace at the beginning of a line
-    #
-    if self.approx_current_line_len == 0:
-      return                                               # return
-    #
-    # Ignore weak whitespace after another another weak whitespace
-    #
-    if self.last_weak_ws_pos + 1 == self.approx_total_len:
-      return                                               # return
-    #
-    # Finally, "write" a space
-    #
-    self.last_weak_ws_pos = self.approx_total_len
-    self.last_ch = ' '
-    self.weak_ws_is_suspended = 1
 
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
     #
     # Write a suspended whitespace
     #
-    if self.weak_ws_is_suspended:
-      self.weak_ws_is_suspended = 0
-      if not(ch in string.whitespace):
+    if self.is_after_weak_ws:
+      self.is_after_weak_ws = 0
+      if (self.approx_current_line_len != 0) and not(ch in string.whitespace):
         self.writech(' ', 0)
     #
-    # Update counters
+    # Update counter
     #
     self.approx_current_line_len = self.approx_current_line_len + 1
-    self.approx_total_len        = self.approx_total_len        + 1
     #
     # Handle well-known standard TeX ligatures
     #
