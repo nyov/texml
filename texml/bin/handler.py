@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.26 2004-06-22 09:19:34 olpa Exp $
+# $Id: handler.py,v 1.27 2004-06-23 12:28:30 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -238,7 +238,8 @@ class handler:
     ws = self.get_boolean(attrs, 'ws', None)
     self.process_ws_stack.append(self.process_ws)
     if ws != None:
-      self.process_ws = 0 == ws
+      self.process_ws  =  0 == ws
+      self.writer.set_allow_weak_ws_to_nl(not ws)
 
   def on_texml_end(self):
     """ Handle TeXML element. Restore old mode. """
@@ -247,6 +248,7 @@ class handler:
     self.writer.unstack_emptylines()
     self.writer.unstack_mode()
     self.process_ws = self.process_ws_stack.pop()
+    self.writer.set_allow_weak_ws_to_nl(self.process_ws)
 
   # -----------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.19 2004-06-23 07:17:16 olpa Exp $
+# $Id: texmlwr.py,v 1.20 2004-06-23 12:28:30 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -43,8 +43,10 @@ class texmlwr:
   # incorrect, but always correct to detect the start of a line (0)
   # > approx_current_line_len
   # If length of a current line is greater the value
-  # then writer converts weak whitespaces into newlines
-  # >autonewline_after_len
+  # then writer converts weak whitespaces into newlines.
+  # And flag if it is possible
+  # > autonewline_after_len
+  # > allow_weak_ws_to_nl
   # Total number of printed characters (incorrect, but can be
   # used to detect one weak whitespace after another)
   # > approx_total_len
@@ -69,6 +71,7 @@ class texmlwr:
     self.emptylines_stack = []
     self.approx_current_line_len = 0
     self.autonewline_after_len   = autonl_width
+    self.allow_weak_ws_to_nl     = 1
     self.approx_total_len        = 0
     self.last_weak_ws_pos        = -2 # anything less than 1
     self.weak_ws_is_suspended    = 0
@@ -113,6 +116,10 @@ class texmlwr:
     """ Restore old policy of handling of empty lines """
     self.emptylines = self.emptylines_stack.pop()
 
+  def set_allow_weak_ws_to_nl(self, flag):
+    """ Set flag if weak spaces can be converted to new lines """
+    self.allow_weak_ws_to_nl = flag
+
   def conditionalNewline(self):
     """ Write a new line unless already at the start of a line """
     if self.approx_current_line_len != 0:
@@ -122,8 +129,9 @@ class texmlwr:
     """ Write a whitespace instead of whitespaces deleted from source XML """
     #
     # Break line if it is too long
+    # We should not break lines if we regard spaces
     #
-    if self.approx_current_line_len > self.autonewline_after_len:
+    if (self.approx_current_line_len > self.autonewline_after_len) and self.allow_weak_ws_to_nl:
       self.conditionalNewline()
       return                                               # return
     #
