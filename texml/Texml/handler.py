@@ -1,5 +1,55 @@
-""" Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.2 2005-03-17 05:10:37 paultremblay Exp $
+""" Tranform TeXML SAX stream 
+
+Use:
+
+    import xml.sax 
+    import Texml.handler
+    import Texml.texmlwr
+
+    # set up a write object
+    # can also be standard out
+    write_obj  = file('outfile.xml', 'wb')
+
+    # set up the input
+    # can also be standard in
+    in_file = 'in_file.xml'
+
+    # encoding 
+    ecoding = 'utf8'
+
+    # any integer within reason
+    width = 55
+
+    # whether the form of TeX is ConTeXt
+    use_context = 0
+
+    # create a parser object
+    p = xml.sax.make_parser()
+
+    try:
+      f = Texml.texmlwr.stream_encoder(f, encoding)
+    except Exception, e:
+      print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
+      sys.exit(5)
+
+    #
+    # Create transformer and run process
+    #
+
+    handle = Texml.handler.glue_handler(write_obj, width, use_context)
+
+    parser = xml.sax.make_parser()
+    parser.setFeature(feature_namespaces, use_namespace)
+    parser.setContentHandler(handle)
+    parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
+    parser.parse(in_file)             
+
+    write_obj.close()
+
+
+
+"""
+# $Id: handler.py,v 1.3 2005-03-17 05:44:56 paultremblay Exp $
 
 import xml.sax.handler
 
