@@ -1,5 +1,6 @@
 """ Map special TeX symbols """
-# $Id: specmap.py,v 1.3 2004-03-16 15:10:42 olpa Exp $
+# $Id: specmap.py,v 1.4 2004-06-21 08:35:17 olpa Exp $
+import os
 
 # text escape map and map escape map should contain the same keys
 
@@ -66,5 +67,7 @@ tocharmap = {
   'comment': '%',
   'vert':    '|',
   'lt':      '<',
-  'gt':      '>'
+  'gt':      '>',
+  'nl':      os.linesep,
+  'space':   ' '
 }
