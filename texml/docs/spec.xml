@@ -415,6 +415,23 @@ again text mode: \textvert{}\^</lst>
     \it text
   }</lst>
 		</blockquote>
+		<p>If TeXML elements <tt>ctrl</tt> or <tt>spec</tt> have any content (including whitespace) then the TeXML processor reports an error.</p>
+		<p>The program deletes any whitespace that is located directly in the TeXML element <tt>cmd</tt>.</p>
+		<p>Insignificant whitespace is whitespace around any opening or closing tag, for example, whitespace around &#x201c;<tt>... &lt;TeXML&gt; ...</tt>&#x201d; and &#x201c;<tt>... &lt;/TeXML&gt; ...</tt>&#x201d;. The XML reader converts insignificant whitespace into the <i>weak&#xa0;space</i>.</p>
+		<p>Another source of week spaces is TeX commands. When the processor converts &#x201c;<tt>&lt;cmd name="it"/&gt;</tt>&#x201d; into &#x201c;<tt>\it </tt>&#x201d;, the space after &#x201c;<tt>\it</tt>&#x201d; is indeed the weak space.</p>
+		<p>The TeX writer processes weak spaces in next manner:</p>
+		<ul>
+			<li>consequent weak spaces are interpreted as one weak space,</li>
+			<li>a weak space at the beginning of a line is ignored,</li>
+			<li>a weak space at the end of a line is ignored,</li>
+			<li>otherwise the usual space symbol (or new line, see below) is written.</li>
+		</ul>
+		<p>It's uncomfortable to have one long line as a result of transformation. So the TeXML processor performs automatical line breaking.</p>
+		<ul>
+			<li>TeX commands for beginning and ending an environment are placed on separated lines.</li>
+			<li>If a weak space appears far enough from the beginning of line then a new line is started.</li>
+		</ul>
+		<p>By default &#x201c;far enough&#x201d; is 50. You can set another value by using command line parameter &#x201c;<tt>-w</tt>&#x201d; or &#x201c;<tt>--width</tt>&#x201d;. This setting is not strict: lines can be much longer than a specified width.</p>
 	</sect>
 
 
