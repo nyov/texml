@@ -1,8 +1,9 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.5 2004-03-26 12:02:08 olpa Exp $
+# $Id: texml.py,v 1.6 2004-05-06 10:00:35 olpa Exp $
 
-usage = """Convert TeXML markup to [La]TeX markup. Usage:
-python texml.py [-e encoding] input_file output_file"""
+VERSION = "1.01.devel"; # GREPVERSION # Format of this string is important
+usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
+python texml.py [-e encoding] input_file output_file""" % VERSION
 
 #
 # Check command line, print help
