@@ -1,4 +1,74 @@
 =====================================================================
+For db2latex, dblatex and other projects that use XSLT to generate TeX
+
+  Hello colleagues,
+
+  I'd like to introduce you TeXML, the XML vocabulary for TeX:
+
+http://getfo.sourceforge.net/texml/
+
+  I think that you can use TeXML to some extent in the your project.
+
+| Example of TeXML to TeX translation
+| 
+| TeXML:
+|
+| <cmd name="documentclass">
+|  <opt>12pt</opt>
+|  <parm>letter</parm>
+| </cmd>
+|
+| TeX:
+|
+| \documentclass[12pt]{letter}
+
+  One of the main benefits of TeXML usage is an automatical translation of the TeX special symbols.
+
+| Example of translation of special TeX symbols
+|
+| TeXML:
+|
+| <TeXML>\section{No&#xa0;break}</TeXML>
+|
+| TeX:
+|
+| $\backslash$section\{No~break\}
+
+  Default output encoding is utf8. TeXML processor escapes out-of-encoding chars automatically.
+
+| Example of translation of non-ASCII characters
+|
+| TeXML:
+|
+| <TeXML>&#x422;&#x435;&#x425;</TeXML>
+|
+| TeX in ASCII encoding:
+|
+| \cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH 
+|
+| TeX in Russian encoding
+|
+| TeX
+
+  There are some profits to generate TeXML instead of TeX:
+
+* you avoid painful handling of TeX special characters,
+* you should not bother about encodings,
+* there are chances to write more error-free code.
+
+  About last item. For example, you want to generate
+
+| {\bf bold}
+
+  One of the approaches is to generate "{", then "\bf " (with trailing space) and then "}". It is easy enough to miss space or to forget a brace or write an incorrect brace. But when you use TeXML, it cares for you:
+
+| <group><cmd name="bf"/>bold</group>
+
+  Your comments are welcome.
+
+  Regards, Oleg
+
+=====================================================================
 for authors of TeXMLatte and TeXMLapis
 
 To:   "Douglas Lovell" <dcl@us.ibm.com>
