@@ -1,4 +1,4 @@
-<!ENTITY % nomath "TeXML|cmd|env|group|ctrl">
+<!ENTITY % nomath "TeXML|cmd|env|group|ctrl|spec">
 
 <!ENTITY % content "%nomath|math|dmath">
 
@@ -32,5 +32,9 @@
 
 <!ATTLIST ctrl ch CDATA #REQUIRED>
 
-<!ELEMENT spec TODO>
+<!ELEMENT spec EMPTY>
+
+<!ATTLIST spec
+  cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt) #REQUIRED
+>
 
