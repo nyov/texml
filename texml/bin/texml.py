@@ -1,9 +1,9 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.15 2005-02-21 17:29:10 olpa Exp $
+# $Id: texml.py,v 1.16 2005-03-05 17:09:52 olpa Exp $
 
-VERSION = "1.22.devel"; # GREPVERSION # Format of this string is important
+VERSION = "1.23.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
-python texml.py [-e encoding] [-w auto_width] input_file output_file""" % VERSION
+python texml.py [-e encoding] [-w auto_width] [-c|--context] in_file out_file""" % VERSION
 
 #
 # Check command line, print help
@@ -16,11 +16,12 @@ if len(sys.argv) < 3:
 #
 # Parse command line options
 #
-encoding = 'ascii'
-width    = 50
+encoding    = 'ascii'
+width       = 50
+use_context = 0
 import getopt
 try:
-  opts, args = getopt.getopt(sys.argv[1:], 'hw:e:', ['help', 'width=', 'encoding='])
+  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding='])
 except getopt.GetoptError, e:
   print >>sys.stderr, 'texml: Can\'t parse command line: %s' % e
   print >>sys.stderr, usage
@@ -29,6 +30,8 @@ for o, a in opts:
   if o in ('-h', '--help'):
     print >>sys.stderr, usage;
     sys.exit(1)
+  if o in ('-c', '--context'):
+    use_context = 1
   if o in ('-w', '--width'):
     try:
       width = int(a)
@@ -76,7 +79,7 @@ except Exception, e:
 # Create transformer and run process
 #
 import handler
-h = handler.glue_handler(f, width)
+h = handler.glue_handler(f, width, use_context)
 xml.sax.parse(infile, h)
 
 #

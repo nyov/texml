@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.38 2005-02-21 17:29:09 olpa Exp $
+# $Id: handler.py,v 1.39 2005-03-05 17:09:52 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -15,8 +15,8 @@ import os
 #
 class glue_handler(xml.sax.ContentHandler):
   
-  def __init__(self, stream, autonl_width):
-    self.h = handler(stream, autonl_width)
+  def __init__(self, stream, autonl_width, use_context):
+    self.h = handler(stream, autonl_width, use_context)
     self.c = None
 
   def startDocument(self):
@@ -81,8 +81,9 @@ class handler:
   # has_parm # Stacking is not required: if <cmd/> is in <cmd/>,
   #          # then is it wrapped by <parm/> or <opt/>
 
-  def __init__(self, stream, autonl_width):
+  def __init__(self, stream, autonl_width, use_context):
     """ Create writer, create maps """
+    self.__use_context = use_context
     self.writer        = texmlwr.texmlwr(stream, autonl_width)
     self.cmdname_stack = []
     self.endenv_stack  = []
@@ -129,13 +130,6 @@ class handler:
       'math':   self.on_math_end,
       'dmath':  self.on_dmath_end
     }
-
-    # added by Paul Tremblay on 2004-02-19
-    # Set the variable texml_usecontext in your shell if you want to 
-    # convert an XML document to conTeXt. See
-    # http://sourceforge.net/tracker/index.php?func=detail&aid=1145206&group_id=102261&atid=631462
-    # http://sourceforge.net/forum/message.php?msg_id=3007157
-    self.__use_context = os.getenv('texml_usecontext')
 
   # -------------------------------------------------------------------
   
