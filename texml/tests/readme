@@ -9,10 +9,18 @@ TeXML tests
 + koi8     conversion from unicode to koi8 encoding
 + koi8bad  conversion from unicode to koi8 with out of range chars
 + latex    out of encoding chars as latex commands
++ cmd      command
 
 Tests to be failed:
 
 + badxml   unparsable XML
 + unkelem  unknown element
 + errmode  incorrect mode specification
++ cmdcont  "cmd" contains something other than "opt" or "parm"
++ misopt   "opt" is not a child of cmd
++ optcont  "opt" contains something other then "ctrl" or "spec"
++ misparm  "parm" is not a child of cmd
++ parmcont "parm" contains something other then "ctrl" or "spec"
 
+
+spec: support <, > and |
