@@ -20,4 +20,5 @@ also:       [<spec cat="lt"/>]
 also:       [<spec cat="gt"/>]
 also:       [<spec cat="nl"/>]
 also:       [<spec cat="space"/>]
+also:       [<spec cat="nil"/>]
 </TeXML>
