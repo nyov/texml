@@ -1,6 +1,8 @@
 =====================================================================
 For db2latex, dblatex and other projects that use XSLT to generate TeX
 
+Subj: TeXML, the XML vocabulary for TeX
+
   Hello colleagues,
 
   I'd like to introduce you TeXML, the XML vocabulary for TeX:
@@ -67,6 +69,64 @@ http://getfo.sourceforge.net/texml/
   Your comments are welcome.
 
   Regards, Oleg
+
+=====================================================================
+Answer to db2latex:
+
+  Hi!
+
+On Thu, 25 Mar 2004 12:42:49 +0100
+Torsten Bronger <bronger@physik.rwth-aachen.de> wrote:
+
+> Halloechen!
+> 
+...
+> >
+> >   One of the main benefits of TeXML usage is an automatical
+> >   translation
+> > of the TeX special symbols.
+> 
+> Interesting, but how is it implemented?  In XSLT, or a scripting
+> language, or what?
+
+  It is implemented in the Python scripting language. It uses only core
+Python modules (expat XML parser, unicode database, something other),
+so it should work on any recent system. Mapping from Unicode characters
+to LaTeX commands is taken from attachment for the MathML specification
+(http://www.w3.org/Math/characters/unicode.xml (note: 1,5 Mb)).
+
+>  How fast is it (I'm not prepared to accept a
+> further significant drop down in speed)?
+
+  It is hard to said exactly, but I think it is fast. In any case,
+it should be faster then processing of specials by xslt.
+
+> 
+> How are different \usepackage[???]{inputenc}'s dealt with?
+
+  The processor does not know about \usepackage, it only translates
+characters. It is a task of an xslt to insert \usepackage command into
+the output, if required.
+
+  User can specify an output encoding. The processor attempts to make as
+good translation as possible for it. For example, for letter &szlig;, if
+output encoding is ascii, then processor outputs "\ss "; if output
+encoding is latin1, then processor outputs "ß". In latter case correct
+header should be \usepackage[latin1]{inputenc}, but it is not a task of
+processor to create this header.
+
+> 
+> Tschoe,
+> Torsten.
+> 
+> -- 
+> Torsten Bronger, aquisgrana, europa vetus
+> 
+
+  Bye!
+
+--
+Oleg
 
 =====================================================================
 for authors of TeXMLatte and TeXMLapis
