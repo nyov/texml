@@ -1,18 +1,18 @@
 TeXML 1.2 is out
 
-TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Intended audience is developers who automatically generate TeX files.
+TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate TeX files.
 
-TeXML 1.2 is the second major release of TeXML. We are thankful to everyone who have sent us feedback, use cases and requests for improvement. This made software better.
+TeXML 1.2 is the second major release of TeXML. We are thankful to everyone who has sent us feedback, use cases, and requests for improvement. This made our software better.
 
-TeXML 1.2 is essentially improved comparing to the version 1.0. Certainly, several bugs and misfeatures are fixed, but it is not so important as the main new feature.
+TeXML 1.2 is substantially improved as compared to version 1.0. Certainly, several bugs are fixed, but we also introduced an important new feature.
 
-The main new feature is an layouting of the generated LaTeX code. In fully automatic mode, the TeXML processor deletes redundant spaces and splits long lines on smaller chunks. So the generated LaTeX code is good enough for humans to read and modify. And with some manual tweaking it is possible to generate code which looks like hand-made.
+The main new feature is an automatic laying out of the generated LaTeX code. In fully automatic mode, the TeXML processor deletes redundant spaces and splits long lines on smaller chunks. The generated LaTeX code is legible enough for humans to read and modify. With some minor tweaking it is possible to generate code which looks hand-made.
 
-The documentation now contains the Quick Start guide which helps to make first steps with TeXML.
+The documentation now also contains a Quick Start guide which helps a new user get acquainted with TeXML.
 
-TeXML was presented on a conference, and the conference's thesis is now a part of the documentation. This paper explains a need for TeXML, gives a brief overview and demonstrates benefits of TeXML.
+TeXML was presented at a conference, and the conference's talk is now a part of the documentation. This paper explains the need for TeXML, gives a brief overview and demonstrates benefits of TeXML.
 
-TeXML home page is http://getfo.sourceforge.net/texml/
+The TeXML home page is located at http://getfo.sourceforge.net/texml/
 
 =====================================================================
 SourceForge.net, search for corrector (1.12.devel)
