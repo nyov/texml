@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.15 2004-06-03 12:22:27 olpa Exp $
+# $Id: handler.py,v 1.16 2004-06-18 13:18:34 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -9,7 +9,6 @@ import StringIO
 # WhiteSpace (WS) elimination
 # In most cases, WS around tags (both opening and closing) are removed.
 # But these tags save ws: <ctrl/> and <spec/>.
-# Current mode of WS mode is a boolean "eliminate_ws".
 # WS processing is allowed or disallowed by "process_ws".
 
 class handler(xml.sax.handler.ContentHandler):
@@ -18,7 +17,6 @@ class handler(xml.sax.handler.ContentHandler):
   # writer
   # no_text_content
   # text_is_only_spaces
-  # eliminate_ws
   # process_ws
   # process_ws_stack
   # 
@@ -42,9 +40,9 @@ class handler(xml.sax.handler.ContentHandler):
     self.has_parm      = 0
     self.no_text_content     = 0
     self.text_is_only_spaces = 0
-    self.eliminate_ws        = 1
     self.process_ws          = 1
     self.process_ws_stack    = []
+    self.last_content        = ''
     #
     # Create handler maps
     #
@@ -137,13 +135,20 @@ class handler(xml.sax.handler.ContentHandler):
     #
     # Eliminate whitespaces
     #
+    post_content_ws = 0
     if self.process_ws:
-      if self.eliminate_ws:
-	content = content.strip()
+      content2 = content.lstrip()
+      if len(content2) != len(content):
+	self.writer.writeWeakWS()
+      content  = content2.rstrip()
+      if len(content2) != len(content):
+	post_content_ws = 1
     #
     # Finally, write content
     #
     self.writer.write(content)
+    if post_content_ws:
+      self.writer.writeWeakWS()
 
   def endElement(self, name):
     """ Handle end of en element """
