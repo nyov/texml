@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.12 2004-04-02 13:02:50 olpa Exp $
+# $Id: handler.py,v 1.13 2004-04-09 10:14:05 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -91,7 +91,7 @@ class handler(xml.sax.handler.ContentHandler):
       raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
     if self.text_is_only_spaces:
       if 0 != len(content.strip(" \t\n\r\f\v")):
-        raise ValueError("Only whitespaces are expected, not a text content: '%s'" % content.encode('latin-1', 'replace'))
+        raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
     self.writer.write(content)
 
