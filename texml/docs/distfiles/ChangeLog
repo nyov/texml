@@ -1,9 +1,11 @@
 Version 0.98.beta (02 April 2004)
 
-* Absence of spaces after LaTeX commands in some mappings is fixed.
+* Text of specification is now better. Thanks Simon Goodson for
+  ideas on improvement.
 * New handling of tags <parm/> and <opt/>. The processor now outputs
   them instantly as they appear, and so multiple parameters of one
   <cmd/> are not being united.
+* Absence of spaces after LaTeX commands in some mappings is fixed.
 
 
 Version 0.95.beta (26 March 2004)
