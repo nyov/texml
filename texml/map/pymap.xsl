@@ -46,7 +46,13 @@
 	<x:value-of select="
 		concat('0x',
 		substring-after($code,'U'),
-		': r', $quot, $text)"/>
+		': r', $quot, normalize-space($text))"/>
+	<!--
+	;    We replace trailing space by '{}'
+	-->
+	<x:if test="$text != normalize-space($text)">
+		<x:value-of select="'{}'"/>
+	</x:if>
 	<!--
 	;    There are several incorrect mappings in unicode.xml:
 	;    LaTeX command is writteed without space after end.
