@@ -1,7 +1,7 @@
 <menu>
 	<menuitem id="index">GetFO Home Page</menuitem>
 	<menuitem id="objectives">Objectives</menuitem>
-	<menuitem id="workplan">Work Plan</menuitem>
+<!--	<menuitem id="workplan">Work Plan</menuitem> -->
 	<menuitem id="texml.index">TeXML Home Page</menuitem>
 	<menuitem fileref="http://sourceforge.net/project/showfiles.php?group_id=102261">Downloads</menuitem>
 </menu>
