@@ -25,6 +25,8 @@ Version 1.09.devel (????? 2004)
   the endings instead of a space.
 * Accurate handling of unicode mappings that can appear only in
   text or in math modes.
+* License is changed from the GPL to the lesser GPL.
+
 
 Version 1.01.devel (06 May 2004)
 
