@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.12 2004-04-06 15:27:16 olpa Exp $
+# $Id: texmlwr.py,v 1.13 2004-06-03 11:51:13 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -92,7 +92,15 @@ class texmlwr:
   def unstack_emptylines(self):
     """ Restore old policy of handling of empty lines """
     self.emptylines = self.emptylines_stack.pop()
-  
+
+  def conditionalNewline(self):
+    """ Write a new line unless already at the start of a line """
+    if ('\r' != self.last_ch) and ('\n' != self.last_ch):
+      self.stream.write(os.linesep)
+      self.last_ch      = os.linesep[-1]
+      self.after_char0a = '\n' == self.last_ch
+      self.after_char0d = '\r' == self.last_ch
+
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
     #
