@@ -1,4 +1,14 @@
 =====================================================================
+Sourceforge news for 1.00
+
+TeXML 1.00 released
+
+After several betas, final version of a TeXML processor in Python is released. TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. Intended audience is developers who automatically generate TeX files.
+
+TeXML home page: http://getfo.sourceforge.net/texml/
+TeXML specification: http://getfo.sourceforge.net/texml/spec.html
+
+=====================================================================
 Announce of 1.00 in newsgroups, maillists etc
 
 Subj: TeXML, the XML vocabulary for TeX
