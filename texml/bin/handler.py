@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.36 2004-08-17 13:18:16 olpa Exp $
+# $Id: handler.py,v 1.37 2005-02-18 19:20:12 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -160,7 +160,7 @@ class handler:
     # Element <env/> may have <opt/> and <parm/>, so we do
     # magic to delete whitespace at beginning of environment
     if self.text_is_only_spaces:
-      stripped = content.lstrip(string.whitespace)
+      stripped = content.lstrip()
       if 0 != len(stripped):
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
