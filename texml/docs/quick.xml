@@ -26,9 +26,9 @@
 	<sect>
 		<title>Converting TeXML to TeX</title>
 		<p>Create a file <tt>quick.bat</tt> in the folder <tt>c:\texml\bin</tt> with content:</p>
-		<lst>python texml.py quick.texml quick.tex
+		<lst>python texml.py -w 60 quick.texml quick.tex
 pause</lst>
-		<p>This batch-file uses Python interpreter to execute the TeXML processor which converts the TeXML file <tt>quick.texml</tt> into the TeX file <tt>quick.tex</tt>.</p>
+		<p>This batch-file uses Python interpreter to execute the TeXML processor which converts the TeXML file <tt>quick.texml</tt> into the TeX file <tt>quick.tex</tt>. Option <tt>-w</tt> is not important, it just defines a line width for a pretty-printer.</p>
 		<p>The result in the file <tt>quick.tex</tt> looks as follows:</p>
 		<lst><xi:include href="../tests/data/quick/quick.tex" parse="text"
 				xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
