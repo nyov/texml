@@ -7,6 +7,8 @@ Version 1.12.devel (09 August 2004)
 
 * New document: thesis of the talk at the First International
   conference of the open-source developers.
+* Names of distribution packages now contains words '-windows'
+  and '-unix' to reflect a difference in line endings.
 
 
 Version 1.09.devel (08 July 2004)
