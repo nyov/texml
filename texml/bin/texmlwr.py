@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.10 2004-03-26 14:35:36 olpa Exp $
+# $Id: texmlwr.py,v 1.11 2004-04-02 13:02:50 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -28,14 +28,9 @@ class texmlwr:
   # Handling of '--' and '---'
   # after_minus
   #
-  # Stream and mode. They can be temporary substituted,
-  # so stacks of streams and modes are used.
-  # stream
+  # Modes of transformation can be tuned and nested
   # mode
-  # stream_stack
   # mode_stack
-  #
-  # Text transformations can be tuned
   # escape
   # escape_stack
   # ligatures
@@ -51,8 +46,6 @@ class texmlwr:
     self.after_minus      = 0;
     self.mode             = TEXT;
     self.mode_stack       = [];
-    self.stream           = stream
-    self.stream_stack     = [];
     self.escape           = 1;
     self.escape_stack     = [];
     self.ligatures        = 0;
@@ -69,18 +62,6 @@ class texmlwr:
   def unstack_mode(self):
     """ Restore mode """
     self.mode = self.mode_stack.pop()
-
-  def stack_stream(self, stream):
-    """ Use the new streamf or output. Stream should support getvalue() """
-    self.stream_stack.append(self.stream)
-    self.stream = stream
-
-  def unstack_stream(self):
-    """ Restore old stream and return collected content """
-    str = self.stream.getvalue()
-    self.stream.close()
-    self.stream = self.stream_stack.pop()
-    return str
 
   def stack_escape(self, ifdo):
     """ Set if escaping is required. Remember old value. """

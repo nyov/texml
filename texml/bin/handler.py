@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.11 2004-03-26 14:35:36 olpa Exp $
+# $Id: handler.py,v 1.12 2004-04-02 13:02:50 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -11,29 +11,28 @@ class handler(xml.sax.handler.ContentHandler):
   # Object variables
   # writer
   # no_text_content
+  # text_is_only_spaces
   # 
-  # For <cmd /> and <env /> support:
-  # parm_content
-  # opt_content
-  # parm_stack
-  # opt_stack
+  # For <env/> support:
   # cmdname
   # cmdname_stack
   # endenv
   # endenv_stack
+  #
+  # For <cmd/> support:
+  # has_parm # Stacking is not required: if <cmd/> is in <cmd/>,
+  #          # then is it wrapped by <parm/> or <opt/>
 
   def __init__(self, stream):
     """ Create writer, create maps """
     self.writer        = texmlwr.texmlwr(stream)
-    self.parm_stack    = []
-    self.opt_stack     = []
     self.cmdname_stack = []
     self.endenv_stack  = []
-    self.parm_content  = ''
-    self.opt_content   = ''
     self.cmdname       = ''
     self.endenv        = ''
-    self.no_text_content = 0
+    self.has_parm      = 0
+    self.no_text_content     = 0
+    self.text_is_only_spaces = 0
     #
     # Create handler maps
     #
@@ -89,7 +88,11 @@ class handler(xml.sax.handler.ContentHandler):
   def characters(self, content):
     """ Handle text data """
     if self.no_text_content:
-      raise ValueError('Text content is not expected')
+      raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
+    if self.text_is_only_spaces:
+      if 0 != len(content.strip(" \t\n\r\f\v")):
+        raise ValueError("Only whitespaces are expected, not a text content: '%s'" % content.encode('latin-1', 'replace'))
+      return                                               # return
     self.writer.write(content)
 
   def endElement(self, name):
@@ -160,73 +163,43 @@ class handler(xml.sax.handler.ContentHandler):
     name = attrs.get('name', '')
     if 0 == len(name):
       raise ValueError('Attribute cmd/@name is empty')
-    self.cmdname_stack.append(self.cmdname)
-    self.cmdname = name
+    self.writer.writech('\\', 0)
+    self.writer.write(name, 0)
     #
-    # Setup output streams and stacks
+    # Setup in-cmd processing
     #
-    self.writer.stack_stream(StringIO.StringIO())
-    self.parm_stack.append(self.parm_content)
-    self.opt_stack.append(self.opt_content)
-    self.parm_content = '';
-    self.opt_content  = '';
+    self.has_parm            = 0
+    self.text_is_only_spaces = 1
 
   def on_cmd_end(self):
+    self.text_is_only_spaces = 0
     #
-    # Get name, text content, "parm" and "opt" strings
-    # Restore old values.
+    # Write additional space if command has no parameters
     #
-    chars = self.writer.unstack_stream()
-    name  = self.cmdname
-    parm  = self.parm_content
-    opt   = self.opt_content
-    self.cmdname      = self.cmdname_stack.pop()
-    self.parm_content = self.parm_stack.pop()
-    self.opt_content  = self.opt_stack.pop()
-    #
-    # Check that chars inside are only spaces (comment char also ok)
-    #
-    if 0 != len(chars.strip(" \t\n\r\f\v%")):
-      raise ValueError("Element 'cmd' has text content: '%s'" % chars.encode('latin-1', 'replace'))
-    #
-    # And now write command
-    #
-    self.writer.writech('\\', 0)
-    if (0 == len(parm)) and (0 == len(opt)):
-      self.writer.write(name, 0)
+    if not(self.has_parm):
       self.writer.writech(' ', 0)
-    else:
-      self.writer.write(name, 0)
-      if 0 != len(opt):
-        self.writer.writech('[', 0)
-        self.writer.write(opt, 0)
-        self.writer.writech(']', 0)
-      if 0 != len(parm):
-        self.writer.writech('{', 0)
-        self.writer.write(parm, 0)
-        self.writer.writech('}', 0)
 
   def on_opt(self, attrs):
     """ Handle 'opt' element """
-    self.on_opt_and_parm(self.opt_content)
+    self.stack_model(self.model_opt)
+    self.writer.writech('[', 0)
+    self.text_is_only_spaces = 0
 
   def on_parm(self, attrs):
     """ Handle 'parm' element """
-    self.on_opt_and_parm(self.parm_content)
-
-  def on_opt_and_parm(self, str):
     self.stack_model(self.model_opt)
-    stream = StringIO.StringIO()
-    if 0 != len(str):
-      stream.write(str)
-      stream.write(',')
-    self.writer.stack_stream(stream)
+    self.writer.writech('{', 0)
+    self.text_is_only_spaces = 0
  
   def on_opt_end(self):
-    self.opt_content = self.writer.unstack_stream()
+    self.writer.writech(']', 0)
+    self.text_is_only_spaces = 1 # Because returns to <cmd/>
+    self.has_parm            = 1 # At the end to avoid collision of nesting
 
   def on_parm_end(self):
-    self.parm_content = self.writer.unstack_stream()
+    self.writer.writech('}', 0)
+    self.text_is_only_spaces = 1
+    self.has_parm            = 1
 
   # -----------------------------------------------------------------
 
