@@ -47,6 +47,15 @@
 			<td><lst>TeX</lst></td>
 		</tr>
 	</table>
-	<p>There is a <a href="spec.html">TeXML specification</a>.</p>
-	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb). There was a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now this realization &#8220;has been retired&#8221;.</p>
+	<p>There is a <a href="spec.html">TeXML specification</a>. DTD is included into the distribution.</p>
+	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb).</p>
+	<p>There was TeXMLatt&#xE9;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now this realization &#8220;has been retired&#8221;. There is also <a href="http://www.bluweb.com/us/chouser/proj/texmlapis/">TeXMLapis</a> by Chris Houser, a Perl implementation of TeXML.</p>
+	<sect>
+		<title>Getting TeXML</title>
+		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.3 run the script (TODO link). Additional modules are not required.</p>
+		<p>You can download Python TeXML in the SourceForge <a href="">(todo) project download area</a>. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in line endings (Unix or DOS style).</p>
+		<p>Current version is 0.9 beta. Although it is marked as beta, bugs are not expected and the processor should work well.</p>
+		<p>The software is released under the <a href="">(TODO) GNU Public License</a>.</p>
+		<p>Support is available through the SourceForge <a href="">(TODO) project area</a>.</p>
+	</sect>
 </doc>
