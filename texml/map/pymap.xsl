@@ -16,14 +16,22 @@
 : There are no need to escape codes below this value
 -->
 
-<!--<x:template match="character[latex and (@dec &gt; 122) and (@mode != 'math')]" mode="text">-->
-<x:template match="character[latex and (@dec &gt; 122)]" mode="text">
+<!-- mode="text" or "mixed" or "unknown" -->
+<x:template match="character[latex and (@dec &gt; 122) and (@mode != 'math')]" mode="text">
 	<x:call-template name="mapitem">
 		<x:with-param name="code" select="@id"/>
 		<x:with-param name="text" select="latex"/>
 	</x:call-template>
 </x:template>
 
+<x:template match="character[latex and (@dec &gt; 122) and (@mode = 'math')]" mode="math">
+	<x:call-template name="mapitem">
+		<x:with-param name="code" select="@id"/>
+		<x:with-param name="text" select="latex"/>
+	</x:call-template>
+</x:template>
+
+<!-- with mathlatex, mode="mixed" or "unknown" -->
 <x:template match="character[mathlatex and (@dec &gt; 122)]" mode="math">
 	<x:call-template name="mapitem">
 		<x:with-param name="code" select="@id"/>
