@@ -2,6 +2,7 @@ Version 1.00 (09 April 2004)
 
 * More ligatures are being processed: ``, '', ?`, !`. With -- and ---
   they cover all default non-letter TeX ligatures.
+* Documentation is proofread by Simon Goodson.
 
 
 Version 0.98.beta (02 April 2004)
