@@ -3,4 +3,6 @@
 <cmd name="x">
 <parm>Здравствуй,&#xa0;&#x2026;!</parm>
 <opt>Здравствуй,&#xa0;&#x2026;!</opt>
-</cmd></TeXML>
+</cmd>
+Check if unicode.map bug fixed: [&#xa0;][&#xad;]
+</TeXML>
