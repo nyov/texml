@@ -1,10 +1,11 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.23 2004-06-21 13:34:13 olpa Exp $
+# $Id: handler.py,v 1.24 2004-06-22 09:07:28 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
 import specmap
 import StringIO
+import string
 
 #
 # TeXML SAX handler works correct but misfeaturely when SAX parser
@@ -164,7 +165,7 @@ class handler:
     # Element <cmd/> should not have text content,
     # but it also may contain spaces due to indenting
     if self.text_is_only_spaces:
-      stripped = content.lstrip(" \t\n\r\f\v")
+      stripped = content.lstrip(string.whitespace)
       if 0 != len(stripped):
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
       return                                               # return
@@ -274,12 +275,12 @@ class handler:
   def on_cmd_end(self):
     self.text_is_only_spaces = 0
     #
-    # Write additional space if command has no parameters
+    # Write additional space or newline if command has no parameters
     #
     if self.nl_spec:
       self.writer.conditionalNewline()
     elif not(self.has_parm):
-      self.writer.writech(' ', 0)
+      self.writer.writeWeakWS()
     self.nl_spec = self.nl_spec_stack.pop()
 
   def on_opt(self, attrs):
