@@ -1,6 +1,7 @@
 <doc id="texml.spec">
 	<title>TeXML specification</title>
 	<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
+	<p>Document Type Definition (DTD) for TeXML can be found in a TeXML distribution package.</p>
 
 	<sect>
 		<title>Root element</title>
@@ -16,115 +17,9 @@
 	</sect>
 
 	<sect>
-		<title>Text translation</title>
-		<a name="texttrans"/><p>Characters are processed as follows:</p>
-		<ul>
-			<li>If a character has a special meaning for TeX, then the character is translated as shown in the table below.</li>
-			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
-			<li>If the character exists in a LaTeX mapping table, then a corresponding substitution for the character is used.</li>
-			<li>Otherwise the character is output as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is the hexadecimal code for the character.</li>
-		</ul>
-		<blockquote>
-			<p>Example. TeXML:</p>
-			<lst><![CDATA[<TeXML>$a \/\/ $b</TeXML>]]></lst>
-			<p>TeX:</p>
-			<lst>\textdollar{}a \textbackslash{}/\textbackslash{}/ \textdollar{}b</lst>
-		</blockquote>
-		<table border="1">
-			<caption>Mapping of special symbols</caption>
-			<tr>
-				<th>symbol</th>
-				<th>text mode</th>
-				<th>math mode</th>
-			</tr>
-			<tr>
-				<td>\</td>
-				<td>\textbackslash{}</td>
-				<td>\backslash{}</td>
-			</tr>
-			<tr>
-				<td>{</td>
-				<td>\{</td>
-				<td>\{</td>
-			</tr>
-			<tr>
-				<td>}</td>
-				<td>\}</td>
-				<td>\}</td>
-			</tr>
-			<tr>
-				<td>$</td>
-				<td>\textdollar{}</td>
-				<td>\$</td>
-			</tr>
-			<tr>
-				<td>&amp;</td>
-				<td>\&amp;</td>
-				<td>\&amp;</td>
-			</tr>
-			<tr>
-				<td>#</td>
-				<td>\#</td>
-				<td>\#</td>
-			</tr>
-			<tr>
-				<td>^</td>
-				<td>\^{}</td>
-				<td>\^{}</td>
-			</tr>
-			<tr>
-				<td>_</td>
-				<td>\_</td>
-				<td>\_</td>
-			</tr>
-			<tr>
-				<td>~</td>
-				<td>\textasciitilde{}</td>
-				<td>\~{}</td>
-			</tr>
-			<tr>
-				<td>%</td>
-				<td>\%</td>
-				<td>\%</td>
-			</tr>
-			<tr>
-				<td>|</td>
-				<td>\textvert{}</td>
-				<td>|</td>
-			</tr>
-			<tr>
-				<td>&lt;</td>
-				<td>\textless{}</td>
-				<td>&lt;</td>
-			</tr>
-			<tr>
-				<td>&gt;</td>
-				<td>\textgreater{}</td>
-				<td>&gt;</td>
-			</tr>
-		</table>
-		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
-		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
-		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
-		<p>It is possible to tune text translation:</p>
-		<ul>
-			<li><code><![CDATA[<TeXML escape="0">...</TeXML>]]></code> leaves specials as is, without escaping,</li>
-			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves ligatures as is,</li>
-			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
-		</ul>
-		<blockquote>
-			<p>Example. For TeXML</p>
-			<lst><![CDATA[<TeXML escape="0">$a \/\/ $b</TeXML>]]></lst>
-			<p>TeX output now looks like this:</p>
-			<lst>$a \/\/ $b</lst>
-		</blockquote>
-		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
-	</sect>
-
-	<sect>
 		<title>Switching between modes</title>
 		<a name="mode"/><p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
-		<p>Modes only affect translation of text.</p>
+		<p>Modes only affect <a href="#texttrans">translation of text</a>.</p>
 		<p>The default mode is <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then the mode is not changed.</p>
 <blockquote>
 	<p>Example. TeXML:</p>
@@ -232,7 +127,7 @@ $$\sqrt 2$$</lst>
 
 	<sect>
 		<title>Encoding special symbols</title>
-		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described above</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described below</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
 		<blockquote>
 			<p>The TeX scrap,</p>
 			<lst>{\it italics}</lst>
@@ -331,6 +226,119 @@ $$\sqrt 2$$</lst>
 		</table>
 	</sect>
 
+	<sect>
+		<title>Text translation</title>
+		<a name="texttrans"/><p>Characters are processed as follows:</p>
+		<ul>
+			<li>If a character has a special meaning for TeX, then the character is translated as shown in the table below.</li>
+			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
+			<li>If the character exists in a LaTeX unicode mapping table, then a corresponding substitution for the character is used.</li>
+			<li>Otherwise the character is output as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is the hexadecimal code for the character.</li>
+		</ul>
+		<blockquote>
+			<p>Example. TeXML:</p>
+			<lst><![CDATA[<TeXML>$a \/\/ $b</TeXML>]]></lst>
+			<p>TeX:</p>
+			<lst>\textdollar{}a \textbackslash{}/\textbackslash{}/ \textdollar{}b</lst>
+		</blockquote>
+		<table border="1">
+			<caption>Mapping of special symbols</caption>
+			<tr>
+				<th>symbol</th>
+				<th>text mode</th>
+				<th>math mode</th>
+			</tr>
+			<tr>
+				<td>\</td>
+				<td>\textbackslash{}</td>
+				<td>\backslash{}</td>
+			</tr>
+			<tr>
+				<td>{</td>
+				<td>\{</td>
+				<td>\{</td>
+			</tr>
+			<tr>
+				<td>}</td>
+				<td>\}</td>
+				<td>\}</td>
+			</tr>
+			<tr>
+				<td>$</td>
+				<td>\textdollar{}</td>
+				<td>\$</td>
+			</tr>
+			<tr>
+				<td>&amp;</td>
+				<td>\&amp;</td>
+				<td>\&amp;</td>
+			</tr>
+			<tr>
+				<td>#</td>
+				<td>\#</td>
+				<td>\#</td>
+			</tr>
+			<tr>
+				<td>^</td>
+				<td>\^{}</td>
+				<td>\^{}</td>
+			</tr>
+			<tr>
+				<td>_</td>
+				<td>\_</td>
+				<td>\_</td>
+			</tr>
+			<tr>
+				<td>~</td>
+				<td>\textasciitilde{}</td>
+				<td>\~{}</td>
+			</tr>
+			<tr>
+				<td>%</td>
+				<td>\%</td>
+				<td>\%</td>
+			</tr>
+			<tr>
+				<td>|</td>
+				<td>\textvert{}</td>
+				<td>|</td>
+			</tr>
+			<tr>
+				<td>&lt;</td>
+				<td>\textless{}</td>
+				<td>&lt;</td>
+			</tr>
+			<tr>
+				<td>&gt;</td>
+				<td>\textgreater{}</td>
+				<td>&gt;</td>
+			</tr>
+		</table>
+		<p>Note that LaTeX does not have command &#x201c;<tt>\textvert</tt>&#x201d; and you should define it yourself. There are several approaches to define the text vertical bar. Here is one of the approaches:</p>
+		<blockquote>
+			<p>TeX:</p>
+			<lst>\def\textvert{$|$}</lst>
+			<p>The same in TeXML:</p>
+			<lst><![CDATA[<cmd name="def"/><cmd name="textvert"/><group><math>|</math></group>]]></lst>
+		</blockquote>
+		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
+		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
+		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
+		<p>It is possible to tune text translation:</p>
+		<ul>
+			<li><code><![CDATA[<TeXML escape="0">...</TeXML>]]></code> leaves specials as is, without escaping,</li>
+			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves ligatures as is,</li>
+			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
+		</ul>
+		<blockquote>
+			<p>Example. For TeXML</p>
+			<lst><![CDATA[<TeXML escape="0">$a \/\/ $b</TeXML>]]></lst>
+			<p>TeX output now looks like this:</p>
+			<lst>$a \/\/ $b</lst>
+		</blockquote>
+		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
+	</sect>
+
 
 	<sect>
 		<title>Running the processor</title>
@@ -343,4 +351,6 @@ $$\sqrt 2$$</lst>
 		<p>The processor parses the <i>input_file</i> and saves result of transformation into the <i>output_file</i>.</p>
 		<p>You can specify any encoding supported by Python codecs. The default encoding is <tt>ascii</tt>.</p>
 	</sect>
+
+
 </doc>
