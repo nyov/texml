@@ -33,6 +33,8 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + wsstack    nested specifications of whitespace handling
 + nlcmd      a newline attribute of <cmd/>
 + nlenv      newline attributes of <env/>
++ wspi       tests whitespace handling near processing instruction
++ specandws  a regression test for a space after a rewritten character
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
