@@ -4,14 +4,14 @@
    open-source developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko,
    Saint Petersburg.
 
-     Abstract. The work describes one of the methods of publishing XML
+     Abstract. The paper describes one of the methods of publishing XML
      documents through LaTeX. We propose to use TeXML, an intermediate
-     presentation of the TeX notation in a XML format.
+     presentation of the TeX notation in an XML format.
 
 The need for TeXML
 
-   TeXML is an intermediate presentation of the TeX notation in a XML format.
-   TeXML simplifies creation of printable versions of documents when
+   TeXML[1] is an intermediate presentation of the TeX notation in a XML
+   format. TeXML simplifies creation of printable versions of documents when
    following conditions are true:
 
      * original documents are in XML format,
@@ -77,8 +77,8 @@ TeXML benefits
  {\it \textbackslash{}example}
 
    There are several projects that create LaTeX from XML using XSLT, for
-   example: tbook, xsltml, dblatex, db2latex. History of these projects
-   demonstrates following problems when generating the TeX fragment:
+   example: tbook[2], xsltml[3] , dblatex[4] , db2latex[5] . History of these
+   projects demonstrates following problems when generating the TeX fragment:
 
      * unescaped special symbols,
      * no space after command name (getting "\ittext" instead of "\it text"),
@@ -90,10 +90,22 @@ TeXML benefits
 Other versions of TeXML
 
    During search for a solution for XML publishing through LaTeX I found that
-   Douglas Lovell introduced TeXML approach in the year 1999, and there was
-   even an implementation in Java. This project, TeXMLatte, was abandoned a
-   lot of years ago, but its specification survived. Our TeXML is heavely
-   based on this specification.
+   Douglas Lovell introduced[6] TeXML approach in the year 1999, and there
+   was even an implementation in Java. This project, TeXMLatte[7], was
+   abandoned a lot of years ago, but its specification survived. Our TeXML is
+   heavely based on this specification.
 
-   There is also TeXMLapis, a Perl-processor of a subset of TeXML, but its
+   There is also TeXMLapis[8], a Perl-processor of a subset of TeXML, but its
    functionality is limited.
+
+Bibliography
+
+    1. TeXML: an XML vocabulary for TeX http://getfo.org/texml/
+    2. The tbook system for XML Authoring http://tbookdtd.sourceforge.net/
+    3. XSLT MathML Library http://xsltml.sourceforge.net/
+    4. DocBook to LaTeX/ConTeXt Publishing http://dblatex.sourceforge.net/
+    5. DB2LaTeX XSL Stylesheets http://db2latex.sourceforge.net/
+    6. Douglas Lovell, TeXML: Typesetting XML with TeX
+       http://www.tug.org/TUG99-web/pdf/lovell.pdf
+    7. TeXMLatte http://www.alphaworks.ibm.com/tech/texml
+    8. TeXMLapis http://www.bluweb.com/us/chouser/proj/texmlapis/
