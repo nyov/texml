@@ -1,4 +1,4 @@
-xml_files = index.xml
+xml_files = index.xml objectives.xml workplan.xml
 html_files := $(xml_files:.xml=.html)
 
 all: $(html_files)
