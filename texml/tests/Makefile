@@ -1,6 +1,4 @@
-# $Id: Makefile,v 1.13 2005-03-21 22:46:56 paultremblay Exp $
-
-python=python
+# $Id: Makefile,v 1.14 2005-03-23 19:52:55 olpa Exp $
 
 all: tests
 
@@ -11,6 +9,10 @@ good_xml_tests:=$(notdir $(wildcard data/*xml)) quick.xml
 good_test_stamps=$(addprefix tmp/data/,$(good_xml_tests:.xml=.stamp))
 fail_xml_tests:=$(notdir $(wildcard faildata/*xml))
 fail_test_stamps=$(addprefix tmp/faildata/,$(fail_xml_tests:.xml=.stamp))
+
+texml_modules:=$(wildcard ../Texml/*py)
+texml_program_files=$(texml_modules) ../scripts/texml.py
+texml_script=../scripts/texml_local
 
 #
 # Individual test parameters to converter
@@ -51,8 +53,8 @@ FORCE:
 #
 # Running "good" tests
 #
-tmp/data/%.out: data/%.xml ../scripts/texml.py ../Texml/*py data/%.out $(init)
-	$(python) $(word 2,$+) $(call params-$*) $< $@
+tmp/data/%.out: data/%.xml $(texml_program_files) data/%.out $(init)
+	$(texml_script) $(call params-$*) $< $@
 
 tmp/data/%.stamp: tmp/data/%.out FORCE
 	diff -qs $(basename $@).out data/$(notdir $*).out
@@ -60,8 +62,8 @@ tmp/data/%.stamp: tmp/data/%.out FORCE
 #
 # Running "bad" tests: if fact, we make grep of error message
 #
-tmp/faildata/%.err: faildata/%.xml ../scripts/texml.py ../Texml/*py $(init)
-	$(python) $(word 2,$+) $< $(basename $@).out 2>$@ || true
+tmp/faildata/%.err: faildata/%.xml $(texml_program_files) $(init)
+	$(texml_script) $< $(basename $@).out 2>$@ || true
 
 tmp/faildata/%.stamp: tmp/faildata/%.err FORCE
 	grep -q -f faildata/$(notdir $*).grep $<
