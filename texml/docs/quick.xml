@@ -1,0 +1,16 @@
+<doc id="texml.quick">
+	<title>TeXML Quick Start</title>
+	<p><a href="http://getfo.org/texml/">TeXML</a> is an XML vocabulary for TeX. A processor translates TeXML source into TeX. This document provides a quick start for using TeXML.</p>
+
+	<sect>
+		<title>Installation</title>
+		<p>Installation consists of two parts:</p>
+		<ul>
+			<li>installation of Python and</li>
+			<li>installation of TeXML.</li>
+		</ul>
+		<p>Python is a programming language. Download a production version of Python at the <a href="http://python.org/download/">http://python.org/download/</a>. Install it as any other Windows program.</p>
+		<p>Download TeXML from the <a href="http://sourceforge.net/project/showfiles.php?group_id=102261&amp;package_id=113070">project download area</a>. If you work under Windows then you need <tt>zip</tt>-file, if you work under Unix then you can prefer <tt>tar.gz</tt>-file. A distribution package is an archived file. Unpack it, for example, into the folder <tt>c:\texml</tt>.</p>
+	</sect>
+
+</doc>
