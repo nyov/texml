@@ -65,3 +65,61 @@ TeXML на Питоне
 
 <p>Домашняя страница TeXML: <a href="http://getfo.sourceforge.net/texml/">http://getfo.sourceforge.net/texml/</a>.</p>
 
+=====================================================================
+
+ru_RU.KOI8-R   for fido7.ru.xml and fido7.ru.tex
+
+TeXML на Питоне
+
+Здравствуйте,
+
+Выпущена бета-версия процессора для преобразования документов, размеченных с помощью языка TeXML, в нотацию TeX:
+
+http://getfo.sourceforge.net/texml/
+
+TeXML -- это язык, предназначенный для представления TeX-документов в виде XML. Процессор, написанный на Питоне, преобразует TeXML в TeX.
+
+| Пример преобразования из TeXML в TeX
+| 
+| TeXML:
+|
+| <cmd name="documentclass">
+|  <opt>12pt</opt>
+|  <parm>letter</parm>
+| </cmd>
+|
+| TeX:
+|
+| \documentclass[12pt]{letter}
+
+Основное преимущество использования TeXML -- это автоматическая обработка символов, имеющих специальное значение для TeX.
+
+| Пример преобразования специальных символов
+|
+| TeXML:
+|
+| <TeXML>\section{No&#xa0;break}</TeXML>
+|
+| TeX:
+|
+| $\backslash$section\{No~break\}
+
+Процессор TeXML автоматически обрабатывает символы, не представимые в кодировке вывода (по умолчанию -- utf8).
+
+| Пример преобразования не-ASCII
+|
+| TeXML:
+|
+| <TeXML>&#x422;&#x435;&#x425;</TeXML>
+|
+| TeX в ASCII:
+|
+| \cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH 
+|
+| TeX по-русски:
+|
+| TeX
+
+Домашняя страница TeXML: http://getfo.sourceforge.net/texml/
+
+
