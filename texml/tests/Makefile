@@ -1,4 +1,6 @@
-# $Id: Makefile,v 1.6 2004-03-18 08:16:03 olpa Exp $
+# $Id: Makefile,v 1.7 2004-05-17 10:34:28 olpa Exp $
+
+python=python
 
 all: tests
 
@@ -41,7 +43,7 @@ FORCE:
 # Running "good" tests
 #
 tmp/data/%.out: data/%.xml ../bin/texml.py ../bin/*py $(init)
-	python $(word 2,$+) $(call params-$*) $< $@
+	$(python) $(word 2,$+) $(call params-$*) $< $@
 
 tmp/data/%.stamp: tmp/data/%.out FORCE
 	diff -qs $(basename $@).out data/$(notdir $*).out
@@ -50,7 +52,7 @@ tmp/data/%.stamp: tmp/data/%.out FORCE
 # Running "bad" tests: if fact, we make grep of error message
 #
 tmp/faildata/%.err: faildata/%.xml ../bin/texml.py ../bin/*py $(init)
-	python $(word 2,$+) $< $(basename $@).out 2>$@ || true
+	$(python) $(word 2,$+) $< $(basename $@).out 2>$@ || true
 
 tmp/faildata/%.stamp: tmp/faildata/%.err FORCE
 	grep -q -f faildata/$(notdir $*).grep $<
