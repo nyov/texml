@@ -12,5 +12,8 @@ html_deps = inc/menu.xml inc/footer.xml xslt/site.xsl
 texml/spec.xml: $(texml_docs)/spec.xml ../xslt/tohtml.xsl
 	xsltproc -o $@ $(word 2,$+) $<
 
+texml/index.xml: $(texml_docs)/index.xml ../xslt/tohtml.xsl
+	xsltproc -o $@ $(word 2,$+) $<
+
 clean:
 	rm -f *~ */*~
