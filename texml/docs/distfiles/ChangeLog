@@ -1,4 +1,15 @@
 
+Version 1.25.devel (04 April 2005)
+
+* Script texml_con
+  This script can directly convert a texml 
+  document to a print document such as PDF.
+
+* External entities now handled
+  A small bug in handler.py prevented external 
+  entties from being read. External entities
+  can now be read.
+
 Version 1.24.devel (21 March 2005)
 
 * TeXML is now namespace aware

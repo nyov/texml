@@ -28,7 +28,7 @@ def get_version():
     For now, hard-code this.
 
     """
-    return '1.24.devel'
+    return '1.25.devel'
     temp_module =  os.getcwd()
     sys.path.insert(0, temp_module)
     import texml.version
@@ -57,6 +57,6 @@ setup(name="texml",
     license = 'GNU GPL',
     url = 'http://getfo.sourceforge.net/texml/index.html',
     packages=['Texml'],
-    scripts=['scripts/texml.py',],
+    scripts=['scripts/texml.py', 'scripts/texml_con],
     )
 
