@@ -33,4 +33,12 @@ pause</lst>
 		<lst><xi:include href="../tests/data/quick/quick.tex" parse="text"
 				xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
 	</sect>
+
+	<sect>
+		<title>Converting TeX to PDF</title>
+		<p>Getting PDF from TeX is a system-dependent task and may vary between computers. Most likely that following commands will help:</p>
+		<lst>pdflatex quick.tex
+pause</lst>
+		<p>Put these commands into the batch file <tt>quick-pdf.bat</tt> and run the file.</p>
+	</sect>
 </doc>
