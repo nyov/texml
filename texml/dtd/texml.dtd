@@ -18,6 +18,8 @@
   name    CDATA  #REQUIRED
   begin   CDATA  #IMPLIED
   end     CDATA  #IMPLIED
+  start   CDATA  #IMPLIED
+  stop    CDATA  #IMPLIED
   nl1     (0|1)  #IMPLIED
   nl2     (0|1)  #IMPLIED
   nl3     (0|1)  #IMPLIED
