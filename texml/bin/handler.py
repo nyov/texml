@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.2 2004-03-15 12:18:33 olpa Exp $
+# $Id: handler.py,v 1.3 2004-03-15 13:50:18 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -59,22 +59,47 @@ class handler(xml.sax.handler.ContentHandler):
       self.model[name](attrs)
     else:
       raise ValueError("Element '%s' is not expected" % name)
-  
+
   def characters(self, content):
     """ Handle text data """
     self.writer.write(content)
 
-  # -------------------------------------------------------------------
-
   def endElement(self, name):
     """ Handle end of en element """
     self.end_handlers[name]()
+    self.unstack_model()
+
+  def stack_model(self, model):
+    """ Remember content model of parent and set model for current node """
+    self.model_stack.append(self.model)
+    self.model = model
+
+  def unstack_model(self):
+    """ Restore content model of parent """
+    self.model = self.model_stack.pop()
+
+  # -------------------------------------------------------------------
 
   def on_texml(self, attrs):
-    print "on_texml", attrs
+    """ Handle TeXML element """
+    self.stack_model(self.model_content)
+    #
+    # Set new mode ("text" or "math")
+    #
+    str = attrs.get('mode', None)
+    if None == str:
+      mode = texmlwr.DEFAULT
+    elif 'text' == str:
+      mode = texmlwr.TEXT
+    elif 'math' == str:
+      mode = texmlwr.MATH
+    else:
+      raise ValueError("Unknown value of TeXML/@mode attribute: '%s'" % str)
+    self.writer.stack_mode(mode)
 
   def on_texml_end(self):
-    print "on_texml_end"
+    """ Handle TeXML element. Restore old mode. """
+    self.writer.unstack_mode()
 
   def on_cmd(self):
     pass
@@ -118,14 +143,19 @@ class handler(xml.sax.handler.ContentHandler):
   def on_parm_end(self):
     pass
 
-  def on_math(self):
-    pass
+  def on_math(self, attrs):
+    self.stack_model(self.model_nomath)
+    self.writer.writech('$', 0)
+    self.writer.stack_mode(texmlwr.MATH)
 
   def on_math_end(self):
-    pass
+    self.writer.unstack_mode()
+    self.writer.writech('$', 0)
 
-  def on_dmath(self):
-    pass
+  def on_dmath(self, attrs):
+    self.writer.writech('$', 0)
+    self.on_math(attrs)
 
   def on_dmath_end(self):
-    pass
+    self.on_math_end()
+    self.writer.writech('$', 0)
