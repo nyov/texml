@@ -219,6 +219,10 @@ env
 				<td><i>&lt;new line&gt;</i></td>
 			</tr>
 			<tr>
+				<td>conditional new line</td>
+				<td>nl?</td>
+				<td><i>&lt;new line&gt;</i></td>
+			</tr>	<tr>
 				<td>space</td>
 				<td>space</td>
 				<td><i>&lt;space&gt;</i></td>
@@ -229,6 +233,7 @@ env
 				<td>&#xa0;</td>
 			</tr>
 		</table>
+		<p>Special values <tt>nl</tt>, <tt>nl?</tt>, <tt>space</tt> and <tt>nil</tt> are discussed in the section &#x201c;<a href="#wsproc">Whitespace processing</a>&#x201d;.</p>
 	</sect>
 
 	<sect>
@@ -346,7 +351,7 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 		</blockquote>
 		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
-		<p>The program removes what can be regarded as insignificant whitespace. Details are discussion in section &#x201c;<a href="#wsproc">Whitespace processing</a>&#x201d;.</p>
+		<p>The program removes what can be regarded as insignificant whitespace. Details are discussion in the section &#x201c;<a href="#wsproc">Whitespace processing</a>&#x201d;.</p>
 		<p>You can tune the text translation, and you ought to do it for verbatim environments. Possible settings:</p>
 		<ul>
 			<li><code><![CDATA[<TeXML escape="0">...</TeXML>]]></code> leaves specials as is, without escaping,</li>
@@ -439,7 +444,7 @@ again text mode: \textvert{}\^</lst>
 		</ul>
 		<p>By default &#x201c;far enough&#x201d; is 50. You can set another value by using command line parameter &#x201c;<tt>-w</tt>&#x201d; or &#x201c;<tt>--width</tt>&#x201d;. This setting is not strict: lines can be much longer than a specified width.</p>
 		<p>You can tune line breaking by using attributes <tt>nl1</tt> and <tt>nl2</tt> of the element <tt><a href="#cmd">cmd</a></tt> and attributes <tt>nl1</tt>, <tt>nl2</tt>, <tt>nl3</tt> and <tt>nl4</tt> of the element <tt><a href="#env">env</a></tt>.</p>
-		<p>You can affect whitespace presentation by using special categories of the element <tt><a href="#spec">spec</a></tt>: <tt>nl</tt>, <tt>space</tt> and <tt>nil</tt>.</p>
+		<p>You can affect whitespace presentation by using special categories of the element <tt><a href="#spec">spec</a></tt>: <tt>nl</tt>, <tt>nl?</tt>, <tt>space</tt> and <tt>nil</tt>.</p>
 		<p>The <tt>nl</tt> stands for a new line:</p>
 		<blockquote>
 			<p>TeXML:</p>
@@ -448,7 +453,19 @@ again text mode: \textvert{}\^</lst>
 			<lst>... here.
 More, ...</lst>
 		</blockquote>
-		<p>The <tt>space</tt> stands for the space. You can use it to print several consequent spaces or to create the space at the beginning or the end of a line.</p>
+		<p>The <tt>nl?</tt> is a conditional version of the <tt>nl</tt>. A new line is created unless it is already created.</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[two nl:  [<spec cat="nl"/><spec cat="nl"/>]]]>
+<![CDATA[two nl?: [<spec cat="nl?"/><spec cat="nl?"/>]]]></lst>
+			<p>TeX result:</p>
+			<lst>two nl:  [
+
+]
+two nl?: [
+]</lst>
+		</blockquote>
+	<p>The <tt>space</tt> stands for the space. You can use it to print several consequent spaces or to create the space at the beginning or the end of a line.</p>
 		<blockquote>
 			<p>TeXML:</p>
 			<lst><![CDATA[<TeXML>
