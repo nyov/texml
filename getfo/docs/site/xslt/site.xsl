@@ -36,10 +36,17 @@
 		<x:otherwise>
 			<a>
 				<x:attribute name="href">
-					<x:if test="contains($docid,'.')">
-						<x:text>../</x:text>
-					</x:if>
-					<x:value-of select="concat(translate(@id,'.','/'),'.html')"/>
+					<x:choose>
+						<x:when test="@id">
+							<x:if test="contains($docid,'.')">
+								<x:text>../</x:text>
+							</x:if>
+							<x:value-of select="concat(translate(@id,'.','/'),'.html')"/>
+						</x:when>
+						<x:otherwise>
+							<x:value-of select="@fileref"/>
+						</x:otherwise>
+					</x:choose>
 				</x:attribute>
 				<x:value-of select="."/>
 			</a>
