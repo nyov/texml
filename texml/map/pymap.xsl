@@ -46,7 +46,22 @@
 	<x:value-of select="
 		concat('0x',
 		substring-after($code,'U'),
-		': r', $quot, $text, $quot, ',&#xa;')"/>
+		': r', $quot, $text)"/>
+	<!--
+	;    There are several incorrect mappings in unicode.xml:
+	;    LaTeX command is writteed without space after end.
+	;    It should be fixed in unicode.xml itself, but we
+	;    have a workaround too.
+	-->
+	<x:if test="contains($text,'\')">
+		<x:variable name="lastchar" select="substring($text,string-length($text))"/>
+		<x:if test="contains('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', $lastchar)">
+			<!--<x:text>:::::</x:text>
+			<x:value-of select="$lastchar"/>-->
+			<x:text> </x:text>
+		</x:if>
+	</x:if>
+	<x:value-of select="concat($quot, ',&#xa;')"/>
 </x:template>
 
 <x:template match="text()"/>
