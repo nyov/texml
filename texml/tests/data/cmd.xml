@@ -25,4 +25,13 @@
 <group><cmd name="it"/>italics</group>
 <cmd name="par" nl2="1"/>par
 <cmd name="par" nl2="1"/> par
+<!-- breaking on WS after command name --><spec cat="nil"/>
+<cmd name="aaaaaaaaaa" gr="0" nl1="1"/>
+<cmd name="aaaaaaaaaa" gr="0"/>
+<cmd name="aaaaaaaaaa" gr="0"/>
+<cmd name="aaaaaaaaaa" gr="0"/>
+<cmd name="aaaaaaaaaa" gr="0"/>
+<cmd name="aaaaaaaaaa" gr="0" nl2="1"/>
+<!-- a sample for docs --><spec cat="nil"/>
+<cmd name="it"/> once, <cmd name="it" gr="0"/> twice
 </TeXML>

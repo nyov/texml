@@ -8,7 +8,7 @@
 \section{What is \TeX MLapis?}
 \TeX MLapis translates \TeX ML documents into \TeX{}.\par{}
 \section{What good is \TeX ML?}
-\LaTeX\footnote{\href{http://www.latex-project.org/}{http://www.latex-project.org/}}
+\LaTeX \footnote{\href{http://www.latex-project.org/}{http://www.latex-project.org/}}
 is very good at a
   number of very tricky things.  These include formatting mathematical
   formulae, laying out out books and articles, typesetting text and tables in
