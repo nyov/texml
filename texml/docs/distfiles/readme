@@ -22,14 +22,14 @@ Example:
 
 Files:
 
-./docs   documentation
-./bin    program code, main file is texml.py
-./tests  examples of good (data) and bad (faildata) TeXML files
-./dtd    document type definition (DTD) for TeXML
+./docs   Documentation
+./bin    Program code, main file is texml.py
+./tests  Examples of good (data) and bad (faildata) TeXML files
+./dtd    Document Type Definition (DTD) for TeXML
 
 
 Homepage: http://getfo.org/texml/
-Support:  http://getfo.sourceforge.net/  -->  Support
+Support:  http://getfo.sourceforge.net/
 License:  GNU Lesser GPL
 
 

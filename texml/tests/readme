@@ -12,7 +12,7 @@ An example from the quick start document is data/quick.xml.
 + koi8       conversion from unicode to koi8 encoding
 + koi8bad    conversion from unicode to koi8 with out of range chars
 + latex      out-of-encoding chars as latex commands
-+ escape     escaping and not escaping of specials
++ escape     escaping and unescaping of specials
 + emptyline  leaving and commenting-out of empty lines
 + ligatures  leaving and breaking ligatures
 + cmd        command
@@ -23,14 +23,14 @@ An example from the quick start document is data/quick.xml.
 + spec       special symbols
 + entity     check that entities are expanded
 + cmdnest    test nested commands (incorrect, but possible)
-+ envenv     environment in environment
++ envenv     nested environments
 + v101       test of changes from version 1.00 to version 1.01
 + endline1   test of creation of a newline at the end of document
 + endline2   test of creation of a newline at the end of document
 + wstrivia   simplest whitespace elimination
 + wselim1    whitespace elimination (default line length limit)
 + wselim2    whitespace elimination (line length limit is 100)
-+ realspace  check that we doesn't delete important whitespaces
++ realspace  check that we don't delete important whitespaces
 + wsstack    nested specifications of whitespace handling
 + nlcmd      a newline attribute of <cmd/>
 + nlenv      newline attributes of <env/>

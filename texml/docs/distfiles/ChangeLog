@@ -1,7 +1,7 @@
 Version 1.20 (??? November 2004)
 
-* Jason Santos has proofread the documentation.
-* DTD is corrected: attribute spec/@cat allows the value "nl?".
+* Jason Santos <jason.santos@megaslow.net> has proofread the documentation.
+* Corrected DTD: attribute spec/@cat now allows the value "nl?".
 
 
 Version 1.15.devel (17 August 2004)
@@ -11,9 +11,9 @@ Version 1.15.devel (17 August 2004)
 
 Version 1.12.devel (09 August 2004)
 
-* New document: thesis of the talk at the First International
-  conference of the open-source developers.
-* Names of distribution packages now contains words '-windows'
+* New document: Thesis of the talk at the First International
+  Conference of Open-Source Developers.
+* Names of distribution packages now contain suffixes '-windows'
   and '-unix' to reflect a difference in line endings.
 
 
@@ -22,13 +22,13 @@ Version 1.09.devel (08 July 2004)
 * Environments and groups are now allowed in parameters.
 * Whitespace processing in environments is reworked. Now @nl2
   attribute of <env/> regards possible <opt/> and <parm/>.
-* Empty line, produced by <spec cat="nl"/>, is no more being
+* Empty line, produced by <spec cat="nl"/>, is no longer being
   commented out.
 
 
 Version 1.08.devel (29 June 2004)
 
-* Advanced whitespace processing is implemented: the program
+* Advanced whitespace processing now implemented: the program
   (a) removes what XML regards as insignificant whitespace, and
   (b) introduces its own whitespace which would look reasonable
       from a human point of view.
@@ -41,26 +41,26 @@ Version 1.08.devel (29 June 2004)
 * Whitespace after commands is now significant, so the program
   adds '{}' after a command. This behaviour is configurable.
 * A new command-line paramater '-w' (or '--width') specifies
-  minimal width of lines that are subject to an automatical line
-  breaking.
+  minimal width of lines that are subject to automatic line
+  breaks.
 * Translation of special characters is now more LaTeXish.
-  For example, teh symbol '<' is being translated into '\textless'
+  For example, the symbol '<' is now translated into '\textless'
   instead of '$<$'.
 * Replacements for special symbols now have '{}' characters at
   the endings instead of a space.
 * Accurate handling of unicode mappings that can appear only in
   text or in math modes.
-* License is changed from the GPL to the lesser GPL.
-* Documentation is improved, a quick start document is added.
+* License is changed from the GPL to the Lesser GPL.
+* Improved documentation, added a quick start document.
 
 
 Version 1.01.devel (06 May 2004)
 
-* The program now prints its version.
+* Added version number output.
 * The program now deletes leading spaces in <env/>.
-* Element <env/> now supports children <opt/> and <parm/>.
-  Elements <parm/> and <opt/> now support child <group/>.
-  Thanks to Stephen Robertson for request for improvements.
+* Element <env/> now supports sub-elements <opt/> and <parm/>.
+  Elements <parm/> and <opt/> now support sub-element <group/>.
+  Thanks to Stephen Robertson for his request for improvements.
 
 
 Version 1.00 (09 April 2004)
