@@ -151,4 +151,11 @@
 		<p>By default processor uses command <tt>begin</tt> to start the environment and uses command <tt>end</tt> to finish the environment. If you have another conventions for the environment block, you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
 	</sect>
 
+
+	<sect>
+		<title>Encoding groups</title>
+		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an open brace at the beginning, and a close brace at the end of the group. The TeX scrap, <code>{\it italics}</code> may appear as</p>
+		<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
+		<p>in TeXML.</p>
+	</sect>
 </doc>
