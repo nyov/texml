@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.2 2004-03-15 13:16:51 olpa Exp $
+# $Id: texmlwr.py,v 1.3 2004-03-15 13:50:52 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -41,13 +41,13 @@ class texmlwr:
     self.stream       = stream
     self.stream_stack = [];
 
-  def stackMode(self, mode):
+  def stack_mode(self, mode):
     """ put new mode into the stack of modes """
-    self.mode_stack.extend(mode)
+    self.mode_stack.append(self.mode)
     if mode != DEFAULT:
       self.mode = mode
 
-  def unstackMode(self):
+  def unstack_mode(self):
     self.mode = self.mode_stack.pop()
   
   def writech(self, ch, esc_specials):
