@@ -9,6 +9,9 @@ in the folder "../dist"
 
 "XX" is automatically taken from the "../script/texml.py"
 
+Documentation should be generated (cd ../docs; make)
+before using this Makefile.
+
 
 Say
 
