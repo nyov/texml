@@ -9,6 +9,7 @@
   escape      (0|1)        #IMPLIED
   emptylines  (0|1)        #IMPLIED
   ligatures   (0|1)        #IMPLIED
+  ws          (0|1)        #IMPLIED
 >
 
 <!ELEMENT env    (%content;|opt|parm)*>
@@ -17,6 +18,11 @@
   name    CDATA  #REQUIRED
   begin   CDATA  #IMPLIED
   end     CDATA  #IMPLIED
+  nl1     (0|1)  #IMPLIED
+  nl2     (0|1)  #IMPLIED
+  nl3     (0|1)  #IMPLIED
+  nl4     (0|1)  #IMPLIED
+
 >
 
 <!ELEMENT group  (%content;)*>
@@ -29,6 +35,8 @@
 
 <!ATTLIST cmd
   name    CDATA  #REQUIRED
+  nl1     (0|1)  #IMPLIED
+  nl2     (0|1)  #IMPLIED
 >
 
 <!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math|group">
@@ -46,6 +54,6 @@
 <!ELEMENT spec   EMPTY>
 
 <!ATTLIST spec
-  cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt) #REQUIRED
+  cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt|nl|space|nil) #REQUIRED
 >
 
