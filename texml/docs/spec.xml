@@ -56,6 +56,13 @@
 \item{}
 fourth ...</lst>
 		</blockquote>
+		<p>If a command has no parameters or options then the TeXML processor adds an empty group &#x201c;<tt>{}</tt>&#x201d; after the command name: &#x201c;<tt>\smth{}</tt>&#x201d;. Without the empty group, the following whitespace is ignored by TeX, but sometimes it is exactly what you need. In this case set attribute &#x201c;<tt>gr</tt>&#x201d; (shortcut for &#x201c;group&#x201d;) to &#x201c;<tt>0</tt>&#x201d;.</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[<cmd name="it"/> once, <cmd name="it" gr="0"/> twice]]></lst>
+			<p>TeX:</p>
+			<lst>\it{} once, \it twice</lst>
+		</blockquote>
 	</sect>
 
 
