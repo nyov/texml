@@ -10,7 +10,7 @@
 
 The need for TeXML
 
-   TeXML[1] is an intermediate presentation of the TeX notation in a XML
+   TeXML[1] is an intermediate presentation of the TeX notation in an XML
    format. TeXML simplifies creation of printable versions of documents when
    following conditions are true:
 
@@ -18,17 +18,17 @@ The need for TeXML
      * printable versions are being created by LaTeX, and
      * XSLT is the best language for XML transformations.
 
-   There are several projects that transform XML to LaTeX using XSLT. All
-   these project stuck into the problem that XSLT is very inefficient when
-   result of an XSLT transformation is not XML.
+   There are several projects([2], [3], [4], [5]) that transform XML to LaTeX
+   using XSLT. All these projects stuck into the problem that XSLT is very
+   inefficient when result of an XSLT transformation is not XML.
 
    This problem can be solved using an intermediate step. At first, XSLT
-   efficiently transforms XML into the TeXML, and then TeXML processor
+   efficiently transforms XML into the TeXML, and then a TeXML processor
    serializes TeXML into the TeX format.
 
 Brief overview of TeXML
 
-   Basic constructions of TeXML are demonstrated in the example:
+   An example demonstrates basic constructions of TeXML:
 
  <TeXML>
   <cmd name="documentclass">
@@ -40,7 +40,7 @@ Brief overview of TeXML
   </env>
  </TeXML>
 
-   Result of serialization:
+   A result of serialization:
 
  \begin{verbatim}
  \documentclass[a4paper]{minimal}
@@ -48,7 +48,7 @@ Brief overview of TeXML
  Eto~\textemdash{} primer.
  \end{document}
 
-   Main tasks of the serializer:
+   The main tasks of the serializer:
 
      * escaping of the TeX special characters (for example, escaping "<" to
        "\textless"),
@@ -63,16 +63,16 @@ Brief overview of TeXML
 
      * The TeXML language reflects the structured constructions of the LaTeX
        such as environments or commands with parameters.
-     * Automatic layouting of TeX code produces nice human-readable
+     * Automatic layouting of a TeX code produces nice human-readable
        documents.
 
 TeXML benefits
 
-   Simple TeXML code
+   A simple TeXML code
 
  <group><cmd name="it" gr="0"/>\example</group>
 
-   corresponds to the TeX fragment
+   corresponds to a TeX fragment
 
  {\it \textbackslash{}example}
 
@@ -80,9 +80,10 @@ TeXML benefits
    example: tbook[2], xsltml[3] , dblatex[4] , db2latex[5] . History of these
    projects demonstrates following problems when generating the TeX fragment:
 
-     * unescaped special symbols,
-     * no space after command name (getting "\ittext" instead of "\it text"),
-     * missed opening or closing brace,
+     * special symbols are not escaped,
+     * space after a command name is missed (getting "\ittext" instead of
+       "\it text"),
+     * opening or closing brace is lost,
      * only latin-1 encoding is supported.
 
    These and some other problems do not appear when using TeXML.
