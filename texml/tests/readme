@@ -39,3 +39,5 @@ Tests to be failed:
 + ctrlch2    length of value of "ch" is not 1
 + spec1      "spec" without attribute "cat"
 + spec2      "spec" with unknown value of "cat"
++ ctrlcont   "ctrl" element have content
++ speccont   "spec" element have content
