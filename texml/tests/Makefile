@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2004-05-17 10:34:28 olpa Exp $
+# $Id: Makefile,v 1.8 2004-06-21 11:56:36 olpa Exp $
 
 python=python
 
@@ -20,6 +20,7 @@ params-koi8    = -e koi8-r
 params-koi8bad = -e koi8-r
 params-latex   = -e koi8-r
 params-cmdnest = -e ascii
+params-wselim2 = -w 100
 
 tests: $(good_test_stamps) $(fail_test_stamps)
 
