@@ -47,8 +47,8 @@
 			<td><lst>TeX</lst></td>
 		</tr>
 	</table>
-	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on the TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb).</p>
-	<p>There was TeXMLatt&#xE9;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now this realization &#8220;has been retired&#8221;. There is also <a href="http://www.bluweb.com/us/chouser/proj/texmlapis/">TeXMLapis</a> by Chris Houser, a Perl implementation of TeXML.</p>
+	<p>Rationales and objectives of TeXML were presented by Douglas Lovell at the TeX Users Group meeting in 1999. His paper is available online on the TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb).</p>
+	<p>There was TeXMLatt&#xE9;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but it &#8220;has been retired&#8221;. There is also <a href="http://www.bluweb.com/us/chouser/proj/texmlapis/">TeXMLapis</a> by Chris Houser, a Perl implementation of TeXML.</p>
 	<sect>
 		<title>Documentation</title>
 		<ul>
@@ -60,9 +60,9 @@
 	<sect>
 		<title>Getting TeXML</title>
 		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.2.3 to run the script. Additional modules are not required.</p>
-		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. The current version is 1.12.devel. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
-		<p>The software is released under the <a href="http://www.gnu.org/licenses/lgpl.html"> GNU Lesser General Public License</a>.</p>
-		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/"> project area</a> (TeXML is a part of the GetFO project).</p>
+		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261">project download area</a>. The current version is 1.12.devel. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
+		<p>The software is released under the <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License</a>.</p>
+		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/">project area</a> (TeXML is a part of the GetFO project).</p>
 	</sect>
 	<sect>
 		<title>Thanks</title>
