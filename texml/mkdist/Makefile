@@ -1,5 +1,5 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.13 2004-07-08 06:38:41 olpa Exp $
+# $Id: Makefile,v 1.14 2004-08-09 12:10:30 olpa Exp $
 #version=1.00
 version:=$(shell grep GREPVERSION ../bin/texml.py | sed 's/";.*$$//' | sed 's/^.*"//')
 
@@ -11,7 +11,7 @@ distdir=$(outdir)/$(texmlname)
 all: init copy pack
 
 bin_files = $(addprefix bin/,handler.py texml.py unimap.py specmap.py  texmlwr.py)
-docs_files = $(addprefix docs/,index.html spec.html quick.html index$(txtext) spec$(txtext) quick$(txtext)) readme$(txtext) license$(txtext) ChangeLog$(txtext)
+docs_files = $(addprefix docs/,index.html spec.html quick.html thesis.html index$(txtext) spec$(txtext) quick$(txtext) thesis$(txtext)) readme$(txtext) license$(txtext) ChangeLog$(txtext)
 quick_test_files := $(addprefix ../tests/data/quick/quick, .texml .tex .html .xsl .pdf .bat -pdf.bat)
 good_tests_files := $(wildcard ../tests/data/*xml) $(wildcard ../tests/data/*out) $(quick_test_files)
 fail_tests_files := $(wildcard ../tests/faildata/*xml) $(wildcard ../tests/faildata/*grep)
@@ -27,9 +27,9 @@ clean:
 	cd $(outdir) && rm -rf texml.$(version)*  # Not $(texmlname)*: imagine mistype
 
 pack: copy
-	cd $(outdir) && tar zcf $(texmlname).tar.gz $(texmlname)
+	cd $(outdir) && tar zcf $(texmlname)-unix.tar.gz $(texmlname)
 	@# First pack text files with CRLF conversion, then binary files
-	cd $(outdir) && rm -f $(texmlname).zip && zip -q -r -l $(texmlname).zip $(texmlname) -x '*pdf' && zip -q -r $(texmlname).zip $(texmlname) -i '*pdf'
+	cd $(outdir) && rm -f $(texmlname)-windows.zip && zip -q -r -l $(texmlname)-windows.zip $(texmlname) -x '*pdf' && zip -q -r $(texmlname)-windows.zip $(texmlname) -i '*pdf'
 
 copy: init $(out_files)
 
