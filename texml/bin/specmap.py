@@ -1,29 +1,29 @@
 """ Map special TeX symbols """
-# $Id: specmap.py,v 1.6 2004-06-22 10:45:59 olpa Exp $
+# $Id: specmap.py,v 1.7 2004-06-22 12:16:26 olpa Exp $
 import os
 
 # text escape map and math escape map should contain the same keys
 
 textescmap = {
-  '\\': r'\textbackslash ',
+  '\\': r'\textbackslash{}',
   '{':  r'\{',
   '}':  r'\}',
-  '$':  r'\textdollar ',
+  '$':  r'\textdollar{}',
   '&':  r'\&',
   '#':  r'\#',
   '^':  r'\^{}',
   '_':  r'\_',
-  '~':  r'\textasciitilde ',
+  '~':  r'\textasciitilde{}',
   '%':  r'\%',
-  '|':  r'\textvert ',
-  '<':  r'\textless ',
-  '>':  r'\textgreater ',
+  '|':  r'\textvert{}',
+  '<':  r'\textless{}',
+  '>':  r'\textgreater{}',
   # not special but typography
-  u'\u00a9': r'\textcopyright '
+  u'\u00a9': r'\textcopyright{}'
 }
 
 mathescmap = {
-  '\\': r'\backslash ',
+  '\\': r'\backslash{}',
   '{':  r'\{',
   '}':  r'\}',
   '$':  r'\$',
@@ -37,7 +37,7 @@ mathescmap = {
   '<':  r'<',
   '>':  r'>',
   # not special but typography
-  u'\u00a9': r'\copyright '
+  u'\u00a9': r'\copyright{}'
 }
 
 #
