@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.1 2004-03-15 10:15:57 olpa Exp $
+# $Id: texml.py,v 1.2 2004-03-15 10:42:06 olpa Exp $
 
 usage = """Convert TeXML markup to [La]TeX markup. Usage:
 python texml.py [-e encoding] input_file output_file"""
@@ -39,16 +39,21 @@ if len(args) != 2:
 (infile, outfile) = args
 
 #
-# Prepare transformation-1: XML parser
+# Prepare transformation-1: input file, XML parser
 #
 import xml.sax                                                                  
 p = xml.sax.make_parser()
 # p = xml.sax.make_parser(['drv_libxml2']) # for libxml2
+if '-' == infile:
+  infile = sys.stdin
 
 #
 # Prepare transformation-2: output
 #
-f = file(outfile, 'wb')
+if '-' == outfile:
+  f = sys.stdout
+else:
+  f = file(outfile, 'wb')
 
 #
 # Create transformer and run process
