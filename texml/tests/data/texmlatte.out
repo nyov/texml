@@ -1,21 +1,21 @@
 \documentclass{article}
 \title{Edward Weston}
 \begin{document}
-\maketitle
+\maketitle{}
 \section*{Some biographical information}
 Edward Weston
   was born in
   1886.
   Weston
   lived until
-  1958. \par
+  1958. \par{}
 Weston was a photographer who pioneered the modern use of photography
   as an art form in the United States.
 \section*{Some short quotes from Weston}
 \begin{enumerate}
-\item ``My own eyes are no more than scouts on a preliminary search,
+\item{} ``My own eyes are no more than scouts on a preliminary search,
    for the camera's eye may entirely change my idea.''
-\item ``Ultimately success of failure in photographing people depends
+\item{} ``Ultimately success of failure in photographing people depends
    on the photographer's ability to understand his fellow man.''
 \end{enumerate}
 \section*{A longer quote}

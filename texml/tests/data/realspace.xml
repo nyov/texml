@@ -14,9 +14,9 @@
 	
 	<!-- Automatic line brealing here-->
 	<spec cat="nl"/>
-	<TeXML><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/></TeXML>
+	<TeXML><cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> </TeXML>
 	<!-- And no automatic line breaking here -->
 	<spec cat="nl"/>
-	<TeXML ws="1"><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/><cmd name="aaaaaaaaaa"/></TeXML>
+	<TeXML ws="1"><cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> <cmd name="aaaaaaaaaa"/> </TeXML>
 	
 </TeXML>

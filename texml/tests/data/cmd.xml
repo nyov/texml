@@ -4,6 +4,7 @@
   <parm>letter</parm>
 </cmd>
 <cmd name="par"/>
+<TeXML/>
 <cmd name="o">
 	<opt>o1</opt>
 </cmd>
@@ -20,4 +21,8 @@
 	<parm>a<ctrl ch=" "/>a</parm>
 	<opt>b<spec cat="esc"/>b</opt>
 </cmd>
+<cmd name="def" gr="0"/><cmd name="textvert"><parm><math>|</math></parm></cmd>
+<group><cmd name="it"/>italics</group>
+<cmd name="par" nl2="1"/>par
+<cmd name="par" nl2="1"/> par
 </TeXML>
