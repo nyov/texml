@@ -3,7 +3,9 @@ html_files := $(xml_files:.xml=.html)
 
 all: $(html_files)
 
-%.html: %.xml
+html_deps = inc/menu.xml xslt/site.xsl
+
+%.html: %.xml $(html_deps)
 	xsltproc -o $@ xslt/site.xsl $<
 
 clean:
