@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.32 2004-07-07 10:57:59 olpa Exp $
+# $Id: handler.py,v 1.33 2004-07-07 11:57:12 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -160,13 +160,10 @@ class handler:
     # Element <env/> may have <opt/> and <parm/>, so we do
     # magic to delete whitespace at beginning of environment
     if self.text_is_only_spaces:
-      if self.model == self.model_env:
-        self.text_is_only_spaces = 0
       stripped = content.lstrip(string.whitespace)
-      if 0 == len(stripped):
-        return                                             # return
-      if self.model != self.model_env:
+      if 0 != len(stripped):
         raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
+      return                                               # return
     #
     # Eliminate whitespaces
     #
@@ -289,26 +286,29 @@ class handler:
 
   def on_opt(self, attrs):
     """ Handle 'opt' element """
-    self.stack_model(self.model_opt)
-    self.writer.writech('[', 0)
-    self.text_is_only_spaces = 0
+    self.on_opt_parm('[', attrs)
 
   def on_parm(self, attrs):
     """ Handle 'parm' element """
-    self.stack_model(self.model_opt)
-    self.writer.writech('{', 0)
-    self.text_is_only_spaces = 0
+    self.on_opt_parm('{', attrs)
  
   def on_opt_end(self):
-    self.writer.writech(']', 0)
-    self.has_parm            = 1 # At the end to avoid collision of nesting
-    # <opt/> can be only inside <cmd/> or (very rarely) in <env/>
-    self.text_is_only_spaces = 1
+    self.on_opt_parm_end(']')
 
   def on_parm_end(self):
-    self.writer.writech('}', 0)
-    self.has_parm            = 1
-    self.text_is_only_spaces = 1
+    self.on_opt_parm_end('}')
+
+  def on_opt_parm(self, ch, attrs):
+    """ Handle 'parm' and 'opt' """
+    self.stack_model(self.model_opt)
+    self.writer.writech(ch, 0)
+    self.text_is_only_spaces = 0
+
+  def on_opt_parm_end(self, ch):
+    self.writer.writech(ch, 0)
+    self.has_parm            = 1 # At the end to avoid collision of nesting
+    # <opt/> can be only inside <cmd/> or (very rarely) in <env/>
+    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
 
   # -----------------------------------------------------------------
 
@@ -336,10 +336,6 @@ class handler:
       self.writer.conditionalNewline()
     self.nl_spec_stack.append(self.nl_spec)
     self.nl_spec = (self.get_boolean(attrs, 'nl3', 1), self.get_boolean(attrs, 'nl4', 1))
-    #
-    # Delete whitespaces at the beginning of an environment
-    #
-    self.text_is_only_spaces = 1
 
   def on_env_end(self):
     nl3, nl4 = self.nl_spec
