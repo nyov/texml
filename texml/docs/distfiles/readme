@@ -23,6 +23,7 @@ Files:
 ./docs   documentation
 ./bin    program code, main file is texml.py
 ./tests  examples of good (data) and bad (faildata) TeXML files
+./dtd    document type definition (DTD) from TeXML
 
 Homepage: http://getfo.org/texml/
 Support:  http://getfo.sourceforge.net/  -->  Support
