@@ -13,6 +13,8 @@ TeXML tests
 + env        environment
 + group      group
 + mathgr     math group
++ ctrl       control symbols
++ spec       special symbols
 
 Tests to be failed:
 
@@ -29,5 +31,7 @@ Tests to be failed:
 + math2      "math"  inside "math"
 + math3      "dmath" inside "dmath"
 + math4      "math"  inside "dmath"
-
-spec: support <, > and |
++ ctrlch     no "ch" attribute in "ctrl"
++ ctrlch2    length of value of "ch" is not 1
++ spec1      "spec" without attribute "cat"
++ spec2      "spec" with unknown value of "cat"
