@@ -71,3 +71,4 @@ Tests that will fail:
 + badesc     value of TeXML/@escape is not 0 or 1
 + badlig     value of TeXML/@ligatures is not 0 or 1
 + badtyline  value of TeXML/@emptylines is not 0 or 1
++ badns      incorrect namespace
