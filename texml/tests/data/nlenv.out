@@ -1,0 +1,13 @@
+x
+\begin{y}
+?
+\end{y}
+z x
+\begin{y}
+?
+\end{y}
+z x \begin{y}?\end{y} z x
+\begin{y}?\end{y} z x \begin{y}
+?\end{y} z x \begin{y}?
+\end{y} z x \begin{y}?\end{y}
+z
