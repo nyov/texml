@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.28 2004-06-25 13:43:19 olpa Exp $
+# $Id: handler.py,v 1.29 2004-06-25 13:49:40 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -271,18 +271,19 @@ class handler:
     self.has_parm            = 0
     self.text_is_only_spaces = 1
     self.nl_spec_stack.append(self.nl_spec)
-    self.nl_spec = self.get_boolean(attrs, 'nl2', 0)
+    self.nl_spec = (self.get_boolean(attrs, 'nl2', 0), self.get_boolean(attrs, 'gr', 1))
 
   def on_cmd_end(self):
     self.text_is_only_spaces = 0
     #
     # Write additional space or newline if command has no parameters
     #
-    if not(self.has_parm):
-      self.writer.write('{}', 0)
-    if self.nl_spec:
-      self.writer.conditionalNewline()
+    (nl, gr) = self.nl_spec
     self.nl_spec = self.nl_spec_stack.pop()
+    if not(self.has_parm) and gr:
+      self.writer.write('{}', 0)
+    if nl:
+      self.writer.conditionalNewline()
 
   def on_opt(self, attrs):
     """ Handle 'opt' element """
