@@ -1,8 +1,8 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.4 2004-03-19 14:07:48 olpa Exp $
-txtext = .txt
+# $Id: Makefile,v 1.5 2004-03-19 15:16:53 olpa Exp $
 version=0.9.beta
 
+txtext = .txt
 outdir=../dist
 texmlname=texml.$(version)
 distdir=$(outdir)/$(texmlname)
@@ -23,6 +23,7 @@ init:
 
 pack: copy
 	cd $(outdir) && tar zcf $(texmlname).tar.gz $(texmlname)
+	cd $(outdir) && rm -f $(texmlname).zip && zip -q -r -l $(texmlname).zip $(texmlname)
 
 copy: init $(out_files)
 
@@ -30,6 +31,9 @@ $(distdir)/%: ../%
 	cp $< $@
 
 $(distdir)/docs/%: ../docs/%
+	cp  $< $@
+
+$(distdir)/docs/%: ../docs/%.txt
 	cp  $< $@
 
 $(distdir)/readme$(txtext): ../docs/distfiles/readme
