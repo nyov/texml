@@ -28,7 +28,7 @@ The need for TeXML
 
 Brief overview of TeXML
 
-   Basic constructions of TeXML are demonstrated by an example:
+   Basic constructions of TeXML are demonstrated in the example:
 
  <TeXML>
   <cmd name="documentclass">
@@ -65,3 +65,24 @@ Brief overview of TeXML
        such as environments or commands with parameters.
      * Automatic layouting of TeX code produces nice human-readable
        documents.
+
+TeXML benefits
+
+   Simple TeXML code
+
+ <group><cmd name="it" gr="0"/>\example</group>
+
+   corresponds to the TeX fragment
+
+ {\it \textbackslash{}example}
+
+   There are several projects that create LaTeX from XML using XSLT, for
+   example: tbook, xsltml, dblatex, db2latex. History of these projects
+   demonstrates following problems:
+
+     * unescaped special symbols,
+     * no space after command name (getting "\ittext" instead of "\it text"),
+     * missed opening or closing brace,
+     * only latin-1 encoding is supported.
+
+   These and some other problems do not appear when using TeXML.
