@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>GetFO: XSL-FO in TeX</title>
+	</head>
+	<body>
+		<h1>GetFO: XSL-FO in TeX</h1>
+		<p>Realization of the XSL-FO formatting dictionary in TeX. First results expected <i>when?</i></p>
+		<h2><a href="texml/index.html">TeXML subproject</a></h2>
+		<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
+		<p>The project expected to be finished in the end of the March, 2004.</p>
+		<h2>GetFO documentation</h2>
+		<p>Under construction</p>
+		<p><b>TODO</b> (notes, work plan)</p>
+	</body>
+</html>
