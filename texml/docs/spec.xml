@@ -1,0 +1,106 @@
+<doc id="texml.spec">
+	<title>TeXML specification</title>
+	<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
+
+	<sect>
+		<title>Root element</title>
+		<p>The root element of a TeXML document is the element <e>TeXML</e>.</p>
+		<p>A basic template of a TeXML document:</p>
+<lst><![CDATA[<?xml version="1.0" encoding="..."?>
+<TeXML>
+  ... your content here ...
+</TeXML>
+]]></lst>
+	</sect>
+
+	<sect>
+		<title>Special symbols</title>
+		<p>Some symbols have special meaning for TeX. Processor escapes such symbols according to the current mode.</p>
+		<table border="1">
+			<tr>
+				<th>symbol</th>
+				<th>text mode</th>
+				<th>math mode</th>
+			</tr>
+			<tr>
+				<td>\</td>
+				<td>$\backslash$</td>
+				<td>\backslash </td>
+			</tr>
+			<tr>
+				<td>{</td>
+				<td>\{</td>
+				<td>\{</td>
+			</tr>
+			<tr>
+				<td>}</td>
+				<td>\}</td>
+				<td>\}</td>
+			</tr>
+			<tr>
+				<td>$</td>
+				<td>\$</td>
+				<td>\$</td>
+			</tr>
+			<tr>
+				<td>&amp;</td>
+				<td>\&amp;</td>
+				<td>\&amp;</td>
+			</tr>
+			<tr>
+				<td>#</td>
+				<td>\#</td>
+				<td>\#</td>
+			</tr>
+			<tr>
+				<td>^</td>
+				<td>\^{}</td>
+				<td>\^{}</td>
+			</tr>
+			<tr>
+				<td>_</td>
+				<td>\_</td>
+				<td>\_</td>
+			</tr>
+			<tr>
+				<td>~</td>
+				<td>\~{}</td>
+				<td>\~{}</td>
+			</tr>
+			<tr>
+				<td>%</td>
+				<td>\%</td>
+				<td>\%</td>
+			</tr>
+			<tr>
+				<td>|</td>
+				<td>$|$</td>
+				<td>|</td>
+			</tr>
+			<tr>
+				<td>&lt;</td>
+				<td>$&lt;$</td>
+				<td>&lt;</td>
+			</tr>
+			<tr>
+				<td>&gt;</td>
+				<td>$&gt;$</td>
+				<td>&gt;</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<p>In current encoding</p>
+		<p>Out of encoding</p>
+		<p>Mapping (latex and ams)</p>
+	</sect>
+
+	<sect>
+		<title>Switching between modes</title>
+		<p>default: text</p>
+	</sect>
+
+</doc>
