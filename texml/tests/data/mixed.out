@@ -1,7 +1,8 @@
-In \textvert{}text\textvert{} mode. Still in \textvert{}text\textvert{} mode In |math| mode: |\hat{}.
-In \textvert{}text\textvert{} mode inside math mode Still in |math| mode
-In \textvert{}text\textvert{} mode: \textvert{}\^.
-The symbol can be only in math: \ensuremath{\longleftarrow{}} $a<b$ $$c>d$$
+In \textvert{}text\textvert{} mode. Still in \textvert{}text\textvert{} mode
+In |math| mode: |\hat{}. In \textvert{}text\textvert{} mode inside math mode
+Still in |math| mode In \textvert{}text\textvert{} mode: \textvert{}\^.
+The symbol can be only in math: \ensuremath{\longleftarrow{}}
+$a<b$ $$c>d$$
 $$ unicode mapping in math mode:
 in text:  \ensuretext{\textexclamdown{}}
 in mixed: \hat{a}

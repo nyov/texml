@@ -4,7 +4,7 @@ quick.pdf: quick.tex
 	pdflatex $<
 
 quick.tex: quick.texml
-	../../../bin/texml.py $< $@
+	../../../bin/texml.py --width 60 $< $@
 
 quick.texml: quick.xsl quick.html
 	xsltproc -o $@ $+
