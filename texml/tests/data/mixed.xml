@@ -2,11 +2,11 @@
 In |text| mode.
 <TeXML>Still in |text| mode</TeXML>
 <TeXML mode="math">
-In |math| mode
+In |math| mode: |&#x302;.
 <TeXML mode="text">In |text| mode inside math mode</TeXML>
 <TeXML>Still in |math| mode</TeXML>
 </TeXML>
-In |text| mode.
+In |text| mode: |&#x302;.
 <math>a&lt;b</math> <dmath>c&gt;d</dmath>
 <dmath>
 latex math: &#xE2;
