@@ -1,10 +1,9 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.6 2005-03-22 01:01:13 paultremblay Exp $
+# $Id: texml.py,v 1.7 2005-03-23 19:29:08 olpa Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
-python texml.py [-e encoding] [-w auto_width] [-c|--context] 
-in_file out_file""" % VERSION
+python texml.py [-e encoding] [-w auto_width] [-c|--context] in_file out_file""" % VERSION
 
 
 
