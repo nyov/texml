@@ -1,38 +1,44 @@
-<!ENTITY % nomath "TeXML|cmd|env|group|ctrl|spec">
+<!ENTITY % nomath  "#PCDATA|TeXML|cmd|env|group|ctrl|spec">
 
-<!ENTITY % content "%nomath|math|dmath">
+<!ENTITY % content "%nomath;|math|dmath">
 
-<!ELEMENT TeXML (%content)*>
+<!ELEMENT TeXML  (%content;)*>
 
-<!ATTLIST TeXML mode (text|math) #IMPLIED>
-
-<!ELEMENT env (%content)*>
-
-<!ATTLIST env
-  name  CDATA #REQUIRED
-	begin CDATA #IMPLIED
-	end   CDATA #IMPLIED
+<!ATTLIST TeXML
+  mode   (text|math) #IMPLIED
 >
 
-<!ELEMENT group (%content)*>
+<!ELEMENT env    (%content;)*>
 
-<!ELEMENT math  (%nomath)*>
+<!ATTLIST env
+  name    CDATA  #REQUIRED
+	begin   CDATA  #IMPLIED
+	end     CDATA  #IMPLIED
+>
 
-<!ELEMENT dmath (%nomath)*>
+<!ELEMENT group  (%content;)*>
 
-<!ELEMENT cmd   (opt|parm)*>
+<!ELEMENT math   (%nomath;)*>
 
-<!ATTLIST cmd name CDATA #REQUIRED>
+<!ELEMENT dmath  (%nomath;)*>
 
-<!ELEMENT opt (#CDATA|spec|ctrl)*>
+<!ELEMENT cmd    (opt|parm)*>
 
-<!ELEMENT parm (#CDATA|spec|ctrl)*>
+<!ATTLIST cmd
+  name    CDATA  #REQUIRED
+>
 
-<!ELEMENT ctrl EMPTY>
+<!ELEMENT opt    (#PCDATA|spec|ctrl|cmd)*>
 
-<!ATTLIST ctrl ch CDATA #REQUIRED>
+<!ELEMENT parm   (#PCDATA|spec|ctrl|cmd)*>
 
-<!ELEMENT spec EMPTY>
+<!ELEMENT ctrl   EMPTY>
+
+<!ATTLIST ctrl
+  ch      CDATA  #REQUIRED
+>
+
+<!ELEMENT spec   EMPTY>
 
 <!ATTLIST spec
   cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt) #REQUIRED
