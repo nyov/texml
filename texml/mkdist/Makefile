@@ -1,5 +1,5 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.12 2004-06-28 13:12:04 olpa Exp $
+# $Id: Makefile,v 1.13 2004-07-08 06:38:41 olpa Exp $
 #version=1.00
 version:=$(shell grep GREPVERSION ../bin/texml.py | sed 's/";.*$$//' | sed 's/^.*"//')
 
@@ -28,7 +28,8 @@ clean:
 
 pack: copy
 	cd $(outdir) && tar zcf $(texmlname).tar.gz $(texmlname)
-	cd $(outdir) && rm -f $(texmlname).zip && zip -q -r -l $(texmlname).zip $(texmlname)
+	@# First pack text files with CRLF conversion, then binary files
+	cd $(outdir) && rm -f $(texmlname).zip && zip -q -r -l $(texmlname).zip $(texmlname) -x '*pdf' && zip -q -r $(texmlname).zip $(texmlname) -i '*pdf'
 
 copy: init $(out_files)
 
