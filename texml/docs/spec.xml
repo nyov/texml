@@ -262,6 +262,6 @@ $$\sqrt 2$$</lst>
 		<p>The processor is a Python program <tt>texml.py</tt>. Usage:</p>
 <lst>python texml.py [-e <i>encoding</i>] <i>input_file</i> <i>output_file</i></lst>
 		<p>The processor parses the <i>input_file</i> and saves result of transformation into the <i>output_file</i>.</p>
-		<p>You can specify any encoding supported by Python codecs. Default encoding is <tt>utf8</tt>.</p>
+		<p>You can specify any encoding supported by Python codecs. Default encoding is <tt>ascii</tt>.</p>
 	</sect>
 </doc>
