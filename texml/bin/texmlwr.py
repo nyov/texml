@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.25 2004-07-07 12:32:55 olpa Exp $
+# $Id: texmlwr.py,v 1.26 2004-07-07 12:51:46 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -118,14 +118,18 @@ class texmlwr:
   def writeWeakWS(self, hint=1):
     """ Write a whitespace instead of whitespaces deleted from source XML. Parameter 'hint' is a hack to make <opt/> and <parm/> in <env/> working good. hint=WEAK_WS_IS_NEWLINE if weak space should be converted to newline, not to a space """
     # weak WS that is newline can not be converted to ws that is space
-    if hint > self.is_after_weak_ws:
-      self.is_after_weak_ws = hint
+    if hint <= self.is_after_weak_ws:
+      # return or avoid next if(). I prefer return.
+      return                                               # return
+    self.is_after_weak_ws = hint
     #self.last_ch          = ' ' # no, setting so is an error: new lines are not corrected after it. Anyway, check for weak ws is the first action in writech, so it should not lead to errors
     #
     # Break line if it is too long
     # We should not break lines if we regard spaces
+    # Check for WEAK_WS_IS_NEWLINE in order to avoid line break in
+    #   \begin{foo}[aa.....aa]<no line break here!>[bbb]
     #
-    if (self.approx_current_line_len > self.autonewline_after_len) and self.allow_weak_ws_to_nl:
+    if (self.approx_current_line_len > self.autonewline_after_len) and self.allow_weak_ws_to_nl and (hint != WEAK_WS_IS_NEWLINE):
       self.conditionalNewline()
       return                                               # return
 
@@ -144,7 +148,8 @@ class texmlwr:
       hint = self.is_after_weak_ws
       self.is_after_weak_ws = 0
       if hint == WEAK_WS_IS_NEWLINE:
-        self.conditionalNewline()
+        if ('\n' != ch) and ('\r' != ch):
+          self.conditionalNewline()
       else:
         if (self.approx_current_line_len != 0) and not(ch in string.whitespace):
           self.writech(' ', 0)
