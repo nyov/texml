@@ -1,0 +1,59 @@
+
+=====================================================================
+ru_RU.KOI8-R: (html)
+
+TeXML на Питоне
+
+<p>Выпущена бета-версия процессора для преобразования документов, размеченных с помощью языка <a href="http://getfo.sourceforge.net/texml/">TeXML</a>, в нотацию TeX.</p>
+
+<p>TeXML&#xA0;&#x2014; это язык, предназначенный для представления TeX-документов в виде XML. Процессор, написанный на Питоне, преобразует TeXML в TeX.</p>
+
+<table border="1" width="100%">
+<caption>Пример преобразования из TeXML в TeX</caption>
+<tr>
+<th width="50%">TeXML</th>
+<th>TeX</th>
+</tr>
+<tr>
+<td>
+<pre>&lt;cmd name="documentclass"&gt;
+  &lt;opt&gt;12pt&lt;/opt&gt;
+  &lt;parm&gt;letter&lt;/parm&gt;
+&lt;/cmd&gt;</pre>
+</td>
+<td>
+<pre>\documentclass[12pt]{letter}</pre>
+</td>
+</tr>
+</table>
+<p>Основное преимущество использования TeXML&#xA0;&#x2014; это автоматическая обработка символов, имеющих специальное значение для TeX.</p>
+<table border="1" width="100%">
+<caption>Пример преобразования специальных символов</caption>
+<tr>
+<th width="50%">TeXML</th>
+<th>TeX</th>
+</tr>
+<tr>
+<td><pre>&lt;TeXML&gt;\section{No&amp;#xa0;break}&lt;/TeXML&gt;</pre></td>
+<td><pre>$\backslash$section\{No~break\}</pre></td>
+</tr>
+</table>
+<p>Процессор TeXML автоматически обрабатывает символы, не представимые в кодировке вывода (по умолчанию&#xA0;&#x2014; utf8).</p>
+<table border="1" width="100%">
+<caption>Пример преобразования не-ASCII</caption>
+<tr>
+<th width="38%" align="left">TeXML</th>
+<td><pre>&lt;TeXML&gt;&amp;#x422;&amp;#x435;&amp;#x425;&lt;/TeXML&gt;</pre></td>
+</tr>
+<tr>
+<th align="left">TeX в ASCII</th>
+<td><pre>\cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH </pre></td>
+</tr>
+<tr>
+<th align="left">TeX по-русски</th>
+<td><pre>TeX</pre></td>
+</tr>
+</table>
+
+<p>Домашняя страница TeXML: <a href="http://getfo.sourceforge.net/texml/">http://getfo.sourceforge.net/texml/</a>.</p>
+
