@@ -1,7 +1,7 @@
 <doc id="texml.spec">
 	<title>TeXML specification</title>
 	<p><a href="http://getfo.org/texml/">TeXML</a> is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
-	<p>Document Type Definition (DTD) for TeXML can be found in a TeXML distribution package.</p>
+	<p>The Document Type Definition (DTD) for TeXML can be found in a TeXML distribution package.</p>
 
 	<sect>
 		<title>Root element</title>
@@ -33,7 +33,7 @@
   <parm>letter</parm>
 </cmd>]]></lst>
 		</blockquote>
-		<p>The TeXML <e>cmd</e> can have several elements <e>parm</e> or <e>opt</e>.</p>
+		<p>The TeXML <e>cmd</e> can have several <e>parm</e> or <e>opt</e> elements.</p>
 		<blockquote>
 			<p>TeXML:</p>
 <lst><![CDATA[... Visit <cmd name="href">
@@ -107,7 +107,7 @@ env
 
 	<sect>
 		<title>Encoding groups</title>
-		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an open brace at the beginning, and a close brace at the end of the group.</p>
+		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an opening brace at the beginning, and a closing brace at the end of the group.</p>
 		<blockquote>
 			<p>The TeX scrap,</p>
 			<lst>{\it italics}</lst>
@@ -115,12 +115,12 @@ env
 			<lst><![CDATA[<group><cmd name="it" gr="0"/>italics</group>]]></lst>
 			<p>in TeXML.</p>
 		</blockquote>
-		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor writes appropriate math shift symbol at the beginning and at the end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group.</p>
+		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor inserts the appropriate math shift symbol at the beginning and end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group.</p>
 		<blockquote>
 			<p>The TeXML code</p>
 <lst><![CDATA[<math>a+b</math>
 <dmath><cmd name="sqrt"><parm>2</parm></cmd></dmath>]]></lst>
-		<p>being translated to the following TeX code:</p>
+		<p>is translated to the following TeX code:</p>
 <lst>$a+b$ $$\sqrt{2}$$</lst>
 </blockquote>
 	</sect>
@@ -132,7 +132,7 @@ env
 
 	<sect>
 		<title>Encoding special symbols</title>
-		<a name="spec"/><p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described below</a>. But there are cases when you need to output the character, not have it converted.  In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<a name="spec"/><p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described below</a>. But there are cases when you need to output the character verbatim.  In these cases, use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
 		<blockquote>
 			<p>The TeX scrap,</p>
 			<lst>{\it italics}</lst>
@@ -140,7 +140,7 @@ env
 			<lst><![CDATA[<spec cat="bg"/><spec cat="esc"/>it italics<spec cat="eg"/>]]></lst>
 			<p>in TeXML. But doing so is not recommended.</p>
 		</blockquote>
-		<p>Encode special symbols directly only if you really have to do so. In most cases all you need is the set of elements <e>cmd</e>, <e>env</e> and <e>group</e>. These elements provide a logical markup and minimize the chances to get things wrong. For example, in the example above, you can forget to write a closing brace or you can mistype and produce an incorrect symbol. But if you use <code>group</code>, you are assured from such errors.</p>
+		<p>Encode special symbols directly only if you really have to do so. In most cases all you need is the set of elements <e>cmd</e>, <e>env</e> and <e>group</e>. These elements provide a logical markup and minimize the chances to get things wrong. For example, in the example above, you can forget to write a closing brace or you can mistype and produce an incorrect symbol. But if you use <code>group</code>, you are protected from such errors.</p>
 		<table border="1">
 			<caption><e>cat</e> attribute values</caption>
 			<tr>
@@ -241,7 +241,7 @@ env
 		<a name="texttrans"/><p>Characters are processed as follows:</p>
 		<ul>
 			<li>If a character has a special meaning for TeX, then the character is translated as shown in the table below.</li>
-			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
+			<li>If the character belongs to an output encoding, then the character is output as-is.</li>
 			<li>If the character exists in a LaTeX unicode mapping table, then a corresponding substitution for the character is used.</li>
 			<li>Otherwise the character is output as a string <tt>&amp;#xNN...NN;</tt> where <tt>NNNN</tt> is the hexadecimal code for the character.</li>
 		</ul>
@@ -332,7 +332,7 @@ env
 			<lst><![CDATA[<cmd name="def" gr="0"/><cmd name="textvert"><parm><math>|</math></parm></cmd>]]></lst>
 		</blockquote>
 		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
-		<p>If a replacement of an unicode character <i>a)</i> valid only in math mode and <i>b)</i> the current mode is tex then the replacement is wrapped by the command &#x201c;<tt>\ensuremath</tt>&#x201d;. Likewise if a replacement <i>a)</i> valid only in text mode and <i>b)</i> the current mode is math then wrapper &#x201c;<tt>\ensuretext</tt>&#x201d; is used. Example:</p>
+		<p>If a replacement of an unicode character <i>a)</i> is valid only in math mode and <i>b)</i> the current mode is text, then the replacement is wrapped by the command &#x201c;<tt>\ensuremath</tt>&#x201d;. Likewise if a replacement <i>a)</i> is valid only in text mode and <i>b)</i> the current mode is math, then wrapper &#x201c;<tt>\ensuretext</tt>&#x201d; is used. Example:</p>
 		<blockquote>
 			<p>TeXML:</p>
 			<lst><![CDATA[<TeXML ws="1">&#xa1; &#x27F5;
@@ -349,8 +349,8 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 			<lst><![CDATA[<TeXML><cmd name="def" gr="0"/><cmd name="ensuretext">
   <parm><cmd name="textrm" gr="0"/></parm> </cmd></TeXML>]]></lst>
 		</blockquote>
-		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
-		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
+		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this, the processor outputs a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
+		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures are converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d;, and &#x201c;<tt>?{}`</tt>&#x201d; respectively.</p>
 		<p>The program removes what can be regarded as insignificant whitespace. Details are discussion in the section &#x201c;<a href="#wsproc">Whitespace processing</a>&#x201d;.</p>
 		<p>You can tune the text translation, and you ought to do it for verbatim environments. Possible settings:</p>
 		<ul>
@@ -365,15 +365,15 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 			<p>TeX output now looks like this:</p>
 			<lst>$a \/\/ $b</lst>
 		</blockquote>
-		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and performs or not performs transformations as specified.</p>
+		<p><tt>TeXML</tt> elements can be nested. The processor correctly handles nested specifications, and only performs transformations as required.</p>
 	</sect>
 
 
 	<sect>
-		<title>Switching between modes</title>
+		<title>Switching modes</title>
 		<a name="mode"/><p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
 		<p>Modes only affect <a href="#texttrans">translation of text</a>.</p>
-		<p>The default mode is <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then the mode is not changed.</p>
+		<p>The default mode is <tt>text</tt>. In order to change mode, use the <e>mode</e> attribute of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If the element <e>TeXML</e> is used without attribute <e>mode</e>, then the mode is not changed.</p>
 <blockquote>
 	<p>Example. TeXML:</p>
 <lst><![CDATA[<TeXML>
@@ -386,7 +386,7 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
   again text mode: |&#x302;
 </TeXML>
 ]]></lst>
-<p>Symbol &#x201c;<tt>|</tt>&#x201d; being translated to &#x201c;<tt>\textvert{}</tt>&#x201d; in text mode and to &#x201c;<tt>|</tt>&#x201d; in math mode. Symbol &#x201c;<tt>&amp;#x302;</tt>&#x201d; (circumflex) being translated to &#x201c;<tt>\^</tt>&#x201d; in text mode and to &#x201c;<tt>\hat{}</tt>&#x201d; in math mode. So the TeX result is:</p>
+<p>The symbol &#x201c;<tt>|</tt>&#x201d; is translated to &#x201c;<tt>\textvert{}</tt>&#x201d; in text mode and to &#x201c;<tt>|</tt>&#x201d; in math mode. The symbol &#x201c;<tt>&amp;#x302;</tt>&#x201d; (circumflex) is translated to &#x201c;<tt>\^</tt>&#x201d; in text mode and to &#x201c;<tt>\hat{}</tt>&#x201d; in math mode. So the TeX result is:</p>
 <lst>text mode here: \textvert{}\^
 math mode here: |\hat{}
 text in math in text: \textvert{}\^
@@ -404,8 +404,8 @@ again text mode: \textvert{}\^</lst>
 			<li>removes what can be regarded as insignificant whitespace, and</li>
 			<li>introduces its own whitespace which would look reasonable from a human point of view.</li>
 		</ul>
-		<p>Resulting documents are very good, but after some tuning they can be even better. This section describes how whitespace is handled and introduces some hints to make resulting documents as good as handcrafted.</p>
-		<p>An elimination of insignificant whitespace is a task of an XML reader, and the reader does this task quite aggressive. If you find that something goes wrong you can switch off whitespace elimination using attribute <e>ws</e> of tag <e>TeXML</e>. Example:</p>
+		<p>The resulting documents are usually very good, but after some tuning they can be even better. This section describes how whitespace is handled and introduces some hints to make resulting documents look as good as handcrafted.</p>
+		<p>Elimination of insignificant whitespace is a task of an XML parser, and the parser does this task quite aggressively. If you find that something goes wrong you can switch off whitespace elimination using the <e>ws</e> attribute of the <e>TeXML</e> tag. Example:</p>
 		<blockquote>
 			<p>TeXML:</p>
 			<lst><![CDATA[<TeXML>
@@ -426,25 +426,25 @@ again text mode: \textvert{}\^</lst>
     \it{} text
   }</lst>
 		</blockquote>
-		<p>If TeXML elements <tt>ctrl</tt> or <tt>spec</tt> have any content (including whitespace) then the TeXML processor reports an error.</p>
+		<p>If the TeXML elements <tt>ctrl</tt> or <tt>spec</tt> have any content (including whitespace) then the TeXML processor reports an error.</p>
 		<p>The program deletes any whitespace that is located directly in the TeXML element <tt>cmd</tt>.</p>
 		<p>Insignificant whitespace is whitespace around any opening or closing tag, for example, whitespace around &#x201c;<tt>... &lt;TeXML&gt; ...</tt>&#x201d; and &#x201c;<tt>... &lt;/TeXML&gt; ...</tt>&#x201d;. The XML reader converts insignificant whitespace into the <i>weak&#xa0;space</i>.</p>
-		<p>Another source of week spaces is TeX commands. When the processor converts &#x201c;<tt>&lt;cmd name="it"/&gt;</tt>&#x201d; into &#x201c;<tt>\it </tt>&#x201d;, the space after &#x201c;<tt>\it</tt>&#x201d; is indeed the weak space.</p>
-		<p>The TeX writer processes weak spaces in next manner:</p>
+		<p>Another source of weak spaces is TeX commands. When the processor converts &#x201c;<tt>&lt;cmd name="it"/&gt;</tt>&#x201d; into &#x201c;<tt>\it </tt>&#x201d;, the space after &#x201c;<tt>\it</tt>&#x201d; is a weak space.</p>
+		<p>The TeX writer processes weak spaces in the following manner:</p>
 		<ul>
-			<li>consequent weak spaces are interpreted as one weak space,</li>
+			<li>repeated weak spaces are interpreted as one weak space,</li>
 			<li>a weak space at the beginning of a line is ignored,</li>
 			<li>a weak space at the end of a line is ignored,</li>
 			<li>otherwise the usual space symbol (or new line, see below) is written.</li>
 		</ul>
-		<p>It's uncomfortable to have one long line as a result of transformation. So the TeXML processor performs automatical line breaking.</p>
+		<p>It's difficult to work with documents that are one long line as a result of transformation, so the TeXML processor performs automatic line breaking.</p>
 		<ul>
 			<li>TeX commands for beginning and ending an environment are placed on separated lines.</li>
 			<li>If a weak space appears far enough from the beginning of line then a new line is started.</li>
 		</ul>
-		<p>By default &#x201c;far enough&#x201d; is 50. You can set another value by using command line parameter &#x201c;<tt>-w</tt>&#x201d; or &#x201c;<tt>--width</tt>&#x201d;. This setting is not strict: lines can be much longer than a specified width.</p>
+		<p>By default &#x201c;far enough&#x201d; is 50. You can set another value by using command line parameter &#x201c;<tt>-w</tt>&#x201d; or &#x201c;<tt>--width</tt>&#x201d;. This setting is not strict: a line can be much longer than a specified width, if there are no spaces in it.</p>
 		<p>You can tune line breaking by using attributes <tt>nl1</tt> and <tt>nl2</tt> of the element <tt><a href="#cmd">cmd</a></tt> and attributes <tt>nl1</tt>, <tt>nl2</tt>, <tt>nl3</tt> and <tt>nl4</tt> of the element <tt><a href="#env">env</a></tt>.</p>
-		<p>You can affect whitespace presentation by using special categories of the element <tt><a href="#spec">spec</a></tt>: <tt>nl</tt>, <tt>nl?</tt>, <tt>space</tt> and <tt>nil</tt>.</p>
+		<p>You can affect whitespace output by using special categories of the element <tt><a href="#spec">spec</a></tt>: <tt>nl</tt>, <tt>nl?</tt>, <tt>space</tt> and <tt>nil</tt>.</p>
 		<p>The <tt>nl</tt> stands for a new line:</p>
 		<blockquote>
 			<p>TeXML:</p>
@@ -465,7 +465,7 @@ More, ...</lst>
 two nl?: [
 ]</lst>
 		</blockquote>
-	<p>The <tt>space</tt> stands for the space. You can use it to print several consequent spaces or to create the space at the beginning or the end of a line.</p>
+	<p>The <tt>space</tt> stands for a space. You can use it to output several consequent spaces or to create a space at the beginning or end of a line.</p>
 		<blockquote>
 			<p>TeXML:</p>
 			<lst><![CDATA[<TeXML>
