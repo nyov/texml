@@ -1,5 +1,5 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.10 2004-05-06 10:02:56 olpa Exp $
+# $Id: Makefile,v 1.11 2004-06-28 12:29:33 olpa Exp $
 #version=1.00
 version:=$(shell grep GREPVERSION ../bin/texml.py | sed 's/";.*$$//' | sed 's/^.*"//')
 
@@ -11,7 +11,7 @@ distdir=$(outdir)/$(texmlname)
 all: init copy pack
 
 bin_files = $(addprefix bin/,handler.py texml.py unimap.py specmap.py  texmlwr.py)
-docs_files = $(addprefix docs/,index.html spec.html index$(txtext) spec$(txtext)) readme$(txtext) license$(txtext) ChangeLog$(txtext)
+docs_files = $(addprefix docs/,index.html spec.html quick.html index$(txtext) spec$(txtext) quick$(txtext)) readme$(txtext) license$(txtext) ChangeLog$(txtext)
 good_tests_files := $(wildcard ../tests/data/*xml) $(wildcard ../tests/data/*out)
 fail_tests_files := $(wildcard ../tests/faildata/*xml) $(wildcard ../tests/faildata/*grep)
 tests_files = $(patsubst ../%,%,$(good_tests_files) $(fail_tests_files)) tests/Makefile tests/readme$(txtext)
