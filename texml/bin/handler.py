@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.21 2004-06-21 11:51:29 olpa Exp $
+# $Id: handler.py,v 1.22 2004-06-21 12:56:11 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -37,6 +37,13 @@ class glue_handler(xml.sax.ContentHandler):
   def endElement(self, name):
     self.flushChars()
     self.h.endElement(name)
+
+  def processingInstruction(self, target, data):
+    self.flushChars()
+    # No action. The only effect is that chunk
+    # ... aa  <!-- xx -->  bb ...
+    # is reported twice ('... aa  ' and ' bb ...')
+    # instead of onece ('... aa    bb ...')
 
   def characters(self, content):
     if None == self.c:
