@@ -1,4 +1,10 @@
-Version 1.22.devel (21 February 2004)
+Version 1.23.devel (5 March 2005)
+
+* ConTeXt mode is now enabled through command line instead of
+  using the environment variable.
+
+
+Version 1.22.devel (21 February 2005)
 
 * Support of ConTeXt environments (\startenv ... \stopenv)
   Thanks to Paul Tremblay for the patch. More details:
@@ -6,7 +12,7 @@ Version 1.22.devel (21 February 2004)
   http://sourceforge.net/forum/message.php?msg_id=3007157
 
 
-Version 1.21.devel (18 February 2004)
+Version 1.21.devel (18 February 2005)
 
 * TeXML now should work under Python 2.2.1.
   Thanks to Paul Tremblay for the bug report and the fix suggestion:
