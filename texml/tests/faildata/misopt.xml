@@ -1,2 +1,2 @@
-<cmd name="par"><opt>a</opt></cmd>
-<opt>b</opt>
+<TeXML><cmd name="par"><opt>a</opt></cmd>
+<opt>b</opt></TeXML>

@@ -1,3 +1,4 @@
-<cmd name="par">
-	<opt>ab<cmd name="par"/></opt>
+<TeXML><cmd name="par">
+	<opt>ab<env name="par"/></opt>
 </cmd>
+</TeXML>
