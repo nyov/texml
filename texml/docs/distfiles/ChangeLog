@@ -3,6 +3,15 @@ Version 1.10 (????? 2004)
 * Documentation is proofread by Simon Goodson.
 
 
+Version 1.09.devel (08 July 2004)
+
+* Environments and groups are now allowed in parameters.
+* Whitespace processing in environments is reworked. Now @nl2
+  attribute of <env/> regards possible <opt/> and <parm/>.
+* Empty line, produced by <spec cat="nl"/>, is no more being
+  commented out.
+
+
 Version 1.08.devel (29 June 2004)
 
 * Advanced whitespace processing is implemented: the program
