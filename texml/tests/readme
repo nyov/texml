@@ -26,7 +26,7 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
-Tests to be failed:
+Tests that will fail:
 
 + badxml     unparsable XML
 + unkelem    unknown element
