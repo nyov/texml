@@ -1,1 +1,2 @@
-ValueError: Text content is not expected
+Invalid XML 21, 1
+Text content is not expected: ' '

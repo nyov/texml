@@ -1,1 +1,2 @@
-ValueError: Value of boolean attribute 'ligatures' is not '0' or '1', but 'true'
+Invalid XML 0, 1:
+Value of boolean attribute 'ligatures' is not '0' or '1', but 'true'

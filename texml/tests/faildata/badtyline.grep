@@ -1,1 +1,2 @@
-ValueError: Value of boolean attribute 'emptylines' is not '0' or '1', but ''
+Invalid XML 1, 4:
+Value of boolean attribute 'emptylines' is not '0' or '1', but ''

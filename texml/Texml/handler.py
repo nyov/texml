@@ -50,7 +50,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.7 2005-03-21 23:11:09 paultremblay Exp $
+# $Id: handler.py,v 1.8 2005-03-25 00:20:12 paultremblay Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -163,13 +163,15 @@ class glue_handler(xml.sax.ContentHandler):
     # get the column and line number and use the handler
     col_num = self.locator.getColumnNumber()
     line_num =  self.locator.getLineNumber()
+    self.h.set_location(col_num, line_num)
+    self.h.set_namespace(name_space)
 
     if name_space == self.__name_space or name_space == None:
         self.flushChars()
-        self.h.startElement(col_num, line_num, local_name, the_attrs)
+        self.h.startElement(local_name, the_attrs)
     # report an error and quit
     else:
-        self.h.invalid_xml(col_num, line_num, local_name, name_space)
+        self.h.invalid_xml(local_name)
     
   # no longer use
   def endElement_off(self, name):
@@ -177,6 +179,9 @@ class glue_handler(xml.sax.ContentHandler):
     self.h.endElement(name)
 
   def endElementNS(self, name, qname):
+    col_num = self.locator.getColumnNumber()
+    line_num =  self.locator.getLineNumber()
+    self.h.set_location(col_num, line_num)
     name_space = name[0]
     local_name = name[1]
     if name_space == self.__name_space or name_space == None:
@@ -193,6 +198,9 @@ class glue_handler(xml.sax.ContentHandler):
     # instead of onece ('... aa    bb ...')
 
   def characters(self, content):
+    col_num = self.locator.getColumnNumber()
+    line_num =  self.locator.getLineNumber()
+    self.h.set_location(col_num, line_num)
     if None == self.c:
       self.c = content
     else:
@@ -250,6 +258,7 @@ class Handler:
     self.process_ws_stack    = []
     self.nl_spec             = None
     self.nl_spec_stack       = []
+    self.__name_space = None
     #
     # Create handler maps
     #
@@ -285,16 +294,27 @@ class Handler:
       'dmath':  self.on_dmath_end
     }
 
+  def set_location(self, col, line):
+      self.__col_num = col
+      self.__line_num = line
+
+  def set_namespace(self, name):
+      self.__name_space = name
+
   def __print_error(self, msg):
       sys.stderr.write(msg)
 
-  def invalid_xml(self, col_num, line_num, local_name, ns=None):
-      msg = 'Invalid XML %s, %s:\n' % (col_num, line_num)
-      if ns:
-        msg += 'Element "%s" for namespace "%s" not expected' % (local_name, ns)
+  def invalid_xml(self,  local_name):
+      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      if self.__name_space:
+        msg += 'Element "%s" for namespace "%s" not expected' % (local_name, self.__name_space)
       else:
         msg += '%s not expected' % (local_name)
 
+      raise InvalidXmlException, self.__print_error(msg)
+
+  def invalid_xml_other(self, msg):
+      # for other types of invalid XML
       raise InvalidXmlException, self.__print_error(msg)
 
   # -------------------------------------------------------------------
@@ -308,12 +328,12 @@ class Handler:
     """ Finalize document """
     self.writer.conditionalNewline()
 
-  def startElement(self, col_num, line_num, name, attrs):
+  def startElement(self, name, attrs):
     """ Handle start of an element"""
     if name in self.model:
       self.model[name](attrs)
     else:
-      self.invalid_xml(col_num, line_num, name)
+      self.invalid_xml(name)
       # raise ValueError("Element '%s' is not expected" % name)
 
   def characters(self, content):
@@ -323,7 +343,9 @@ class Handler:
     #
     # Elements like <spec/> should be empty
     if self.no_text_content:
-      raise ValueError("Text content is not expected: '%s'" % content.encode('latin-1', 'replace'))
+      msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+      msg  += "Text content is not expected: '%s'" % content.encode('latin-1', 'replace')
+      self.invalid_xml_other(msg)
     # Element <cmd/> should not have text content,
     # but it also may contain spaces due to indenting
     # Element <env/> may have <opt/> and <parm/>, so we do
@@ -331,7 +353,9 @@ class Handler:
     if self.text_is_only_spaces:
       stripped = content.lstrip()
       if 0 != len(stripped):
-        raise ValueError("Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace'))
+        msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+        msg += "Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace')
+        self.invalid_xml_other(msg)
       return                                               # return
     #
     # Eliminate whitespaces
@@ -376,7 +400,11 @@ class Handler:
       return 1
     elif '0' == aval:
       return 0
-    raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
+    # raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
+
+    msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+    msg += "Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval)
+    self.invalid_xml_other(msg)
 
   def on_texml(self, attrs):
     """ Handle TeXML element """
@@ -392,7 +420,9 @@ class Handler:
     elif 'math' == str:
       mode = texmlwr.MATH
     else:
-      raise ValueError("Unknown value of TeXML/@mode attribute: '%s'" % str)
+      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg += "Unknown value of TeXML/@mode attribute: '%s'" % str
+      self.invalid_xml_other(msg)
     emptylines = self.get_boolean(attrs, 'emptylines', None)
     escape     = self.get_boolean(attrs, 'escape',     None)
     ligatures  = self.get_boolean(attrs, 'ligatures',  None)
@@ -425,7 +455,9 @@ class Handler:
     #
     name = attrs.get('name', '')
     if 0 == len(name):
-      raise ValueError('Attribute cmd/@name is empty')
+      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg += "Attribute cmd/@name is empty" 
+      self.invalid_xml_other(msg)
     if self.get_boolean(attrs, 'nl1', 0):
       self.writer.conditionalNewline()
     self.writer.writech('\\', 0)
@@ -498,7 +530,9 @@ class Handler:
     #
     name = attrs.get('name', '')
     if 0 == len(name):
-      raise ValueError('Attribute env/@name is empty')
+      msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+      msg += 'Attribute env/@name is empty'
+      self.invalid_xml_other(msg)
     # added by Paul Tremblay on 2004-02-19
     # the environment in context is \startenvironmentname ...
     # \stopenvironmentname
@@ -564,7 +598,9 @@ class Handler:
     #
     ch = attrs.get('ch', '')
     if 1 != len(ch):
-      raise ValueError("Attribute ctrl/@ch is not a char: '%s'" % ch)
+      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg += "Attribute ctrl/@ch is not a char: '%s'" % ch 
+      self.invalid_xml_other(msg)
     self.writer.writech('\\', 0)
     self.writer.writech(ch,   0)
     #
@@ -585,7 +621,9 @@ class Handler:
       self.writer.conditionalNewline()
     else:
       if not (cat in specmap.tocharmap):
-        raise ValueError("Attribute spec/@cat unknown: '%s'" % cat)
+        msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+        msg += "Attribute spec/@cat unknown: '%s'" % cat 
+        self.invalid_xml_other(msg)
       ch = specmap.tocharmap[cat]
       if '\n' == ch:
         self.writer.stack_emptylines(1)

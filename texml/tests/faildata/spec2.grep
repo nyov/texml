@@ -1,1 +1,2 @@
-ValueError: Attribute spec/@cat unknown: 'zx'
+Invalid XML 7, 1:
+Attribute spec/@cat unknown: 'zx'

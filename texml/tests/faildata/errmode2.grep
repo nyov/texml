@@ -1,1 +1,2 @@
-ValueError: Unknown value of TeXML/@mode attribute: ''
+Invalid XML 0, 1:
+Unknown value of TeXML/@mode attribute: ''
