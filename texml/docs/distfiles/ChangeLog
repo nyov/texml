@@ -1,3 +1,20 @@
+Version 1.1 (????? 2004)
+
+* Advanced whitespace processing is implemented: the program
+  (a) removes what XML regards as insignificant whitespace, and
+  (b) introduces its own whitespace which would look reasonable
+      from a human point of view.
+* A new attribute @ws of the element <TeXML/> is responsible for
+  switching advanced whitespace processing on and off.
+* New attributes of <cmd/>: @nl1 and @nl2, new attributes of
+  <env/>: @nl1, @nl2, @nl3 and @nl4. They are responsible for
+  creation of new lines.
+* New <spec/> symbols: new line and whitespace.
+* A new command-line paramater '-w' (or '--width') specifies
+  minimal width of lines that are subject to an automatical line
+  breaking.
+
+
 Version 1.01.devel (06 May 2004)
 
 * The program now prints its version.
