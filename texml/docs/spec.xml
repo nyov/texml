@@ -51,9 +51,9 @@
 <cmd name="item" nl1="1"/>third
 <cmd name="item" nl1="1" nl2="1"/>fourth ...]]></lst>
 			<p>TeX:</p>
-			<lst>... \item first \item second
-\item third
-\item
+			<lst>... \item{}first \item{}second
+\item{}third
+\item{}
 fourth ...</lst>
 		</blockquote>
 	</sect>
@@ -105,17 +105,16 @@ env
 			<p>The TeX scrap,</p>
 			<lst>{\it italics}</lst>
 			<p>may appear as</p>
-			<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
+			<lst><![CDATA[<group><cmd name="it" gr="0"/>italics</group>]]></lst>
 			<p>in TeXML.</p>
 		</blockquote>
 		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor writes appropriate math shift symbol at the beginning and at the end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group.</p>
 		<blockquote>
 			<p>The TeXML code</p>
 <lst><![CDATA[<math>a+b</math>
-<dmath><cmd name="sqrt"/>2</dmath>]]></lst>
+<dmath><cmd name="sqrt"><parm>2</parm></cmd></dmath>]]></lst>
 		<p>being translated to the following TeX code:</p>
-<lst>$a+b$
-$$\sqrt 2$$</lst>
+<lst>$a+b$ $$\sqrt{2}$$</lst>
 </blockquote>
 	</sect>
 
@@ -316,9 +315,9 @@ $$\sqrt 2$$</lst>
 		<p>Note that LaTeX does not have the command &#x201c;<tt>\textvert</tt>&#x201d; so you should define it yourself. There are several approaches to define the text vertical bar. Here is one of the approaches:</p>
 		<blockquote>
 			<p>TeX:</p>
-			<lst>\def\textvert{$|$}</lst>
+			<lst>\def \textvert{$|$}</lst>
 			<p>The same in TeXML:</p>
-			<lst><![CDATA[<cmd name="def"/><cmd name="textvert"/><group><math>|</math></group>]]></lst>
+			<lst><![CDATA[<cmd name="def" gr="0"/><cmd name="textvert"><parm><math>|</math></parm></cmd>]]></lst>
 		</blockquote>
 		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
 		<p>If a replacement of an unicode character <i>a)</i> valid only in math mode and <i>b)</i> the current mode is tex then the replacement is wrapped by the command &#x201c;<tt>\ensuremath</tt>&#x201d;. Likewise if a replacement <i>a)</i> valid only in text mode and <i>b)</i> the current mode is math then wrapper &#x201c;<tt>\ensuretext</tt>&#x201d; is used. Example:</p>
@@ -333,10 +332,10 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 		<p>LaTeX does not have the command &#x201c;<tt>\ensuretext</tt>&#x201d; so you should define it yourself. One of the approaches:</p>
 		<blockquote>
 			<p>TeX:</p>
-			<lst>\def\ensuretext{\textrm}</lst>
+			<lst>\def \ensuretext{\textrm }</lst>
 			<p>The same in TeXML:</p>
-			<lst><![CDATA[<TeXML><cmd name="def"/><cmd name="ensuretext"/>
-<group><cmd name="textrm"/></group></TeXML>]]></lst>
+			<lst><![CDATA[<TeXML><cmd name="def" gr="0"/><cmd name="ensuretext">
+  <parm><cmd name="textrm" gr="0"/></parm> </cmd></TeXML>]]></lst>
 		</blockquote>
 		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
@@ -410,9 +409,9 @@ again text mode: \textvert{}\^</lst>
 </TeXML>
 </TeXML>]]></lst>
 			<p>TeX result:</p>
-			<lst>{ \it text }
+			<lst>{ \it{} text }
   {
-    \it text
+    \it{} text
   }</lst>
 		</blockquote>
 		<p>If TeXML elements <tt>ctrl</tt> or <tt>spec</tt> have any content (including whitespace) then the TeXML processor reports an error.</p>
