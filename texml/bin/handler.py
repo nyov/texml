@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.17 2004-06-21 07:40:35 olpa Exp $
+# $Id: handler.py,v 1.18 2004-06-21 08:10:10 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -172,11 +172,11 @@ class handler(xml.sax.handler.ContentHandler):
 
   # -----------------------------------------------------------------
 
-  def get_boolean(self, attrs, aname):
+  def get_boolean(self, attrs, aname, default=None):
     """ Returns true if value of attribute "aname" is "1", false if "0" and None if attribute not exists. Raises error in other cases."""
     aval = attrs.get(aname, None)
     if None == aval:
-      return None
+      return default
     elif '1' == aval:
       return 1
     elif '0' == aval:
@@ -288,12 +288,27 @@ class handler(xml.sax.handler.ContentHandler):
     self.endenv_stack.append(self.endenv)
     self.cmdname = name
     self.endenv  = attrs.get('end',   'end')
+    #
+    # Write <env/> and setup newline processing
+    #
+    if self.get_boolean(attrs, 'nl1', 1):
+      self.writer.conditionalNewline()
     self.writer.write('\%s{%s}' % (begenv, name), 0)
+    if self.get_boolean(attrs, 'nl2', 1):
+      self.writer.conditionalNewline()
+    self.nl_spec_stack.append(self.nl_spec)
+    self.nl_spec = (self.get_boolean(attrs, 'nl3', 1), self.get_boolean(attrs, 'nl4', 1))
     # See '6 May 2004' comment in 'characters' handler
     self.text_is_only_spaces = 1
 
   def on_env_end(self):
+    nl3, nl4 = self.nl_spec
+    self.nl_spec = self.nl_spec_stack.pop()
+    if nl3:
+      self.writer.conditionalNewline()
     self.writer.write('\%s{%s}' % (self.endenv, self.cmdname), 0)
+    if nl4:
+      self.writer.conditionalNewline()
     self.cmdname = self.cmdname_stack.pop()
     self.endenv  = self.endenv_stack.pop()
     # See '6 May 2004' comment in 'characters' handler
