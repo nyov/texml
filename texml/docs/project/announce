@@ -35,7 +35,8 @@ http://getfo.sourceforge.net/texml/
 |
 | \documentclass[12pt]{letter}
 
-  One of the main benefits of TeXML usage is automatic translation of the TeX special symbols.
+  One of the main benefits of TeXML usage is automatic translation
+of the TeX special symbols.
 
 | Example of translation of special TeX symbols
 |
@@ -47,7 +48,8 @@ http://getfo.sourceforge.net/texml/
 |
 | $\backslash$section\{No~break\}
 
-  The TeXML processor supports different output encodings and escapes out-of-encoding chars
+  The TeXML processor supports different output encodings and
+escapes out-of-encoding chars
 
 | Example of translation of non-ASCII characters
 |
@@ -63,7 +65,8 @@ http://getfo.sourceforge.net/texml/
 |
 | TeX
 
-  If you automatically generate TeX files, there are some benefits to generating TeXML instead of TeX:
+  If you automatically generate TeX files, there are some benefits
+to generating TeXML instead of TeX:
 
 * you avoid painful handling of TeX special characters,
 * you don't have to bother about encodings,
@@ -73,13 +76,47 @@ http://getfo.sourceforge.net/texml/
 
 | {\bf bold}
 
-  One of the approaches is to generate "{", then "\bf " (with trailing space) and then "}". It is easy to miss the space or to forget a brace or write an incorrect symbol. But when you use TeXML, it takes care of it for you:
+  One of the approaches is to generate "{", then "\bf " (with
+trailing space) and then "}". It is easy to miss the space or to
+forget a brace or write an incorrect symbol. But when you use TeXML,
+it takes care of it for you:
 
 | <group><cmd name="bf"/>bold</group>
 
   I hope you will find TeXML useful. Your comments are welcome.
 
   Regards, Oleg
+
+=====================================================================
+For listings:
+
+  Hello ...
+
+  here is a product information for your software listing:
+
+Product name: TeXML
+
+Product homepage URL: http://getfo.org/texml/
+
+License: GPL
+
+Supported platforms: plantform-independent (Python script)
+
+Version: 1.00
+
+Category (or categories) that best fits your tool:
+
+technical->conversion tools
+
+Product description (focus on XML functionality):
+
+TeXML is an XML vocabulary for TeX. The processor transforms
+TeXML markup into the TeX markup, escaping special and
+out-of-encoding characters.
+
+Vendor name: Oleg Paraschenko
+
+Vendor homepage URL: http://uucode.com/
 
 =====================================================================
 For db2latex, dblatex and other projects that use XSLT to generate TeX
