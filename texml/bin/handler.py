@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.33 2004-07-07 11:57:12 olpa Exp $
+# $Id: handler.py,v 1.34 2004-07-07 12:32:55 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -301,6 +301,9 @@ class handler:
   def on_opt_parm(self, ch, attrs):
     """ Handle 'parm' and 'opt' """
     self.stack_model(self.model_opt)
+    if self.model_stack[-1] == self.model_env:
+      self.nl_spec_stack.append(self.nl_spec)
+      self.nl_spec = self.writer.ungetWeakWS()
     self.writer.writech(ch, 0)
     self.text_is_only_spaces = 0
 
@@ -308,7 +311,13 @@ class handler:
     self.writer.writech(ch, 0)
     self.has_parm            = 1 # At the end to avoid collision of nesting
     # <opt/> can be only inside <cmd/> or (very rarely) in <env/>
-    self.text_is_only_spaces = self.model_stack[-1] != self.model_env
+    if self.model_stack[-1] != self.model_env:
+      self.text_is_only_spaces = 1
+    else:
+      self.text_is_only_spaces = 0
+      if self.nl_spec:
+        self.writer.writeWeakWS(self.nl_spec)
+      self.nl_spec = self.nl_spec_stack.pop()
 
   # -----------------------------------------------------------------
 
@@ -333,7 +342,7 @@ class handler:
       self.writer.conditionalNewline()
     self.writer.write('\%s{%s}' % (begenv, name), 0)
     if self.get_boolean(attrs, 'nl2', 1):
-      self.writer.conditionalNewline()
+      self.writer.writeWeakWS(texmlwr.WEAK_WS_IS_NEWLINE)
     self.nl_spec_stack.append(self.nl_spec)
     self.nl_spec = (self.get_boolean(attrs, 'nl3', 1), self.get_boolean(attrs, 'nl4', 1))
 

@@ -1,13 +1,14 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.24 2004-07-07 10:25:39 olpa Exp $
+# $Id: texmlwr.py,v 1.25 2004-07-07 12:32:55 olpa Exp $
 
 #
 # Modes of processing of special characters
 #
-DEFAULT = 0;
-TEXT    = 1;
-MATH    = 2;
-ASIS    = 3;
+DEFAULT = 0
+TEXT    = 1
+MATH    = 2
+ASIS    = 3
+WEAK_WS_IS_NEWLINE = 2
 
 import unimap
 import specmap
@@ -114,9 +115,11 @@ class texmlwr:
     if self.approx_current_line_len != 0:
       self.writech('\n', 0)
 
-  def writeWeakWS(self):
-    """ Write a whitespace instead of whitespaces deleted from source XML """
-    self.is_after_weak_ws = 1
+  def writeWeakWS(self, hint=1):
+    """ Write a whitespace instead of whitespaces deleted from source XML. Parameter 'hint' is a hack to make <opt/> and <parm/> in <env/> working good. hint=WEAK_WS_IS_NEWLINE if weak space should be converted to newline, not to a space """
+    # weak WS that is newline can not be converted to ws that is space
+    if hint > self.is_after_weak_ws:
+      self.is_after_weak_ws = hint
     #self.last_ch          = ' ' # no, setting so is an error: new lines are not corrected after it. Anyway, check for weak ws is the first action in writech, so it should not lead to errors
     #
     # Break line if it is too long
@@ -126,15 +129,25 @@ class texmlwr:
       self.conditionalNewline()
       return                                               # return
 
+  def ungetWeakWS(self):
+    """ Returns whitespace state and clears WS flag """
+    hint = self.is_after_weak_ws
+    self.is_after_weak_ws = 0
+    return hint
+
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
     #
     # Write a suspended whitespace
     #
     if self.is_after_weak_ws:
+      hint = self.is_after_weak_ws
       self.is_after_weak_ws = 0
-      if (self.approx_current_line_len != 0) and not(ch in string.whitespace):
-        self.writech(' ', 0)
+      if hint == WEAK_WS_IS_NEWLINE:
+        self.conditionalNewline()
+      else:
+        if (self.approx_current_line_len != 0) and not(ch in string.whitespace):
+          self.writech(' ', 0)
     #
     # Update counter
     #
