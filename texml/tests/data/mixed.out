@@ -4,3 +4,4 @@ In |math| mode
 In $|$text$|$ mode inside math mode</TeXML>	
 Still in |math| mode
 In $|$text$|$ mode.
+$a<b$ $$c>d$$

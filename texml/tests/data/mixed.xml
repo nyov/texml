@@ -7,4 +7,5 @@ In |math| mode
 <TeXML>Still in |math| mode</TeXML>
 </TeXML>
 In |text| mode.
+<math>a&lt;b</math> <dmath>c&gt;d</dmath>
 </TeXML>
