@@ -120,4 +120,21 @@
 		<p>Elements <e><a href="#math">math</a></e> and <e><a href="#dmath">dmath</a></e> also change mode to <tt>math</tt>. These elements are described below.</p>
 	</sect>
 
+	<sect>
+		<title>Encoding commands</title>
+		<p>The TeXML <e>cmd</e> element encodes TeX commands.</p>
+		<ul>
+			<li>To write a command with no parameters, such as <tt>\par</tt>, write <code>&lt;cmd name="par"/&gt;</code>.</li>
+			<li>To add parameters to a command, add <e>parm</e> children to the <e>cmd</e> element. The processor places <e>parm</e> children within TeX groups, that is, curly braces.</li>
+			<li>To add options to a command, add <e>opt</e> children to the <e>cmd</e> element. The processor places <e>opt</e> children within square braces, as LaTeX style options.</li>
+		</ul>
+		<p>As an example, the TeX code</p>
+<lst>\documentclass[12pt]{letter}</lst>
+		<p>will look like this in XML:</p>
+<lst><![CDATA[<cmd name="documentclass">
+  <opt>12pt</opt>
+  <parm>letter</parm>
+</cmd>]]></lst>
+	</sect>
+
 </doc>
