@@ -41,4 +41,32 @@ pause</lst>
 pause</lst>
 		<p>Put these commands into the batch file <tt>quick-pdf.bat</tt> and run the file.</p>
 	</sect>
+
+	<sect>
+		<title>Advanced issues</title>
+		<sect>
+			<title>Getting TeXML from XHTML</title>
+			<p>Suppose that we have &#x201c;A short story&#x201d; in XHTML format (XHTML is the usual HTML written as XML). File <tt>quick.html</tt>:</p>
+			<lst><xi:include href="../tests/data/quick/quick.html" parse="text"
+					xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+			<p>Having XML, it is possible to write an XSLT stylesheet that converts data to TeXML. File <tt>quick.xsl</tt>:</p>
+			<lst><xi:include href="../tests/data/quick/quick.xsl" parse="text"
+					xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+			<p>After transforming <tt>quick.html</tt> using <tt>quick.xsl</tt> templates one gets the file <tt>quick.texml</tt> which is already presented at the beginning of the quick start.</p>
+			<p>This section assumes that you know XSLT so it does not explain XSLT templates and how to run an XSLT processor.</p>
+		</sect>
+	</sect>
+
+	<sect>
+		<title>The end</title>
+		<p>This quick start has provided an overview of some TeXML issues:</p>
+		<ul>
+			<li>installation,</li>
+			<li>creation of a TeXML file,</li>
+			<li>conversion of TeXML into TeX,</li>
+			<li>conversion of TeX into PDF, and</li>
+			<li>getting TeXML from XHTML (XML) using XSLT.</li>
+		</ul>
+		<p>TeXML details are described in the <a href="spec.html">specification</a>, your questions are welcome in the <a href="http://sourceforge.net/forum/forum.php?forum_id=352892">GetFO/TeXML forum</a>.</p>
+	</sect>
 </doc>
