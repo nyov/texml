@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.21 2004-06-25 13:43:20 olpa Exp $
+# $Id: texmlwr.py,v 1.22 2004-06-29 06:01:21 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -23,9 +23,6 @@ class texmlwr:
   #
   # Object variables
   #
-  # Empty line detection by end-of-line symbols
-  # after_ch09
-  # after_ch0a
   # Handling of '--', '---' and other ligatures
   # last_char
   #
@@ -148,13 +145,16 @@ class texmlwr:
     if not(self.ligatures):
       if '-' == ch:
         if '-' == self.last_ch:
-          self.stream.write('{}')
+          self.writech('{', 0)
+          self.writech('}', 0)
       elif "'" == ch:
         if "'" == self.last_ch:
-          self.stream.write('{}')
+          self.writech('{', 0)
+          self.writech('}', 0)
       elif '`' == ch:
         if ('`' == self.last_ch) or ('!' == self.last_ch) or ('?' == self.last_ch):
-          self.stream.write('{}')
+          self.writech('{', 0)
+          self.writech('}', 0)
     self.last_ch = ch
     #
     # Handle end-of-line symbols in special way
@@ -199,9 +199,9 @@ class texmlwr:
     if esc_specials:
       try:
         if self.mode == TEXT:
-          self.stream.write(specmap.textescmap[ch])
+          self.write(specmap.textescmap[ch], 0)
         else:
-          self.stream.write(specmap.mathescmap[ch])
+          self.write(specmap.mathescmap[ch], 0)
         return                                             # return
       except:
         pass
@@ -222,7 +222,7 @@ class texmlwr:
       # Text mode, lookup text map
       #
       try:
-        self.stream.write(unimap.textmap[chord])
+        self.write(unimap.textmap[chord], 0)
         return                                             # return
       except:
         #
@@ -234,7 +234,7 @@ class texmlwr:
       # Math mode, lookup math map
       #
       try:
-        self.stream.write(unimap.mathmap[chord])
+        self.write(unimap.mathmap[chord], 0)
         return                                             # return
       except:
         #
@@ -246,16 +246,16 @@ class texmlwr:
     #
     if tostr != None:
       if self.mode == TEXT:
-        self.stream.write('\\ensuremath{')
+        self.write('\\ensuremath{', 0)
       else:
-        self.stream.write('\\ensuretext{')
-      self.stream.write(tostr)
+        self.write('\\ensuretext{', 0)
+      self.write(tostr, 0)
       self.writech('}', 0)
       return                                               # return
     #
     # Finally, write symbol in &#xNNN; form
     #
-    self.stream.write('&#x%X;' % chord)
+    self.write('&#x%X;' % chord, 0)
 
   def write(self, str, escape = None):
     """ Write symbols char-by-char in current mode of escaping """
