@@ -1,3 +1,9 @@
+Version 1.20 (??? August 2004)
+
+* Rob Falla has proofread the documentation.
+* DTD is corrected: attribute spec/@cat allows the value "nl?".
+
+
 Version 1.15.devel (17 August 2004)
 
 * New category of special items: conditional newline.
