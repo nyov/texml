@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.16 2004-06-18 13:18:34 olpa Exp $
+# $Id: handler.py,v 1.17 2004-06-21 07:40:35 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -17,8 +17,12 @@ class handler(xml.sax.handler.ContentHandler):
   # writer
   # no_text_content
   # text_is_only_spaces
+  #
+  # Whitespace handling:
   # process_ws
   # process_ws_stack
+  # nl_spec
+  # nl_spec_stack
   # 
   # For <env/> support:
   # cmdname
@@ -42,6 +46,8 @@ class handler(xml.sax.handler.ContentHandler):
     self.text_is_only_spaces = 0
     self.process_ws          = 1
     self.process_ws_stack    = []
+    self.nl_spec             = None
+    self.nl_spec_stack       = []
     self.last_content        = ''
     #
     # Create handler maps
@@ -108,7 +114,7 @@ class handler(xml.sax.handler.ContentHandler):
 
   def characters(self, content):
     """ Handle text data """
-    #print '[[[[[[[[[[[[%s]]]]]]]]]]]' % content // FIXME
+    #print '[chars: [[[[[[[[[[[%s]]]]]]]]]]]' % content
     #
     # First, check if content allowed at all
     #
@@ -230,14 +236,19 @@ class handler(xml.sax.handler.ContentHandler):
     #
     self.has_parm            = 0
     self.text_is_only_spaces = 1
+    self.nl_spec_stack.append(self.nl_spec)
+    self.nl_spec = self.get_boolean(attrs, 'nl')
 
   def on_cmd_end(self):
     self.text_is_only_spaces = 0
     #
     # Write additional space if command has no parameters
     #
-    if not(self.has_parm):
+    if self.nl_spec:
+      self.writer.writech('\n', 0)
+    elif not(self.has_parm):
       self.writer.writech(' ', 0)
+    self.nl_spec = self.nl_spec_stack.pop()
 
   def on_opt(self, attrs):
     """ Handle 'opt' element """
