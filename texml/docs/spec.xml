@@ -314,7 +314,7 @@ $$\sqrt 2$$</lst>
 				<td>&gt;</td>
 			</tr>
 		</table>
-		<p>Note that LaTeX does not have command &#x201c;<tt>\textvert</tt>&#x201d; and you should define it yourself. There are several approaches to define the text vertical bar. Here is one of the approaches:</p>
+		<p>Note that LaTeX does not have the command &#x201c;<tt>\textvert</tt>&#x201d; so you should define it yourself. There are several approaches to define the text vertical bar. Here is one of the approaches:</p>
 		<blockquote>
 			<p>TeX:</p>
 			<lst>\def\textvert{$|$}</lst>
@@ -322,6 +322,23 @@ $$\sqrt 2$$</lst>
 			<lst><![CDATA[<cmd name="def"/><cmd name="textvert"/><group><math>|</math></group>]]></lst>
 		</blockquote>
 		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
+		<p>If a replacement of an unicode character <i>a)</i> valid only in math mode and <i>b)</i> the current mode is tex then the replacement is wrapped by the command &#x201c;<tt>\ensuremath</tt>&#x201d;. Likewise if a replacement <i>a)</i> valid only in text mode and <i>b)</i> the current mode is math then wrapper &#x201c;<tt>\ensuretext</tt>&#x201d; is used. Example:</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[<TeXML ws="1">&#xa1; &#x27F5;
+<math>&#xa1; &#x27F5;</math></TeXML>]]></lst>
+			<p>TeX:</p>
+			<lst>\textexclamdown{} \ensuremath{\longleftarrow{}}
+$\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
+		</blockquote>
+		<p>LaTeX does not have the command &#x201c;<tt>\ensuretext</tt>&#x201d; so you should define it yourself. One of the approaches:</p>
+		<blockquote>
+			<p>TeX:</p>
+			<lst>\def\ensuretext{\textrm}</lst>
+			<p>The same in TeXML:</p>
+			<lst><![CDATA[<TeXML><cmd name="def"/><cmd name="ensuretext"/>
+<group><cmd name="textrm"/></group></TeXML>]]></lst>
+		</blockquote>
 		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
 		<p>It is possible to tune text translation:</p>
