@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.4 2004-03-16 11:39:04 olpa Exp $
+# $Id: handler.py,v 1.5 2004-03-16 12:20:31 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -69,7 +69,7 @@ class handler(xml.sax.handler.ContentHandler):
   
   def startDocument(self):
     """ Initialize data structures before parsing """
-    self.model       = self.model_content
+    self.model       = {'TeXML': self.on_texml}
     self.model_stack = []
 
   def startElement(self, name, attrs):
@@ -164,17 +164,17 @@ class handler(xml.sax.handler.ContentHandler):
     #
     self.writer.writech('\\', 0)
     if (0 == len(parm)) and (0 == len(opt)):
-      self.stream.write(name, 0)
+      self.writer.write(name, 0)
       self.writer.writech(' ', 0)
     else:
       self.writer.write(name, 0)
       if 0 != len(opt):
         self.writer.writech('[', 0)
-        self.writer.write(opt)
+        self.writer.write(opt, 0)
         self.writer.writech(']', 0)
       if 0 != len(parm):
         self.writer.writech('{', 0)
-        self.writer.write(parm)
+        self.writer.write(parm, 0)
         self.writer.writech('}', 0)
 
   def on_opt(self, attrs):
