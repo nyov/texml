@@ -72,22 +72,22 @@ fourth ...</lst>
 		<blockquote>
 			<p>In order to get this in TeX</p>
 <lst>\begin{document}
-  ...
+...
 \end{document}</lst>
 		<p>write this in TeXML:</p>
 <lst>&lt;env name="document"&gt;
-  ...
+...
 &lt;/env&gt;</lst>
 </blockquote>
 		<p>By default the processor uses the <tt>begin</tt> command to start the environment and uses command <tt>end</tt> to finish it. If you have different conventions for the environment block you can specify commands for starting and finishing the environment in attributes <e>begin</e> and <e>end</e> of the element <e>env</e>.</p>
 		<blockquote>
 			<p>Custom LaTeX environment</p>
 <lst>\start{list}
-  ...
+...
 \finish{list}</lst>
 		<p>can be generated from this TeXML:</p>
 <lst>&lt;env name="list" begin="start" end="finish"&gt;
-  ...
+...
 &lt;/env&gt;</lst>
 		</blockquote>
 		<p>The TeXML processor automatically creates new lines around the beginning and the end of an environment. You can change this behaviour using four attributes: <e>nl1</e> (before the beginning), <e>nl2</e> (after the beginning), <e>nl3</e> (before the end) and <e>nl4</e> (after the end).</p>
