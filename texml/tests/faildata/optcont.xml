@@ -1,0 +1,3 @@
+<cmd name="par">
+	<opt>ab<cmd name="par"/></opt>
+</cmd>
