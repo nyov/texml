@@ -17,6 +17,7 @@ TeXML tests
 + spec       special symbols
 + entity     check that entities are expanded
 + cmdnest    test nested commands (incorrect, but possible)
++ envenv     environment in environment
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
@@ -25,6 +26,7 @@ Tests to be failed:
 + badxml     unparsable XML
 + unkelem    unknown element
 + errmode    incorrect mode specification
++ cmdname    no name for "cmd"
 + cmdcont    "cmd" contains something other than "opt" or "parm"
 + misopt     "opt" is not a child of "cmd" or "env"
 + optcont    "opt" contains something other then "ctrl" or "spec"
