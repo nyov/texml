@@ -1,6 +1,7 @@
 TeXML tests
 
 Long examples are data/texmlatte.xml and data/texmlapis.xml.
+An example from the quick start document is data/quick.xml.
 
 + empty      no data, only the root element
 + hello      text "Hello, World!"
@@ -37,6 +38,7 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + specandws  a regression test for a space after a rewritten character
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
++ quick      example from the quick start document
 
 Tests that will fail:
 
