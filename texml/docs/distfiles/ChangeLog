@@ -1,3 +1,18 @@
+Version 1.22.devel (21 February 2004)
+
+* Support of ConTeXt environments (\startenv ... \stopenv)
+  Thanks to Paul Tremblay for the patch. More details:
+  http://sourceforge.net/tracker/index.php?func=detail&aid=1145206&group_id=102261&atid=631462
+  http://sourceforge.net/forum/message.php?msg_id=3007157
+
+
+Version 1.21.devel (18 February 2004)
+
+* TeXML now should work under Python 2.2.1.
+  Thanks to Paul Tremblay for the bug report and the fix suggestion:
+  http://sourceforge.net/tracker/index.php?func=detail&aid=1123627&group_id=102261&atid=631460
+
+
 Version 1.20 (12 November 2004)
 
 * Jason Santos <jason.santos@megaslow.net> has proofread the documentation.
