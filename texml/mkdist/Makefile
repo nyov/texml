@@ -1,6 +1,7 @@
 # Builds a TeXML distribution
-# $Id: Makefile,v 1.9 2004-04-08 08:03:00 olpa Exp $
-version=1.00
+# $Id: Makefile,v 1.10 2004-05-06 10:02:56 olpa Exp $
+#version=1.00
+version:=$(shell grep GREPVERSION ../bin/texml.py | sed 's/";.*$$//' | sed 's/^.*"//')
 
 txtext = .txt
 outdir=../dist
