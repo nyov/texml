@@ -1,10 +1,10 @@
 <doc id="texml.index">
 	<title>TeXML: an XML vocabulary for TeX</title>
 	<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.</p>
-	<table border="1">
+	<table border="1" width="100%">
 		<caption>Example of TeXML to TeX translation</caption>
 		<tr>
-			<th>TeXML</th>
+			<th width="50%">TeXML</th>
 			<th>TeX</th>
 		</tr>
 		<tr>
@@ -17,6 +17,34 @@
 			<td>
 <lst>\documentclass[12pt]{letter}</lst>
 			</td>
+		</tr>
+	</table>
+	<p>One of the main benefits of TeXML usage is an automatical translation of the TeX special symbols.</p>
+	<table border="1" width="100%">
+		<caption>Example of translation of special TeX symbols</caption>
+		<tr>
+			<th width="50%">TeXML</th>
+			<th>TeX</th>
+		</tr>
+		<tr>
+			<td><lst>&lt;TeXML&gt;\section{No&amp;#xa0;break}&lt;/TeXML&gt;</lst></td>
+			<td><lst>$\backslash$section\{No~break\}</lst></td>
+		</tr>
+	</table>
+	<p>Default output encoding is utf8. TeXML processor escapes out-of-encoding chars automatically.</p>
+	<table border="1" width="100%">
+		<caption>Example of translation of non-ASCII characters</caption>
+		<tr>
+			<th width="38%" align="left">TeXML</th>
+			<td><lst>&lt;TeXML&gt;&amp;#x422;&amp;#x435;&amp;#x425;&lt;/TeXML&gt;</lst></td>
+		</tr>
+		<tr>
+			<th align="left">TeX in ASCII encoding</th>
+			<td><lst>\cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH </lst></td>
+		</tr>
+		<tr>
+			<th align="left">TeX in Russian encoding</th>
+			<td><lst>TeX</lst></td>
 		</tr>
 	</table>
 </doc>
