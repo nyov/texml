@@ -17,7 +17,7 @@
 %
   \TeX 
     MLapis translates \TeX 
-    ML documents into \TeX .\par 
+    ML documents into \TeX{}.\par 
 %
   \section{What good is \TeX 
     ML?}
@@ -26,14 +26,14 @@
   number of very tricky things.  These include formatting mathematical
   formulae, laying out out books and articles, typesetting text and tables in
   a pleasing and consistant manner, etc.  However, XML is good at a number of
-  things \LaTeX  is {\em not} so good at, such as being easily parsed and
+  things \LaTeX{} is {\em not} so good at, such as being easily parsed and
   translated into a variety of output formats.\par 
 %
   Unfortunately, the standard XML transformation system XSL\footnote{\href{http://www.w3.org/Style/XSL/}{http://www.w3.org/Style/XSL/}} is not powerful enough to
-  translate from normal XML formats to \LaTeX  directly.  So when you use XML
+  translate from normal XML formats to \LaTeX{} directly.  So when you use XML
   to edit, store, and distribute your source documents, \TeX 
     ML provides the
-  bridge you need to leverage the power of \LaTeX  when formatting your
+  bridge you need to leverage the power of \LaTeX{} when formatting your
   document for the printed page.\par 
 %
   The DTD and other documentation about \TeX 
@@ -47,7 +47,7 @@
     MLatte}
 %
   There is already a \TeX 
-    ML-to-\TeX  translator called \TeX 
+    ML-to-\TeX{} translator called \TeX 
     MLatte\footnote{\href{http://www.alphaworks.ibm.com/formula/texml}{http://www.alphaworks.ibm.com/formula/texml}}, but I
   was completely unable to get it to work.  It's written in Java\footnote{\href{http://java.sun.com/}{http://java.sun.com/}} and the perhaps the runtime engines I
   have around are drastically sub-standard or something, but for whatever
@@ -60,7 +60,7 @@
     MLapis is written in pure Perl 5 and requires nothing but a standard
   Perl\footnote{\href{http://www.cpan.org/ports/}{http://www.cpan.org/ports/}} interpreter.  It has it's own
   little XML parser built in.  Of course in order for it to be useful you'll
-  need at least \LaTeX  and almost certainly an XSLT processor as well. It was
+  need at least \LaTeX{} and almost certainly an XSLT processor as well. It was
   written entirely without reference
   to the \TeX 
     MLatte code, which I have never even seen, so there shouldn't
