@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.24 2004-06-22 09:07:28 olpa Exp $
+# $Id: handler.py,v 1.25 2004-06-22 09:14:29 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -203,7 +203,7 @@ class handler:
 
   # -----------------------------------------------------------------
 
-  def get_boolean(self, attrs, aname, default=None):
+  def get_boolean(self, attrs, aname, default):
     """ Returns true if value of attribute "aname" is "1", false if "0" and None if attribute not exists. Raises error in other cases."""
     aval = attrs.get(aname, None)
     if None == aval:
@@ -229,14 +229,14 @@ class handler:
       mode = texmlwr.MATH
     else:
       raise ValueError("Unknown value of TeXML/@mode attribute: '%s'" % str)
-    emptylines = self.get_boolean(attrs, 'emptylines')
-    escape     = self.get_boolean(attrs, 'escape')
-    ligatures  = self.get_boolean(attrs, 'ligatures')
+    emptylines = self.get_boolean(attrs, 'emptylines', None)
+    escape     = self.get_boolean(attrs, 'escape',     None)
+    ligatures  = self.get_boolean(attrs, 'ligatures',  None)
     self.writer.stack_mode(mode)
     self.writer.stack_emptylines(emptylines)
     self.writer.stack_escape(escape)
     self.writer.stack_ligatures(ligatures)
-    ws = self.get_boolean(attrs, 'ws')
+    ws = self.get_boolean(attrs, 'ws', None)
     self.process_ws_stack.append(self.process_ws)
     if ws != None:
       self.process_ws = 0 == ws
