@@ -12,7 +12,9 @@ clean:
 	rm -f *~
 
 %.html: %.xml $(getfo)/tohtml.xsl $(getfo)/tohtmlhtml.xsl
-	xsltproc $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
+	xsltproc --xinclude $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
+
+quick.html: ../tests/data/quick/quick.texml ../tests/data/quick/quick.tex ../tests/data/quick/quick.html ../tests/data/quick/quick.xsl
 
 index.txt: index.html
 	links -dump $< >$@
