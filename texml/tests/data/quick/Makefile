@@ -1,5 +1,7 @@
-quick.dvi: quick.tex
-	latex $<
+all: quick.pdf
+
+quick.pdf: quick.tex
+	pdflatex $<
 
 quick.tex: quick.texml
 	../../../bin/texml.py $< $@
@@ -8,4 +10,4 @@ quick.texml: quick.xsl quick.html
 	xsltproc -o $@ $+
 
 clean:
-	rm -f *dvi *tex *texml *log *aux
+	rm -f *log *aux
