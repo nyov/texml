@@ -106,7 +106,7 @@
 
 	<sect>
 		<title>Switching between modes</title>
-		<p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
+		<a name="mode"/><p>There are two modes: <tt>text</tt> and <tt>math</tt>.</p>
 		<p>Modes affect only translation of text.</p>
 		<p>Default mode is the <tt>text</tt> mode. In order to change mode, use attribute <e>mode</e> of the element <e>TeXML</e>. Possible values of this attribute are <tt>math</tt> and <tt>text</tt>. If element <e>TeXML</e> is used without attribute <e>mode</e>, then mode is not changed.</p>
 		<lst><![CDATA[<?xml version="1.0" encoding="..."?>
@@ -157,5 +157,11 @@
 		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an open brace at the beginning, and a close brace at the end of the group. The TeX scrap, <code>{\it italics}</code> may appear as</p>
 		<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
 		<p>in TeXML.</p>
+		<p>Elements <a name="math"/><e>math</e> and <a name="dmath"/><e>dmath</e> are conveniences for encoding math groups. The processor writes appropriate math shift symbol at the beginning and at the end of the group and also switches <a href="#mode">mode</a> to <tt>math</tt> inside the group. The TeXML code</p>
+<lst><![CDATA[<math>a+b</math>
+<dmath><cmd name="sqrt"/>2</dmath>]]></lst>
+		<p>translates to the following TeX code:</p>
+<lst>$a+b$
+$$\sqrt 2$$</lst>
 	</sect>
 </doc>
