@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2004-06-29 06:01:27 olpa Exp $
+# $Id: Makefile,v 1.11 2005-03-05 17:55:13 olpa Exp $
 
 python=python
 
@@ -22,6 +22,7 @@ params-latex   = -e koi8-r
 params-cmdnest = -e ascii
 params-wselim2 = -w 100
 params-quick   = -w 60
+params-context = --context -e utf8
 
 tests: $(good_test_stamps) $(fail_test_stamps)
 
