@@ -1,0 +1,10 @@
+<TeXML>
+In |text| mode.
+<TeXML>Still in |text| mode</TeXML>
+<TeXML mode="math">
+In |math| mode
+<TeXML mode="text">In |text| mode inside math mode</TeXML>	
+<TeXML>Still in |math| mode</TeXML>
+</TeXML>
+In |text| mode.
+</TeXML>
