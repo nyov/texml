@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td><lst>&lt;TeXML&gt;\section{No&amp;#xa0;break}&lt;/TeXML&gt;</lst></td>
-			<td><lst>$\backslash$section\{No~break\}</lst></td>
+			<td><lst>\textbackslash{}section\{No~break\}</lst></td>
 		</tr>
 	</table>
 	<p>The TeXML processor supports different output encodings and escapes out-of-encoding chars automatically.</p>
@@ -40,21 +40,27 @@
 		</tr>
 		<tr>
 			<th align="left">TeX in ASCII encoding</th>
-			<td><lst>\cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH </lst></td>
+			<td><lst>\cyrchar\CYRT{}\cyrchar\cyre{}\cyrchar\CYRH{}</lst></td>
 		</tr>
 		<tr>
 			<th align="left">TeX in Russian encoding</th>
 			<td><lst>TeX</lst></td>
 		</tr>
 	</table>
-	<p>There is a <a href="spec.html">TeXML specification</a>. The DTD is included in the distribution.</p>
 	<p>Rationalities and objectives of TeXML were presented by Douglas Lovell at the Tex Users Group meeting in 1999. His paper is available online on the TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb).</p>
 	<p>There was TeXMLatt&#xE9;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but now this realization &#8220;has been retired&#8221;. There is also <a href="http://www.bluweb.com/us/chouser/proj/texmlapis/">TeXMLapis</a> by Chris Houser, a Perl implementation of TeXML.</p>
 	<sect>
+		<title>Documentation</title>
+		<ul>
+			<li><a href="quick.html">Quick Start</a></li>
+			<li><a href="spec.html">TeXML specification</a></li>
+		</ul>
+	</sect>
+	<sect>
 		<title>Getting TeXML</title>
 		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.3 to run the script. Additional modules are not required.</p>
-		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. The current version is 1.00. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
-		<p>The software is released under the <a href="http://www.gnu.org/licenses/gpl.html"> GNU Public License</a>.</p>
+		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. The current version is 1.08.devel. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
+		<p>The software is released under the <a href="http://www.gnu.org/licenses/lgpl.html"> GNU Lesser General Public License</a>.</p>
 		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/"> project area</a> (TeXML is a part of the GetFO project).</p>
 	</sect>
 	<sect>
