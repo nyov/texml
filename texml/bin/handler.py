@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.8 2004-03-18 07:05:08 olpa Exp $
+# $Id: handler.py,v 1.9 2004-03-26 14:12:42 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -108,6 +108,17 @@ class handler(xml.sax.handler.ContentHandler):
 
   # -----------------------------------------------------------------
 
+  def get_boolean(self, attrs, aname):
+    """ Returns true if value of attribute "aname" is "1", false if "0" and None if attribute not exists. Raises error in other cases."""
+    aval = attrs.get(aname, None)
+    if None == aval:
+      return None
+    elif '1' == aval:
+      return 1
+    elif '0' == aval:
+      return 0
+    raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
+
   def on_texml(self, attrs):
     """ Handle TeXML element """
     self.stack_model(self.model_content)
@@ -123,10 +134,13 @@ class handler(xml.sax.handler.ContentHandler):
       mode = texmlwr.MATH
     else:
       raise ValueError("Unknown value of TeXML/@mode attribute: '%s'" % str)
+    emptylines = self.get_boolean(attrs, 'emptylines')
     self.writer.stack_mode(mode)
+    self.writer.stack_emptylines(emptylines)
 
   def on_texml_end(self):
     """ Handle TeXML element. Restore old mode. """
+    self.writer.unstack_emptylines()
     self.writer.unstack_mode()
 
   # -----------------------------------------------------------------

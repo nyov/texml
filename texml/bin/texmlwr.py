@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.7 2004-03-22 07:29:18 olpa Exp $
+# $Id: texmlwr.py,v 1.8 2004-03-26 14:12:42 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -32,16 +32,30 @@ class texmlwr:
   # mode
   # stream_stack
   # mode_stack
+  #
+  # Text transformations can be tuned
+  # escape
+  # escape_stack
+  # ligatures
+  # ligatures_stack
+  # emptylines
+  # emptylines_stack
   
   def __init__(self, stream):
     """ Remember output stream, initialize data structures """
     self.stream = stream
-    self.after_char0d = 1;
-    self.after_char0a = 1;
-    self.mode         = TEXT;
-    self.mode_stack   = [];
-    self.stream       = stream
-    self.stream_stack = [];
+    self.after_char0d     = 1;
+    self.after_char0a     = 1;
+    self.mode             = TEXT;
+    self.mode_stack       = [];
+    self.stream           = stream
+    self.stream_stack     = [];
+    self.escape           = 1;
+    self.escape_stack     = [];
+    self.ligatures        = 0;
+    self.ligatures_stack  = [];
+    self.emptylines       = 0;
+    self.emptylines_stack = [];
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -64,6 +78,36 @@ class texmlwr:
     self.stream.close()
     self.stream = self.stream_stack.pop()
     return str
+
+  def stack_escape(self, ifdo):
+    """ Set if escaping is required. Remember old value. """
+    self.escape_stack.append(self.escape)
+    if ifdo != None:
+      self.escape = ifdo
+
+  def unstack_escape(self):
+    """ Restore old policy of escaping """
+    self.escape = self.escape_stack.pop()
+
+  def stack_ligatures(self, ifdo):
+    """ Set if breaking of ligatures is required. Remember old value. """
+    self.ligatures_stack.append(self.ligatures)
+    if ifdo != None:
+      self.ligatures = ifdo
+
+  def unstack_ligatures(self):
+    """ Restore old policy of breaking ligatures """
+    self.ligatures = self.ligatures_stack.pop()
+
+  def stack_emptylines(self, ifdo):
+    """ Set if empty lines are required. Remember old value. """
+    self.emptylines_stack.append(self.emptylines)
+    if ifdo != None:
+      self.emptylines = ifdo
+
+  def unstack_emptylines(self):
+    """ Restore old policy of handling of empty lines """
+    self.emptylines = self.emptylines_stack.pop()
   
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
@@ -75,8 +119,9 @@ class texmlwr:
       #
       # line end symbol of the same type starts new line
       #
-      if (('\n' == ch) and self.after_char0a) or (('\r' == ch) and self.after_char0d):
-        self.stream.write('%')
+      if not self.emptylines:
+        if (('\n' == ch) and self.after_char0a) or (('\r' == ch) and self.after_char0d):
+          self.stream.write('%')
       #
       # Two different line end symbols clean each other
       #
