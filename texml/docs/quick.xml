@@ -9,17 +9,17 @@
 			<li>installation of Python and</li>
 			<li>installation of TeXML.</li>
 		</ul>
-		<p>Python is a programming language. Download a production version of Python at the <a href="http://python.org/download/">http://python.org/download/</a>. Install it as any other Windows program.</p>
-		<p>Download TeXML from the <a href="http://sourceforge.net/project/showfiles.php?group_id=102261&amp;package_id=113070">project download area</a>. If you work under Windows then you need <tt>zip</tt>-file, if you work under Unix then you can prefer <tt>tar.gz</tt>-file. A distribution package is an archived file. Unpack it, for example, into the folder <tt>c:\texml</tt>.</p>
+		<p>Python is a programming language. Python is included in most Linux distributions, and versions are readily available for Windows, OS X and several flavors of Unix from <a href="http://python.org/download/">http://python.org/download/</a>. Install it according to their documentation.</p>
+		<p>Download TeXML from the <a href="http://sourceforge.net/project/showfiles.php?group_id=102261&amp;package_id=113070">project download area</a>. For Windows, get the <tt>zip</tt>-file, for Linux, OS X, or Unix you should use the <tt>tar.gz</tt>-file. Unpack it, for example, into the folder <tt>c:\texml</tt>.</p>
 	</sect>
 
 	<sect>
 		<title>Creating a TeXML file</title>
-		<p>TeXML is a intermediate format, so TeXML files are usually generated, not hand-written. Anyway, for purposes of this quick start, we consider a TeXML file as an original.</p>
-		<p>Use you favourite text editor to create a file <tt>quick.texml</tt> in the folder <tt>c:\texml\bin</tt>. Type in the following text:</p>
+		<p>TeXML is a intermediate format, so TeXML files are usually generated, not hand-written. Anyway, for purposes of this quick start, we will create a TeXML file as an example.</p>
+		<p>Use your favourite text editor to create a file <tt>quick.texml</tt> in the folder <tt>c:\texml\bin</tt>. Type in the following text:</p>
 		<lst><xi:include href="../tests/data/quick/quick.texml" parse="text"
 				xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-		<p>Instead of typing this text you can take a ready-to-use file <tt>quick.texml</tt> from the folder <tt>tests\data\quick</tt> in the distribution package.</p>
+		<p>Instead of typing this text you can copy the file <tt>quick.texml</tt> from the folder <tt>tests\data\quick</tt> in the distribution package.</p>
 		<p>Some letters are encoded as entities: &#x201c;<tt>&amp;#xD6;</tt>&#x201d; is &#x201c;&#xD6;&#x201d;, &#x201c;<tt>&amp;#xF6;</tt>&#x201d; is &#x201c;&#xF6;&#x201d;, &#x201c;<tt>&amp;#xE7;</tt>&#x201d; is &#x201c;&#xE7;&#x201d;, &#x201c;<tt>&amp;#xA0;</tt>&#x201d; is the no-break space and &#x201c;<tt>&amp;#x2014;</tt>&#x201d; is the em dash.</p>
 	</sect>
 
@@ -28,15 +28,15 @@
 		<p>Create a file <tt>quick.bat</tt> in the folder <tt>c:\texml\bin</tt> with content:</p>
 		<lst>python texml.py -w 60 quick.texml quick.tex
 pause</lst>
-		<p>This batch-file uses Python interpreter to execute the TeXML processor which converts the TeXML file <tt>quick.texml</tt> into the TeX file <tt>quick.tex</tt>. Option <tt>-w</tt> is not important, it just defines a line width for a pretty-printer.</p>
-		<p>The result in the file <tt>quick.tex</tt> looks as follows:</p>
+		<p>This batch-file uses the Python interpreter to execute the TeXML processor which converts the TeXML file <tt>quick.texml</tt> into the TeX file <tt>quick.tex</tt>. Option <tt>-w</tt> is not important, it just defines a line width for pretty-printing.</p>
+		<p>The resulting file <tt>quick.tex</tt> should look as follows:</p>
 		<lst><xi:include href="../tests/data/quick/quick.tex" parse="text"
 				xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
 	</sect>
 
 	<sect>
 		<title>Converting TeX to PDF</title>
-		<p>Getting PDF from TeX is a system-dependent task and may vary between computers. Most likely that following commands will help:</p>
+		<p>Getting PDF from TeX is a system-dependent task and may vary between computers. Most likely the following commands will help:</p>
 		<lst>pdflatex quick.tex
 pause</lst>
 		<p>Put these commands into the batch file <tt>quick-pdf.bat</tt> and run the file.</p>
