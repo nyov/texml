@@ -1,6 +1,11 @@
 <TeXML>
 	<TeXML><ctrl ch=" "/>  </TeXML>
 	<TeXML><ctrl ch=" "/>  </TeXML>
-	<TeXML><cmd name="it"/>  </TeXML>
+	<!-- 
+	:    Originally a space after command was not weak.
+	:    But now I decided that weak space is better,
+	:    just because 'x\it  y' makes 'xy' in LaTeX, not 'x y'
+	-->
+	<TeXML><group><cmd name="it"/>  it</group>  </TeXML>
 	<TeXML><ctrl ch=" "/>  </TeXML>
 </TeXML>

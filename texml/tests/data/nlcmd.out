@@ -1,18 +1,18 @@
-Use \it  italic
+Use \it italic
 	or
-\bf  bold
-	or \tt  tt.
+\bf bold
+	or \tt tt.
 Again:
-	Use \it  italic
+	Use \it italic
 	or \bf
 bold
-	or \tt  tt.
+	or \tt tt.
 Finally:
-x \y  z
+x \y z
 x \y
 z
 x
-\y  z
+\y z
 x
 \y
 z
