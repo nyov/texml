@@ -3,6 +3,8 @@ TeXML tests
 Long examples are data/texmlatte.xml and data/texmlapis.xml.
 An example from the quick start document is data/quick.xml.
 
+The ending "_ns" means that an example uses the TeXML namespace.
+
 + empty      no data, only the root element
 + hello      text "Hello, World!"
 + normal     escaping of special chars in tex mode
