@@ -1,5 +1,5 @@
 <x:stylesheet version='1.0' xmlns:x='http://www.w3.org/1999/XSL/Transform'>
-<!-- $Id -->
+<!-- $Id: pymap.xsl,v 1.6 2004-06-23 06:56:22 olpa Exp $ -->
 
 <x:output mode="text" omit-xml-declaration="yes"/>
 
