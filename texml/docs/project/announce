@@ -190,6 +190,24 @@ TeXML homepage: http://getfo.sourceforge.net/texml/
 DB2LaTeX-devel discussion of the TeXML: http://sourceforge.net/mailarchive/forum.php?thread_id=4116171&forum_id=22902 (unfortunaly, not all messages are archived).
 
 =====================================================================
+SourceForge.net, search for corrector
+
+Category: Editorial/Content Writer
+Short Description: Proofreading of docs of a TeX/XML project
+Long Description:
+
+TeXML project is seeking for a person to proofread and correct 12 Kbytes of text (approximately 1200 words).
+
+TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX.
+
+Documentation consists of three parts:
+* main introductory text,
+* specification, and
+* auxiliary files (readme, ChangeLog etc).
+
+Your work will be rewarded in the section "Thanks" (not exists yet) in the main introductory text.
+
+=====================================================================
 ru_RU.KOI8-R: (html)  (for xmlhack.ru announce)
 
 TeXML на Питоне
