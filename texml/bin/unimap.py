@@ -1,4 +1,6 @@
 textmap = {
+0x000A0: r'~',
+0x000AD: r'\-',
 0x0007E: r'\textasciitilde{}',
 0x000A1: r'\textexclamdown{}',
 0x000A2: r'\textcent{}',
