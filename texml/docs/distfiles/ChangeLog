@@ -1,13 +1,13 @@
 
 Version 1.24.devel (21 March 2005)
 
-* ConTeXt is now namespace aware
+* TeXML is now namespace aware
   will process documents with the namespace 
   http://getfo.sourceforge.net/texml/ns1
 
   will also process documents with no namespace
 
-* ConTeXt is installed the standard way
+* TeXML is installed the standard way
   libraries are created in the python path;
   scripts are automatically installed in the path
 
