@@ -5,7 +5,10 @@
 <!ELEMENT TeXML  (%content;)*>
 
 <!ATTLIST TeXML
-  mode   (text|math) #IMPLIED
+  mode        (text|math)  #IMPLIED
+  escape      (0|1)        #IMPLIED
+  emptylines  (0|1)        #IMPLIED
+  ligatures   (0|1)        #IMPLIED
 >
 
 <!ELEMENT env    (%content;)*>
