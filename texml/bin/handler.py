@@ -1,14 +1,16 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.5 2004-03-16 12:20:31 olpa Exp $
+# $Id: handler.py,v 1.6 2004-03-16 15:11:19 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
+import specmap
 import StringIO
 
 class handler(xml.sax.handler.ContentHandler):
 
   # Object variables
   # writer
+  # no_text_content
   # 
   # For <cmd /> support:
   # parm_content
@@ -27,6 +29,7 @@ class handler(xml.sax.handler.ContentHandler):
     self.parm_content  = ''
     self.opt_content   = ''
     self.cmdname       = ''
+    self.no_text_content = 0
     #
     # Create handler maps
     #
@@ -81,6 +84,8 @@ class handler(xml.sax.handler.ContentHandler):
 
   def characters(self, content):
     """ Handle text data """
+    if self.no_text_content:
+      raise ValueError('Text content is not expected')
     self.writer.write(content)
 
   def endElement(self, name):
@@ -187,10 +192,11 @@ class handler(xml.sax.handler.ContentHandler):
 
   def on_opt_and_parm(self, str):
     self.stack_model(self.model_opt)
+    stream = StringIO.StringIO()
     if 0 != len(str):
-      self.writer.stack_stream(StringIO.StringIO(str + ','))
-    else:
-      self.writer.stack_stream(StringIO.StringIO())
+      stream.write(str)
+      stream.write(',')
+    self.writer.stack_stream(stream)
  
   def on_opt_end(self):
     self.opt_content = self.writer.unstack_stream()
@@ -212,17 +218,44 @@ class handler(xml.sax.handler.ContentHandler):
   def on_group_end(self):
     pass
 
-  def on_ctrl(self):
-    pass
+  # -----------------------------------------------------------------
+
+  def on_ctrl(self, attrs):
+    #
+    # Get character, check and print tex command
+    #
+    ch = attrs.get('ch', '')
+    if 1 != len(ch):
+      raise ValueError("Attribute ctrl/@ch is not a char: '%s'" % ch)
+    self.writer.writech('\\', 0)
+    self.writer.writech(ch,   0)
+    #
+    # Content of this element is empty
+    #
+    self.stack_model({})
+    self.no_text_content = 1
 
   def on_ctrl_end(self):
-    pass
+    self.no_text_content = 0
 
-  def on_spec(self):
-    pass
-   
+  def on_spec(self, attrs):
+    #
+    # Get category, get corresponding character
+    #
+    cat = attrs.get('cat', '')
+    if not (cat in specmap.tocharmap):
+      raise ValueError("Attribute spec/@cat unknown: '%s'" % cat)
+    self.writer.writech(specmap.tocharmap[cat], 0)
+    #
+    # Content of this element is empty
+    #
+    self.stack_model({})
+    self.no_text_content = 1
+
   def on_spec_end(self):
-    pass
+    self.no_text_content = 0
+
+  # -----------------------------------------------------------------
 
   def on_math(self, attrs):
     self.stack_model(self.model_nomath)
