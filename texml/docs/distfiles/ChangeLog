@@ -23,7 +23,8 @@ Version 1.09.devel (????? 2004)
   instead of '$<$'.
 * Replacements for special symbols now have '{}' characters at
   the endings instead of a space.
-
+* Accurate handling of unicode mappings that can appear only in
+  text or in math modes.
 
 Version 1.01.devel (06 May 2004)
 
