@@ -15,6 +15,8 @@ Version 1.09.devel (????? 2004)
   <env/>: @nl1, @nl2, @nl3 and @nl4. They are responsible for
   creation of new lines.
 * New <spec/> symbols: new line, whitespace and nothing.
+* Whitespace after commands is now significant, so the program
+  adds '{}' after a command. This behaviour is configurable.
 * A new command-line paramater '-w' (or '--width') specifies
   minimal width of lines that are subject to an automatical line
   breaking.
