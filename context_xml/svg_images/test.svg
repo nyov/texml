@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ASCII"?>
+<svg:svg xmlns:svg="http://www.w3.org/2000/svg" width="625" height="500">
+  <svg:title>Margins 3</svg:title>
+<svg:g>
+<svg:defs>
+</svg:defs>
+    <svg:rect x="8" y="12" width="299.0" height="473.0" fill="#ffffff" fill-opacity="1.0" stroke="#000000" stroke-width="3.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:text x="369" y="36" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">Default Space of 25 mm</svg:text>
+    <svg:text x="353" y="78" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">header=30mm</svg:text>
+    <svg:text x="359" y="479" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">Default Space of 25 mm</svg:text>
+    <svg:text x="377" y="434" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">footer=25mm</svg:text>
+    <svg:line x1="47" y1="14" x2="47" y2="484" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="271" y1="13" x2="271" y2="483" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="49" y1="56" x2="269" y2="56" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="50" y1="91" x2="268" y2="91" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="49" y1="414" x2="268" y2="413" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="49" y1="443" x2="267" y2="443" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="273" y1="15" x2="367" y2="24" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="274" y1="57" x2="369" y2="25" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="273" y1="57" x2="353" y2="69" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="274" y1="90" x2="355" y2="70" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="272" y1="414" x2="375" y2="422" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="271" y1="443" x2="377" y2="423" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="272" y1="445" x2="357" y2="467" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="274" y1="483" x2="358" y2="469" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:text x="54" y="102" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+I heartily accept the motto,--"That government is best
+</svg:text>
+<svg:text x="54" y="117" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+which governs least;" and I should like to see it acted
+</svg:text>
+<svg:text x="54" y="132" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+up to more rapidly and systematically. Carried out, it
+</svg:text>
+<svg:text x="54" y="147" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+finally amounts to this, which also I believe,--"That
+</svg:text>
+<svg:text x="54" y="162" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+government is best which governs not at all;" and when
+</svg:text>
+<svg:text x="54" y="177" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+men re prepared for it, that will be the kind of
+</svg:text>
+<svg:text x="54" y="192" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+government which they will have. Government is at best
+</svg:text>
+<svg:text x="54" y="207" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+but an expedient; but most governments are usually, and
+</svg:text>
+<svg:text x="54" y="222" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+all governments are sometimes inexpedient. The
+</svg:text>
+<svg:text x="54" y="237" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+objections which have been brought against a standing
+</svg:text>
+<svg:text x="54" y="252" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+army, and they are many and weighty, and deserve to
+</svg:text>
+<svg:text x="54" y="267" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+prevail, may also at last be brought against a standing
+</svg:text>
+<svg:text x="54" y="282" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+government. The standing army is only an arm of the
+</svg:text>
+<svg:text x="54" y="297" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+standing government. The government itself, which is
+</svg:text>
+<svg:text x="54" y="312" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+only the mode which the people have chosen to execute
+</svg:text>
+<svg:text x="54" y="327" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+their will, is equally liable to be abused and
+</svg:text>
+<svg:text x="54" y="342" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+perverted before the people can act through it. Witness
+</svg:text>
+<svg:text x="54" y="357" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+the present Mexican war, the work of comparatively a
+</svg:text>
+<svg:text x="54" y="372" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+few individuals using the standing government as their
+</svg:text>
+<svg:text x="54" y="387" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+tool; for, in the outset, the people would not have
+</svg:text>
+<svg:text x="54" y="402" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="215">
+consented to this measure.    This American
+</svg:text>
+
+</svg:g>
+</svg:svg>

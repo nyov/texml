@@ -1,0 +1,403 @@
+:title: Getting Started
+
+:author: Paul Tremblay
+
+:change date=2005-03-23:
+
+  First started writing
+
+
+
+:txt2xml-shortcuts-xref:
+
+ [:txt2xml-shortcut-xref abbr=TeXML expand=http\://getfo.sourceforge.net/texml/index.html:]
+
+[:ab: context]
+-------------------------
+
+[:ab: context] is a system for creating high-quality print documents,
+such as PDF. It is similar to [:ab: latex] but with different syntax.
+Normally, one creates a [:ab: context] document in a text editor and
+then uses the [:ab: context] software to convert it to PDF. But [:ab:
+context] can also be used as means to convert XML to PDF. Using XSLT,
+an author can convert an XML document to [:ab: context] document, and
+then convert this document to a print document.
+
+Using [:ab: context] in this way eliminates needing FO. While FO, an
+open standard, provides an exellent vocabulary to describe page
+layout, its open source implementation is lacking. The most complete
+open source software to convert FO to PDF is the java utilty called
+FOP, and this program cannot do basic things like center tables or
+control widow paragraphs. The developers of [:ab: context] are
+developing their own utlity to convert the FO to print documents, but
+since their implementation is not complete, it makes sense to use
+plain [:ab: context] to format XML documents. With [:ab: context], you
+does not face any of the limitations you encounter with FOP. You can
+create beautiful print documents--right now.
+
+I assume you already have [:ab: context] installed. If not, download
+and install the version found at http://www.pragma-ade.com/. You might
+have to join the mailing list to get everything working right. Once
+you make it that far, you probably know that you format [:ab: context]
+by issuing commands that begin with a backslash.
+
+
+:t2x-no-process:
+
+ \starttext
+ A one line document.
+ \stoptext
+.. end block
+
+
+TeXML
+------
+
+As mentioned above, we will not create such documents in a text editor, but
+through an XSLT conversion.  Being text-based, [:ab: context] does not always
+lend itself well to a direct conversion from an XML tree. If an innoncent
+blank line from an XML document finds its way into a  document, the resulting
+document will wrongly contain a paragraph divison. In addition, certain
+characters in your XML document will have special meaning in [:ab: context],
+resulting in either a wrong result or a failed run.  If your XML document
+contained an "{", and you didn't escape it by putting a backslash in front
+of it, your resulting [:ab: context] document would be invalid.
+
+In order to get around this problem, I advocate using TeXML_. TeXML
+is a python utility that converts its own special form of XML into
+[:ab: context].  That means you can use XSLT to convert from one XML
+tree to another and then let the python utlity to the dirty work of
+handling white space.
+
+TeXML uses a very simple XML language. Basically, it represents [:ab:
+context] commands in XML and does little more. One could look at a
+TeXML document and immediately know what the author meant to express
+in [:ab: context]. In converting an XML document such as TEI to TeXML,
+one is coming as close as possible to actually converting to [:ab:
+context] itself, without having to worry about white space, and while
+having the comfort of working with an XML tree. If you use TeXML to
+convert, you really won't have to learn a new XML languge, since TeXML
+consists of very few elements. Instead, you will still think in terms
+of [:ab: context]. 
+
+If you choose not to use TeXML, you should still find this document
+valuable, since I always include examples of how to format in both raw
+[:ab: context] and in TeXML.
+
+Here is the above document in TeXML format.
+
+:t2x-no-process rend=xml:
+
+  <?xml version="1.0"?>
+  <TeXML xmlns="http://getfo.sourceforge.net/texml/ns1">
+   <env name="text">
+    A one line document.
+   </env>
+  </TeXML>
+.. end of block
+
+:src url=texml_examples/simple1.xml: source file
+
+To convert this document to a print format, first convert it to a [:ab:
+context] document. 
+
+:t2x-no-process:
+
+ texml.py -e utf -c infile.xml outfile.tex
+.. end of block
+
+
+Next, convert the [:ab: context] file to a print with your normal
+[:ab: context] command.
+
+:t2x-no-process:
+
+ texexec outfile.tex
+.. end of block
+
+
+You can also convert your XML file to an outfile all in one step with 
+the script texml_con. 
+
+:t2x-no-process:
+
+ texml_con infile.xml
+.. end of block
+
+This script converts the infile.xml to infile.tex and then exectutes
+the command line texexec on that file. You can use any option with 
+this script that you would use with texexec.
+
+Elements in the TeXML document are bound to a namespace.  Since TeXML
+does not allow mixing of elements from other namespaces, I will
+present elements in this document without prefixes, assuming the root
+element contains the namespace.
+
+---------------------------------
+Basic [:ab: context] and TeXML
+---------------------------------
+
+Here are the basic concepts you need to know to understand the rest of
+the document. Don't worry if you can't understand the individual [:ab:
+context] code. Just make sure you understand how to issue commands. 
+
+env
+----
+
+Each [:ab: context] document must begin with a [:cm: starttext] command and
+end with a [:cm: stoptext] command. [:cm: starttext] and [:cm: stoptext] are
+examples of an environment. TeXML codes any combination of [:cm: start-] [:cm:
+stop-] with the env element, shorthand for an environment. The env element
+must have the name attribute, which consists of the command name minus the
+start or stop. If the commands in [:ab: context] are [:cm: starttext] and[:cm:
+stoptext], the name of the environment is [:pr: text]. If the [:ab: context]
+commands are [:cm: startnarrowr] and [:cm: stopnarrower], the environment's
+name is [:pr: narrower].
+
+
+commands
+---------
+
+Commands start with a backslash and can be followed by setups, which
+are placed in brackets, and by the "scope or range of the command,"
+which are placed in curly brackets. This example creates a simple box
+with the words "that's it" inside.
+
+:t2x-no-process:
+
+ \framed[width=2cm,height=1cm]{that's it} 
+.. end of block
+
+I will refer to the text in square brackets as an option. The text
+inside the curly brackets I will call a parameter. In TeXML, this
+simple fragment looks like this:
+
+:t2x-no-process rend=xml:
+
+ <cmd name="framed">
+   <opt>width=2cm, height=1cm</opt>
+   <parm>that's it</parm>
+ </cmd>
+.. end of block
+
+The element opt can contain different properties. The opt element
+above defines both the width and height. It is easy to forget and
+include one option value for each parameter, but don't, because you
+will end of with extra square brackets and invalid [:ab: context].
+
+By default, TeXML puts curly brackets after each command:
+
+:t2x-no-process rend=xml:
+
+ <cmd name="par"\>
+.. end of block
+
+:t2x-no-process:
+
+ \par{}
+.. end of block
+
+In order to supress the curly brackets, set the "gr" attribute to "0".
+
+:t2x-no-process rend=xml:
+
+ <cmd name="par" gr="0"\>
+.. end of block
+
+:t2x-no-process:
+
+ \par
+.. end of block
+
+newlines
+--------
+
+By default, TeXML does not insert newlines after or before commands.
+
+That means that this code:
+
+:t2x-no-process rend=xml:
+
+ <cmd name="hairline" gr="0"/>
+ <cmd name="par" gr="0"/>
+ <cmd name="hairline" gr="0"/>
+ <cmd name="par" gr="0"/>
+.. end of block
+
+Will appear as:
+
+:t2x-no-process:
+
+ \hairline \par \hairline \par
+.. end of block
+
+I don't think this ever will change the print document. However, if
+you want commands to appear on their own line in your [:ab: context]
+document, use the "nl1" and "nl2" attributes. "nl1" forces a newline
+before the command; "nl2" forces a break after.
+
+:t2x-no-process rend=xml:
+
+ <!--a newline after-->
+ <cmd name="par" gr="0" nl2="1"/>
+
+ <!--no newlines-->
+ <cmd name="hairline" gr="0"  />
+
+ <!--a newline before and a newline after-->
+ <cmd name="par" gr="0" nl1="1" nl2="1"/>
+
+ <!--no newlines-->
+ <cmd name="hairline" gr="0" />
+.. end of block
+
+
+:t2x-no-process:
+
+ \par
+ \hairline
+ \par
+ \hairline
+.. end of block
+
+definitions
+------------
+
+Often times we need to create a definition for some command and then
+recall that definition. In such a case, make up a name for the
+definition, and use this same name when recalling the definition.
+In the example below, [:pr: myCustomLayout] is the arbritrary word
+that identifies the definition.
+
+:t2x-no-process:
+
+ \definepapersize[myCustomLayout][width=8.5in, height=11in]
+ \setuppapersize[myCustomLayout]
+.. end of block
+
+
+:t2x-no-process rend=xml:
+
+ <cmd name="definepapersize">
+  <opt>myCustomLayout</cmd>
+  <opt>width=8.5in, height=11in</opt>
+ </cmd>
+ <cmd name="setuppappersize">
+  <opt>myCustomLayout</opt>
+ </cmd>
+.. end of block
+
+group
+------
+
+[:ab: context] can group textual matter by curly brackets. In the
+following example, the title *The Old Man and the Sea* is italicized,
+while the rest of text is not.
+
+:t2x-no-process:
+
+ {\sl The Old Man and the Sea} by Ernest Hemingway
+.. end of block
+
+:t2x-no-process rend=xml:
+
+ <group><cmd name="sl" gr="0"/>The Old Man and the Sea</group> by
+ Ernest Hemingwary
+.. end of block
+
+
+Complete Specifications
+------------------------
+
+TeXML's own guide can be found
+[:xref url=http\://getfo.sourceforge.net/texml/quick.html: here]
+The complete specifications can
+be found [:xref url=http\://getfo.sourceforge.net/texml/spec.html:
+here].
+
+----------------------------------------
+Type of [:ab: context] in this document
+----------------------------------------
+
+[:ab: context] allows many different ways to do the same thing.  Much of its
+code facilitates automatic generation. Page numbers are automatically placed;
+sections are given numbers; table of contents and indices can be created
+automatically; front and back matter are formatted special ways.
+
+The XML author will need very little of this code. He uses XSLT to do most of
+the numbering and generation of such things as table of contents and
+controls the default font size and spacing through XML. 
+
+This document will therefore use the [:ab: context] code that is simplest and
+most consistent and will ignore that code meant for [:ab: context] authors.
+When the rule of simplicity and consistency conflict, I will choose
+consitency. It is better to remember or look up one rule even if this rule
+requires a few more lines. Extra lines won't bother us, because we will not
+have to do much (if any) editing of the [:ab: context] document.
+
+------------------------------
+A few commands to get started
+------------------------------
+
+The one-line document illustrates the bare minimum code to create a vaild
+[:ab: context] document. You need to know a few more commands to understand 
+the next section.
+
+enableregime
+--------------
+
+The [:cm: enableregime] command tells [:ab: context] what kind of input code
+to expect. Set the option to [:pr: utf] so that [:ab: context] can handle any
+utf in your XML document, including utf-8 and utf-16. 
+
+:t2x-no-process:
+
+ \enableregime[utf]
+.. end of block
+
+
+:t2x-no-process rend=xml:
+ 
+
+ <cmd name="enableregime">
+  <opt>utf</opt>
+ </cmd>
+.. end of block
+
+setuppagenumbering
+-------------------
+
+By default, [:ab: context] puts page numbers at the top of each page. In
+additon, it restarts numbering after each [:cm: part] command, as explained in
+the next section of this document. To turn of this automatic numbering, set
+the [:op: state] to [:pr: stop], and the [:op: way] option to [:pr: bytext].
+
+:t2x-no-process:
+
+
+ \setuppagenumbering[state=stop, way=bytext]
+.. end of block
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setuppagenumbering">
+  <opt>state=stop, way=bytext</opt>
+ </cmd>
+.. end block
+
+input
+-------
+
+The [:cm: input] command inputs an external document. It takes not options or
+parameters. Instead, you put the path to the external file on the same line as 
+the [:cm: input] command. The [:cm: input] command is useful for documentating
+[:ab: context] because it allows for sample documents that just display the 
+relevant commands, uncluttered by pages of text.
+
+Here are two sample documents illustrating some of the examples discussed on this 
+page.
+
+
+:src url=context_examples/simple2.tex: example file in [:ab: context].
+
+:src url=texml_examples/simple2.xml: example file in TeXML.

@@ -1,0 +1,487 @@
+:title: Blocks
+
+:author: Paul Tremblay
+
+:change date=2005-03-08:
+
+  First started writing
+
+:change date=2005-03-30:
+
+  Added section on orphan control
+
+:change date=2005-03-31:
+
+  Added many sections, on line spacing, indenting
+  aligning text
+
+
+====================
+Paragraph Formatting
+====================
+
+The basic block unit in [:ab: context] is the paragraph. Create a
+paragraph block with the [:cm: par] command. 
+
+:t2x-no-process:
+
+ A one line paragraph\par
+ Another one line paragraph\par
+
+
+:t2x-no-process rend=xml:
+
+ A one line paragraph<cmd name="par" gr="0"/>
+ Another one line paragraph<cmd name="par" gr="0"/>
+
+
+[:ab: context] allows you to also create a paragraph with a simple
+blank line, such as you would in email. TeXML works the opposite: it
+will get rid of any blank lines. So if you use TeXML, the only way to
+form a paragraph is with the [:cm: par] command. 
+
+--------------------------------------
+Space between, before and after
+--------------------------------------
+
+Use the commands [:cm: setupwhitespace] to control the amount of space
+between paragraph. To reset the amount of space to the default value,
+use "none" as a value.
+
+:t2x-no-process:
+
+ \setupwhitespace[5mm]
+ first paragraph\par
+ second paragraph\par
+ third paragraph\par
+ \setupwhitespace[none]
+ fourth paragraph\par
+ fifth paragraph\par
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="par" gr="0"/>
+ <cmd name="setupwhitespace">
+  <opt>5mm</opt>
+ </cmd>
+ first paragraph
+ <cmd name="par" gr="0"/>
+ second paragaph
+ <cmd name="par" gr="0"/>
+ third paragaph
+ <cmd name="par" gr="0"/>
+ <cmd name="setupwhitespace">
+  <opt>none</cmd>
+ </cmd>
+ fourth paragarph
+ <cmd name="par" gr="0"/>
+ fifth paragarph
+ <cmd name="par" gr="0"/>
+
+:fig url=whitespace1: creating space between each paragraph
+
+If you want to add extra space before of after a paragraphs, use the
+[:cm: blank] command.  
+
+
+:t2x-no-process:
+
+
+ before paragraph
+ \blank[24pt]
+ This paragraph has 24 points before it and 36 points after it.\par
+ \blank[36pt]
+ after paragraph\par
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="blank">
+  <opt>24pt</opt>
+ </cmd>
+ This paragraph has 24 points before it and 36 points after it.
+ <cmd name="par" gr="0"/>
+ <cmd name="blank">
+  <opt>36pt</opt>
+ </cmd>
+ after paragraph
+ <cmd name="par" gr="0"/>
+
+:fig url=blankspace1: space before and after paragraph
+
+
+The [:cm: blank] command will not put any blank space at the top of th
+page unless you use the [:op: force] option. 
+
+:t2x-no-process:
+
+ \blank[force, 36pt]
+ % chapter title
+ Thoreau's Life
+
+:t2x-no-process rend=xml:
+
+ <cmd name="blank">
+  <opt>force, 36pt</opt>
+ </cmd>
+ <!--title chapter-->
+ Thourea's Life
+
+-------------
+Line spacing
+-------------
+
+Set up line spacing with the [:cm: setupinterlinespace] command.  This
+command's option can be set to small for single spacing (the default),
+medium for 1.5 spacing, or big for doublespacing. 
+
+:t2x-no-process:
+
+ % doublespacing
+ \setupinterlinespace[big]
+
+:t2x-no-process rend=xml:
+
+ <!--doublespacing-->
+ <cmd name="setupinterlinespace">
+  <opt>big</opt>
+ </cmd>
+
+
+To gain even more control over the space between lines, change the
+option to line=x, where x is some value, such as 18pt.
+
+:t2x-no-process:
+
+ \setupinterlinespace[line=18pt]
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupinterlinespace">
+  <opt>line=18pt</opt>
+ </cmd>
+
+:ul:
+
+  :head: Tips
+
+  * Seting the value of line to some value of ex ensures that your
+    line spacing will always stay in proportion to the size of your 
+    font.
+
+  * 2.8ex is the default size of line. 
+
+  * 3.5ex seems to be the size for one and one half line spacing
+    ([:pr: medium]).
+
+  * 4.2ex seems to be the size for double spacing ([:pr: big])
+
+
+
+
+----------------
+Indenting
+----------------
+
+First line
+------------
+
+Two commands control indenting of the first line: [:cm: indenting] and
+[:cm: setupindenting]. 
+
+The first command determines the amount of the indent for the
+first line.
+
+:t2x-no-process:
+
+ \setupindenting[12pt]
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupindenting">
+  <opt>12pt</opt>
+ </cmd>
+
+The [:cm: indenting] command, determines when indenting will
+occurr. By default, [:ab: context] will not indent blocks of text that
+it determines do not look good, such as a block of text after a
+vertical space. To override this feature and gain complete control
+over indenting, set [:cm: indeting] to "first".
+
+:t2x-no-process:
+ 
+ \indenting[first]
+
+:t2x-no-process rend=xml:
+ 
+ <cmd name="indenting">
+  <opt>first</opt>
+ </cmd>
+
+This indents all paragraphs by the amount of the [:cm: setupindenting]
+command. You probably don't want headings and titles indented, so just
+before you write your header, use the [:cm: noindenting] command.
+
+:t2x-no-process:
+
+ \indenting[first]
+ \setupindenting[12pt]
+ body text ...\par
+ % turn off indenting for a section head
+ \noindenting
+ section head\par
+ % body text will again be indented
+ more body text..\par
+
+:t2x-no-process rend=xml:
+
+ <cmd name="indenting">
+  <opt>first</opt>
+ </cmd>
+ <cmd name="setupindenting">
+  <opt>12pt</opt>
+ </cmd>
+ body text..
+ <!--turn off indenting for a section head-->
+ section head\par
+ <!--body text will again be indented-->
+ more body text ...\par
+
+:ul:
+
+  :head: Tips
+
+  * You don't need to use the [:cm: indenting] command to get
+  indenting to work. If you do not, [:ab: context] will use the
+  default of not indenting paragraphs after vertical spaces. 
+
+
+
+Indenting blocks
+--------------------
+
+To reduce the width of a text, as for a quote, use the envirnoment
+"narrower." Set up the dimmensions with the [:cm: setupnarrower]
+command. 
+
+:t2x-no-process:
+
+ \setupnarrower[left=24pt, right=30pt]
+ \startnarrower[left, right]
+  body text..
+ \stopnarrower
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupnarrower">
+  <opt>left=24pt, right=30pt</opt>
+ </cmd>
+ <env name="narrower">
+  <opt>left, right</opt>
+  quote text
+ </env>
+
+:ul:
+
+  :head: Tips
+
+  * If you do not use the [:cm: setupnarrower] command, 
+    [:ab: context] will set right and left to 12pt.
+
+  * If you only want to indent the left, leave off the right
+    for the option in [:cm: setupnarrower]. Likewise, leave off
+    the left if you only want to indent your text to the right.
+
+--------------
+Aligning text
+--------------
+
+Non-justified text
+------------------
+
+By default, [:ab: context] justifies text. In fact, creating pretty
+text is one [:ab: context]'s main feature. If you want your text
+non-justfied, use the [:cm: setupalign] command with the option of
+[:pr: right].
+
+:t2x-no-process:
+
+ \setupalign[right]
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupalign">
+  <opt>right</otp>
+ </cmd>
+
+:ul:
+
+  :head: Tips
+
+  * To align a whole block of text to the left, set the option
+  to [:pr: left].
+
+  * To center a whole block of text, set the option to [:pr: middle].
+
+  * Justified text is easier to read because the spaces between
+  the words are the same.
+
+  * Kudos for the developers of [:ab: context] for making
+  non-justified text so easy to use. In other forms of [:ab: tex],
+  using non-justified text required complicated code.
+
+Changing alignment of small portions of text
+---------------------------------------------
+
+Most likely, you will use one type of alignment for your document,
+such as justified or non-justified. However, you will often want to
+change the alignment for just a portion of text, such as the date
+at the top of a letter, or a title.
+
+Centering
+^^^^^^^^^^
+
+To center a line, use the \midaligned command.
+
+
+:t2x-no-process:
+
+ \midaligned{This text is centered}
+
+:t2x-no-process rend=xml:
+
+ <cmd name="midaligned">
+  <parm>This text is centered</parm>
+ </cmd>
+
+Left-Aligned
+^^^^^^^^^^^^^
+
+To make a line of text left aligned, use the [:cm: leftaligned]
+command.
+
+:t2x-no-process:
+
+ \leftaligned{This text left-aligned}
+
+:t2x-no-process rend=xml:
+
+ <cmd name="leftaligned">
+  <parm>This text is left-aligned</parm>
+ </cmd>
+
+Non-Justified
+^^^^^^^^^^^^^^
+
+To make a line of text non-justified, use the [:cm: rightaligned]
+command.
+
+:t2x-no-process:
+
+ \rightaligned{This text is non-justified}
+
+:t2x-no-process rend=xml:
+
+ <cmd name="rightaligned">
+  <parm>This text is non-justified</parm>
+ </cmd>
+
+---------------------------
+Orphan and Widow Controls
+---------------------------
+
+Orphans and widows are the ugly text that appears by themselves at the
+top or bottom of a page.  An orphan is the first line of a paragraph
+on the last line of a page whereas the last line of the paragraph on a
+new page is a widow. [:ab: context] uses the definitions  [:cm:
+widowpenalty=x] and [:cm: clubpenalty=x] to discourage either of these
+typographical flaws. The default values for each is 150. Increasing
+the value to 450 should discourage most widows and orphans.
+
+:t2x-no-process:
+
+ \starttext
+ % make sure you put these two commands *after*
+ % the \starttext command
+ \clubpenalty=450
+ \widowpenalty=450
+ ...
+
+:t2x-no-process rend=xml:
+
+ <env name="text">
+ <!--
+ Make sure this text occurs within
+ the text env
+ -->
+ <cmd name="clubpenalty=450"/>
+ <cmd name="widowpenalty=450"/>
+ ...
+ </env>
+
+Making sure a title or subtitle does not become an orphan requires the
+[:cm: testpage] command.  The [:cm: testpage] command takes one
+option, an integer, which seems to roughly correspond to the number of
+minimum additional lines the page should contain.
+
+This command has the affect of allowing text to stick together. If you
+set its option to  2, and issue it right before a title, [:ab:
+context] checks to see if it can fit two lines on the page. If it
+can't, it puts the text on the next page, avoiding an orphan
+sub-title. If you set the number to three, [:ab: context] will force a
+break if it can't fit 3 additional lines on a page.
+
+The actual number in the option is acutally an aproxtimation, since
+any extra space seems to count as lines. The higher the number, the
+most text that will stick with the title or subtitle. If you use too
+high a number, pages may contain blank spaces at then end. If you use
+a number too low, the title may become an orphan.
+
+
+:t2x-no-process:
+
+ % sapce before the sub-title
+ \blank[12pt]
+
+ % make sure the page can contain 3 more virtual lines
+ % if not, break
+ \testpage[3]
+
+ % the title (which normally would appear in larger 
+ % font)
+ Thoreau's Lifestyle\par
+
+ % space after the title
+ \blank[12pt]
+.. end block code
+
+:t2x-no-process rend=xml:
+
+ <!--space before the sub-title-->
+ <cmd name="blank">
+  <opt>12pt</opt>
+ </cmd>
+
+ <!--
+  make sure the page can contain 3 more virtual lines
+  if not, break
+ -->
+ <cmd name="testpage">
+  <opt>3</opt>
+ </cmd>
+ \testpage[3]
+
+ <!--
+ the title (which normally would appear in larger 
+  font)
+ -->
+ Thoreau's Lifestyle
+ <cmd name="par" gr="0"/>
+
+ <!--space after the title-->
+ <cmd name="blank">
+  <opt>12pt</opt>
+ </cmd>
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<svg:svg xmlns:svg="http://www.w3.org/2000/svg" width="650" height="325">
+  <svg:title>Headers with four arguments</svg:title>
+<svg:g>
+<svg:defs>
+</svg:defs>
+    <svg:text x="75" y="31.6666666666667" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">\setupheadertexts[one][two][three][four]</svg:text>
+    <svg:line x1="18" y1="58" x2="291" y2="58" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="292" y1="58" x2="292" y2="321" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="19" y1="94" x2="291" y2="94" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="20" y1="132" x2="293" y2="132" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="19" y1="58" x2="19" y2="310" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="330" y1="60" x2="603" y2="60" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="331" y1="60" x2="331" y2="315" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="603" y1="61" x2="604" y2="308" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="332" y1="95" x2="602" y2="95" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="332" y1="135" x2="601" y2="135" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:text x="25" y="130" font-size="12" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">one</svg:text>
+    <svg:text x="267" y="129" font-size="12" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">two</svg:text>
+    <svg:text x="336" y="132" font-size="12" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">three</svg:text>
+    <svg:text x="574" y="131" font-size="12" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">four</svg:text>
+    <svg:line x1="289" y1="33" x2="47" y2="117" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="343" y1="30" x2="281" y2="114" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="405" y1="34" x2="358" y2="117" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:line x1="494" y1="30" x2="576" y2="114" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <svg:text x="100" y="300" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">odd page</svg:text>
+    <svg:text x="412" y="306" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">even page</svg:text>
+</svg:g>
+</svg:svg>

@@ -1,0 +1,45 @@
+<table xmlns= "http://xml2txt.sourceforge.net/ns1">
+    
+    <head>FO <ab>context</ab> conversions for physical page layouts</head> 
+    <row role="label">
+        <cell>FO</cell>
+        <cell><ab>context</ab></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:simple-page-master margin-top="x"&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">topspace=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:simple-page-master margin-bottom="x"&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">bottomspace=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;simple-page-master margin-left="x"&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">backspace=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;simple-page-master margin-right="x"&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">cutspace=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:region-body margin-top="x"/&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">headerdistance=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:region-before extent="x"/&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">header=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:region-after extent="x"/&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">footer=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:region-start extent="x"/&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">left-margin=x</seg></cell>
+    </row>
+    <row>
+        <cell>&lt;fo:region-after extent="x"/&gt;</cell>
+        <cell><seg type="command" ana="context-command">definelayout</seg><seg type="option" ana="option">right-margin=x</seg></cell>
+    </row>
+</table>
+

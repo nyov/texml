@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<svg width="600" height="800"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Template</title>
+<g>
+<defs>
+</defs>
+
+<!--RECTANGLE-->
+    <rect x="113.0" y="77.0" width="355.0" height="541.0"  fill="#ffffff" fill-opacity="1.0" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+<!--Vertical line-->
+    <line x1="164.0" x2="164.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--line that goes to a point-->
+    <line x1="113.0" y1="616.0" x2="137.0" y2="648.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line that goes to a point-->
+    <line x1="164.0" y1="616.0" x2="137.0" y2="648.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+</g>
+</svg>
+

@@ -1,0 +1,2237 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tei:TEI xmlns:tei="http://www.tei-c.org/ns/1.0">
+ <tei:teiHeader>
+  <tei:fileDesc>
+   <tei:titleStmt>
+    <tei:title type="main"><tei:seg type="context-name">context</tei:seg>
+    </tei:title>
+    <tei:author>Paul Tremblay</tei:author>
+   </tei:titleStmt>
+   <tei:publicationStmt>
+    <tei:distributor>none</tei:distributor>
+   </tei:publicationStmt>
+   <tei:sourceDesc>
+    <tei:p>
+     no source--a manuscript
+    </tei:p>
+   </tei:sourceDesc>
+  </tei:fileDesc>
+  <tei:encodingDesc>
+   <tei:tagsDecl>
+    <tei:rendition id="context-command-rend">
+                    Indent this paragraph 5 pts
+                </tei:rendition>
+    <tei:tagUsage id="context-command" gi="seg" render="context-command-rend">
+                    Any context command.
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="property-rend">
+                    for html, use monospace fonts or maybe put in quotes
+                </tei:rendition>
+    <tei:tagUsage id="property" gi="seg" render="property-rend">
+                    property defines the value of an option. For example in [state=high],
+                    high is a property. 
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="context-name-rend">
+                    For HTML, ConTeXt. For PDF, issue the fancy command.
+                </tei:rendition>
+    <tei:tagUsage id="context-name" gi="seg" render="context-name-rend">
+                    The name of the context program
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="tex-name-rend">
+                    For HTML, TeX. For PDF, issue the fancy command.
+                </tei:rendition>
+    <tei:tagUsage id="tex-name" gi="seg" render="tex-name-rend">
+                    The name of the TeX program
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="latex-name-rend">
+                    For HTML, LaTeX. For PDF, issue the fancy command.
+                </tei:rendition>
+    <tei:tagUsage id="latex-name" gi="seg" render="latex-name-rend">
+                    The name of the latex program
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="option-rend">
+                    Monospace font.
+                </tei:rendition>
+    <tei:tagUsage id="option" gi="seg" render="option-rend">
+                    An option in ConTeXt, such as [footer=high]
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="revision-rend">
+                    For wiki pages, get rid of?
+                </tei:rendition>
+    <tei:tagUsage id="revision" gi="note" render="revision-rend">
+                    Notes for revisions on the document, especially those made on the wiki
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="code-rend">
+                    For HTML, monspaced font with the pre element
+                </tei:rendition>
+    <tei:tagUsage id="code" gi="note" render="code-rend">
+                    Any code in block form, such as xml
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="context-code-rend">
+                    For HTML, monspaced font with the tt element
+                </tei:rendition>
+    <tei:tagUsage id="context-code" gi="eg" render="context-code-rend">
+                    any inline context code (distince from block context code and 
+                    context comand)
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="context-block-code-rend">
+                    For HTML, monspaced font with the pre element
+                    for the wiki page, use the texcode element
+                </tei:rendition>
+    <tei:tagUsage id="context-block-code" gi="note" render="context-block-code-rend">
+                    Any example of ConTeXt code
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="inline-code-rend">
+                    For HTML, monspaced font 
+                </tei:rendition>
+    <tei:tagUsage id="inline-code" gi="seg" render="inline-code-rend">
+                    Any code in block form, such as xml
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="insert-example-text-rend">
+                    For HTML, monspaced font 
+                </tei:rendition>
+    <tei:tagUsage id="insert-example-text" gi="divGen" render="insert-example-text-rend">
+                    A divGen element in which example text must be eitehr inserted; or linked to.
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="section-revision-rend">
+                   Use to get last updated 
+                </tei:rendition>
+    <tei:tagUsage id="section-revision" gi="bibl" render="section-revision">
+                    Includes revison changes for that section
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="revision-in-text-rend">
+                    Sometimes don't put in 
+                </tei:rendition>
+    <tei:tagUsage id="revision-in-text" gi="bibl" render="revision-in-text-rend">
+                    Includes revison notes not at start of section
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="external-figure-rend">
+                    Place the figure 
+                </tei:rendition>
+    <tei:tagUsage id="external-figure" gi="xref" render="external-figure-rend">
+                    Pointer to an external figure, such as an SVG graphic.
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="command-rend">
+                    for Html, use the pre element 
+                </tei:rendition>
+    <tei:tagUsage id="command" gi="eg" render="command-rend">
+                    A block representing a command typed in a shell
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="xml-rend">
+                    for Html, use the pre element 
+                </tei:rendition>
+    <tei:tagUsage id="xml" gi="eg" render="xml-rend">
+                    A block of XML code.
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="unsure-rend">
+                    Don't print out anything in this element 
+                </tei:rendition>
+    <tei:tagUsage id="unsure" gi="div" render="unsure-rend">
+                    unusure indicates code that I am unsure about, that
+                    does not in some way work and therefore should not 
+                    be included in a final doc.
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="paragraph-rend">
+                    paragraph or block formatting 
+                </tei:rendition>
+    <tei:tagUsage id="paragraph" gi="p" render="paragraph-rend">
+                    any generic paragraph
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="div-rend">
+                    section formatting, depending 
+                </tei:rendition>
+    <tei:tagUsage id="div" gi="div" render="div-rend">
+                    any generic div
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="div-tips-rend">
+                   Make into a list 
+                </tei:rendition>
+    <tei:tagUsage id="div-tips" gi="div" render="div-tips-rend">
+                    division for tips
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="head-rend">
+                    depends on level of div 
+                </tei:rendition>
+    <tei:tagUsage id="head" gi="head" render="head-rend">
+                    any generic head
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="item-rend">
+                    bullet or number, depending on parent 
+                </tei:rendition>
+    <tei:tagUsage id="item" gi="item" render="item-rend">
+                    any generic item
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="ordered-list-rend"></tei:rendition>
+    <tei:tagUsage id="ordered-list" gi="list" render="ordered-list-rend">
+                    any generic ordered list
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="unordered-list-rend"></tei:rendition>
+    <tei:tagUsage id="unordered-list" gi="list" render="unordered-list-rend">
+                    any generic unordered list
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="figure-rend">
+                    convert to png for HTML
+                </tei:rendition>
+    <tei:tagUsage id="figure" gi="figure" render="figure-rend">
+                    a svg figure
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="emph-bold-rend">
+                    make bold
+                </tei:rendition>
+    <tei:tagUsage id="emph-bold" gi="emph" render="emph-bold-rend">
+                    any emphasis with bold
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="emph-italic-rend">
+                    make italics
+                </tei:rendition>
+    <tei:tagUsage id="emph-italic" gi="emph" render="emph-italic-rend">
+                    any emphasis with italics
+                </tei:tagUsage>
+   </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="xref-rend">
+                    for html, make a link
+                </tei:rendition>
+    <tei:tagUsage id="xref" gi="xref" render="xref-rend">
+                    link to outside source
+                </tei:tagUsage>
+   </tei:tagsDecl>
+  </tei:encodingDesc>
+  <tei:revisionDesc>
+   <tei:change rend="start">
+    <tei:date>2005-02-23</tei:date>
+    <tei:respStmt>
+     <tei:resp>written by</tei:resp>
+     <tei:name>Paul Tremblay</tei:name>
+    </tei:respStmt>
+    <tei:item>First started writing</tei:item>
+   </tei:change>
+  </tei:revisionDesc>
+ </tei:teiHeader>
+ <tei:text>
+  <tei:body>
+   <tei:div ana="div">
+    <tei:head ana="head">Getting Started</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-23"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head"><tei:seg type="context-name" ana="context-name">context</tei:seg>
+     </tei:head>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> is a
+      system for creating high-quality print documents, such as PDF. It is
+      similar to <tei:seg type="latex-name" ana="latex-name">latex</tei:seg> but
+      with different syntax. Normally, one creates a
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> document
+      in a text editor and then uses the
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> software
+      to convert it to PDF. But
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> can also
+      be used as means to convert XML to PDF. Using XSLT, an author can convert
+      an XML document to
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      document, and then convert this document to a print document.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Using <tei:seg type="context-name" ana="context-name">context</tei:seg> in
+      this way eliminates needing FO. While FO, an open standard, provides an
+      exellent vocabulary to describe page layout, its open source
+      implementation is lacking. The most complete open source software to
+      convert FO to PDF is the java utilty called FOP, and this program cannot
+      do basic things like center tables or control widow paragraphs. The
+      developers of
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> are
+      developing their own utlity to convert the FO to print documents, but
+      since their implementation is not complete, it makes sense to use plain
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> to
+      format XML documents. With
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>, you
+      does not face any of the limitations you encounter with FOP. You can
+      create beautiful print documents&#8212;right now.
+     </tei:p>
+     <tei:p ana="paragraph">
+      I assume you already have
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      installed. If not, download and install the version found at
+      http://www.pragma-ade.com/. You might have to join the mailing list to get
+      everything working right. Once you make it that far, you probably know
+      that you format
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> by
+      issuing commands that begin with a backslash.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\starttext
+A one line document.
+\stoptext
+</tei:eg>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">TeXML</tei:head>
+     <tei:p ana="paragraph">
+      As mentioned above, we will not create such documents in a text editor,
+      but through an XSLT conversion. Being text-based,
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> does not
+      always lend itself well to a direct conversion from an XML tree. If an
+      innoncent blank line from an XML document finds its way into a document,
+      the resulting document will wrongly contain a paragraph divison. In
+      addition, certain characters in your XML document will have special
+      meaning in
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>,
+      resulting in either a wrong result or a failed run. If your XML document
+      contained an &#8220;{&#8221;, and you didn&#8217;t escape it by putting a
+      backslash in front of it, your resulting
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> document
+      would be invalid.
+     </tei:p>
+     <tei:p ana="paragraph">
+      In order to get around this problem, I advocate using
+      <tei:xref url="http://getfo.sourceforge.net/texml/index.html">TeXML</tei:xref>
+      . TeXML is a python utility that converts its own special form of XML into
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>. That
+      means you can use XSLT to convert from one XML tree to another and then
+      let the python utlity to the dirty work of handling white space.
+     </tei:p>
+     <tei:p ana="paragraph">
+      TeXML uses a very simple XML language. Basically, it represents
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> commands
+      in XML and does little more. One could look at a TeXML document and
+      immediately know what the author meant to express in
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>. In
+      converting an XML document such as TEI to TeXML, one is coming as close as
+      possible to actually converting to
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> itself,
+      without having to worry about white space, and while having the comfort of
+      working with an XML tree. If you use TeXML to convert, you really
+      won&#8217;t have to learn a new XML languge, since TeXML consists of very
+      few elements. Instead, you will still think in terms of
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>.
+     </tei:p>
+     <tei:p ana="paragraph">
+      If you choose not to use TeXML, you should still find this document
+      valuable, since I always include examples of how to format in both raw
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> and in
+      TeXML.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Here is the above document in TeXML format.
+     </tei:p>
+<tei:eg rend="xml" ana="xml"> &lt;?xml version="1.0"?&gt;
+ &lt;TeXML xmlns="http://getfo.sourceforge.net/texml/ns1"&gt;
+  &lt;env name="text"&gt;
+   A one line document.
+  &lt;/env&gt;
+ &lt;/TeXML&gt;
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="texml_examples/simple1.xml">source file</tei:xref>
+     </tei:p>
+     <tei:p ana="paragraph">
+      To convert this document to a print format, first convert it to a
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      document.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">texml.py -e utf -c infile.xml outfile.tex
+</tei:eg>
+     <tei:p ana="paragraph">
+      Next, convert the
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> file to
+      a print with your normal
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> command.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">texexec outfile.tex
+</tei:eg>
+     <tei:p ana="paragraph">
+      You can also convert your XML file to an outfile all in one step with the
+      script texml_con.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">texml_con infile.xml
+</tei:eg>
+     <tei:p ana="paragraph">
+      This script converts the infile.xml to infile.tex and then exectutes the
+      command line texexec on that file. You can use any option with this script
+      that you would use with texexec.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Elements in the TeXML document are bound to a namespace. Since TeXML does
+      not allow mixing of elements from other namespaces, I will present
+      elements in this document without prefixes, assuming the root element
+      contains the namespace.
+     </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Basic <tei:seg type="context-name" ana="context-name">context</tei:seg> and TeXML</tei:head>
+     <tei:p ana="paragraph">
+      Here are the basic concepts you need to know to understand the rest of the
+      document. Don&#8217;t worry if you can&#8217;t understand the individual
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> code.
+      Just make sure you understand how to issue commands.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">env</tei:head>
+      <tei:p ana="paragraph">
+       Each <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       document must begin with a
+       <tei:seg type="command" ana="context-command">starttext</tei:seg> command
+       and end with a
+       <tei:seg type="command" ana="context-command">stoptext</tei:seg> command.
+       <tei:seg type="command" ana="context-command">starttext</tei:seg> and
+       <tei:seg type="command" ana="context-command">stoptext</tei:seg> are
+       examples of an environment. TeXML codes any combination of
+       <tei:seg type="command" ana="context-command">start-</tei:seg>
+       <tei:seg type="command" ana="context-command">stop-</tei:seg> with the
+       env element, shorthand for an environment. The env element must have the
+       name attribute, which consists of the command name minus the start or
+       stop. If the commands in
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> are
+       <tei:seg type="command" ana="context-command">starttext</tei:seg>
+       and<tei:seg type="command" ana="context-command">stoptext</tei:seg>, the
+       name of the environment is
+       <tei:seg type="property" ana="property">text</tei:seg>. If the
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       commands are
+       <tei:seg type="command" ana="context-command">startnarrowr</tei:seg> and
+       <tei:seg type="command" ana="context-command">stopnarrower</tei:seg>, the
+       environment&#8217;s name is
+       <tei:seg type="property" ana="property">narrower</tei:seg>.
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">commands</tei:head>
+      <tei:p ana="paragraph">
+       Commands start with a backslash and can be followed by setups, which are
+       placed in brackets, and by the &#8220;scope or range of the
+       command,&#8221; which are placed in curly brackets. This example creates
+       a simple box with the words &#8220;that&#8217;s it&#8221; inside.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\framed[width=2cm,height=1cm]{that's it} 
+</tei:eg>
+      <tei:p ana="paragraph">
+       I will refer to the text in square brackets as an option. The text inside
+       the curly brackets I will call a parameter. In TeXML, this simple
+       fragment looks like this:
+      </tei:p>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="framed"&gt;
+  &lt;opt&gt;width=2cm, height=1cm&lt;/opt&gt;
+  &lt;parm&gt;that's it&lt;/parm&gt;
+&lt;/cmd&gt;
+</tei:eg>
+      <tei:p ana="paragraph">
+       The element opt can contain different properties. The opt element above
+       defines both the width and height. It is easy to forget and include one
+       option value for each parameter, but don&#8217;t, because you will end of
+       with extra square brackets and invalid
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>.
+      </tei:p>
+      <tei:p ana="paragraph">
+       By default, TeXML puts curly brackets after each command:
+      </tei:p>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="par"\&gt;
+</tei:eg>
+<tei:eg rend="context-block-code" ana="context-block-code">\par{}
+</tei:eg>
+      <tei:p ana="paragraph">
+       In order to supress the curly brackets, set the &#8220;gr&#8221;
+       attribute to &#8220;0&#8221;.
+      </tei:p>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="par" gr="0"\&gt;
+</tei:eg>
+<tei:eg rend="context-block-code" ana="context-block-code">\par
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">newlines</tei:head>
+      <tei:p ana="paragraph">
+       By default, TeXML does not insert newlines after or before commands.
+      </tei:p>
+      <tei:p ana="paragraph">
+       That means that this code:
+      </tei:p>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="hairline" gr="0"/&gt;
+&lt;cmd name="par" gr="0"/&gt;
+&lt;cmd name="hairline" gr="0"/&gt;
+&lt;cmd name="par" gr="0"/&gt;
+</tei:eg>
+      <tei:p ana="paragraph">
+       Will appear as:
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\hairline \par \hairline \par
+</tei:eg>
+      <tei:p ana="paragraph">
+       I don&#8217;t think this ever will change the print document. However, if
+       you want commands to appear on their own line in your
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       document, use the &#8220;nl1&#8221; and &#8220;nl2&#8221; attributes.
+       &#8220;nl1&#8221; forces a newline before the command; &#8220;nl2&#8221;
+       forces a break after.
+      </tei:p>
+<tei:eg rend="xml" ana="xml">&lt;!--a newline after--&gt;
+&lt;cmd name="par" gr="0" nl2="1"/&gt;
+
+&lt;!--no newlines--&gt;
+&lt;cmd name="hairline" gr="0"  /&gt;
+
+&lt;!--a newline before and a newline after--&gt;
+&lt;cmd name="par" gr="0" nl1="1" nl2="1"/&gt;
+
+&lt;!--no newlines--&gt;
+&lt;cmd name="hairline" gr="0" /&gt;
+</tei:eg>
+<tei:eg rend="context-block-code" ana="context-block-code">\par
+\hairline
+\par
+\hairline
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">definitions</tei:head>
+      <tei:p ana="paragraph">
+       Often times we need to create a definition for some command and then
+       recall that definition. In such a case, make up a name for the
+       definition, and use this same name when recalling the definition. In the
+       example below,
+       <tei:seg type="property" ana="property">myCustomLayout</tei:seg> is the
+       arbritrary word that identifies the definition.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\definepapersize[myCustomLayout][width=8.5in, height=11in]
+\setuppapersize[myCustomLayout]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="definepapersize"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/cmd&gt;
+ &lt;opt&gt;width=8.5in, height=11in&lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;cmd name="setuppappersize"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">group</tei:head>
+      <tei:p ana="paragraph">
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> can
+       group textual matter by curly brackets. In the following example, the
+       title <tei:emph rend="italic" ana="emph-italic">The Old Man and the
+       Sea</tei:emph> is italicized, while the rest of text is not.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\sl The Old Man and the Sea} by Ernest Hemingway
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;group&gt;&lt;cmd name="sl" gr="0"/&gt;The Old Man and the Sea&lt;/group&gt; by
+Ernest Hemingwary
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Complete Specifications</tei:head>
+      <tei:p ana="paragraph">
+       TeXML&#8217;s own guide can be found
+       <tei:xref ana="xref" url="http://getfo.sourceforge.net/texml/quick.html">here</tei:xref>
+       The complete specifications can be found
+       <tei:xref ana="xref" url="http://getfo.sourceforge.net/texml/spec.html">here</tei:xref>
+       .
+      </tei:p>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Type of <tei:seg type="context-name" ana="context-name">context</tei:seg> in this document</tei:head>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> allows
+      many different ways to do the same thing. Much of its code facilitates
+      automatic generation. Page numbers are automatically placed; sections are
+      given numbers; table of contents and indices can be created automatically;
+      front and back matter are formatted special ways.
+     </tei:p>
+     <tei:p ana="paragraph">
+      The XML author will need very little of this code. He uses XSLT to do most
+      of the numbering and generation of such things as table of contents and
+      controls the default font size and spacing through XML.
+     </tei:p>
+     <tei:p ana="paragraph">
+      This document will therefore use the
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> code
+      that is simplest and most consistent and will ignore that code meant for
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> authors.
+      When the rule of simplicity and consistency conflict, I will choose
+      consitency. It is better to remember or look up one rule even if this rule
+      requires a few more lines. Extra lines won&#8217;t bother us, because we
+      will not have to do much (if any) editing of the
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      document.
+     </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">A few commands to get started</tei:head>
+     <tei:p ana="paragraph">
+      The one-line document illustrates the bare minimum code to create a vaild
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      document. You need to know a few more commands to understand the next
+      section.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">enableregime</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">enableregime</tei:seg>
+       command tells
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> what
+       kind of input code to expect. Set the option to
+       <tei:seg type="property" ana="property">utf</tei:seg> so that
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> can
+       handle any utf in your XML document, including utf-8 and utf-16.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\enableregime[utf]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="enableregime"&gt;
+ &lt;opt&gt;utf&lt;/opt&gt;
+&lt;/cmd&gt;
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">setuppagenumbering</tei:head>
+      <tei:p ana="paragraph">
+       By default,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> puts
+       page numbers at the top of each page. In additon, it restarts numbering
+       after each <tei:seg type="command" ana="context-command">part</tei:seg>
+       command, as explained in the next section of this document. To turn of
+       this automatic numbering, set the
+       <tei:seg type="option" ana="option">state</tei:seg> to
+       <tei:seg type="property" ana="property">stop</tei:seg>, and the
+       <tei:seg type="option" ana="option">way</tei:seg> option to
+       <tei:seg type="property" ana="property">bytext</tei:seg>.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\setuppagenumbering[state=stop, way=bytext]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setuppagenumbering"&gt;
+ &lt;opt&gt;state=stop, way=bytext&lt;/opt&gt;
+&lt;/cmd&gt;
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">input</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">input</tei:seg> command
+       inputs an external document. It takes not options or parameters. Instead,
+       you put the path to the external file on the same line as the
+       <tei:seg type="command" ana="context-command">input</tei:seg> command.
+       The <tei:seg type="command" ana="context-command">input</tei:seg> command
+       is useful for documentating
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> because
+       it allows for sample documents that just display the relevant commands,
+       uncluttered by pages of text.
+      </tei:p>
+      <tei:p ana="paragraph">
+       Here are two sample documents illustrating some of the examples discussed
+       on this page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/simple2.tex">example file in <tei:seg type="context-name" ana="context-name">context</tei:seg>.</tei:xref>
+      </tei:p>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="texml_examples/simple2.xml">example file in TeXML.</tei:xref>
+      </tei:p>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Page Layout</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-02-23"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-02-27"/>
+     <tei:note type="revision-description" ana="paragraph">Figured out how to do different first page header/footer, even  and odd footer. Still don&#8217;t know how to do different layouts for the first page. Don&#8217;t know how to do different last page.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-02-28"/>
+     <tei:note type="revision-description" ana="paragraph">Changed so that the <tei:seg type="context-name" ana="context-name">context</tei:seg> document proceed in a linear  manner with no setups or defines</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-02-28"/>
+     <tei:note type="revision-description" ana="paragraph">Added more info on creating simple headers and footers.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-01"/>
+     <tei:note type="revision-description" ana="paragraph">Changes a lot of the faulty info about where to place commands.</tei:note>
+     <tei:note type="revision-description" ana="paragraph">Added a summary.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-03"/>
+     <tei:note type="revision-description" ana="paragraph">Put in Adam&#8217;s changes. Changed setuplayout to definelayout.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-04"/>
+     <tei:note type="revision-description" ana="paragraph">Changed &#8220;you can&#8217;t change laout of first page&#8221; to &#8220;yes, this is how you do it.&#8221;</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-04"/>
+     <tei:note type="revision-description" ana="paragraph">Added headerdistance; added TO DO; added part about how you had to  make sure your height was correct (footer + header + bodytext)</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-08"/>
+     <tei:note type="revision-description" ana="paragraph">Added the way=bytext for page numbering so it wouldn&#8217;t restart at at each part.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-10"/>
+     <tei:note type="revision-description" ana="paragraph">A complete change again. (I&#8217;m thinking I may never finish this document.  Oh well.) I&#8217;m breaking down all the different components and may include graphics, as if I&#8217;ll ever get the chance. </tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-12"/>
+     <tei:note type="revision-description" ana="paragraph">Started making graphics.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-15"/>
+     <tei:note type="revision-description" ana="paragraph">Found a bug in ConTeXt that prohibits me from really doing anything sophisticated with first, even, and odd pages.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-19"/>
+     <tei:note type="revision-description" ana="paragraph">Found that my thinking about backspace and cutspace is completely off. I needed to do new diagrams and re-write the explanations.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-22"/>
+     <tei:note type="revision-description" ana="paragraph">Use tips divisions</tei:note>
+     <tei:note type="revision-description" ana="paragraph">added graphics</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-26"/>
+     <tei:note type="revision-description" ana="paragraph">added graphics</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-27"/>
+     <tei:note type="revision-description" ana="paragraph">Got rid of the the offset section. Changed explanation on not being able to change odd and even page widths.</tei:note>
+    </tei:bibl>
+    <tei:p ana="paragraph">
+     Page layout involves the physical size of the paper, margins, as well as
+     headers and footers.
+    </tei:p>
+    <tei:p ana="paragraph">
+     Unlike FO, which establishes most of the page layout at the start of the
+     document, <tei:seg type="context-name" ana="context-name">context</tei:seg>
+     creates page layout where it is needed.
+    </tei:p>
+    <tei:div ana="div">
+     <tei:head ana="head">Default Page Layout</tei:head>
+     <tei:p ana="paragraph">
+      Without any instructions,
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+      create one identical page for the entire document.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% this layout produces satisfactory pages
+\starttext
+...
+\stoptext
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;!--this document produces satisfactory pages--&gt;
+&lt;TeXML&gt;
+ &lt;env name="text"&gt;
+ ...
+ &lt;/env&gt;
+
+</tei:eg>
+     <tei:figure url="default1.svg" ana="figure">
+      <tei:head ana="head">Default layout inserts margins</tei:head>
+     </tei:figure>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Physical Page Dimensions</tei:head>
+     <tei:p ana="paragraph">
+      You can set up the size of the paper in two ways, either by using
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>&#8217;s
+      preset dimensions, or by defining your own.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+% Using ConTeXt's pre-set paper sizes
+\setuppapersize[A4]
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml"> &lt;!--Using ConTeXt's pre-set paper sizes--&gt;
+ &lt;cmd name="setuppapersize"&gt;
+  &lt;opt&gt;A4&lt;/opt&gt;
+ &lt;/cmd&gt;
+
+
+</tei:eg>
+<tei:eg rend="context-block-code" ana="context-block-code">% defining your own paper size
+% the first option is whatever name you want
+\definepapersize[myCustomLayout][width=8.5in, height=11in]
+\setuppapersize[myCustomLayout]
+
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;!--defining your own paper size--&gt;
+&lt;!--the first option is whatever name you want--&gt;
+&lt;cmd name="definepapersize"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+ &lt;opt&gt;width=8.5in, height=11in&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+</tei:eg>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Width of Body Text</tei:head>
+     <tei:p ana="paragraph">
+      For all page layouts, set up your dimensions with the
+      <tei:seg type="command" ana="context-command">definelayout</tei:seg>
+      command. After issuing this command, invoke the definitions you have just
+      created with the
+      <tei:seg type="command" ana="context-command">setuplayout</tei:seg>
+      command. The first option of both the
+      <tei:seg type="command" ana="context-command">definelayout</tei:seg> and
+      <tei:seg type="command" ana="context-command">setuplayout</tei:seg>
+      command is the name of the definition, which can be any name you choose.
+      (In my example, the first option for both the
+      <tei:seg type="command" ana="context-command">definelayout</tei:seg> and
+      <tei:seg type="command" ana="context-command">setuplayout</tei:seg>
+      commands is &#8220;myCustomLayout&#8221;.)
+     </tei:p>
+     <tei:p ana="paragraph">
+      Always set your <tei:seg type="option" ana="option">width</tei:seg> to
+      <tei:seg type="property" ana="property">middle</tei:seg>.
+     </tei:p>
+     <tei:p ana="paragraph">
+      If you do not plan on using margin notes, use the
+      <tei:seg type="option" ana="option">backspace</tei:seg> and
+      <tei:seg type="option" ana="option">cutspace</tei:seg> property to set
+      your margins. The <tei:seg type="option" ana="option">backspace</tei:seg>
+      will be the total distance from the left edge of the page to your body
+      text, while the <tei:seg type="option" ana="option">cutspace</tei:seg>
+      property will the total distance from the right edge of the page to your
+      body text. For mirrored texts, this will be reversed: the backspace will
+      determine the right side, and the cutspace the left side.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\definelayout[myCustomLayout][
+backspace=40mm,
+cutspace=38mm,
+width=middle,
+]
+
+\setuplayout[myCustomLayout]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;
+   backspace = 40mm,
+   cutspace=38mm,
+   width=middle
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="setuplayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+</tei:eg>
+     <tei:figure url="margins1.svg" ana="figure">
+      <tei:head ana="head">setting up margins with backspace</tei:head>
+     </tei:figure>
+     <tei:div ana="div">
+      <tei:head ana="head">Customizing Width</tei:head>
+      <tei:p ana="paragraph">
+       If you plan to use margin notes, reserve space in your margins for the
+       notes, the notes and the edge of the page, and the space between the noes
+       and your body text. The width of the leftmargin and rightmargin
+       determines the width your margin notes. The leftmargindistance and
+       rightmargindistance determine the space between the notes and your body
+       text.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The backspace property is the sum of the the leftmargin, the
+       leftmargindistance, and the space from the left edge of the page to the
+       left margin. If the page is mirrored (see below),this is reversed: the
+       backspace will be the sum of these regions on the right hand side of the
+       page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The cutspace property is the sum of the the rightmargin, the
+       rightmargindistance, and the space from the right edge of the page to the
+       right margin. If the page is mirrored (see below),this is reversed: the
+       cutspace will be the sum of these regions on the left hand side of the
+       page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       This leaves two regions which have no name (so far as I know), and which
+       are calculated by
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> rather
+       than being explicitly coded by a user. These regions are the very outer
+       edges of the page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       calculates these regions by subtracting the margin and margin distance
+       from the backspace or cutspace value. In our example, the left outer edge
+       is 15mm because the backspace (50mm) minus the leftmargin (25mm) minus
+       the leftmargindistance (10mm)= 15mm.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\definelayout[myCustomLayout][
+leftmargin=25mm,
+rightmargin=30mm,
+leftmargindistance=10mm,
+rightmargindistance=10mm,
+backspace=50mm,
+width=middle,
+]
+
+\setuplayout[myCustomLayout]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;
+   leftmargin=25mm,
+   rightmargin=30mm,
+   leftmargindistance=10mm,
+   rightmargindistance=10mm,
+   backspace=50mm,
+   width=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="setuplayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+
+</tei:eg>
+      <tei:figure url="margins2.svg" ana="figure">
+       <tei:head ana="head">custom margins</tei:head>
+      </tei:figure>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If you do not explicitly declare
+         <tei:seg type="option" ana="option">leftmargindistance</tei:seg> or
+         <tei:seg type="option" ana="option">rightmargindistance</tei:seg>,
+         <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+         set these regions to 5mm.
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If you do not explicitly declare a
+         <tei:seg type="option" ana="option">backspace</tei:seg> value,
+         <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+         set this region to 25 mm. If your left margin is greater than 25 mm,
+         this can lead to unwanted results.
+        </tei:p>
+       </tei:item>
+      </tei:list>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Height of Body Text</tei:head>
+     <tei:p ana="paragraph">
+      Setting up the height is very similar to setting up the width. You can
+      control the space from the edge of the page to headers, the header space
+      itself, and the distance between the header and the body text.
+     </tei:p>
+     <tei:p ana="paragraph">
+      If you don&#8217;t use headers and footers, alter the height of the body
+      text by changing the header and footer properties, and by setting the
+      height to fit. Keep in mind that
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> puts a
+      default space of 25 mm at the top and bottom of the page.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Always set your height to middle.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\definelayout[myCustomLayout][
+ header=30mm,
+ footer=25mm,
+ height=middle,
+]
+
+\setuplayout[myCustomLayout]
+
+...
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+ &lt;opt&gt;header=30mm, 
+   footer=25mm,
+   height=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;cmd name="setuplayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+     <tei:figure url="margins3.svg" ana="figure">
+      <tei:head ana="head">changing body height through headers and footers</tei:head>
+     </tei:figure>
+     <tei:div ana="div">
+      <tei:head ana="head">Customizing Height</tei:head>
+      <tei:p ana="paragraph">
+       For headers and footers, reserve space for the notes, as well as space
+       between the notes and the edge of the page as well as space between the
+       noes and your body text. Increasing any of the space in this region
+       reduces the height of the body text. Always set your height to middle.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The <tei:seg type="option" ana="option">topspace</tei:seg> properties
+       establishes the space at the very top of the page. The
+       <tei:seg type="option" ana="option">bottomspace</tei:seg> properties
+       establishes the space at the very bottom of the page. The
+       <tei:seg type="option" ana="option">headerdistance</tei:seg> and
+       <tei:seg type="option" ana="option">footerdistance</tei:seg> reserves
+       space between the header or footer and the body text.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\definelayout[myCustomLayout][
+ header=30mm,
+ footer=20mm,
+ headerdistance=10mm,
+ footerdistance=10mm,
+ topspace=30mm,
+ bottomspace=25mm,
+ height=middle,
+]
+
+\setuplayout[myCustomLayout]
+
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;
+   header=30mm,
+   footer=20mm
+   headerdistance=10mm,
+   footerdistance=10mm,
+   topspace=30mm,
+   bottomspace=25mm,
+   height=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;cmd name="setuplayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+
+...
+
+</tei:eg>
+      <tei:figure url="margins4.svg" ana="figure">
+       <tei:head ana="head">setting up footer and header space</tei:head>
+      </tei:figure>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If you do not explicitly declare
+         <tei:seg type="option" ana="option">headerdistance</tei:seg> or
+         <tei:seg type="option" ana="option">footerdistance</tei:seg>,
+         <tei:seg type="context-name" ana="context-name">context</tei:seg> sets
+         these regions to 5mm.
+        </tei:p>
+       </tei:item>
+      </tei:list>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Mirroring Pages</tei:head>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> allows
+      for different layouts on the first, even, and odd pages. Unfortunately,
+      the text width must be the same on all pages within this text flow. If you
+      change the width from one page to the next, the text will not necessarily
+      line up. In order to change the width of a page, you need to start a new
+      run of pages. For example, you can create a book in which chapter 1 had
+      pages that are 8 inches wide while chapter 2 had pages 8.5 inches wide.
+      But within the chapter, you couldn&#8217;t have the odd page be 8 inches
+      wide and the even page be 8.5 inches wide.
+     </tei:p>
+     <tei:p ana="paragraph">
+      The easiest way to change layout for odd and even pages is by mirroring
+      them, so that the page layout will be switched for odd and even pages. To
+      do so, add change the
+      <tei:seg type="command" ana="context-command">setuppagenumbering</tei:seg>
+      command to produce double-sided documents.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\setuppagenumbering[state=stop, 
+  way=bytext, alternative=doublesided]
+
+\definelayout[myCustomLayout][
+width=middle,
+backspace=40mm,
+cutspace=50mm,
+]
+
+\setuplayout[myCustomLayout]
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setuppagenumbering"&gt;
+ &lt;opt&gt;state=stop,
+  way=bytext,
+  alternative=doublesided
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;
+  width=middle,
+  backspace=40mm,
+  cutspace=50mm,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="setuplayout"&gt;
+ &lt;opt&gt;myCustomLayout&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+     <tei:figure url="mirror1.svg" ana="figure">
+      <tei:head ana="head">mirroring pages</tei:head>
+     </tei:figure>
+     <tei:list type="unordered" ana="unordered-list">
+      <tei:head ana="head">Tips</tei:head>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        Keeping track of how values get switched seems tricky to me. Defining
+        first, odd, and even pages (see below) offers an alternative.
+       </tei:p>
+      </tei:item>
+     </tei:list>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Changing Layouts for First, Odd and Even Pages</tei:head>
+     <tei:p ana="paragraph">
+      A more flexible way to change layouts for different pages is to use a
+      position argument. Use &#8220;1&#8221; for the first page, and
+      &#8220;odd&#8221; and &#8220;even&#8221; for the odd and even pages.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Like with mirroring pages, you have to make sure the width of all your
+      pages is the same.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+% setup layout for first page
+\definelayout[1][
+ backspace=30mm,
+ cutspace=40mm,
+ width=middle,
+]
+
+% setup layout for even page
+\definelayout[even][
+ backspace=35mm,
+ cutspace=35mm,
+ width=middle,
+]
+
+% setup layout for even page
+\definelayout[odd][
+ backspace=40mm,
+ cutspace=30mm,
+ width=middle,
+]
+
+% this command now takes no option
+\setuplayout
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;!--setup layout for first page--&gt;
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;backspace=30mm,
+ cutspace=40mm,
+ width=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;!--setup layout for even page--&gt;
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;backspace=35mm,
+ cutspace=35mm,
+ width=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;!--setup layout for odd page--&gt;
+&lt;cmd name="definelayout"&gt;
+ &lt;opt&gt;backspace=30mm,
+ cutspace=40mm,
+ width=middle,
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;!--this command now takes not option--&gt;
+&lt;cmd name="setuplayout" gr="0"/&gt;
+
+</tei:eg>
+     <tei:figure url="first_even_odd.svg" ana="figure">
+      <tei:head ana="head">different first, even and odd pages</tei:head>
+     </tei:figure>
+     <tei:list type="unordered" ana="unordered-list">
+      <tei:head ana="head">Tips</tei:head>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        You don&#8217;t need to define a separate layout for the first page if
+        you just want different odd and even pages.
+       </tei:p>
+      </tei:item>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        Customization of pages is not limited to width. You can have different
+        height and footerdistances, etc, for first, even and odd pages.
+       </tei:p>
+      </tei:item>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        If you set the <tei:seg type="option" ana="option">header</tei:seg> or
+        <tei:seg type="option" ana="option">footer</tei:seg> to 0mm, you will
+        eliminate the space and any texts for headers or footers along with it.
+        There are also other ways to control headers and footers explained
+        below.
+       </tei:p>
+      </tei:item>
+     </tei:list>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Creating Headers and Footers</tei:head>
+     <tei:div ana="div">
+      <tei:head ana="head">Simple Headers and Footers</tei:head>
+      <tei:p ana="paragraph">
+       Place headers and footers with the commands
+       <tei:seg type="command" ana="context-command">setupheadertexts</tei:seg>
+       and
+       <tei:seg type="command" ana="context-command">setupfootertexts</tei:seg>.
+       These commands takes 4 arguments. The first is for the left margin on odd
+       pages, the second for the right margin on odd pages, the third for the
+       left margin on even pages, and the fourth for the left margin on even
+       pages.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupheadertexts[one][two] [three][four]
+\setupfootertexts[one][two] [three][four]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;one&lt;/opt&gt;
+ &lt;opt&gt;two&lt;/opt&gt;
+ &lt;opt&gt;three&lt;/opt&gt;
+ &lt;opt&gt;four&lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;cmd name="setupfootertexts"&gt;
+ &lt;opt&gt;one&lt;/opt&gt;
+ &lt;opt&gt;two&lt;/opt&gt;
+ &lt;opt&gt;three&lt;/opt&gt;
+ &lt;opt&gt;four&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+      <tei:figure url="headers1.svg" ana="figure">
+       <tei:head ana="head">setupheadertexts with four arguments</tei:head>
+      </tei:figure>
+      <tei:p ana="paragraph">
+       When pages are mirrored, the third and fourth argument are reversed. The
+       placement of the headers and foooters does not change for even
+      </tei:p>
+      <tei:figure url="headers2.svg" ana="figure">
+       <tei:head ana="head">headers switched for mirrored layout</tei:head>
+      </tei:figure>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Formatting Text in Headers and Footers</tei:head>
+      <tei:p ana="paragraph">
+       We need special commands to format headers and footers, since the normal
+       commands for body text won&#8217;t work.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">hfill</tei:seg> command
+       helps us align text left and right, as well as center text. This command
+       tells <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       to put as much space as possible between it and the next object. If we
+       use it before some text, it pushes that text all the way to the left. If
+       we use it after some text, it pushes that text all the way to the right.
+      </tei:p>
+      <tei:p ana="paragraph">
+       If we use the <tei:seg type="command" ana="context-command">hfill
+       </tei:seg> command both before and after the text, it puts as much space
+       between the left and the right as possible, resulting in text being
+       approxtimately centered. The centering won&#8217;t be exact because the
+       space of your text on the left will most likely not be the same as the
+       space for the text on the right. To fix this, use the
+       <tei:seg type="command" ana="context-command">llap</tei:seg> and
+       <tei:seg type="command" ana="context-command">rlap </tei:seg> commands.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupheadertexts[\hfill American Lit][] [][Thoreau
+\hfill]
+
+\setupfootertexts[\rlap{Romanticism} \hfill 
+\pagenumber \hfill \llap{Civil Disobedience}][] [][Civil Disobedience]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;
+  &lt;cmd name="hfill"/&gt;
+   American Lit
+ &lt;/opt&gt;
+ &lt;opt/&gt;
+ &lt;opt/&gt;
+ &lt;opt&gt;
+  Thoreau
+  &lt;cmd name="hfill"/&gt;
+ &lt;/opt&gt;
+&lt;/cmd&gt;
+
+ &lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;
+  &lt;cmd name="rlap"&gt;
+   &lt;parm&gt;Romanticism&lt;/parm&gt;
+  &lt;/cmd&gt;
+  &lt;cmd name="hfill"/&gt;
+  &lt;cmd name="pagenumber"/&gt;
+  &lt;cmd name="hfill"/&gt;
+  &lt;cmd name="llap"&gt;
+   &lt;parm&gt;Civil Disobedience&lt;/parm&gt;
+  &lt;/cmd&gt;
+  &lt;/opt&gt;
+  &lt;opt/&gt;
+  &lt;opt/&gt;
+  &lt;opt&gt;
+  Civil Disobedience
+  &lt;/opt&gt;
+ &lt;/cmd&gt;
+
+
+</tei:eg>
+      <tei:figure url="hfill.svg" ana="figure">
+       <tei:head ana="head">using hfill to place headers and footers </tei:head>
+      </tei:figure>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         You can also use the
+         <tei:seg type="command" ana="context-command">hskip</tei:seg> command
+         to create a specific amount of white space. If you wanted 10 points
+         between Thoreau and Romanicism, you type
+         <tei:seg type="command" ana="context-command">hskip10pt</tei:seg>.
+        </tei:p>
+       </tei:item>
+      </tei:list>
+      <tei:p ana="paragraph">
+       Since <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       doesn&#8217;t allow us to create paragraphs in headers and footers as we
+       would in normal text, we use the
+       <tei:seg type="command" ana="context-command">vbox</tei:seg> command to
+       create multi-lines headers and footers. The command
+       <tei:seg type="command" ana="context-command">vbox</tei:seg> stands for
+       vertical box, the basic paragraph unit that
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> uses
+       behind the scenes. In order to break a line inside a
+       <tei:seg type="command" ana="context-command">vbox</tei:seg>, use
+       <tei:seg type="command" ana="context-command">vskip</tei:seg>.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupheadertexts[\vbox{Chapter 8 \vskip5pt Thoreau}][][][Civil
+Disobedience]
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;
+  &lt;cmd name="vbox"&gt;
+   &lt;par&gt;
+    Chapter 8
+    &lt;cmd name="vskip5pt"/&gt;
+    Thoreau
+   &lt;/par&gt;
+  &lt;/cmd&gt;
+ &lt;/opt&gt;
+ &lt;opt/&gt;
+ &lt;opt/&gt;
+ &lt;opt&gt;Civil Disobedience&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+</tei:eg>
+      <tei:figure url="vskip.svg" ana="figure">
+       <tei:head ana="head">using a vbox to create multiline header</tei:head>
+      </tei:figure>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Changing the layout for different parts in a document</tei:head>
+     <tei:p ana="paragraph">
+      Long documents require different layouts for different parts. The abstract
+      in a thesis may need a narrower page width. Each chapter in a book might
+      have a different header.
+     </tei:p>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> has a
+      hierachy of sections for the user, including part, chapter, section,
+      sub-section, and even sub-sub-section. If a user structures his document
+      using these divisions,
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> can
+      create a table of contents and keep track of numbering, amongst other
+      things. However, the XML author doesn&#8217;t need these features, which
+      often prove more of a nuisance. Through the use of XSLT, and XML author
+      already has access to a powerful numbering scheme and the ability to
+      create any type of table of contents she wants.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Therefore I&#8217;ll use only one section command,
+      <tei:seg type="command" ana="context-command">part</tei:seg>. The
+      <tei:seg type="command" ana="context-command">part</tei:seg> commaond
+      provides the mechanism to re-define physical page size, page layout, and
+      headers and footers. By default, the
+      <tei:seg type="command" ana="context-command">part</tei:seg> command will
+      force page numbering to begin at one. In order to stop this behavior (and
+      you probably want to), set the option
+      <tei:seg type="option" ana="option">way </tei:seg> in the
+      <tei:seg type="command" ana="context-command">setuppagenumbering</tei:seg>
+      to <tei:seg type="property" ana="property">bytext</tei:seg>.
+     </tei:p>
+     <tei:p ana="paragraph">
+      To start a new run of pages in which you redefine layout, issue a
+      <tei:seg type="command" ana="context-command">part</tei:seg> command.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\part{}
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="part"/&gt;
+
+</tei:eg>
+     <tei:p ana="paragraph">
+      Once you issue this command, create any new definitions you need to.
+      Simply follow the same procedure outline previously in this document, and
+      the new settings take affect. Remember to issue these commands
+      <tei:emph rend="italic" ana="emph-italic">after</tei:emph> you issue the
+      <tei:seg type="command" ana="context-command">part</tei:seg> command. (The
+      once exception is
+      <tei:seg type="command" ana="context-command">setuphead</tei:seg>, which
+      is explained below.) If you redefine headers and footers before the
+      <tei:seg type="command" ana="context-command">part</tei:seg> command, the
+      new defintions might appear in the previous section.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Here is an example of creating new headers for each chpater in a book.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\part{}
+\setupheadertexts[Chapter 1][][][American Literature]
+% the rest of the chapter goes here
+
+\part{}
+\setupheadertexts[Chapter 2][][][American Literature]
+% the rest of the chapter goes here
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="part"&gt;
+ &lt;parm/&gt;
+&lt;cmd/&gt;
+
+&lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;Chapter 1&lt;/opt&gt;
+ &lt;opt/&gt;
+ &lt;opt/&gt;
+ &lt;opt&gt;American Literature&lt;/opt&gt;
+ &lt;!--the rest of the chpater goes here--&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="setupheadertexts"&gt;
+ &lt;opt&gt;Chapter 2&lt;/opt&gt;
+ &lt;opt/&gt;
+ &lt;opt/&gt;
+ &lt;opt&gt;American Literature&lt;/opt&gt;
+ &lt;!--the rest of the chpater goes here--&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+     <tei:div ana="div">
+      <tei:head ana="head">Setting up the first page in a new section</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">setuphead</tei:seg>
+       command (not to be confused with the
+       <tei:seg type="command" ana="context-command">setupheader</tei:seg>
+       command!), helps us set up the first page for each new part. Because this
+       command defines the new section, it must come
+       <tei:emph rend="italic" ana="emph-italic">before</tei:emph> the
+       <tei:seg type="command" ana="context-command">part</tei:seg> command.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The first option of this command is the section it defines, such as part,
+       section, or sub-section.
+      </tei:p>
+      <tei:div ana="div">
+       <tei:head ana="head">Forcing left or right pages</tei:head>
+       <tei:p ana="paragraph">
+        Use the <tei:seg type="option" ana="option">page</tei:seg> option in
+        <tei:seg type="command" ana="context-command">setuphead</tei:seg> to
+        force an odd or even page.
+        <tei:seg type="property" ana="property">left</tei:seg> forces a left
+        page, and <tei:seg type="property" ana="property">right</tei:seg> forces
+        a right page.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+\setuphead[part][page=left]
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setuphead"&gt;
+ &lt;opt&gt;part&lt;/opt&gt;
+ &lt;opt&gt;page=left&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Customizing headers and footers for the first page</tei:head>
+       <tei:div ana="div">
+        <tei:head ana="head">Controlling the Placement of Headers and Footers</tei:head>
+        <tei:p ana="paragraph">
+         The <tei:seg type="command" ana="context-command">setupheader</tei:seg>
+         and <tei:seg type="command" ana="context-command">setupfooter</tei:seg>
+         allows for control over header and footer placement. To completely
+         eliminate a header or footer for just one page, use the
+         <tei:seg type="command" ana="context-command">setupheader</tei:seg> or
+         <tei:seg type="option" ana="option">setupfooter</tei:seg> commmand in
+         conjunction with the
+         <tei:seg type="option" ana="option">header=empty</tei:seg>.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+% eliminates the header and space for the header
+% for one page
+\setupheader[part][header=empty] 
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setupheader"&gt;
+ &lt;opt&gt;part&lt;/opt&gt;
+ &lt;opt&gt;header=empty&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+        <tei:figure url="header_placement1.svg" ana="figure">
+         <tei:head ana="head">header=empty</tei:head>
+        </tei:figure>
+        <tei:p ana="paragraph">
+         Setting <tei:seg type="option" ana="option">header=high</tei:seg>, not
+         only eliminates the header text, but the white space around it.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+% eliminates the header and space for the header
+% for one page
+\setupheader[part][header=high] 
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="setupheader"&gt;
+ &lt;opt&gt;part&lt;/opt&gt;
+ &lt;opt&gt;header=empty&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+        <tei:figure url="header_placement2.svg" ana="figure">
+         <tei:head ana="head">header=high</tei:head>
+        </tei:figure>
+        <tei:list type="unordered" ana="unordered-list">
+         <tei:head ana="head">Tips</tei:head>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           Setting the <tei:seg type="option" ana="option">header</tei:seg> to
+           <tei:seg type="property" ana="property">none</tei:seg> eliminates
+           headers and footers, as well as the space they occupy, for all pages
+           until a contradictory command is issued.
+          </tei:p>
+         </tei:item>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           Other values for <tei:seg type="option" ana="option">header</tei:seg>
+           are &#8220;stop&#8221;, which stops the placement of headers and
+           footers; &#8220;start&#8221;, which starts them again if they have
+           been stopped.
+          </tei:p>
+         </tei:item>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           The <tei:seg type="option" ana="option">footer=empty</tei:seg> and
+           <tei:seg type="option" ana="option">footer=high</tei:seg> commands
+           are the equivelent to their header conterparts. The text and or space
+           at the bottom will be supressed.
+          </tei:p>
+         </tei:item>
+        </tei:list>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Different headers and footers for firt page</tei:head>
+        <tei:p ana="paragraph">
+         The <tei:seg type="command" ana="context-command">setupheader</tei:seg>
+         command only lets us eliminate a header or footer for the first page,
+         not create a new one. To create a custom header of footer for the first
+         page, define text with the
+         <tei:seg type="command" ana="context-command">definetext</tei:seg>
+         command, and then recall this defintion in the
+         <tei:seg type="command" ana="context-command">setuphead</tei:seg>
+         command.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\definetext[customHeader][header][Chapter 1]
+\setuphead[part][header=customHeader]
+\part{}
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="definetext"&gt;
+ &lt;opt&gt;customheader&lt;/opt&gt;
+ &lt;opt&gt;header&lt;/opt&gt;
+ &lt;opt&gt;Chapter 1&lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;cmd name="setuphead"&gt;
+ &lt;opt&gt;part&lt;/opt&gt;
+ &lt;opt&gt;header=cutomHeader&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+        <tei:figure url="custom_header1.svg" ana="figure">
+         <tei:head ana="head">custom header</tei:head>
+        </tei:figure>
+        <tei:p ana="paragraph">
+         This example uses three options for the
+         <tei:seg type="command" ana="context-command">definetext</tei:seg>
+         command. The first is the name I give it, which I use again in the
+         <tei:seg type="command" ana="context-command">setuphead</tei:seg>
+         command. The second is the position. The last options is the text
+         placed in the header.
+        </tei:p>
+        <tei:list type="unordered" ana="unordered-list">
+         <tei:head ana="head">Tips</tei:head>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           Remember to place the
+           <tei:seg type="command" ana="context-command">setuphead</tei:seg>
+           command <tei:emph rend="italic" ana="emph-italic">before</tei:emph>
+           the <tei:seg type="command" ana="context-command">part</tei:seg>
+           command.
+          </tei:p>
+         </tei:item>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           The <tei:seg type="command" ana="context-command">setuphead</tei:seg>
+           also takes the <tei:seg type="option" ana="option">footer</tei:seg>
+           option.
+          </tei:p>
+         </tei:item>
+        </tei:list>
+       </tei:div>
+      </tei:div>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Example Documents</tei:head>
+     <tei:p ana="paragraph">
+      Here are two example documents, illustrating all the formatting. The first
+      is a plain old
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      document. The second is a TeXML document.
+     </tei:p>
+     <tei:divGen type="page_setup1_tex" ana="insert-example-text"/>
+     <tei:divGen type="page_setup1_texml" ana="insert-example-text"/>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Blocks</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-08"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-30"/>
+     <tei:note type="revision-description" ana="paragraph">Added section on orphan control</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-31"/>
+     <tei:note type="revision-description" ana="paragraph">Added many sections, on line spacing, indenting aligning text</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head">Paragraph Formatting</tei:head>
+     <tei:p ana="paragraph">
+      The basic block unit in
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> is the
+      paragraph. Create a paragraph block with the
+      <tei:seg type="command" ana="context-command">par</tei:seg> command.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">A one line paragraph\par
+Another one line paragraph\par
+
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">A one line paragraph&lt;cmd name="par" gr="0"/&gt;
+Another one line paragraph&lt;cmd name="par" gr="0"/&gt;
+
+
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> allows
+      you to also create a paragraph with a simple blank line, such as you would
+      in email. TeXML works the opposite: it will get rid of any blank lines. So
+      if you use TeXML, the only way to form a paragraph is with the
+      <tei:seg type="command" ana="context-command">par</tei:seg> command.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Space between, before and after</tei:head>
+      <tei:p ana="paragraph">
+       Use the commands
+       <tei:seg type="command" ana="context-command">setupwhitespace</tei:seg>
+       to control the amount of space between paragraph. To reset the amount of
+       space to the default value, use &#8220;none&#8221; as a value.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupwhitespace[5mm]
+first paragraph\par
+second paragraph\par
+third paragraph\par
+\setupwhitespace[none]
+fourth paragraph\par
+fifth paragraph\par
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="par" gr="0"/&gt;
+&lt;cmd name="setupwhitespace"&gt;
+ &lt;opt&gt;5mm&lt;/opt&gt;
+&lt;/cmd&gt;
+first paragraph
+&lt;cmd name="par" gr="0"/&gt;
+second paragaph
+&lt;cmd name="par" gr="0"/&gt;
+third paragaph
+&lt;cmd name="par" gr="0"/&gt;
+&lt;cmd name="setupwhitespace"&gt;
+ &lt;opt&gt;none&lt;/cmd&gt;
+&lt;/cmd&gt;
+fourth paragarph
+&lt;cmd name="par" gr="0"/&gt;
+fifth paragarph
+&lt;cmd name="par" gr="0"/&gt;
+
+</tei:eg>
+      <tei:figure url="whitespace1.svg" ana="figure">
+       <tei:head ana="head">creating space between each paragraph</tei:head>
+      </tei:figure>
+      <tei:p ana="paragraph">
+       If you want to add extra space before of after a paragraphs, use the
+       <tei:seg type="command" ana="context-command">blank</tei:seg> command.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">
+before paragraph
+\blank[24pt]
+This paragraph has 24 points before it and 36 points after it.\par
+\blank[36pt]
+after paragraph\par
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">
+&lt;cmd name="blank"&gt;
+ &lt;opt&gt;24pt&lt;/opt&gt;
+&lt;/cmd&gt;
+This paragraph has 24 points before it and 36 points after it.
+&lt;cmd name="par" gr="0"/&gt;
+&lt;cmd name="blank"&gt;
+ &lt;opt&gt;36pt&lt;/opt&gt;
+&lt;/cmd&gt;
+after paragraph
+&lt;cmd name="par" gr="0"/&gt;
+
+</tei:eg>
+      <tei:figure url="blankspace1.svg" ana="figure">
+       <tei:head ana="head">space before and after paragraph</tei:head>
+      </tei:figure>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">blank</tei:seg> command
+       will not put any blank space at the top of th page unless you use the
+       <tei:seg type="option" ana="option">force</tei:seg> option.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\blank[force, 36pt]
+% chapter title
+Thoreau's Life
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="blank"&gt;
+ &lt;opt&gt;force, 36pt&lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;!--title chapter--&gt;
+Thourea's Life
+
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Line spacing</tei:head>
+      <tei:p ana="paragraph">
+       Set up line spacing with the
+       <tei:seg type="command" ana="context-command">setupinterlinespace</tei:seg>
+       command. This command&#8217;s option can be set to small for single
+       spacing (the default), medium for 1.5 spacing, or big for doublespacing.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% doublespacing
+\setupinterlinespace[big]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;!--doublespacing--&gt;
+&lt;cmd name="setupinterlinespace"&gt;
+ &lt;opt&gt;big&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+</tei:eg>
+      <tei:p ana="paragraph">
+       To gain even more control over the space between lines, change the option
+       to line=x, where x is some value, such as 18pt.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupinterlinespace[line=18pt]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupinterlinespace"&gt;
+ &lt;opt&gt;line=18pt&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         Seting the value of line to some value of ex ensures that your line
+         spacing will always stay in proportion to the size of your font.
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         2.8ex is the default size of line.
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         3.5ex seems to be the size for one and one half line spacing
+         (<tei:seg type="property" ana="property">medium</tei:seg>).
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         4.2ex seems to be the size for double spacing
+         (<tei:seg type="property" ana="property">big</tei:seg>)
+        </tei:p>
+       </tei:item>
+      </tei:list>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Indenting</tei:head>
+      <tei:div ana="div">
+       <tei:head ana="head">First line</tei:head>
+       <tei:p ana="paragraph">
+        Two commands control indenting of the first line:
+        <tei:seg type="command" ana="context-command">indenting</tei:seg> and
+        <tei:seg type="command" ana="context-command">setupindenting</tei:seg>.
+       </tei:p>
+       <tei:p ana="paragraph">
+        The first command determines the amount of the indent for the first
+        line.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupindenting[12pt]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupindenting"&gt;
+ &lt;opt&gt;12pt&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       <tei:p ana="paragraph">
+        The <tei:seg type="command" ana="context-command">indenting</tei:seg>
+        command, determines when indenting will occurr. By default,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+        not indent blocks of text that it determines do not look good, such as a
+        block of text after a vertical space. To override this feature and gain
+        complete control over indenting, set
+        <tei:seg type="command" ana="context-command">indeting</tei:seg> to
+        &#8220;first&#8221;.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\indenting[first]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="indenting"&gt;
+ &lt;opt&gt;first&lt;/opt&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       <tei:p ana="paragraph">
+        This indents all paragraphs by the amount of the
+        <tei:seg type="command" ana="context-command">setupindenting</tei:seg>
+        command. You probably don&#8217;t want headings and titles indented, so
+        just before you write your header, use the
+        <tei:seg type="command" ana="context-command">noindenting</tei:seg>
+        command.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\indenting[first]
+\setupindenting[12pt]
+body text ...\par
+% turn off indenting for a section head
+\noindenting
+section head\par
+% body text will again be indented
+more body text..\par
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="indenting"&gt;
+ &lt;opt&gt;first&lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;cmd name="setupindenting"&gt;
+ &lt;opt&gt;12pt&lt;/opt&gt;
+&lt;/cmd&gt;
+body text..
+&lt;!--turn off indenting for a section head--&gt;
+section head\par
+&lt;!--body text will again be indented--&gt;
+more body text ...\par
+
+</tei:eg>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          You don&#8217;t need to use the
+          <tei:seg type="command" ana="context-command">indenting</tei:seg>
+          command to get indenting to work. If you do not,
+          <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+          use the default of not indenting paragraphs after vertical spaces.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Indenting blocks</tei:head>
+       <tei:p ana="paragraph">
+        To reduce the width of a text, as for a quote, use the envirnoment
+        &#8220;narrower.&#8221; Set up the dimmensions with the
+        <tei:seg type="command" ana="context-command">setupnarrower</tei:seg>
+        command.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupnarrower[left=24pt, right=30pt]
+\startnarrower[left, right]
+ body text..
+\stopnarrower
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupnarrower"&gt;
+ &lt;opt&gt;left=24pt, right=30pt&lt;/opt&gt;
+&lt;/cmd&gt;
+&lt;env name="narrower"&gt;
+ &lt;opt&gt;left, right&lt;/opt&gt;
+ quote text
+&lt;/env&gt;
+
+</tei:eg>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          If you do not use the
+          <tei:seg type="command" ana="context-command">setupnarrower</tei:seg>
+          command,
+          <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+          set right and left to 12pt.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          If you only want to indent the left, leave off the right for the
+          option in
+          <tei:seg type="command" ana="context-command">setupnarrower</tei:seg>.
+          Likewise, leave off the left if you only want to indent your text to
+          the right.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Aligning text</tei:head>
+      <tei:div ana="div">
+       <tei:head ana="head">Non-justified text</tei:head>
+       <tei:p ana="paragraph">
+        By default,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg>
+        justifies text. In fact, creating pretty text is one
+        <tei:seg type="context-name" ana="context-name">context</tei:seg>&#8217;s
+        main feature. If you want your text non-justfied, use the
+        <tei:seg type="command" ana="context-command">setupalign</tei:seg>
+        command with the option of
+        <tei:seg type="property" ana="property">right</tei:seg>.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupalign[right]
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupalign"&gt;
+ &lt;opt&gt;right&lt;/otp&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          To align a whole block of text to the left, set the option to
+          <tei:seg type="property" ana="property">left</tei:seg>.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          To center a whole block of text, set the option to
+          <tei:seg type="property" ana="property">middle</tei:seg>.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          Justified text is easier to read because the spaces between the words
+          are the same.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          Kudos for the developers of
+          <tei:seg type="context-name" ana="context-name">context</tei:seg> for
+          making non-justified text so easy to use. In other forms of
+          <tei:seg type="tex-name" ana="tex-name">tex</tei:seg>, using
+          non-justified text required complicated code.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing alignment of small portions of text</tei:head>
+       <tei:p ana="paragraph">
+        Most likely, you will use one type of alignment for your document, such
+        as justified or non-justified. However, you will often want to change
+        the alignment for just a portion of text, such as the date at the top of
+        a letter, or a title.
+       </tei:p>
+       <tei:div ana="div">
+        <tei:head ana="head">Centering</tei:head>
+        <tei:p ana="paragraph">
+         To center a line, use the midaligned command.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\midaligned{This text is centered}
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="midaligned"&gt;
+ &lt;parm&gt;This text is centered&lt;/parm&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Left-Aligned</tei:head>
+        <tei:p ana="paragraph">
+         To make a line of text left aligned, use the
+         <tei:seg type="command" ana="context-command">leftaligned</tei:seg>
+         command.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\leftaligned{This text left-aligned}
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="leftaligned"&gt;
+ &lt;parm&gt;This text is left-aligned&lt;/parm&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Non-Justified</tei:head>
+        <tei:p ana="paragraph">
+         To make a line of text non-justified, use the
+         <tei:seg type="command" ana="context-command">rightaligned</tei:seg>
+         command.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\rightaligned{This text is non-justified}
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="rightaligned"&gt;
+ &lt;parm&gt;This text is non-justified&lt;/parm&gt;
+&lt;/cmd&gt;
+
+</tei:eg>
+       </tei:div>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Orphan and Widow Controls</tei:head>
+      <tei:p ana="paragraph">
+       Orphans and widows are the ugly text that appears by themselves at the
+       top or bottom of a page. An orphan is the first line of a paragraph on
+       the last line of a page whereas the last line of the paragraph on a new
+       page is a widow.
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> uses
+       the definitions
+       <tei:seg type="command" ana="context-command">widowpenalty=x</tei:seg>
+       and <tei:seg type="command" ana="context-command">clubpenalty=x</tei:seg>
+       to discourage either of these typographical flaws. The default values for
+       each is 150. Increasing the value to 450 should discourage most widows
+       and orphans.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\starttext
+% make sure you put these two commands *after*
+% the \starttext command
+\clubpenalty=450
+\widowpenalty=450
+...
+
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;env name="text"&gt;
+&lt;!--
+Make sure this text occurs within
+the text env
+--&gt;
+&lt;cmd name="clubpenalty=450"/&gt;
+&lt;cmd name="widowpenalty=450"/&gt;
+...
+&lt;/env&gt;
+
+</tei:eg>
+      <tei:p ana="paragraph">
+       Making sure a title or subtitle does not become an orphan requires the
+       <tei:seg type="command" ana="context-command">testpage</tei:seg> command.
+       The <tei:seg type="command" ana="context-command">testpage</tei:seg>
+       command takes one option, an integer, which seems to roughly correspond
+       to the number of minimum additional lines the page should contain.
+      </tei:p>
+      <tei:p ana="paragraph">
+       This command has the affect of allowing text to stick together. If you
+       set its option to 2, and issue it right before a title,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> checks
+       to see if it can fit two lines on the page. If it can&#8217;t, it puts
+       the text on the next page, avoiding an orphan sub-title. If you set the
+       number to three,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+       force a break if it can&#8217;t fit 3 additional lines on a page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The actual number in the option is acutally an aproxtimation, since any
+       extra space seems to count as lines. The higher the number, the most text
+       that will stick with the title or subtitle. If you use too high a number,
+       pages may contain blank spaces at then end. If you use a number too low,
+       the title may become an orphan.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% sapce before the sub-title
+\blank[12pt]
+
+% make sure the page can contain 3 more virtual lines
+% if not, break
+\testpage[3]
+
+% the title (which normally would appear in larger 
+% font)
+Thoreau's Lifestyle\par
+
+% space after the title
+\blank[12pt]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;!--space before the sub-title--&gt;
+&lt;cmd name="blank"&gt;
+ &lt;opt&gt;12pt&lt;/opt&gt;
+&lt;/cmd&gt;
+
+&lt;!--
+ make sure the page can contain 3 more virtual lines
+ if not, break
+--&gt;
+&lt;cmd name="testpage"&gt;
+ &lt;opt&gt;3&lt;/opt&gt;
+&lt;/cmd&gt;
+\testpage[3]
+
+&lt;!--
+the title (which normally would appear in larger 
+ font)
+--&gt;
+Thoreau's Lifestyle
+&lt;cmd name="par" gr="0"/&gt;
+
+&lt;!--space after the title--&gt;
+&lt;cmd name="blank"&gt;
+ &lt;opt&gt;12pt&lt;/opt&gt;
+&lt;/cmd&gt;
+
+
+</tei:eg>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+  </tei:body>
+ </tei:text>
+</tei:TEI>

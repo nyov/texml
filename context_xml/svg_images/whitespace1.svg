@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<svg width="680" height="250"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>white space</title>
+<g>
+<defs>
+</defs>
+
+
+    <text x="300.0" y="40.0" font-size="24" font-family="Bitstream Charter"   fill="#959595" fill-opacity="1.0" >
+
+first paragraph
+    </text>
+
+
+
+    <text x="300.0" y="100.0" font-size="24" font-family="Bitstream Charter"  fill="#959595" fill-opacity="1.0" >
+        second paragraph 
+    </text>
+
+    <text x="300.0" y="150.0" font-size="24" font-family="Bitstream Charter"  fill="#959595" fill-opacity="1.0" >
+       third paragarph
+    </text>
+    <text x="300.0" y="180.0" font-size="24" font-family="Bitstream Charter"  fill="#959595" fill-opacity="1.0" >
+       fourth paragarph
+    </text>
+    <text x="300.0" y="210.0" font-size="24" font-family="Bitstream Charter"  fill="#959595" fill-opacity="1.0" >
+        fifth paragaph
+    </text>
+
+    <text x="10.0" y="100.0" font-size="24" font-family="Bitstream Charter"  fill="#000000" fill-opacity="1.0" >
+    \setupwhitespace[5mm]
+    </text>
+
+    <text x="10.0" y="190.0" font-size="24" font-family="Bitstream Charter"  fill="#000000" fill-opacity="1.0" >
+    \setupwhitespace[none]
+    </text>
+
+    <line x1="265.0" y1="93.0" x2="305.0" y2="63.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="265.0" y1="93.0" x2="305.0" y2="115.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <line x1="265.0" y1="182.0" x2="305.0" y2="155.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="265.0" y1="182.0" x2="305.0" y2="185.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--from text first paragraph-->
+    <!--
+    <line x1="300.0" y1="35.0" x2="280.0" y2="35.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--from text third paragraph-->
+    <!--
+    <line x1="300.0" y1="145.0" x2="280.0" y2="145.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--vertical line-->
+    <!--
+    <line x1="280.0" y1="35.0" x2="280.0" y2="145.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+</g>
+</svg>

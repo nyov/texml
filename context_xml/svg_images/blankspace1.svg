@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<svg width="680" height="350"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>\blankspace</title>
+<g>
+<defs>
+</defs>
+
+
+    <text x="10.0" y="40.0" font-size="24" font-family="Bitstream Charter"   fill="#959595" fill-opacity="1.0" >
+        before paragraph.
+    </text>
+    <text x="10.0" y="150.0" font-size="24" font-family="Bitstream Charter"   fill="#959595" fill-opacity="1.0" >
+        This paragraph is 24 points before it and 36 points after it.
+    </text>
+    <text x="10.0" y="290.0" font-size="24" font-family="Bitstream Charter"  fill="#959595" fill-opacity="1.0" >
+        after paragraph 
+    </text>
+
+
+    <text x="100.0" y="100.0" font-size="24" font-family="Bitstream Charter"  fill="#000000" fill-opacity="1.0" >
+    \blank[24pt]
+    </text>
+
+    <text x="100.0" y="220.0" font-size="24" font-family="Bitstream Charter"  fill="#000000" fill-opacity="1.0" >
+        \blank[36pt]
+    </text>
+
+    <!--shaft-->
+    <line x1="75" y1="45" x2="75" y2="130" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <!--tips-->
+    <line x1="75" y1="45" x2="85" y2="55" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="75" y1="45" x2="65" y2="55" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--bottom tips-->
+    <line x1="75" y1="130" x2="85" y2="120" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="75" y1="130" x2="65" y2="120" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--shaft-->
+    <line x1="75" y1="155" x2="75" y2="270" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <!--tips-->
+    <line x1="75" y1="155" x2="85" y2="165" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="75" y1="155" x2="65" y2="165" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <!--tips bottom-->
+    <line x1="75" y1="270" x2="85" y2="260" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="75" y1="270" x2="65" y2="260" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+</g>
+</svg>

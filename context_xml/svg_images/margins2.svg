@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<!DOCTYPE svg [
+
+<!ENTITY text SYSTEM "margins2_text.xml">
+]
+>
+<svg width="600" height="800"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Margins 2</title>
+<g>
+<defs>
+</defs>
+
+<!--RECTANGLE-->
+<!--x1 = 133 y1=77 x2=468 y2=618-->
+    <rect x="113.0" y="77.0" width="355.0" height="541.0"  fill="#ffffff" fill-opacity="3.0" stroke="#000000" stroke-width="3.0" stroke-opacity="3.0" stroke-linecap="round"/>
+
+
+    <!--left edge -->
+    <line x1="150.0" x2="150.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--left margin-->
+    <line x1="200.0" x2="200.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--leftmargindistance-->
+    <line x1="210.0" x2="210.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+
+    <!--right edge-->
+    <line x1="431.0" x2="431.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--right margin-->
+    <line x1="371.0" x2="371.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--rightmargindistance-->
+    <line x1="361.0" x2="361.0" y1="77.0"  y2="618.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--label for left backspace-->
+
+
+    <!--line that goes to a point-->
+    <line x1="113.0" y1="616.0" x2="150.0" y2="700.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line that goes to a point-->
+    <line x1="210.0" y1="616.0" x2="150.0" y2="700.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--backspace text-->
+    <text x="75" y="720.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">backspace=50mm</text>
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--label for right edge-->
+    <!--line that goes to a point-->
+    <!--
+    <line x1="113.0" y1="616.0" x2="130.0" y2="625.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--line that goes to a point-->
+    <!--
+    <line x1="150.0" y1="616.0" x2="130.0" y2="625.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--left edge text-->
+    <!--
+    <text x="90" y="650.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">15mm</text>
+    -->
+
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--label for right edge-->
+    <!--line that goes to a point-->
+    <!--
+    <line x1="431.0" y1="616.0" x2="448.0" y2="625.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--line that goes to a point-->
+    <!--
+    <line x1="468.0" y1="616.0" x2="448.0" y2="625.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    -->
+
+    <!--right edge text-->
+    <!--
+    <text x="410" y="650.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">15mm</text>
+    -->
+
+    <!--label for right cutspace-->
+
+
+    <!--line that goes to a point-->
+    <line x1="361.0" y1="616.0" x2="410.0" y2="700.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <line x1="468.0" y1="616.0" x2="410.0" y2="700.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--backspace text-->
+    <text x="325" y="720.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">cutspace=55mm</text>
+
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--label for left margin-->
+
+    <!--line that goes to a point-->
+    <line x1="150.0" y1="77.0" x2="170.0" y2="50.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line that goes to a point-->
+    <line x1="200.0" y1="77.0" x2="170.0" y2="50.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <!--right edge text-->
+    <text x="50" y="40.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">leftmargin=25mm</text>
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--label for right margin-->
+    <line x1="431.0" y1="77.0" x2="400.0" y2="50.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--label for right margin-->
+    <line x1="371.0" y1="77.0" x2="400.0" y2="50.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+
+    <!--right edge text-->
+    <text x="350" y="40.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">rightmargin=30mm</text>
+
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--horizontal lines-->
+    <line x1="210.0" x2="361.0" y1="117.0"  y2="117.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <line x1="210.0" x2="361.0" y1="572.0"  y2="572.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--leftmargindistance-->
+    <line x1="206.0" x2="225.0" y1="185.0"  y2="185.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--leftmargindistance text-->
+    <text x="235" y="190.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">leftmargindistance=10mm</text>
+
+<!-- # # # # # # # # # # # # # # # # # # # # # # # # # # -->
+    <!--leftmargindistance-->
+    <line x1="365.0" x2="336.0" y1="346.0"  y2="346.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--leftmargindistance text-->
+    <text x="35" y="350.0" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">rightmargindistance=10mm</text>
+    &text;
+
+    <!--# # # margin notes-->
+<text
+x="150" 
+y="220"
+font-size="10"
+font-family="Bitstream Charter"
+fill="#000000" fill-opacity="1.0"
+textLength="50"
+>
+Margin note 1
+</text>
+
+<text
+x="150" 
+y="450"
+font-size="10"
+font-family="Bitstream Charter"
+fill="#000000" fill-opacity="1.0"
+textLength="50"
+>
+Margin note 2
+</text>
+
+<text
+x="370" 
+y="243"
+font-size="10"
+font-family="Bitstream Charter"
+fill="#000000" fill-opacity="1.0"
+textLength="55"
+>
+Margin note 3
+</text>
+
+<text
+x="370" 
+y="483"
+font-size="10"
+font-family="Bitstream Charter"
+fill="#000000" fill-opacity="1.0"
+textLength="55"
+>
+Margin note 3
+</text>
+
+</g>
+</svg>
+

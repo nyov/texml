@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ASCII"?>
+<svg:svg xmlns:svg="http://www.w3.org/2000/svg" width="700" height="490">
+  <svg:title>Mirroring Pages</svg:title>
+<svg:g>
+<svg:defs>
+</svg:defs>
+    <svg:rect x="29" y="27" width="260.0" height="387.0" fill="#ffffff" fill-opacity="1.0" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:rect x="387" y="27" width="260.0" height="387.0" fill="#ffffff" fill-opacity="1.0" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:text x="106" y="19" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">Even Page</svg:text>
+
+    <svg:text x="454" y="19" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">Odd Page</svg:text>
+
+    <svg:line x1="85" y1="28" x2="85" y2="414" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+    <svg:line x1="422" y1="29" x2="422" y2="413" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="607" y1="27" x2="607" y2="413" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line to point-->
+    <svg:line x1="29" y1="415" x2="56" y2="460" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line to point-->
+    <svg:line x1="84" y1="413" x2="56" y2="460" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line to a point-->
+    <svg:line x1="250" y1="414" x2="270" y2="427" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--line to a point-->
+    <svg:line x1="288" y1="415" x2="268" y2="427" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+
+    <svg:line x1="250" y1="28" x2="250" y2="412" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:text x="20" y="483" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">cutspace=50mm</svg:text>
+
+    <svg:text x="165" y="441" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">backspace=40mm</svg:text>
+
+    <svg:text x="322" y="478" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">backspace=40mm</svg:text>
+
+    <svg:text x="480" y="450" font-size="24" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" effect="0">cutspace=50mm</svg:text>
+
+    <svg:line x1="387" y1="415" x2="404" y2="459" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="422" y1="415" x2="405" y2="459" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--to a point-->
+    <svg:line x1="607" y1="415" x2="625" y2="430" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="647" y1="415" x2="625" y2="430" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="86" y1="54" x2="248" y2="54" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--horizontal line left page bottom-->
+    <svg:line x1="86" y1="387" x2="248" y2="387" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="422" y1="56" x2="607" y2="56" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:line x1="422" y1="380" x2="605" y2="380" stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <svg:text x="90" y="65" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+I heartily accept the motto,--"That
+</svg:text>
+<svg:text x="90" y="80" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+government is best which governs
+</svg:text>
+<svg:text x="90" y="95" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+least;" and I should like to see it
+</svg:text>
+<svg:text x="90" y="110" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+acted up to more rapidly and
+</svg:text>
+<svg:text x="90" y="125" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+systematically. Carried out, it finally
+</svg:text>
+<svg:text x="90" y="140" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+amounts to this, which also I
+</svg:text>
+<svg:text x="90" y="155" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+believe,--"That government is best
+</svg:text>
+<svg:text x="90" y="170" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+which governs not at all;" and when men
+</svg:text>
+<svg:text x="90" y="185" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+re prepared for it, that will be the
+</svg:text>
+<svg:text x="90" y="200" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+kind of government which they will
+</svg:text>
+<svg:text x="90" y="215" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+have. Government is at best but an
+</svg:text>
+<svg:text x="90" y="230" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+expedient; but most governments are
+</svg:text>
+<svg:text x="90" y="245" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+usually, and all governments are
+</svg:text>
+<svg:text x="90" y="260" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+sometimes inexpedient. The objections
+</svg:text>
+<svg:text x="90" y="275" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+which have been brought against a
+</svg:text>
+<svg:text x="90" y="290" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+standing army, and they are many and
+</svg:text>
+<svg:text x="90" y="305" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+weighty, and deserve to prevail, may
+</svg:text>
+<svg:text x="90" y="320" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+also at last be brought against a
+</svg:text>
+<svg:text x="90" y="335" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+standing government. The standing army
+</svg:text>
+<svg:text x="90" y="350" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+is only an arm of the standing
+</svg:text>
+<svg:text x="90" y="365" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+government. The government itself,
+</svg:text>
+<svg:text x="90" y="380" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="156">
+which is only the mode which the people
+</svg:text>
+
+    <svg:text x="429" y="65" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+have chosen to execute their will, is
+</svg:text>
+<svg:text x="429" y="80" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+equally liable to be abused and perverted
+</svg:text>
+<svg:text x="429" y="95" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+before the people can act through it.
+</svg:text>
+<svg:text x="429" y="110" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+Witness the present Mexican war, the work
+</svg:text>
+<svg:text x="429" y="125" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+of comparatively a few individuals using
+</svg:text>
+<svg:text x="429" y="140" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+the standing government as their tool; for,
+</svg:text>
+<svg:text x="429" y="155" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+in the outset, the people would not have
+</svg:text>
+<svg:text x="429" y="170" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+consented to this measure.    This American
+</svg:text>
+<svg:text x="429" y="185" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+government,--what is it but a tradition,
+</svg:text>
+<svg:text x="429" y="200" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+though a recent one, endeavoring to
+</svg:text>
+<svg:text x="429" y="215" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+transmit itself unimpaired to posterity,
+</svg:text>
+<svg:text x="429" y="230" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+but each instant losing some of its
+</svg:text>
+<svg:text x="429" y="245" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+integrity? It has not the vitality and
+</svg:text>
+<svg:text x="429" y="260" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+force of a single living man; for a single
+</svg:text>
+<svg:text x="429" y="275" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+man can bend it to his will. It is a sort
+</svg:text>
+<svg:text x="429" y="290" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+of wooden gun to the people themselves;
+</svg:text>
+<svg:text x="429" y="305" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+and, if ever they should use it in earnest
+</svg:text>
+<svg:text x="429" y="320" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+as a real one against each other, it swill
+</svg:text>
+<svg:text x="429" y="335" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+surely split. But it is not the less
+</svg:text>
+<svg:text x="429" y="350" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+necessary for this; for the people must
+</svg:text>
+<svg:text x="429" y="365" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+have some complicated machinery of other,
+</svg:text>
+<svg:text x="429" y="380" font-size="10" font-family="Bitstream Charter" fill="#000000" fill-opacity="1.0" textLength="172">
+and hear its din, to satisfy that idea of
+</svg:text>
+
+</svg:g>
+</svg:svg>

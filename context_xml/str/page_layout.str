@@ -1,0 +1,956 @@
+:title: Page Layout
+
+:author: Paul Tremblay
+
+:change date=2005-02-23:
+
+  First started writing
+
+:change date=2005-02-27:
+
+  Figured out how to do different first page header/footer, even 
+  and odd footer. Still don't know how to do different layouts for the
+  first page. Don't know how to do different last page.
+
+:change date=2005-02-28:
+
+  Changed so that the [:ab: context] document proceed in a linear 
+  manner with no \setups or defines
+
+:change date=2005-02-28:
+
+  Added more info on creating simple headers and footers.
+
+:change date=2005-03-01:
+
+  Changes a lot of the faulty info about where to place commands.
+
+  Added a summary.
+
+
+:change date=2005-03-03:
+
+  Put in Adam's changes. Changed \setuplayout to \definelayout.
+
+:change date=2005-03-04:
+
+  Changed "you can't change laout of first page" to "yes, this is
+  how you do it."
+
+:change date=2005-03-04:
+
+ Added headerdistance; added TO DO; added part about how you had to 
+ make sure your height was correct (footer + header + bodytext)
+ 
+:change date=2005-03-08:
+
+ Added the way=bytext for page numbering so it wouldn't restart at
+ at each part.
+
+
+:change date=2005-03-10:
+
+ A complete change again. (I'm thinking I may never finish this document. 
+ Oh well.) I'm breaking down all the different components and may
+ include graphics, as if I'll ever get the chance. 
+
+:change date=2005-03-12:
+
+ Started making graphics.
+
+:change date=2005-03-15:
+
+ Found a bug in ConTeXt that prohibits me from
+ really doing anything sophisticated with first,
+ even, and odd pages.
+
+:change date=2005-03-19:
+
+ Found that my thinking about backspace and cutspace is completely
+ off. I needed to do new diagrams and re-write the explanations.
+
+:change date=2005-03-22:
+
+ Use tips divisions
+
+ added graphics
+
+:change date=2005-03-26:
+
+ added graphics
+
+:change date=2005-03-27:
+
+ Got rid of the the offset section. Changed explanation on not being
+ able to change odd and even page widths.
+
+Page layout involves the physical size of the paper, margins, as well
+as headers and footers. 
+
+Unlike FO, which establishes most of the page layout at the start of
+the document, [:ab: context] creates page layout where it is needed.
+
+====================
+Default Page Layout
+====================
+
+Without any instructions, [:ab: context] will create one identical
+page for the entire document. 
+
+
+:t2x-no-process:
+
+ % this layout produces satisfactory pages
+ \starttext
+ ...
+ \stoptext
+
+
+:t2x-no-process rend=xml:
+
+ 
+ <!--this document produces satisfactory pages-->
+ <TeXML>
+  <env name="text">
+  ...
+  </env>
+
+:fig url=default1: Default layout inserts margins
+
+
+
+=========================
+Physical Page Dimensions
+=========================
+
+You can set up the size of the paper in two ways, either by using 
+[:ab: context]'s preset dimensions, or by defining your own. 
+
+:t2x-no-process:
+
+
+ % Using ConTeXt's pre-set paper sizes
+ \setuppapersize[A4]
+
+
+:t2x-no-process rend=xml:
+
+  <!--Using ConTeXt's pre-set paper sizes-->
+  <cmd name="setuppapersize">
+   <opt>A4</opt>
+  </cmd>
+
+
+:t2x-no-process:
+
+ % defining your own paper size
+ % the first option is whatever name you want
+ \definepapersize[myCustomLayout][width=8.5in, height=11in]
+ \setuppapersize[myCustomLayout]
+
+
+
+:t2x-no-process rend=xml:
+
+
+ <!--defining your own paper size-->
+ <!--the first option is whatever name you want-->
+ <cmd name="definepapersize">
+  <opt>myCustomLayout</opt>
+  <opt>width=8.5in, height=11in</opt>
+ </cmd>
+
+
+===================
+Width of Body Text
+===================
+
+
+.. The width of your body text determines how much white space you will
+have on the edge of your page. Old tomes on philosophy and anthologies
+on literature have skinny little margis. Childrens' books and picture
+books such as you have on your coffee table have nice, generous
+margins.
+
+For all page layouts, set up your dimensions with the [:cm: definelayout]
+command. After issuing this command, invoke the definitions you have just
+created with the [:cm: setuplayout] command.  The first option of both the
+[:cm: definelayout] and [:cm: setuplayout] command is the name of the
+definition, which can be any name you choose.  (In my example, the first
+option for both the [:cm: definelayout] and [:cm: setuplayout]
+commands is "myCustomLayout".) 
+
+Always set your [:op: width] to [:pr: middle]. 
+
+If you do not plan on using margin notes, use the [:op: backspace] and
+[:op: cutspace] property to set your margins. The [:op: backspace]
+will be the total distance from the left edge of the page to your body
+text, while the [:op: cutspace] property will the total distance from
+the right edge of the page to your body text. For mirrored texts, this
+will be reversed: the backspace will determine the right side, and the
+cutspace the left side. 
+
+:t2x-no-process:
+
+ 
+ \definelayout[myCustomLayout][
+ backspace=40mm,
+ cutspace=38mm,
+ width=middle,
+ ]
+
+ \setuplayout[myCustomLayout]
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="definelayout">
+  <opt>
+    backspace = 40mm,
+    cutspace=38mm,
+    width=middle
+  </opt>
+ </cmd>
+
+ <cmd name="setuplayout">
+  <opt>myCustomLayout</opt>
+ </cmd>
+
+
+:fig url=margins1: setting up margins with backspace
+
+Customizing Width
+==================
+
+If you plan to use margin notes, reserve space in your margins for the notes,
+the notes and the edge of the page, and the space between the noes and your
+body text. The width of the leftmargin and rightmargin determines the width
+your margin notes. The leftmargindistance and rightmargindistance determine
+the space between the notes and your body text. 
+
+The backspace property is the sum of the the leftmargin, the
+leftmargindistance, and the space from the left edge of the page to the left
+margin. If the page is mirrored (see below),this is reversed: the backspace
+will be the sum of these regions on the right hand side of the page.
+
+The cutspace property is the sum of the the rightmargin, the
+rightmargindistance, and the space from the right edge of the page to
+the right margin. If the page is mirrored (see below),this is
+reversed: the cutspace will be the sum of these regions on the left
+hand side of the page.
+
+This leaves two regions which have no name (so far as I know), and
+which are calculated by [:ab: context] rather than being explicitly
+coded by a user. These regions are the very outer edges of the page. 
+
+[:ab: context] calculates these regions by subtracting the margin and margin
+distance from the backspace or cutspace value. In our example, the left outer
+edge is 15mm because the backspace (50mm) minus the leftmargin (25mm) minus
+the leftmargindistance (10mm)= 15mm. 
+
+
+:t2x-no-process:
+
+ 
+ \definelayout[myCustomLayout][
+ leftmargin=25mm,
+ rightmargin=30mm,
+ leftmargindistance=10mm,
+ rightmargindistance=10mm,
+ backspace=50mm,
+ width=middle,
+ ]
+
+ \setuplayout[myCustomLayout]
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="definelayout">
+  <opt>
+    leftmargin=25mm,
+    rightmargin=30mm,
+    leftmargindistance=10mm,
+    rightmargindistance=10mm,
+    backspace=50mm,
+    width=middle,
+  </opt>
+ </cmd>
+
+ <cmd name="setuplayout">
+  <opt>myCustomLayout</opt>
+ </cmd>
+
+
+
+:fig url=margins2: custom margins
+
+
+:ul:
+
+  :head: Tips
+
+  * If you do not explicitly declare [:op: leftmargindistance] or
+    [:op: rightmargindistance], [:ab: context] will set these regions
+    to 5mm.
+
+  * If you do not explicitly declare a [:op: backspace] value, [:ab: context]
+    will set this region to 25 mm. If your left margin is greater than 
+    25 mm, this can lead to unwanted results.
+
+  
+=====================
+Height of Body Text
+=====================
+
+Setting up the height is very similar to setting up the width. You can
+control the space from the edge of the page to headers, the header
+space itself, and the distance between the header and the body text.
+
+If you don't use headers and footers, alter the height of the body text by
+changing the header and footer properties, and by setting the height to fit.
+Keep in mind that [:ab: context] puts a default space of 25 mm at the top
+and bottom of the page.
+
+Always set your height to middle.
+
+
+:t2x-no-process:
+
+ \definelayout[myCustomLayout][
+  header=30mm,
+  footer=25mm,
+  height=middle,
+ ]
+
+ \setuplayout[myCustomLayout]
+
+ ...
+
+
+:t2x-no-process rend=xml:
+ 
+
+ <cmd name="definelayout">
+  <opt>myCustomLayout</opt>
+  <opt>header=30mm, 
+    footer=25mm,
+    height=middle,
+  </opt>
+ </cmd>
+ <cmd name="setuplayout">
+  <opt>myCustomLayout</opt>
+ </cmd>
+
+:fig url=margins3: changing body height through headers and footers
+
+Customizing Height
+===================
+
+For headers and footers, reserve space for the notes, as well as space
+between the notes and the edge of the page as well as space between
+the noes and your body text. Increasing any of the space in this
+region reduces the height of the body text.  Always set your height to
+middle.
+
+The [:op: topspace] properties establishes the space at the very top
+of the page.  The [:op: bottomspace] properties establishes the space
+at the very bottom of the page.  The [:op: headerdistance] and [:op:
+footerdistance] reserves space between the header or footer and the
+body text.
+
+
+:t2x-no-process:
+
+
+ \definelayout[myCustomLayout][
+  header=30mm,
+  footer=20mm,
+  headerdistance=10mm,
+  footerdistance=10mm,
+  topspace=30mm,
+  bottomspace=25mm,
+  height=middle,
+ ]
+
+ \setuplayout[myCustomLayout]
+
+ 
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="definelayout">
+  <opt>
+    header=30mm,
+    footer=20mm
+    headerdistance=10mm,
+    footerdistance=10mm,
+    topspace=30mm,
+    bottomspace=25mm,
+    height=middle,
+  </opt>
+ </cmd>
+ <cmd name="setuplayout">
+  <opt>myCustomLayout</opt>
+ </cmd>
+ 
+ ...
+
+:fig url=margins4: setting up footer and header space
+
+
+:ul:
+
+  :head: Tips
+
+  * If you do not explicitly declare [:op: headerdistance] or
+    [:op: footerdistance], [:ab: context] sets these regions
+    to 5mm.
+
+
+=================
+Mirroring Pages
+=================
+
+[:ab: context] allows for different layouts on the first, even, and
+odd pages. Unfortunately, the text width must be the same on all pages
+within this text flow. If you change the width from one page to the
+next, the text will not necessarily line up. In order to change the
+width of a page, you need to start a new run of pages. For example,
+you can create a book in which chapter 1 had pages that are 8 inches
+wide while chapter 2 had pages 8.5 inches wide. But within the
+chapter, you couldn't have the odd page be 8 inches wide and the even
+page be 8.5 inches wide.
+
+The easiest way to change layout for odd and even pages is by mirroring
+them, so that the page layout will be switched for odd and even pages.
+To do so, add change the [:cm: setuppagenumbering] command to produce
+double-sided documents.
+
+
+:t2x-no-process:
+
+
+ \setuppagenumbering[state=stop, 
+   way=bytext, alternative=doublesided]
+
+ \definelayout[myCustomLayout][
+ width=middle,
+ backspace=40mm,
+ cutspace=50mm,
+ ]
+
+ \setuplayout[myCustomLayout]
+
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="setuppagenumbering">
+  <opt>state=stop,
+   way=bytext,
+   alternative=doublesided
+  </opt>
+ </cmd>
+
+ <cmd name="definelayout">
+  <opt>
+   width=middle,
+   backspace=40mm,
+   cutspace=50mm,
+  </opt>
+ </cmd>
+
+ <cmd name="setuplayout">
+  <opt>myCustomLayout</opt>
+ </cmd>
+
+:fig url=mirror1: mirroring pages
+
+
+:ul:
+
+  :head: Tips
+
+  * Keeping track of how values get switched seems tricky to me.
+    Defining first, odd, and even pages (see below) offers an 
+    alternative.
+
+=================================================
+Changing Layouts for First, Odd and Even Pages
+=================================================
+
+A more flexible way to change layouts for different pages is to use
+a position argument. Use "1" for the first page, and "odd" and "even"
+for the odd and even pages. 
+
+Like with mirroring pages, you have to make sure the width of all your
+pages is the same. 
+
+:t2x-no-process:
+
+
+ % setup layout for first page
+ \definelayout[1][
+  backspace=30mm,
+  cutspace=40mm,
+  width=middle,
+ ]
+ 
+ % setup layout for even page
+ \definelayout[even][
+  backspace=35mm,
+  cutspace=35mm,
+  width=middle,
+ ]
+ 
+ % setup layout for even page
+ \definelayout[odd][
+  backspace=40mm,
+  cutspace=30mm,
+  width=middle,
+ ]
+ 
+ % this command now takes no option
+ \setuplayout
+
+
+:t2x-no-process rend=xml:
+
+ <!--setup layout for first page-->
+ <cmd name="definelayout">
+  <opt>backspace=30mm,
+  cutspace=40mm,
+  width=middle,
+  </opt>
+ </cmd>
+
+ <!--setup layout for even page-->
+ <cmd name="definelayout">
+  <opt>backspace=35mm,
+  cutspace=35mm,
+  width=middle,
+  </opt>
+ </cmd>
+
+ <!--setup layout for odd page-->
+ <cmd name="definelayout">
+  <opt>backspace=30mm,
+  cutspace=40mm,
+  width=middle,
+  </opt>
+ </cmd>
+
+ <!--this command now takes not option-->
+ <cmd name="setuplayout" gr="0"/>
+
+:fig url=first_even_odd: different first, even and odd pages
+
+:ul:
+
+  :head: Tips
+
+  * You don't need to define a separate layout for the first page if you just
+    want different odd and even pages.
+
+  * Customization of pages is not limited to width. You can have different 
+    height and footerdistances, etc, for first, even and odd pages.
+
+  * If you set the [:op: header] or [:op: footer] to 0mm, you will eliminate
+    the space and any texts for headers or footers along with it. There are
+    also other ways to control headers and footers explained below.
+    
+
+=============================
+Creating Headers and Footers
+=============================
+
+---------------------------
+Simple Headers and Footers
+---------------------------
+
+Place headers and footers  with the commands [:cm: setupheadertexts]
+and [:cm: setupfootertexts]. These commands takes 4 arguments. The
+first is for the left margin on odd pages, the second for the
+right margin on odd pages, the third for the left margin on even
+pages, and the fourth for the left margin on even pages.  
+
+:t2x-no-process:
+
+ \setupheadertexts[one][two] [three][four]
+ \setupfootertexts[one][two] [three][four]
+:t2x-no-process rend=xml:
+ 
+
+ <cmd name="setupheadertexts">
+  <opt>one</opt>
+  <opt>two</opt>
+  <opt>three</opt>
+  <opt>four</opt>
+ </cmd>
+ <cmd name="setupfootertexts">
+  <opt>one</opt>
+  <opt>two</opt>
+  <opt>three</opt>
+  <opt>four</opt>
+ </cmd>
+
+:fig url=headers1: \setupheadertexts with four arguments
+
+When pages are mirrored, the third and fourth argument are reversed.
+The placement of the headers and foooters does not change for even
+
+:fig url=headers2: headers switched for mirrored layout
+
+
+---------------------------------------
+Formatting Text in Headers and Footers
+---------------------------------------
+
+We need special commands to format headers and footers, since the 
+normal commands for body text won't work. 
+
+The [:cm: hfill] command helps us align text left and right, as well
+as center text. This command tells [:ab: context] to put as much space
+as possible between it and the next object. If we use it before some
+text, it pushes that text all the way to the left. If we use it after
+some text, it pushes that text all the way to the right. 
+
+If we use the [:cm: hfill ] command both before and after the text, it
+puts as much space between the left and the right as possible,
+resulting in text being approxtimately centered. The centering won't
+be exact because the space of your text on the left will most likely
+not be the same as the space for the text on the right. To fix this,
+use the [:cm: llap] and [:cm: rlap ] commands.
+
+:t2x-no-process:
+
+ \setupheadertexts[\hfill American Lit][] [][Thoreau
+ \hfill]
+
+ \setupfootertexts[\rlap{Romanticism} \hfill 
+ \pagenumber \hfill \llap{Civil Disobedience}][] [][Civil Disobedience]
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="setupheadertexts">
+  <opt>
+   <cmd name="hfill"/>
+    American Lit
+  </opt>
+  <opt/>
+  <opt/>
+  <opt>
+   Thoreau
+   <cmd name="hfill"/>
+  </opt>
+ </cmd>
+
+  <cmd name="setupheadertexts">
+  <opt>
+   <cmd name="rlap">
+    <parm>Romanticism</parm>
+   </cmd>
+   <cmd name="hfill"/>
+   <cmd name="pagenumber"/>
+   <cmd name="hfill"/>
+   <cmd name="llap">
+    <parm>Civil Disobedience</parm>
+   </cmd>
+   </opt>
+   <opt/>
+   <opt/>
+   <opt>
+   Civil Disobedience
+   </opt>
+  </cmd>
+
+ 
+:fig url=hfill: using \hfill to place headers and footers 
+
+
+
+:ul:
+
+  :head: Tips
+
+  * You can also use the [:cm: hskip] command to create a specific amount
+    of white space. If you wanted 10 points between Thoreau and Romanicism,
+    you type [:cm: hskip10pt].
+
+Since [:ab: context] doesn't allow us to create paragraphs in headers
+and footers as we would in normal text, we use the [:cm: vbox] command
+to create multi-lines headers and footers.  The command [:cm: vbox]
+stands for vertical box, the basic paragraph unit that [:ab: context]
+uses behind the scenes. In order to break a line inside a [:cm: vbox],
+use [:cm: vskip].
+
+:t2x-no-process:
+
+ \setupheadertexts[\vbox{Chapter 8 \vskip5pt Thoreau}][][][Civil
+ Disobedience]
+
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupheadertexts">
+  <opt>
+   <cmd name="vbox">
+    <par>
+     Chapter 8
+     <cmd name="vskip5pt"/>
+     Thoreau
+    </par>
+   </cmd>
+  </opt>
+  <opt/>
+  <opt/>
+  <opt>Civil Disobedience</opt>
+ </cmd>
+
+
+:fig url=vskip: using a \vbox to create multiline header
+
+========================================================
+Changing the layout for different parts in a document
+========================================================
+
+Long documents require different layouts for different parts. The 
+abstract in a thesis may need a narrower page width. Each chapter
+in a book might have a different header.
+
+[:ab: context] has a hierachy of sections for the user, including
+part, chapter, section, sub-section, and even sub-sub-section. If
+a user structures his document using these divisions, [:ab: context]
+can create a table of contents and keep track of numbering, amongst
+other things. However, the XML author doesn't need these features,
+which often prove more of a nuisance. Through the use of XSLT, and
+XML author already has access to a powerful numbering scheme and 
+the ability to create any type of table of contents she wants. 
+
+Therefore I'll use only one section command, [:cm: part]. The [:cm: part]
+commaond provides the mechanism to re-define physical page size, 
+page layout, and headers and footers. By default, the [:cm: part] command
+will force page numbering to begin at one. In order to stop this 
+behavior (and you probably want to), set the option [:op: way 
+] in the [:cm: setuppagenumbering] to [:pr: bytext]. 
+
+To start a new run of pages in which you redefine layout, issue a
+[:cm: part] command.
+
+:t2x-no-process:
+
+
+ \part{}
+
+:t2x-no-process rend=xml:
+ 
+
+ <cmd name="part"/>
+
+Once you issue this command, create any new definitions you need to. 
+Simply follow the same procedure outline previously in this document, 
+and the new settings take affect. Remember to issue these commands
+*after* you issue the [:cm: part] command. (The once exception is
+[:cm: setuphead], which is explained below.) If you redefine headers
+and footers before the [:cm: part] command, the new defintions might
+appear in the previous section.
+
+Here is an example of creating new headers for each chpater in a book. 
+
+
+:t2x-no-process:
+
+
+ \part{}
+ \setupheadertexts[Chapter 1][][][American Literature]
+ % the rest of the chapter goes here
+ 
+ \part{}
+ \setupheadertexts[Chapter 2][][][American Literature]
+ % the rest of the chapter goes here
+
+:t2x-no-process rend=xml:
+ 
+
+ <cmd name="part">
+  <parm/>
+ <cmd/>
+
+ <cmd name="setupheadertexts">
+  <opt>Chapter 1</opt>
+  <opt/>
+  <opt/>
+  <opt>American Literature</opt>
+  <!--the rest of the chpater goes here-->
+ </cmd>
+
+ <cmd name="setupheadertexts">
+  <opt>Chapter 2</opt>
+  <opt/>
+  <opt/>
+  <opt>American Literature</opt>
+  <!--the rest of the chpater goes here-->
+ </cmd>
+
+------------------------------------------------------------
+Setting up the first page in a new section
+------------------------------------------------------------
+
+The [:cm: setuphead] command (not to be confused with the
+[:cm: setupheader] command!), helps us set up the first page
+for each new part. Because this command defines the new section, 
+it must come *before* the [:cm: part] command.
+
+The first option of this command is the section it defines, such
+as part, section, or sub-section.
+
+Forcing left or right pages
+---------------------------
+
+Use the [:op: page] option in [:cm: setuphead] to force an odd 
+or even page. [:pr: left] forces a left page, and [:pr: right] 
+forces a right page.
+
+:t2x-no-process:
+
+ 
+ \setuphead[part][page=left]
+
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="setuphead">
+  <opt>part</opt>
+  <opt>page=left</opt>
+ </cmd>
+
+Customizing headers and footers for the first page
+---------------------------------------------------
+
+Controlling the Placement of Headers and Footers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The [:cm: setupheader] and [:cm: setupfooter] allows for control over
+header and footer placement. To completely eliminate a header or
+footer for just one page, use the [:cm: setupheader] or [:op:
+setupfooter] commmand in conjunction with the [:op: header=empty]. 
+
+:t2x-no-process:
+
+
+ % eliminates the header and space for the header
+ % for one page
+ \setupheader[part][header=empty] 
+
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="setupheader">
+  <opt>part</opt>
+  <opt>header=empty</opt>
+ </cmd>
+
+:fig url=header_placement1: header=empty
+
+Setting [:op: header=high], not only eliminates the header text, but the
+white space around it.
+
+:t2x-no-process:
+
+
+ % eliminates the header and space for the header
+ % for one page
+ \setupheader[part][header=high] 
+
+
+:t2x-no-process rend=xml:
+
+
+ <cmd name="setupheader">
+  <opt>part</opt>
+  <opt>header=empty</opt>
+ </cmd>
+
+:fig url=header_placement2: header=high
+
+:ul:
+
+  :head: Tips
+
+  * Setting the  [:op: header] to [:pr: none] eliminates headers and
+    footers, as well as the space they occupy, for all pages until a
+    contradictory command is issued.
+
+
+  * Other values for [:op: header] are "stop", which stops the placement of
+    headers and footers; "start", which starts them again if they have
+    been stopped. 
+
+  * The [:op: footer=empty] and [:op: footer=high] commands are the
+    equivelent to their header conterparts. The text and or space  at
+    the bottom will be supressed.
+
+Different headers and footers for firt page
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The [:cm: setupheader] command only lets us eliminate a header or footer for
+the first page, not create a new one. To create a custom header of footer for
+the first page, define text with the [:cm: definetext] command, and then 
+recall this defintion in the [:cm: setuphead] command.  
+
+
+:t2x-no-process:
+
+ \definetext[customHeader][header][Chapter 1]
+ \setuphead[part][header=customHeader]
+ \part{}
+
+:t2x-no-process rend=xml:
+
+ <cmd name="definetext">
+  <opt>customheader</opt>
+  <opt>header</opt>
+  <opt>Chapter 1</opt>
+ </cmd>
+
+ <cmd name="setuphead">
+  <opt>part</opt>
+  <opt>header=cutomHeader</opt>
+ </cmd>
+
+:fig url=custom_header1: custom header
+
+This example uses three options for the [:cm: definetext] command.  The first
+is the name I give it, which I use again in the [:cm: setuphead] command. The
+second is the position. The last options is the text placed in the header. 
+
+:ul:
+
+  :head: Tips
+
+  * Remember to place the [:cm: setuphead] command *before*
+    the [:cm: part] command.
+
+  * The [:cm: setuphead] also takes the [:op: footer] option.
+
+
+
+
+==================
+Example Documents
+==================
+
+Here are two example documents, illustrating all the formatting. The
+first is a plain old [:ab: context] document. The second is a TeXML
+document. 
+ 
+:divGen type=page_setup1_tex ana=insert-example-text:
+
+:divGen type=page_setup1_texml ana=insert-example-text:
+
+

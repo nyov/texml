@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE TEI 
+
+[
+<!ENTITY page-layout SYSTEM "page_layout.xml">
+<!ENTITY getting-started SYSTEM "getting_started.xml">
+<!ENTITY blocks SYSTEM "blocks.xml">
+
+
+]
+>
+<TEI xmlns= "http://www.tei-c.org/ns/1.0">
+    <teiHeader>   
+        <fileDesc>
+            <titleStmt>
+                <title type="main"><seg type="context-name">context</seg></title>
+                <author>Paul Tremblay</author>
+            </titleStmt>
+            <publicationStmt>
+                <distributor>none</distributor>
+            </publicationStmt>
+            <sourceDesc><p>no source--a manuscript</p></sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl>
+                <rendition id = "context-command-rend">
+                    Indent this paragraph 5 pts
+                </rendition>
+                <tagUsage id="context-command" gi="seg" render="context-command-rend">
+                    Any context command.
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "property-rend">
+                    for html, use monospace fonts or maybe put in quotes
+                </rendition>
+                <tagUsage id="property" gi="seg" render="property-rend">
+                    property defines the value of an option. For example in [state=high],
+                    high is a property. 
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "context-name-rend">
+                    For HTML, ConTeXt. For PDF, issue the fancy command.
+                </rendition>
+                <tagUsage id="context-name" gi="seg" render="context-name-rend">
+                    The name of the context program
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "tex-name-rend">
+                    For HTML, TeX. For PDF, issue the fancy command.
+                </rendition>
+                <tagUsage id="tex-name" gi="seg" render="tex-name-rend">
+                    The name of the TeX program
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "latex-name-rend">
+                    For HTML, LaTeX. For PDF, issue the fancy command.
+                </rendition>
+                <tagUsage id="latex-name" gi="seg" render="latex-name-rend">
+                    The name of the latex program
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "option-rend">
+                    Monospace font.
+                </rendition>
+                <tagUsage id="option" gi="seg" render="option-rend">
+                    An option in ConTeXt, such as [footer=high]
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "revision-rend">
+                    For wiki pages, get rid of?
+                </rendition>
+                <tagUsage id="revision" gi="note" render="revision-rend">
+                    Notes for revisions on the document, especially those made on the wiki
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "code-rend">
+                    For HTML, monspaced font with the pre element
+                </rendition>
+                <tagUsage id="code" gi="note" render="code-rend">
+                    Any code in block form, such as xml
+                </tagUsage>
+            </tagsDecl>
+
+            <tagsDecl>
+                <rendition id = "context-code-rend">
+                    For HTML, monspaced font with the tt element
+                </rendition>
+                <tagUsage id="context-code" gi="eg" render="context-code-rend">
+                    any inline context code (distince from block context code and 
+                    context comand)
+                </tagUsage>
+            </tagsDecl>
+
+            <tagsDecl>
+                <rendition id = "context-block-code-rend">
+                    For HTML, monspaced font with the pre element
+                    for the wiki page, use the texcode element
+                </rendition>
+                <tagUsage id="context-block-code" gi="note" render="context-block-code-rend">
+                    Any example of ConTeXt code
+                </tagUsage>
+            </tagsDecl>
+
+            <tagsDecl>
+                <rendition id = "inline-code-rend">
+                    For HTML, monspaced font 
+                </rendition>
+                <tagUsage id="inline-code" gi="seg" render="inline-code-rend">
+                    Any code in block form, such as xml
+                </tagUsage>
+            </tagsDecl>
+
+            <tagsDecl>
+                <rendition id = "insert-example-text-rend">
+                    For HTML, monspaced font 
+                </rendition>
+                <tagUsage id="insert-example-text" gi="divGen" render="insert-example-text-rend">
+                    A divGen element in which example text must be eitehr inserted; or linked to.
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "section-revision-rend">
+                   Use to get last updated 
+                </rendition>
+                <tagUsage id="section-revision" gi="bibl" render="section-revision">
+                    Includes revison changes for that section
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "revision-in-text-rend">
+                    Sometimes don't put in 
+                </rendition>
+                <tagUsage id="revision-in-text" gi="bibl" render="revision-in-text-rend">
+                    Includes revison notes not at start of section
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "external-figure-rend">
+                    Place the figure 
+                </rendition>
+                <tagUsage id="external-figure" gi="xref" render="external-figure-rend">
+                    Pointer to an external figure, such as an SVG graphic.
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "command-rend">
+                    for Html, use the pre element 
+                </rendition>
+                <tagUsage id="command" gi="eg" render="command-rend">
+                    A block representing a command typed in a shell
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "xml-rend">
+                    for Html, use the pre element 
+                </rendition>
+                <tagUsage id="xml" gi="eg" render="xml-rend">
+                    A block of XML code.
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "unsure-rend">
+                    Don't print out anything in this element 
+                </rendition>
+                <tagUsage id="unsure" gi="div" render="unsure-rend">
+                    unusure indicates code that I am unsure about, that
+                    does not in some way work and therefore should not 
+                    be included in a final doc.
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "paragraph-rend">
+                    paragraph or block formatting 
+                </rendition>
+                <tagUsage id="paragraph" gi="p" render="paragraph-rend">
+                    any generic paragraph
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "div-rend">
+                    section formatting, depending 
+                </rendition>
+                <tagUsage id="div" gi="div" render="div-rend">
+                    any generic div
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "div-tips-rend">
+                   Make into a list 
+                </rendition>
+                <tagUsage id="div-tips" gi="div" render="div-tips-rend">
+                    division for tips
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "head-rend">
+                    depends on level of div 
+                </rendition>
+                <tagUsage id="head" gi="head" render="head-rend">
+                    any generic head
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "item-rend">
+                    bullet or number, depending on parent 
+                </rendition>
+                <tagUsage id="item" gi="item" render="item-rend">
+                    any generic item
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "ordered-list-rend">
+                     
+                </rendition>
+                <tagUsage id="ordered-list" gi="list" render="ordered-list-rend">
+                    any generic ordered list
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "unordered-list-rend">
+                     
+                </rendition>
+                <tagUsage id="unordered-list" gi="list" render="unordered-list-rend">
+                    any generic unordered list
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "figure-rend">
+                    convert to png for HTML
+                </rendition>
+                <tagUsage id="figure" gi="figure" render="figure-rend">
+                    a svg figure
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "emph-bold-rend">
+                    make bold
+                </rendition>
+                <tagUsage id="emph-bold" gi="emph" render="emph-bold-rend">
+                    any emphasis with bold
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "emph-italic-rend">
+                    make italics
+                </rendition>
+                <tagUsage id="emph-italic" gi="emph" render="emph-italic-rend">
+                    any emphasis with italics
+                </tagUsage>
+            </tagsDecl>
+            <tagsDecl>
+                <rendition id = "xref-rend">
+                    for html, make a link
+                </rendition>
+                <tagUsage id="xref" gi="xref" render="xref-rend">
+                    link to outside source
+                </tagUsage>
+            </tagsDecl>
+            
+        </encodingDesc>
+        <revisionDesc>
+            <change rend="start">
+                <date>2005-02-23</date>
+                <respStmt>
+                    <resp>written by</resp>
+                    <name>Paul Tremblay</name>
+                </respStmt>
+                <item >First started writing</item>
+            </change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body >
+            <div ana="div">
+                <head ana="head">Getting Started</head>
+                &getting-started;
+            </div>
+            <div ana="div">
+                <head ana="head">Page Layout</head>
+                &page-layout;
+            </div>
+            <div ana="div">
+                <head ana="head">Blocks</head>
+                &blocks;
+            </div>
+        </body>
+    </text>
+</TEI>
