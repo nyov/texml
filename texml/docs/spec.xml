@@ -60,7 +60,7 @@ again text mode: \textvert{}\^</lst>
   <parm>letter</parm>
 </cmd>]]></lst>
 		</blockquote>
-		<p>The TeXML <e>cmd</e> can have several commands <e>parm</e> or <e>opt</e>.</p>
+		<p>The TeXML <e>cmd</e> can have several elements <e>parm</e> or <e>opt</e>.</p>
 		<blockquote>
 			<p>TeXML:</p>
 <lst><![CDATA[... Visit <cmd name="href">
@@ -68,6 +68,20 @@ again text mode: \textvert{}\^</lst>
   <parm>http://getfo.org/texml/</parm></cmd> ...]]></lst>
 			<p>TeX:</p>
 			<lst>... Visit \href{TeXML homepage}{http://getfo.org/texml/} ...</lst>
+		</blockquote>
+		<p>Attributes <e>nl1</e> and <e>nl2</e> can be used to force a new line before (<e>nl1</e>) or after (<e>nl2</e>) TeX command.</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[...
+<cmd name="item"/>first
+<cmd name="item"/>second
+<cmd name="item" nl1="1"/>third
+<cmd name="item" nl1="1" nl2="1"/>fourth ...]]></lst>
+			<p>TeX:</p>
+			<lst>... \item first \item second
+\item third
+\item
+fourth ...</lst>
 		</blockquote>
 	</sect>
 
@@ -95,7 +109,19 @@ again text mode: \textvert{}\^</lst>
 <lst>&lt;env name="list" begin="start" end="finish"&gt;
   ...
 &lt;/env&gt;</lst>
-</blockquote>
+		</blockquote>
+		<p>The TeXML processor automatically creates new lines around the beginning and the end of an environment. You can change this behaviour using four attributes: <e>nl1</e> (before the beginning), <e>nl2</e> (after the beginning), <e>nl3</e> (before the end) and <e>nl4</e> (after the end).</p>
+		<blockquote>
+			<p>TeXML:</p>
+			<lst><![CDATA[... one <env name="fake">env</env>, another <env
+name="fake" nl1="0" nl2="0" nl3="0" nl4="0">env</env>, etc.]]></lst>
+			<p>TeX:</p>
+			<lst>... one
+\begin{fake}
+env
+\end{fake}
+, another \begin{fake}env\end{fake}, etc.</lst>
+		</blockquote>
 	</sect>
 
 
@@ -341,11 +367,13 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 		</blockquote>
 		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures being converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
-		<p>It is possible to tune text translation:</p>
+		<p>The program removes what can be regarded as insignificant whitespace. Details are discussion in section &#x201c;<a href="#wsproc">Whitespace processing</a>&#x201d;.</p>
+		<p>You can tune the text translation, and you ought to do it for verbatim environments. Possible settings:</p>
 		<ul>
 			<li><code><![CDATA[<TeXML escape="0">...</TeXML>]]></code> leaves specials as is, without escaping,</li>
 			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves ligatures as is,</li>
 			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
+			<li><code><![CDATA[<TeXML ws="1">...</TeXML>]]></code> leaves whitespaces as is.</li>
 		</ul>
 		<blockquote>
 			<p>Example. For TeXML</p>
@@ -369,5 +397,11 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$</lst>
 		<p>You can specify any encoding supported by Python codecs. The default encoding is <tt>ascii</tt>.</p>
 	</sect>
 
+
+
+	<sect>
+		<title>Whitespace processing</title>
+		<a name="wsproc"/><p>Characters are processed as follows:</p>
+	</sect>
 
 </doc>
