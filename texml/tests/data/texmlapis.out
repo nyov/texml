@@ -3,8 +3,7 @@
           ]{article}
   \usepackage[dvipdfm,colorlinks]{hyperref}
   \usepackage{booktabs}
-  \begin{document}
-    \title{\TeX 
+  \begin{document}\title{\TeX 
     MLapis}
     \author{
       Chris Houser\\

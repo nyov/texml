@@ -1,8 +1,7 @@
 %
  \documentclass{article}
  \title{Edward Weston}
- \begin{document}
-  \maketitle 
+ \begin{document}\maketitle 
   \section*{Some biographical information}
   Edward Weston
   was born in
@@ -14,8 +13,7 @@
   Weston was a photographer who pioneered the modern use of photography
   as an art form in the United States.
   \section*{Some short quotes from Weston}
-  \begin{enumerate}
-   \item 
+  \begin{enumerate}\item 
    ``My own eyes are no more than scouts on a preliminary search,
    for the camera's eye may entirely change my idea.''
    \item 
@@ -23,8 +21,7 @@
    on the photographer's ability to understand his fellow man.''
   \end{enumerate}
   \section*{A longer quote}
-  \begin{quote}
-   ``One does not think during creative work, any more than one thinks
+  \begin{quote}``One does not think during creative work, any more than one thinks
   when driving a car. But one has a background of years - learning,
   unlearning, success, failure, dreaming, thinking, experience, all
   this - then the moment of creation, the focusing of all into the
