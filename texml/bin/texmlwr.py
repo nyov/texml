@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.16 2004-06-18 13:50:19 olpa Exp $
+# $Id: texmlwr.py,v 1.17 2004-06-21 07:39:14 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -13,6 +13,7 @@ import unimap
 import specmap
 import codecs
 import os
+import string
 
 #
 # Writer&Co class
@@ -49,6 +50,8 @@ class texmlwr:
   # > approx_total_len
   # Position of last weak whitespace
   # > last_weak_ws_pos
+  # A ws suspend flag to avoid weak whitespaces at end of line
+  # > weak_ws_is_suspended
   
   def __init__(self, stream):
     """ Remember output stream, initialize data structures """
@@ -68,6 +71,7 @@ class texmlwr:
     self.autonewline_after_len   = 50
     self.approx_total_len        = 0
     self.last_weak_ws_pos        = -2 # anything less than 1
+    self.weak_ws_is_suspended    = 0
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -133,31 +137,39 @@ class texmlwr:
     if self.last_weak_ws_pos + 1 == self.approx_total_len:
       return                                               # return
     #
-    # Finally, write a space
+    # Finally, "write" a space
     #
     self.last_weak_ws_pos = self.approx_total_len
-    self.writech(' ', 0)
+    self.last_ch = ' '
+    self.weak_ws_is_suspended = 1
 
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
+    #
+    # Write a suspended whitespace
+    #
+    if self.weak_ws_is_suspended:
+      self.weak_ws_is_suspended = 0
+      if not(ch in string.whitespace):
+        self.writech(' ', 0)
     #
     # Update counters
     #
     self.approx_current_line_len = self.approx_current_line_len + 1
     self.approx_total_len        = self.approx_total_len        + 1
     #
-    # Handle ligatures
+    # Handle well-known standard TeX ligatures
     #
     if not(self.ligatures):
       if '-' == ch:
-	if '-' == self.last_ch:
-	  self.stream.write('{}')
+        if '-' == self.last_ch:
+          self.stream.write('{}')
       elif "'" == ch:
-	if "'" == self.last_ch:
-	  self.stream.write('{}')
+        if "'" == self.last_ch:
+          self.stream.write('{}')
       elif '`' == ch:
-	if ('`' == self.last_ch) or ('!' == self.last_ch) or ('?' == self.last_ch):
-	  self.stream.write('{}')
+        if ('`' == self.last_ch) or ('!' == self.last_ch) or ('?' == self.last_ch):
+          self.stream.write('{}')
     self.last_ch = ch
     #
     # Handle end-of-line symbols in special way
@@ -188,7 +200,7 @@ class texmlwr:
       #
       if (0 == self.after_char0a) or (0 == self.after_char0d):
         self.stream.write(os.linesep)
-	self.approx_current_line_len = 0
+        self.approx_current_line_len = 0
       return                                               # return
     #
     # Not end-of-line symbol. If it has to be escaped, we write
@@ -262,3 +274,4 @@ class stream_encoder:
   def close(self):
     """ Close underlying stream """
     self.stream.close()
+
