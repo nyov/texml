@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.9 2004-03-26 14:12:42 olpa Exp $
+# $Id: handler.py,v 1.10 2004-03-26 14:26:14 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -135,11 +135,14 @@ class handler(xml.sax.handler.ContentHandler):
     else:
       raise ValueError("Unknown value of TeXML/@mode attribute: '%s'" % str)
     emptylines = self.get_boolean(attrs, 'emptylines')
+    escape     = self.get_boolean(attrs, 'escape')
     self.writer.stack_mode(mode)
     self.writer.stack_emptylines(emptylines)
+    self.writer.stack_escape(escape)
 
   def on_texml_end(self):
     """ Handle TeXML element. Restore old mode. """
+    self.writer.unstack_escape()
     self.writer.unstack_emptylines()
     self.writer.unstack_mode()
 
