@@ -28,10 +28,11 @@ Long examples are data/texmlatte.xml and data/texmlapis.xml.
 + endline2   test of creation of a newline at the end of document
 + wstrivia   simplest whitespace elimination
 + wselim1    whitespace elimination (default line length limit)
-TODO: wselim2    whitespace elimination (line length limit is 100)
-TODO: realspace  check that we doesn't delete important whitespaces
-+ wsstack    nested specifications on shitespace handling
-DEL: wssave  whitespaces around <spec/> and <ctrl/> should not be dropped
++ wselim2    whitespace elimination (line length limit is 100)
++ realspace  check that we doesn't delete important whitespaces
++ wsstack    nested specifications of whitespace handling
++ nlcmd      a newline attribute of <cmd/>
++ nlenv      newline attributes of <env/>
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 
