@@ -54,7 +54,15 @@
 
 <!ELEMENT spec   EMPTY>
 
+<!--
+; Should be so:
+; 
+; <!ATTLIST spec
+;   cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt|nl|nl?|space|nil) #REQUIRED
+; >
+;
+; but 'nl?' is not valid in NmToken. So I use CDATA
+-->
 <!ATTLIST spec
-  cat (esc|bg|eg|mshift|align|parm|sup|sub|tilde|comment|vert|lt|gt|nl|space|nil) #REQUIRED
+  cat     CDATA  #REQUIRED
 >
-
