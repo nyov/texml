@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.3 2004-03-15 13:50:52 olpa Exp $
+# $Id: texmlwr.py,v 1.4 2004-03-16 08:43:24 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -11,6 +11,7 @@ ASIS    = 3;
 
 import unimap
 import specmap
+import codecs
 
 #
 # Writer&Co class
@@ -98,3 +99,21 @@ class texmlwr:
     escape = self.mode != ASIS
     for ch in str:
       self.writech(ch, escape)
+
+#
+# Wrapper over output stream to write is desired encoding
+#
+class stream_encoder:
+
+  def __init__(self, stream, encoding):
+    """ Construct a wrapper by stream and encoding """
+    self.stream = stream
+    self.encode = codecs.getencoder(encoding)
+
+  def write(self, str):
+    """ Write string encoded """
+    self.stream.write(self.encode(str)[0])
+
+  def close(self):
+    """ Close underlying stream """
+    self.stream.close()
