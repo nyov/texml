@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.5 2004-03-16 09:36:34 olpa Exp $
+# $Id: texmlwr.py,v 1.6 2004-03-16 11:39:35 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -43,13 +43,26 @@ class texmlwr:
     self.stream_stack = [];
 
   def stack_mode(self, mode):
-    """ put new mode into the stack of modes """
+    """ Put new mode into the stack of modes """
     self.mode_stack.append(self.mode)
     if mode != DEFAULT:
       self.mode = mode
 
   def unstack_mode(self):
+    """ Restore mode """
     self.mode = self.mode_stack.pop()
+
+  def stack_stream(self, stream):
+    """ Use the new streamf or output. Stream should support getvalue() """
+    self.stream_stack.append(self.stream)
+    self.stream = stream
+
+  def unstack_stream(self):
+    """ Restore old stream and return collected content """
+    str = self.stream.getvalue()
+    self.stream.close()
+    self.stream = self.stream_stack.pop()
+    return str
   
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
@@ -127,12 +140,10 @@ class texmlwr:
     #
     self.stream.write('&#x%X;' % chord)
 
-  def write(self, str):
+  def write(self, str, escape = 1):
     """ Write symbols char-by-char in current mode of escaping """
-    escape = self.mode != ASIS
     for ch in str:
       self.writech(ch, escape)
-
 #
 # Wrapper over output stream to write is desired encoding
 #
