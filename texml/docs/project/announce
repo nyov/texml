@@ -108,7 +108,7 @@ Category (or categories) that best fits your tool:
 
 technical->conversion tools
 
-Product description (focus on XML functionality):
+Product description:
 
 TeXML is an XML vocabulary for TeX. The processor transforms
 TeXML markup into the TeX markup, escaping special and
