@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.23 2004-06-29 06:18:03 olpa Exp $
+# $Id: texmlwr.py,v 1.24 2004-07-07 10:25:39 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -117,7 +117,7 @@ class texmlwr:
   def writeWeakWS(self):
     """ Write a whitespace instead of whitespaces deleted from source XML """
     self.is_after_weak_ws = 1
-    self.last_ch          = ' '
+    #self.last_ch          = ' ' # no, setting so is an error: new lines are not corrected after it. Anyway, check for weak ws is the first action in writech, so it should not lead to errors
     #
     # Break line if it is too long
     # We should not break lines if we regard spaces
