@@ -248,6 +248,20 @@ TeXML на Питоне
 <p>Домашняя страница TeXML: <a href="http://getfo.sourceforge.net/texml/">http://getfo.sourceforge.net/texml/</a>.</p>
 
 =====================================================================
+ru_RU.KOI8-R: (text)  (for xmlhack.ru announce of 0.95.beta)
+
+Появилась новая версия: TeXML 0.95 beta. Улучшения:
+
+* Настраиваемая обработка:
+* - лигатур "--" и "---",
+* - специальных символов,
+* - пустых строк.
+* Кодировка вывода по умолчанию теперь ascii, а не utf8.
+* Создан файл ChangeLog.
+
+Идеи для улучшения появились благодаря обсуждению TeXML в списке рассылки DB2LaTeX-devel, возникшему благодаря вопросам Torsten'а Bronger'а. Архив: http://sourceforge.net/mailarchive/forum.php?thread_id=4116171&forum_id=22902 (к сожалению, там присутствуют не все сообщения).
+
+=====================================================================
 
 ru_RU.KOI8-R   for fido7.ru.xml and fido7.ru.tex
 
