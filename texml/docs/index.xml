@@ -59,7 +59,7 @@
 	<sect>
 		<title>Getting TeXML</title>
 		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.2.3 to run the script. Additional modules are not required.</p>
-		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. The current version is 1.08.devel. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
+		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261"> project download area</a>. The current version is 1.09.devel. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
 		<p>The software is released under the <a href="http://www.gnu.org/licenses/lgpl.html"> GNU Lesser General Public License</a>.</p>
 		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/"> project area</a> (TeXML is a part of the GetFO project).</p>
 	</sect>
