@@ -41,6 +41,7 @@ An example from the quick start document is data/quick.xml.
 + texmlatte  long example from the Douglas Lovell's paper on TeXMLatte
 + texmlapis  long test from Chris Houser's TeXMLapis
 + quick      example from the quick start document
++ context    test of the conTeXt mode
 
 Tests that will fail:
 
