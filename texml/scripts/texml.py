@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.1 2005-03-17 04:16:24 paultremblay Exp $
+# $Id: texml.py,v 1.2 2005-03-17 05:10:39 paultremblay Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
@@ -29,7 +29,7 @@ use_context = 0
 use_namespace = 0
 import getopt
 try:
-  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding='])
+  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding=', 'ns'])
 except getopt.GetoptError, e:
   print >>sys.stderr, 'texml: Can\'t parse command line: %s' % e
   print >>sys.stderr, usage

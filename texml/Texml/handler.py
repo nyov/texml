@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.1 2005-03-17 04:16:24 paultremblay Exp $
+# $Id: handler.py,v 1.2 2005-03-17 05:10:37 paultremblay Exp $
 
 import xml.sax.handler
 
@@ -18,9 +18,13 @@ import os
 #
 class glue_handler(xml.sax.ContentHandler):
   
-  def __init__(self, stream, autonl_width, use_context):
+  def __init__(self, stream, autonl_width, use_context, 
+        name_space = 'http://getfo.sourceforge.net/texml/ns1'):
     self.h = Handler(stream, autonl_width, use_context)
     self.c = None
+
+    self.__name_space = name_space
+    self.__current_name_space = None
 
   def startDocument(self):
     self.c = None
@@ -38,10 +42,37 @@ class glue_handler(xml.sax.ContentHandler):
   def startElement(self, name, attrs):
     self.flushChars()
     self.h.startElement(name, attrs)
+
+  def startElementNS(self, name, qname, attrs):
+
+    # change attrs to regular dictionary
+    the_attrs = {}
+    keys = attrs.keys()
+    for key in keys:
+        att = key[1]
+        value = attrs[key]
+        the_attrs[att] = value
+
+    name_space = name[0]
+    self.__current_name_space = name_space
+    local_name = name[1]
+    if name_space == self.__name_space:
+        self.flushChars()
+        self.h.startElement(local_name, the_attrs)
+    # otherwise, ignore!
     
   def endElement(self, name):
     self.flushChars()
     self.h.endElement(name)
+
+  def endElementNS(self, name, qname):
+    name_space = name[0]
+    local_name = name[1]
+    if name_space == self.__name_space:
+        self.flushChars()
+        self.h.endElement(local_name)
+    # otherwise, ignore!
+
 
   def processingInstruction(self, target, data):
     self.flushChars()
@@ -51,6 +82,8 @@ class glue_handler(xml.sax.ContentHandler):
     # instead of onece ('... aa    bb ...')
 
   def characters(self, content):
+    if self.__current_name_space and self.__current_name_space != self.__name_space:
+        return
     if None == self.c:
       self.c = content
     else:
