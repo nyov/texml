@@ -1,14 +1,29 @@
 <x:stylesheet version='1.0' xmlns:x='http://www.w3.org/1999/XSL/Transform'>
-<!-- $Id: pymap.xsl,v 1.6 2004-06-23 06:56:22 olpa Exp $ -->
+<!-- $Id: pymap.xsl,v 1.7 2004-06-23 09:55:16 olpa Exp $ -->
 
 <x:output mode="text" omit-xml-declaration="yes"/>
 
 <x:template match="/">
 	<x:text>textmap = {&#xa;</x:text>
+	<x:call-template name="bug-workaround"/>
 	<x:apply-templates select="/charlist/character" mode="text"/>
 	<x:text>}&#xa;mathmap = {&#xa;</x:text>
 	<x:apply-templates select="/charlist/character" mode="math"/>
 	<x:text>}&#xa;</x:text>
+</x:template>
+
+<!-- 
+:   Fix a problem in a unicode.map
+-->
+<x:template name="bug-workaround">
+	<x:call-template name="mapitem">
+		<x:with-param name="code" select="'U000A0'"/>
+		<x:with-param name="text" select="'~'"/>
+	</x:call-template>
+	<x:call-template name="mapitem">
+		<x:with-param name="code" select="'U000AD'"/>
+		<x:with-param name="text" select="'\-'"/>
+	</x:call-template>
 </x:template>
 
 <!--
