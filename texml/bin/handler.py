@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.6 2004-03-16 15:11:19 olpa Exp $
+# $Id: handler.py,v 1.7 2004-03-18 06:55:56 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -12,13 +12,15 @@ class handler(xml.sax.handler.ContentHandler):
   # writer
   # no_text_content
   # 
-  # For <cmd /> support:
+  # For <cmd /> and <env /> support:
   # parm_content
   # opt_content
   # parm_stack
   # opt_stack
   # cmdname
   # cmdname_stack
+  # endenv
+  # endenv_stack
 
   def __init__(self, stream):
     """ Create writer, create maps """
@@ -26,9 +28,11 @@ class handler(xml.sax.handler.ContentHandler):
     self.parm_stack    = []
     self.opt_stack     = []
     self.cmdname_stack = []
+    self.endenv_stack  = []
     self.parm_content  = ''
     self.opt_content   = ''
     self.cmdname       = ''
+    self.endenv        = ''
     self.no_text_content = 0
     #
     # Create handler maps
@@ -206,11 +210,26 @@ class handler(xml.sax.handler.ContentHandler):
 
   # -----------------------------------------------------------------
 
-  def on_env(self):
-    pass
+  def on_env(self, attrs):
+    """ Handle 'cmd' element """
+    self.stack_model(self.model_content)
+    #
+    # Get name of the environment, and begin and end commands
+    #
+    name = attrs.get('name', '')
+    if 0 == len(name):
+      raise ValueError('Attribute env/@name is empty')
+    begenv = attrs.get('begin', 'begin')
+    self.cmdname_stack.append(self.cmdname)
+    self.endenv_stack.append(self.endenv)
+    self.cmdname = name
+    self.endenv  = attrs.get('end',   'end')
+    self.writer.write('\%s{%s}' % (begenv, name), 0)
 
   def on_env_end(self):
-    pass
+    self.writer.write('\%s{%s}' % (self.endenv, self.cmdname), 0)
+    self.cmdname = self.cmdname_stack.pop()
+    self.endenv  = self.endenv_stack.pop()
 
   def on_group(self):
     pass
