@@ -4,7 +4,7 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     extension-element-prefixes="exsl"
     version="1.1"
-    exclude-result-prefixes = "exsl "
+    exclude-result-prefixes = "exsl tei "
 >
     <xsl:output method="xml" encoding="ASCII"/>
 
@@ -43,7 +43,7 @@
     <xsl:template name = "make-index">
         <xsl:variable name="output">
             <xsl:value-of select="$output-dir"/>
-            <xsl:text>index</xsl:text>
+            <xsl:text>contents</xsl:text>
             <xsl:value-of select = "$html-suffix"/>
         </xsl:variable>
         <xsl:document href="{$output}" method="xml">
@@ -63,7 +63,7 @@
                     </xsl:attribute>
                 </xsl:element>
                 <body>
-                    <h1 class="index-head">Welcome to XML ConTeXt</h1>
+                    <h1 class="index-head">Contents</h1>
                     <xsl:element name="div">
                         <xsl:attribute name="class">
                             <xsl:text>index-toc</xsl:text>
@@ -85,6 +85,7 @@
                             <xsl:apply-templates select="tei:div" mode="toc-index"/>
                         </xsl:for-each>
                     </xsl:element>
+                    <xsl:call-template name="logo"/>
                 </body>
             </html>
         </xsl:document>
@@ -160,9 +161,9 @@
             </head>
             <body>
                 <xsl:apply-templates/>
+                <xsl:call-template name="copyright"/>
                 <xsl:call-template name="page-links"/>
                 <xsl:call-template name="logo"/>
-                <xsl:call-template name="copyright"/>
             </body>
         </html>
     </xsl:document>
@@ -220,8 +221,20 @@
 
   <!--logo (for sourceforge)-->
   <xsl:template name="logo">
-      
+  <p>
+  <a href="http://sourceforge.net">
+    <img src="http://sourceforge.net/sflogo.php?group_id=102261&amp;type=1" 
+        width="88" 
+        height="31" 
+        border="0" 
+        alt="SourceForge.net Logo"/>
+    </a>
+  </p>
   </xsl:template>
+  <!--
+
+  <A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=102261&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A>
+  -->
 
   <!--copyright-->
   <xsl:template name="copyright">
