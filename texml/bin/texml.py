@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.3 2004-03-15 13:15:45 olpa Exp $
+# $Id: texml.py,v 1.4 2004-03-16 08:45:03 olpa Exp $
 
 usage = """Convert TeXML markup to [La]TeX markup. Usage:
 python texml.py [-e encoding] input_file output_file"""
@@ -54,6 +54,12 @@ if '-' == outfile:
   f = sys.stdout
 else:
   f = file(outfile, 'wb')
+import texmlwr
+try:
+  f = texmlwr.stream_encoder(f, encoding)
+except Exception, e:
+  print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
+  sys.exit(5)
 
 #
 # Create transformer and run process
