@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.12 2005-03-20 07:29:13 paultremblay Exp $
+# $Id: Makefile,v 1.13 2005-03-21 22:46:56 paultremblay Exp $
 
 python=python
 
@@ -17,12 +17,18 @@ fail_test_stamps=$(addprefix tmp/faildata/,$(fail_xml_tests:.xml=.stamp))
 #
 params-mixed   = -e ascii
 params-koi8    = -e koi8-r
+params-koi8_ns    = -e koi8-r
 params-koi8bad = -e koi8-r
+params-koi8bad_ns = -e koi8-r
 params-latex   = -e koi8-r
+params-latex_ns   = -e koi8-r
 params-cmdnest = -e ascii
 params-wselim2 = -w 100
+params-wselim2_ns = -w 100
 params-quick   = -w 60
+params-quick_ns   = -w 60
 params-context = --context -e utf8
+params-context_ns = --context -e utf8
 
 tests: $(good_test_stamps) $(fail_test_stamps)
 
