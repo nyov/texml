@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.20 2004-06-21 09:05:25 olpa Exp $
+# $Id: handler.py,v 1.21 2004-06-21 11:51:29 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -13,8 +13,8 @@ import StringIO
 #
 class glue_handler(xml.sax.ContentHandler):
   
-  def __init__(self, stream):
-    self.h = handler(stream)
+  def __init__(self, stream, autonl_width):
+    self.h = handler(stream, autonl_width)
     self.c = None
 
   def startDocument(self):
@@ -72,9 +72,9 @@ class handler:
   # has_parm # Stacking is not required: if <cmd/> is in <cmd/>,
   #          # then is it wrapped by <parm/> or <opt/>
 
-  def __init__(self, stream):
+  def __init__(self, stream, autonl_width):
     """ Create writer, create maps """
-    self.writer        = texmlwr.texmlwr(stream)
+    self.writer        = texmlwr.texmlwr(stream, autonl_width)
     self.cmdname_stack = []
     self.endenv_stack  = []
     self.cmdname       = ''
@@ -267,6 +267,8 @@ class handler:
     name = attrs.get('name', '')
     if 0 == len(name):
       raise ValueError('Attribute cmd/@name is empty')
+    if self.get_boolean(attrs, 'nl1', 0):
+      self.writer.conditionalNewline()
     self.writer.writech('\\', 0)
     self.writer.write(name, 0)
     #
@@ -275,7 +277,7 @@ class handler:
     self.has_parm            = 0
     self.text_is_only_spaces = 1
     self.nl_spec_stack.append(self.nl_spec)
-    self.nl_spec = self.get_boolean(attrs, 'nl')
+    self.nl_spec = self.get_boolean(attrs, 'nl2', 0)
 
   def on_cmd_end(self):
     self.text_is_only_spaces = 0
@@ -283,7 +285,7 @@ class handler:
     # Write additional space if command has no parameters
     #
     if self.nl_spec:
-      self.writer.writech('\n', 0)
+      self.writer.conditionalNewline()
     elif not(self.has_parm):
       self.writer.writech(' ', 0)
     self.nl_spec = self.nl_spec_stack.pop()

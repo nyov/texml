@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.17 2004-06-21 07:39:14 olpa Exp $
+# $Id: texmlwr.py,v 1.18 2004-06-21 11:51:29 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -49,11 +49,11 @@ class texmlwr:
   # used to detect one weak whitespace after another)
   # > approx_total_len
   # Position of last weak whitespace
-  # > last_weak_ws_pos
+  # > last_weak_ws_pos (autonl_width)
   # A ws suspend flag to avoid weak whitespaces at end of line
   # > weak_ws_is_suspended
   
-  def __init__(self, stream):
+  def __init__(self, stream, autonl_width):
     """ Remember output stream, initialize data structures """
     self.stream = stream
     self.after_char0d     = 1
@@ -68,7 +68,7 @@ class texmlwr:
     self.emptylines       = 0
     self.emptylines_stack = []
     self.approx_current_line_len = 0
-    self.autonewline_after_len   = 50
+    self.autonewline_after_len   = autonl_width
     self.approx_total_len        = 0
     self.last_weak_ws_pos        = -2 # anything less than 1
     self.weak_ws_is_suspended    = 0
