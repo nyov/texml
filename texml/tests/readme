@@ -1,0 +1,13 @@
+TeXML tests
+
+empty    no data, only a root element
+hello    text "Hello, World!"
+normal   escaping of special chars in tex mode
+math     escaping of special chars in math mode
+mixed    both normal and mixed mode
+nopara   output should not contain empty lines
+koi8     conversion from unicode to koi8 encoding
+koi8bad  conversion from unicode to koi8 with out of range chars
+latex    out of encoding chars as latex commands
+ams      out of encoding chars as ams commands
+
