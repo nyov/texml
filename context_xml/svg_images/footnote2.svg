@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<svg width="800" height="340"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>footnotes 2</title>
+<g>
+<defs>
+</defs>
+
+
+<text
+x="100" 
+y="10"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+or hanging suspended, with their heads downwards, over flames; or looking at the
+</text>
+
+<text
+x="100" 
+y="40"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+heavens over their shoulders &#x201C;until it becomes impossible for them to resume their
+</text>
+
+    <line x1="100.0" y1="120" x2="265.0" y2="120.0"  stroke="#959595" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--\FootBef-->
+    <!--shaft-->
+    <line x1="165.0" y1="55" x2="165.0" y2="110.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--tips-->
+    <line x1="165.0" y1="55" x2="155.0" y2="65.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="165.0" y1="55" x2="175.0" y2="65.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <line x1="165.0" y1="110" x2="155.0" y2="100.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="165.0" y1="110" x2="175.0" y2="100.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <!--text for \FootBef-->
+<text
+x="200" 
+y="85"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#000000"
+>
+before=\DistanceBef 
+</text>
+
+
+<text
+x="100" 
+y="150"
+font-size="20"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+Thoreau started writing Walden in 1846.
+</text>
+
+<text
+x="100" 
+y="180"
+font-size="20"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+Hawaiians.
+</text>
+
+<text
+x="50" 
+y="150"
+font-size="20"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+i
+</text>
+
+<text
+x="45" 
+y="180"
+font-size="20"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#959595"
+>
+ii
+</text>
+<!--pointers for margindistance-->
+<!--shaft-->
+<line x1="100.0" y1="173" x2="60.0" y2="173.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<!--tips-->
+<line x1="60.0" y1="173" x2="70.0" y2="163.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<line x1="60.0" y1="173" x2="70.0" y2="183.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<!--
+<line x1="85.0" y1="183" x2="85.0" y2="275.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+-->
+
+
+
+
+
+<text
+    x="1" 
+    y="200"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#000000"
+>
+margindistance=12pt
+
+</text>
+
+<!--pointers for height -->
+<line x1="480.0" y1="120" x2="515.0" y2="180.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="480.0" y1="245" x2="515.0" y2="180.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<text
+    x="535" 
+y="180"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#000000"
+>
+height=30mm
+</text>
+
+    <!--after-->
+
+    <!--shaft-->
+    <line x1="165.0" y1="210" x2="165.0" y2="270.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <!--tips-->
+    <line x1="165.0" y1="210" x2="175.0" y2="220.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="165.0" y1="210" x2="155.0" y2="220.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+    <line x1="165.0" y1="270" x2="175.0" y2="260.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+    <line x1="165.0" y1="270" x2="155.0" y2="260.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<text
+    x="200" 
+y="240"
+font-size="24"
+font-family="Bitstream Charter"
+ fill-opacity="1.0"
+fill="#000000"
+>
+after=\DistanceAft 
+</text>
+
+</g>
+</svg>
+

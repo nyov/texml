@@ -1839,7 +1839,7 @@ Thourea's Life
        Set up line spacing with the
        <tei:seg type="command" ana="context-command">setupinterlinespace</tei:seg>
        command. This command&#8217;s option can be set to small for single
-       spacing (the default), medium for 1.5 spacing, or big for doublespacing.
+       spacing (the default), medium for 1.5 spacing, or big for double spacing.
       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% doublespacing
 \setupinterlinespace[big]
@@ -1868,7 +1868,7 @@ Thourea's Life
        <tei:head ana="head">Tips</tei:head>
        <tei:item ana="item">
         <tei:p ana="paragraph">
-         Seting the value of line to some value of ex ensures that your line
+         Setting the value of line to some value of ex ensures that your line
          spacing will always stay in proportion to the size of your font.
         </tei:p>
        </tei:item>
@@ -1919,7 +1919,7 @@ Thourea's Life
         not indent blocks of text that it determines do not look good, such as a
         block of text after a vertical space. To override this feature and gain
         complete control over indenting, set
-        <tei:seg type="command" ana="context-command">indeting</tei:seg> to
+        <tei:seg type="command" ana="context-command">indenting</tei:seg> to
         &#8220;first&#8221;.
        </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">\indenting[first]
@@ -1978,7 +1978,7 @@ more body text ...\par
        <tei:head ana="head">Indenting blocks</tei:head>
        <tei:p ana="paragraph">
         To reduce the width of a text, as for a quote, use the envirnoment
-        &#8220;narrower.&#8221; Set up the dimmensions with the
+        &#8220;narrower.&#8221; Set up the dimensions with the
         <tei:seg type="command" ana="context-command">setupnarrower</tei:seg>
         command.
        </tei:p>
@@ -2029,7 +2029,7 @@ more body text ...\par
         <tei:seg type="context-name" ana="context-name">context</tei:seg>
         justifies text. In fact, creating pretty text is one
         <tei:seg type="context-name" ana="context-name">context</tei:seg>&#8217;s
-        main feature. If you want your text non-justfied, use the
+        main feature. If you want your text non-justified, use the
         <tei:seg type="command" ana="context-command">setupalign</tei:seg>
         command with the option of
         <tei:seg type="property" ana="property">right</tei:seg>.
@@ -2163,41 +2163,52 @@ the text env
 &lt;/env&gt;
 
 </tei:eg>
-      <tei:p ana="paragraph">
-       Making sure a title or subtitle does not become an orphan requires the
-       <tei:seg type="command" ana="context-command">testpage</tei:seg> command.
-       The <tei:seg type="command" ana="context-command">testpage</tei:seg>
-       command takes one option, an integer, which seems to roughly correspond
-       to the number of minimum additional lines the page should contain.
-      </tei:p>
-      <tei:p ana="paragraph">
-       This command has the affect of allowing text to stick together. If you
-       set its option to 2, and issue it right before a title,
-       <tei:seg type="context-name" ana="context-name">context</tei:seg> checks
-       to see if it can fit two lines on the page. If it can&#8217;t, it puts
-       the text on the next page, avoiding an orphan sub-title. If you set the
-       number to three,
-       <tei:seg type="context-name" ana="context-name">context</tei:seg> will
-       force a break if it can&#8217;t fit 3 additional lines on a page.
-      </tei:p>
-      <tei:p ana="paragraph">
-       The actual number in the option is acutally an aproxtimation, since any
-       extra space seems to count as lines. The higher the number, the most text
-       that will stick with the title or subtitle. If you use too high a number,
-       pages may contain blank spaces at then end. If you use a number too low,
-       the title may become an orphan.
-      </tei:p>
-<tei:eg rend="context-block-code" ana="context-block-code">% sapce before the sub-title
+      <tei:div ana="div">
+       <tei:head ana="head">Keeping text with next</tei:head>
+       <tei:p ana="paragraph">
+        Many commercial programs such as Microsoft Word, as well as FO, allow
+        for you to keep section headings with the text that follows, so that
+        they won&#8217;t become stuck by themselves at the bottom of the page.
+        You can achieve the same thing with the
+        <tei:seg type="command" ana="context-command">testpage</tei:seg>
+        command.
+       </tei:p>
+       <tei:p ana="paragraph">
+        The <tei:seg type="command" ana="context-command">testpage</tei:seg>
+        command takes one option, a number, which roughly correspond to the
+        number of minimum additional &#8220;lines&#8221; the page should
+        contain. If the number of the option were 2,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> checks
+        to see if it can fit two more &#8220;lines&#8221; on the page. If not,
+        it breaks the page at the
+        <tei:seg type="command" ana="context-command">testpage</tei:seg> command
+        and puts the text on the next page.
+       </tei:p>
+       <tei:p ana="paragraph">
+        This command has the affect of allowing text to stick together. If you
+        issued this command right before a section title, and used the number 3,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> would
+        check to see if the heading and two additional &#8220;lines&#8221; below
+        it can fit on the page. If not, it breaks the page, preventing the
+        heading from becoming an orphan.
+       </tei:p>
+       <tei:p ana="paragraph">
+        I put the &#8220;lines&#8221; in quotes because
+        <tei:seg type="context-name" ana="context-name">context</tei:seg>
+        doesn&#8217;t also counts white space as &#8220;lines.&#8221; If you use
+        white space after your title (an most likely you will), you will have to
+        increase the number in the option. Too high a number will certainly
+        prevent orphans of the title, but will also result an ugly empty spaces
+        at the bottom of pages. 5 or 6 will probably work in most situations.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% space before the sub-title
 \blank[12pt]
-
-% make sure the page can contain 3 more virtual lines
+% make sure the page can contain 5 more virtual lines
 % if not, break
-\testpage[3]
-
+\testpage[5]
 % the title (which normally would appear in larger 
 % font)
 Thoreau's Lifestyle\par
-
 % space after the title
 \blank[12pt]
 </tei:eg>
@@ -2205,23 +2216,19 @@ Thoreau's Lifestyle\par
 &lt;cmd name="blank"&gt;
  &lt;opt&gt;12pt&lt;/opt&gt;
 &lt;/cmd&gt;
-
 &lt;!--
- make sure the page can contain 3 more virtual lines
+ make sure the page can contain 5 more virtual lines
  if not, break
 --&gt;
 &lt;cmd name="testpage"&gt;
  &lt;opt&gt;3&lt;/opt&gt;
 &lt;/cmd&gt;
-\testpage[3]
-
 &lt;!--
 the title (which normally would appear in larger 
  font)
 --&gt;
 Thoreau's Lifestyle
 &lt;cmd name="par" gr="0"/&gt;
-
 &lt;!--space after the title--&gt;
 &lt;cmd name="blank"&gt;
  &lt;opt&gt;12pt&lt;/opt&gt;
@@ -2229,6 +2236,267 @@ Thoreau's Lifestyle
 
 
 </tei:eg>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Footnotes</tei:head>
+      <tei:div ana="div">
+       <tei:head ana="head">default foototes</tei:head>
+       <tei:p ana="paragraph">
+        The <tei:seg type="command" ana="context-command">footnote</tei:seg>
+        command creates footnotes. Put the text of the footnote in the
+        parameter.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">At present I am a sojourner in civilized life
+again. \footnote{Thoreau...}
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote.tex">source file</tei:xref>
+       </tei:p>
+<tei:eg rend="xml" ana="xml">At present I am a sojourner in civilized life
+again. 
+ &lt;cmd name="footnote"&gt;
+  &lt;parm&gt;
+  Thoreau...
+  &lt;/parm&gt;
+ &lt;/cmd&gt;
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="texml_examples/footnote.xml">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">customizing footnotes</tei:head>
+       <tei:div ana="div">
+        <tei:head ana="head">Basic customization</tei:head>
+        <tei:p ana="paragraph">
+         The
+         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+         command allows you to many features for footnotes. This command takes
+         one option, but within that option you can set many properties.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% set up a defintion for the amount of distance
+% between the body text and footnotes
+% and between the footnotes and footer
+\def\DistanceBef{\blank[24pt]}
+\def\DistanceAft{\blank[24pt]}
+
+\setupfootnotes[
+ % use Roman numerals instead of numbers
+ conversion=romannumerals,
+ % turn on rule (default)
+ % use "off" instead of "on" to get rid of rule
+ rule=on,
+ % set body font size
+ bodyfont=10pt,
+ % set width
+ width=5in,
+ % distnace marker extends into the margin
+ margindistance=12pt,
+ % distance of footnote from body text
+ before=\DistanceBef,
+ % distance of footnotes from footer
+ after=\DistanceAft,
+ ]
+
+At present I am a sojourner in civilized life
+again. \footnote{Thoreau...}
+</tei:eg>
+        <tei:p ana="paragraph">
+         <tei:xref ana="xref" url="context_examples/footnote2.tex">source file</tei:xref>
+        </tei:p>
+        <tei:figure url="footnote2.svg" ana="figure">
+         <tei:head ana="head">customizing footnotes</tei:head>
+        </tei:figure>
+        <tei:list type="unordered" ana="unordered-list">
+         <tei:head ana="head">Tips</tei:head>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           The <tei:seg type="property" ana="property">margindistance</tei:seg>
+           property pushes the footnote marker into the margin by the amount you
+           specify. If you do not specify any amount,
+           <tei:seg type="context-name" ana="context-name">context</tei:seg>
+           will push the marker into the margin by a small amount.
+          </tei:p>
+         </tei:item>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           Other values for
+           <tei:seg type="option" ana="option">conversion</tei:seg> are
+           <tei:seg type="property" ana="property">characters</tei:seg> for
+           lower-case letters;
+           <tei:seg type="property" ana="property">Characters</tei:seg> for
+           upper-case letters;
+           <tei:seg type="property" ana="property">Romannumerals</tei:seg> for
+           upper-case Roman numerals; and
+           <tei:seg type="property" ana="property">set 3</tei:seg> for symbols
+           such as daggers and asteristics. You can also experiment with other
+           sets, such as <tei:seg type="property" ana="property">set 1</tei:seg>
+           or <tei:seg type="property" ana="property">set 2</tei:seg>. Sets
+           indicate a mathmatical set of symbols defined by
+           <tei:seg type="context-name" ana="context-name">context</tei:seg>.
+          </tei:p>
+         </tei:item>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           For indenting footnotes, see the next section
+          </tei:p>
+         </tei:item>
+        </tei:list>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Changing the footnote number</tei:head>
+        <tei:p ana="paragraph">
+         There are a number of ways to set the number for the footnote marker.
+        </tei:p>
+        <tei:p ana="paragraph">
+         To reset the number for every page so each new page starts at 1 (or the
+         symbol or character associated with 1), set the
+         <tei:seg type="option" ana="option">byway</tei:seg> option in the
+         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+         to <tei:seg type="property" ana="property">bypage</tei:seg>.
+        </tei:p>
+        <tei:p ana="paragraph">
+         To reset the number for every section, so each new section starts at 1
+         (or the symbol or character associated with 1), set the
+         <tei:seg type="option" ana="option">byway</tei:seg> option in the
+         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+         to
+         <tei:seg type="property" ana="property"><tei:emph rend="italic" ana="emph-italic">section</tei:emph></tei:seg>,
+         where section is the name of your section. This document uses uses only
+         the <tei:seg type="command" ana="context-command">part</tei:seg>
+         section. In order to have my footnotes start at 1 after each
+         <tei:seg type="command" ana="context-command">part</tei:seg> command, I
+         would type <tei:seg type="option" ana="option">way=bypart</tei:seg>.
+        </tei:p>
+        <tei:p ana="paragraph">
+         To reset the number manually, set the
+         <tei:seg type="option" ana="option">byway</tei:seg> option in the
+         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+         to <tei:seg type="property" ana="property">bytext</tei:seg>. Before
+         each footnote, issue the
+         <tei:seg type="command" ana="context-command">setnumber</tei:seg>
+         command. Put <tei:seg type="property" ana="property">footnote</tei:seg>
+         as the option, and the desired number
+         <tei:emph rend="italic" ana="emph-italic">minus 1</tei:emph> as the
+         parameter. If you want the number to be 3, use 2 as your parameter.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupfootnotes[way=bytext, conversion=characters]
+
+% set the number manually
+% the next footnote will be *3*
+\setnumber[footnote]{2}
+
+The twelve labors of Hercules\footnote{Hercules had to perform 12
+near-impossible tasks to become a god} were trifling in comparison
+with those which my neighbors have undertaken;
+
+</tei:eg>
+        <tei:list type="unordered" ana="unordered-list">
+         <tei:head ana="head">Tips</tei:head>
+         <tei:item ana="item">
+          <tei:p ana="paragraph">
+           Always use a number as the parameter of the
+           <tei:seg type="command" ana="context-command">setnumber</tei:seg>
+           command. If you want another footnote marker such as a Roman numeral,
+           use the <tei:seg type="option" ana="option">conversion</tei:seg>
+           option (see above), and
+           <tei:seg type="context-name" ana="context-name">context</tei:seg>
+           will convert whatever number you choose to the appropriate symbol.
+          </tei:p>
+         </tei:item>
+        </tei:list>
+        <tei:p ana="paragraph">
+         <tei:xref ana="xref" url="context_examples/footnote6.tex">source file</tei:xref>
+        </tei:p>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Space between footnotes</tei:head>
+        <tei:p ana="paragraph">
+         Crete custom space between footnotes by using the
+         <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>
+         command. Like the
+         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+         command, this command has an
+         <tei:seg type="property" ana="property">after</tei:seg> and
+         <tei:seg type="property" ana="property">before</tei:seg> property, only
+         in the case of
+         <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>,
+         these properties determine the space between individual footnotes
+         rather than before and after the complete block of footnotes.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">%set up the amount of space before each footnote
+\def\DistanceBef{\blank[12pt]}
+% set up the amount of space after each footnote
+\def\DistanceAft{\blank[12pt]}
+
+\setupfootnotedefinition[
+ after=\DistanceAft,
+ before=\DistanceBef,
+]
+
+At present I am a sojourner in civilized life
+again. \footnote{Thoreau started writing {\sl Walden} in 1846. ..  }
+...
+
+I would fain say something, no so much concerning the Chinese and
+Sandwich Islanders \footnote{Hawaiians} 
+
+</tei:eg>
+        <tei:p ana="paragraph">
+         <tei:xref ana="xref" url="context_examples/footnote3.tex">source file</tei:xref>
+        </tei:p>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">First line indent</tei:head>
+        <tei:p ana="paragraph">
+         To create a footnote with a first line indent, use the
+         <tei:seg type="command" ana="context-command">hspace</tei:seg> command
+         right before your footnote text. You will have to define the actual
+         spacing in a separate command issued previously.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% define amount of space
+\definehspace[footnoteSpace][12pt]
+
+At present I am a sojourner in civilized life
+ again. \footnote{\hspace[footnoteSpace]Thoreau started writing ...}
+
+</tei:eg>
+        <tei:p ana="paragraph">
+         <tei:xref ana="xref" url="context_examples/footnote4.tex">source file</tei:xref>
+        </tei:p>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">hanging indent</tei:head>
+        <tei:p ana="paragraph">
+         In order to create a footnote with a hanging indent, you will have to
+         indent the first line by the negative amount of the indent using the
+         <tei:seg type="command" ana="context-command">hskip</tei:seg> command.
+         At the same time, indent the entire footnote by the positive amount of
+         the indent. Last, push the text up by the negative amount of a line by
+         using the <tei:seg type="command" ana="context-command">vskip</tei:seg>
+         command in order to delete the extra space created by the indentin
+         environment.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% define amount to indent
+\setupnarrower[left=12pt]
+
+At present I am a sojourner in civilized life
+again. \footnote{
+\startnarrower[left]
+% create a negative vertical space equivlent to the line height
+\vskip-14pt
+% indent the first line by the negative amount
+\hskip-12pt Thoreau started writing {\sl Walden} in 1846, a few
+months after . . .
+\stopnarrower}
+
+</tei:eg>
+        <tei:p ana="paragraph">
+         <tei:xref ana="xref" url="context_examples/footnote5.tex">source file</tei:xref>
+        </tei:p>
+       </tei:div>
+      </tei:div>
      </tei:div>
     </tei:div>
    </tei:div>

@@ -134,7 +134,7 @@ Line spacing
 
 Set up line spacing with the [:cm: setupinterlinespace] command.  This
 command's option can be set to small for single spacing (the default),
-medium for 1.5 spacing, or big for doublespacing. 
+medium for 1.5 spacing, or big for double spacing. 
 
 :t2x-no-process:
 
@@ -166,7 +166,7 @@ option to line=x, where x is some value, such as 18pt.
 
   :head: Tips
 
-  * Seting the value of line to some value of ex ensures that your
+  * Setting the value of line to some value of ex ensures that your
     line spacing will always stay in proportion to the size of your 
     font.
 
@@ -207,7 +207,7 @@ The [:cm: indenting] command, determines when indenting will
 occurr. By default, [:ab: context] will not indent blocks of text that
 it determines do not look good, such as a block of text after a
 vertical space. To override this feature and gain complete control
-over indenting, set [:cm: indeting] to "first".
+over indenting, set [:cm: indenting] to "first".
 
 :t2x-no-process:
  
@@ -262,7 +262,7 @@ Indenting blocks
 --------------------
 
 To reduce the width of a text, as for a quote, use the envirnoment
-"narrower." Set up the dimmensions with the [:cm: setupnarrower]
+"narrower." Set up the dimensions with the [:cm: setupnarrower]
 command. 
 
 :t2x-no-process:
@@ -302,7 +302,7 @@ Non-justified text
 
 By default, [:ab: context] justifies text. In fact, creating pretty
 text is one [:ab: context]'s main feature. If you want your text
-non-justfied, use the [:cm: setupalign] command with the option of
+non-justified, use the [:cm: setupalign] command with the option of
 [:pr: right].
 
 :t2x-no-process:
@@ -423,35 +423,35 @@ the value to 450 should discourage most widows and orphans.
 Keeping text with next
 -----------------------
 
-Many commercial programs such as Microsft Word, as well as FO, allow
+Many commercial programs such as Microsoft Word, as well as FO, allow
 for you to keep section headings with the text that follows, so that
 they won't become stuck by themselves at the bottom of the page.  You
 can achieve the same thing with the [:cm: testpage] command.
 
 The [:cm: testpage] command takes one option, a number, which
 roughly correspond to the number of minimum additional "lines" the page
-should contain. If the number of the option were 2, [:ab: context
+should contain. If the number of the option were 2, [:ab: context]
 checks to see if it can fit two more "lines" on the page. If not,
-it breaks the page at the [:ab: testpage] command and puts the text on
+it breaks the page at the [:cm: testpage] command and puts the text on
 the next page.
 
 This command has the affect of allowing text to stick together. 
 If you issued this command right before a section title, and used the
 number 3, [:ab: context] would check to see if the heading and two
-addtional "lines" below it can fit on the page. If not, it breaks the
+additional "lines" below it can fit on the page. If not, it breaks the
 page, preventing the heading from becoming an orphan.
 
 I put the "lines" in quotes because [:ab: context] doesn't also counts
 white space as "lines." If you use white space after your title (an
 most likely you will), you will have to increase the number in the
 option. Too high a number will certainly prevent orphans of the title,
-but will also restul an ugly empty spaces at the bottom of pages. 5 or
+but will also result an ugly empty spaces at the bottom of pages. 5 or
 6 will probably work in most situations.
 
 
 :t2x-no-process:
 
- % sapce before the sub-title
+ % space before the sub-title
  \blank[12pt]
  % make sure the page can contain 5 more virtual lines
  % if not, break
@@ -492,6 +492,9 @@ but will also restul an ugly empty spaces at the bottom of pages. 5 or
 Footnotes
 ----------
 
+default foototes
+-----------------
+
 The [:cm: footnote] command creates footnotes. Put the text of the
 footnote in the parameter.
 
@@ -499,11 +502,205 @@ footnote in the parameter.
  
  At present I am a sojourner in civilized life
  again. \footnote{Thoreau...}
+.. end block
+
+:src url=context_examples/footnote.tex: source file
 
 :t2x-no-process rend=xml:
  
  At present I am a sojourner in civilized life
  again. 
   <cmd name="footnote">
+   <parm>
    Thoreau...
+   </parm>
   </cmd>
+.. end block
+
+:src url=texml_examples/footnote.xml: source file
+
+customizing footnotes
+----------------------
+
+
+Basic customization
+^^^^^^^^^^^^^^^^^^^^
+
+The [:cm: setupfootnotes] command allows you to many features for
+footnotes. This command takes one option, but within that option you
+can set many properties.
+
+:t2x-no-process:
+
+ % set up a defintion for the amount of distance
+ % between the body text and footnotes
+ % and between the footnotes and footer
+ \def\DistanceBef{\blank[24pt]}
+ \def\DistanceAft{\blank[24pt]}
+
+ \setupfootnotes[
+  % use Roman numerals instead of numbers
+  conversion=romannumerals,
+  % turn on rule (default)
+  % use "off" instead of "on" to get rid of rule
+  rule=on,
+  % set body font size
+  bodyfont=10pt,
+  % set width
+  width=5in,
+  % distnace marker extends into the margin
+  margindistance=12pt,
+  % distance of footnote from body text
+  before=\DistanceBef,
+  % distance of footnotes from footer
+  after=\DistanceAft,
+  ]
+ 
+ At present I am a sojourner in civilized life
+ again. \footnote{Thoreau...}
+.. end block
+
+:src url=context_examples/footnote2.tex: source file
+
+:fig url=footnote2: customizing footnotes
+
+:ul:
+
+  :head: Tips
+
+  * The [:pr: margindistance] property pushes the footnote marker
+    into the margin by the amount you specify. If you do not specify
+    any amount, [:ab: context] will push the marker into the margin
+    by a small amount.
+
+  * Other values for [:op: conversion] are [:pr: characters] for lower-case
+    letters; [:pr: Characters] for upper-case letters; [:pr:
+    Romannumerals] for upper-case Roman numerals; and [:pr: set 3] for
+    symbols such as daggers and asteristics. You can also experiment
+    with other sets, such as [:pr: set 1] or [:pr: set 2]. Sets
+    indicate a mathmatical set of symbols defined by [:ab: context].
+
+  * For indenting footnotes, see the next section
+
+Changing the footnote number
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are a number of ways to set the number for the footnote marker.
+
+To reset the number for every page so each new page starts at 1 (or
+the symbol or character associated with 1), set the [:op: byway]
+option in the [:cm: setupfootnotes] to [:pr: bypage].
+
+To reset the number for every section, so each new section starts at 1
+(or the symbol or character associated with 1), set the [:op: byway]
+option in the [:cm: setupfootnotes] to [:pr: *section*], where section
+is the name of your section. This document uses uses  only the [:cm:
+part] section. In order to have my footnotes start at 1 after each
+[:cm: part] command, I would type [:op: way=bypart].
+
+To reset the number manually,  set the [:op: byway] option in the
+[:cm: setupfootnotes] to [:pr: bytext]. Before each footnote, issue
+the  [:cm: setnumber] command. Put [:pr: footnote] as the option, and
+the desired number *minus 1*  as the parameter. If you want the number
+to be 3, use 2 as your parameter.
+
+
+:t2x-no-process:
+
+ \setupfootnotes[way=bytext, conversion=characters]
+
+ % set the number manually
+ % the next footnote will be *3*
+ \setnumber[footnote]{2}
+
+ The twelve labors of Hercules\footnote{Hercules had to perform 12
+ near-impossible tasks to become a god} were trifling in comparison
+ with those which my neighbors have undertaken;
+
+:ul:
+
+  :head: Tips
+
+  * Always use a number as the parameter of the [:cm: setnumber]
+    command. If you want another footnote marker such as a Roman
+    numeral, use the [:op: conversion] option (see above), and [:ab:
+    context] will convert whatever number you choose to the
+    appropriate symbol.
+
+:src url=context_examples/footnote6.tex: source file
+
+Space between footnotes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Crete custom space between footnotes by using the 
+[:cm: setupfootnotedefinition] command. Like the [:cm: setupfootnotes]
+command, this command has an [:pr: after] and [:pr: before] property,
+only in the case of [:cm: setupfootnotedefinition], these properties
+determine the space between individual footnotes rather than before
+and after the complete block of footnotes.
+
+:t2x-no-process:
+
+ %set up the amount of space before each footnote
+ \def\DistanceBef{\blank[12pt]}
+ % set up the amount of space after each footnote
+ \def\DistanceAft{\blank[12pt]}
+
+ \setupfootnotedefinition[
+  after=\DistanceAft,
+  before=\DistanceBef,
+ ]
+
+ At present I am a sojourner in civilized life
+ again. \footnote{Thoreau started writing {\sl Walden} in 1846. ..  }
+ ...
+
+ I would fain say something, no so much concerning the Chinese and
+ Sandwich Islanders \footnote{Hawaiians} 
+
+:src url=context_examples/footnote3.tex: source file
+
+
+First line indent
+^^^^^^^^^^^^^^^^^^^
+
+To create a footnote with a first line indent, use the [:cm: hspace]
+command right before your footnote text. You will have to define the
+actual spacing in a separate command issued previously.
+
+:t2x-no-process:
+
+ % define amount of space
+ \definehspace[footnoteSpace][12pt]
+
+ At present I am a sojourner in civilized life
+  again. \footnote{\hspace[footnoteSpace]Thoreau started writing ...}
+
+:src url=context_examples/footnote4.tex: source file
+
+hanging indent
+^^^^^^^^^^^^^^^^
+
+In order to create a footnote with a hanging indent, you will have to
+indent the first line by the negative amount of the indent using the
+[:cm: hskip] command. At the same time, indent the entire footnote by
+the positive amount of the indent. Last, push the text up by the
+negative amount of a line by using the [:cm: vskip] command in order
+to delete the extra space created by the indentin environment. 
+
+:t2x-no-process:
+
+ % define amount to indent
+ \setupnarrower[left=12pt]
+
+ At present I am a sojourner in civilized life
+ again. \footnote{
+ \startnarrower[left]
+ % create a negative vertical space equivlent to the line height
+ \vskip-14pt
+ % indent the first line by the negative amount
+ \hskip-12pt Thoreau started writing {\sl Walden} in 1846, a few
+ months after . . .
+ \stopnarrower}
+
+:src url=context_examples/footnote5.tex: source file

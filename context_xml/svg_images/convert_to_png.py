@@ -5,12 +5,13 @@ class Convert:
 
     def __init__(self):
         pass
-        self.__png_dir = '/home/paul/Documents/context/html/img'
+        self.__png_dir = '/home/paul/cvs/context_xml/png_images/'
+
 
     def convert(self):
         in_files = sys.argv[1:]
         for in_file in in_files:
-            command = 'xsltproc /home/paul/Documents/context/xslt/get_svg_info.xsl %s ' % (in_file)
+            command = 'xsltproc /home/paul/cvs/context_xml/xslt/get_svg_info.xsl %s ' % (in_file)
         (exit_status, out_text) = commands.getstatusoutput(command)
         height, width = out_text.split()
         scale = raw_input('What is the scale?\n')
