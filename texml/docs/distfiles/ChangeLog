@@ -1,3 +1,8 @@
+Version 0.98.beta (02 April 2004)
+
+* Absence of spaces after LaTeX commands in some mappings is fixed.
+
+
 Version 0.95.beta (26 March 2004)
 
 * Ligatures "--" and "---" are being processed. This is configurable.
@@ -15,4 +20,4 @@ Version 0.91.beta (22 March 2004)
 
 Version 0.90.beta (19 March 2004)
 
-* First packaged verion of the TeXML.
+* First packaged version of the TeXML.
