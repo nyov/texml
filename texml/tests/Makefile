@@ -1,27 +1,47 @@
-# $Id: Makefile,v 1.1 2004-03-15 12:52:24 olpa Exp $
+# $Id: Makefile,v 1.2 2004-03-15 14:46:15 olpa Exp $
 
 all: tests
 
-xml_tests:=$(notdir $(wildcard data/*xml))
-test_stamps=$(addprefix tmp/data/,$(xml_tests:.xml=.out.stamp))
+clean:
+	rm -rf *~ */*~ tmp
 
-tests: $(test_stamps)
+good_xml_tests:=$(notdir $(wildcard data/*xml))
+good_test_stamps=$(addprefix tmp/data/,$(good_xml_tests:.xml=.stamp))
+fail_xml_tests:=$(notdir $(wildcard faildata/*xml))
+fail_test_stamps=$(addprefix tmp/faildata/,$(fail_xml_tests:.xml=.stamp))
 
-.SECONDARY:
+tests: $(good_test_stamps) $(fail_test_stamps)
 
+#
+# Initialization, creation of folders
+#
 init=tmp/data/.stamp tmp/faildata/.stamp
 
 tmp/data/.stamp tmp/faildata/.stamp:
 	mkdir -p $(dir $@)
 	touch $@
 
+# Need a line after "FORCE"
+FORCE:
+
+# Need a line after "FORCE"
+
+.SECONDARY:
+
+#
+# Running "good" tests
+#
 tmp/data/%.out: data/%.xml ../bin/texml.py ../bin/*py $(init)
 	python $(word 2,$+) $< $@
 
-%.stamp: % FORCE
-	@diff -qs $* data/$(notdir $*)
-	@touch $@
+tmp/data/%.stamp: tmp/data/%.out FORCE
+	diff -qs $(basename $@).out data/$(notdir $*).out
 
-FORCE:
+#
+# Running "bad" tests: if fact, we make grep of error message
+#
+tmp/faildata/%.err: faildata/%.xml ../bin/texml.py ../bin/*py $(init)
+	python $(word 2,$+) $< $(basename $@).out 2>$@ || true
 
-
+tmp/faildata/%.stamp: tmp/faildata/%.err FORCE
+	grep -q -f faildata/$(notdir $*).grep $<
