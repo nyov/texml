@@ -1,6 +1,6 @@
 <x:stylesheet version="1.0" xmlns:x="http://www.w3.org/1999/XSL/Transform">
 <!-- -->
-<x:output method="html" />
+<x:output method="html" encoding="iso-8859-1"/>
 
 <x:variable name="docid" select="/html/@id"/>
 
