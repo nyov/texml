@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.34 2004-07-07 12:32:55 olpa Exp $
+# $Id: handler.py,v 1.35 2004-07-07 13:36:22 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -392,7 +392,12 @@ class handler:
     cat = attrs.get('cat', '')
     if not (cat in specmap.tocharmap):
       raise ValueError("Attribute spec/@cat unknown: '%s'" % cat)
-    self.writer.write(specmap.tocharmap[cat], 0)
+    ch = specmap.tocharmap[cat]
+    if '\n' == ch:
+      self.writer.stack_emptylines(1)
+    self.writer.write(ch, 0)
+    if '\n' == ch:
+      self.writer.unstack_emptylines()
     #
     # Content of this element is empty
     #
