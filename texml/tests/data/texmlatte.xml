@@ -24,24 +24,24 @@
   </cmd>
   <env name="enumerate">
    <cmd name="item"/>
-   ``My own eyes are no more than scouts on a preliminary search,
-   for the camera's eye may entirely change my idea.''
+   <TeXML ligatures="1">``</TeXML>My own eyes are no more than scouts on a preliminary search,
+   for the camera's eye may entirely change my idea.<TeXML ligatures="1">''</TeXML>
    <cmd name="item"/>
-   ``Ultimately success of failure in photographing people depends
-   on the photographer's ability to understand his fellow man.''
+   <TeXML ligatures="1">``</TeXML>Ultimately success of failure in photographing people depends
+   on the photographer's ability to understand his fellow man.<TeXML ligatures="1">''</TeXML>
   </env>
   <cmd name="section*">
    <parm>A longer quote</parm>
   </cmd>
   <env name="quote">
-   ``One does not think during creative work, any more than one thinks
+   <TeXML ligatures="1">``</TeXML>One does not think during creative work, any more than one thinks
   when driving a car. But one has a background of years - learning,
   unlearning, success, failure, dreaming, thinking, experience, all
   this - then the moment of creation, the focusing of all into the
   moment. So I can make 'without thought,' fifteen carefully
   considered negatives, one every fifteen minutes, given material
   with as many possibilities. But there is all the eyes have seen in
-  this life to influence me.''
+  this life to influence me.<TeXML ligatures="1">''</TeXML>
   </env>
  </env>
 </TeXML>
