@@ -1,4 +1,78 @@
 =====================================================================
+Announce of 1.00 in newsgroups, maillists etc
+
+Subj: TeXML, the XML vocabulary for TeX
+
+  Hello colleagues,
+
+  I'd like to introduce you TeXML, the XML vocabulary for TeX:
+
+http://getfo.org/texml/
+http://getfo.sourceforge.net/texml/
+
+  A processor translates TeXML source into TeX.
+
+| Example of TeXML to TeX translation
+| 
+| TeXML:
+|
+| <cmd name="documentclass">
+|  <opt>12pt</opt>
+|  <parm>letter</parm>
+| </cmd>
+|
+| TeX:
+|
+| \documentclass[12pt]{letter}
+
+  One of the main benefits of TeXML usage is automatic translation of the TeX special symbols.
+
+| Example of translation of special TeX symbols
+|
+| TeXML:
+|
+| <TeXML>\section{No&#xa0;break}</TeXML>
+|
+| TeX:
+|
+| $\backslash$section\{No~break\}
+
+  The TeXML processor supports different output encodings and escapes out-of-encoding chars
+
+| Example of translation of non-ASCII characters
+|
+| TeXML:
+|
+| <TeXML>&#x422;&#x435;&#x425;</TeXML>
+|
+| TeX in ASCII encoding:
+|
+| \cyrchar\CYRT \cyrchar\cyre \cyrchar\CYRH 
+|
+| TeX in Russian encoding
+|
+| TeX
+
+  If you automatically generate TeX files, there are some benefits to generate TeXML instead of TeX:
+
+* you avoid painful handling of TeX special characters,
+* you should not bother about encodings,
+* there are chances to write more error-free code.
+
+  About last item. For example, you want to generate
+
+| {\bf bold}
+
+  One of the approaches is to generate "{", then "\bf " (with trailing space) and then "}". It is easy enough to miss space or to forget a brace or write an incorrect symbol. But when you use TeXML, it cares for you:
+
+| <group><cmd name="bf"/>bold</group>
+
+  Hope you will find TeXML useful. Your comments are welcome.
+
+  Regards, Oleg
+
+
+=====================================================================
 For db2latex, dblatex and other projects that use XSLT to generate TeX
 
 Subj: TeXML, the XML vocabulary for TeX
