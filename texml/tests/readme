@@ -1,26 +1,33 @@
 TeXML tests
 
-+ empty    no data, only a root element
-+ hello    text "Hello, World!"
-+ normal   escaping of special chars in tex mode
-+ math     escaping of special chars in math mode
-+ mixed    both normal and mixed mode
-+ nopara   output should not contain empty lines
-+ koi8     conversion from unicode to koi8 encoding
-+ koi8bad  conversion from unicode to koi8 with out of range chars
-+ latex    out of encoding chars as latex commands
-+ cmd      command
++ empty      no data, only a root element
++ hello      text "Hello, World!"
++ normal     escaping of special chars in tex mode
++ math       escaping of special chars in math mode
++ mixed      both normal and mixed mode
++ nopara     output should not contain empty lines
++ koi8       conversion from unicode to koi8 encoding
++ koi8bad    conversion from unicode to koi8 with out of range chars
++ latex      out of encoding chars as latex commands
++ cmd        command
++ env        environment
++ group      group
++ mathgr     math group
 
 Tests to be failed:
 
-+ badxml   unparsable XML
-+ unkelem  unknown element
-+ errmode  incorrect mode specification
-+ cmdcont  "cmd" contains something other than "opt" or "parm"
-+ misopt   "opt" is not a child of cmd
-+ optcont  "opt" contains something other then "ctrl" or "spec"
-+ misparm  "parm" is not a child of cmd
-+ parmcont "parm" contains something other then "ctrl" or "spec"
-
++ badxml     unparsable XML
++ unkelem    unknown element
++ errmode    incorrect mode specification
++ cmdcont    "cmd" contains something other than "opt" or "parm"
++ misopt     "opt" is not a child of "cmd" or "env"
++ optcont    "opt" contains something other then "ctrl" or "spec"
++ misparm    "parm" is not a child of "cmd" or "env"
++ parmcont   "parm" contains something other then "ctrl" or "spec"
++ envnoname  no name for "env"
++ math1      "dmath" inside "math"
++ math2      "math"  inside "math"
++ math3      "dmath" inside "dmath"
++ math4      "math"  inside "dmath"
 
 spec: support <, > and |
