@@ -40,7 +40,7 @@
   gr      (0|1)  #IMPLIED
 >
 
-<!ENTITY % inopt "#PCDATA|spec|ctrl|cmd|math|group">
+<!ENTITY % inopt "%content;">
 
 <!ELEMENT opt    (%inopt;)*>
 

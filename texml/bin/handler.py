@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.30 2004-06-28 07:44:42 olpa Exp $
+# $Id: handler.py,v 1.31 2004-07-07 10:08:46 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
@@ -112,16 +112,10 @@ class handler:
       'opt':    self.on_opt,
       'parm':   self.on_parm
     }
-    self.model_env = self.model_nomath.copy()
+    self.model_env    = self.model_content.copy() # copy, so == will true only for environment, not for any tag that shares model_content
     self.model_env.update(self.model_cmd)
-    self.model_opt    = {
-      'spec':   self.on_spec,
-      'ctrl':   self.on_ctrl,
-      'cmd':    self.on_cmd,
-      'group':  self.on_group,
-      'math':   self.on_math
-    }
-    self.model_parm   = self.model_opt
+    self.model_opt    = self.model_content
+    self.model_parm   = self.model_content
     self.end_handlers = {
       'TeXML':  self.on_texml_end,
       'cmd':    self.on_cmd_end,
