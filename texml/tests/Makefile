@@ -1,17 +1,13 @@
-# $Id: Makefile,v 1.5 2004-03-16 15:22:44 olpa Exp $
+# $Id: Makefile,v 1.6 2004-03-18 08:16:03 olpa Exp $
 
 all: tests
 
 clean:
 	rm -rf *~ */*~ tmp
 
-#good_xml_tests:=$(notdir $(wildcard data/*xml))
-good_xml_tests=empty.xml hello.xml normal.xml math.xml mixed.xml nopara.xml koi8.xml koi8bad.xml latex.xml cmd.xml \
-	ctrl.xml spec.xml entity.xml cmdnest.xml
+good_xml_tests:=$(notdir $(wildcard data/*xml))
 good_test_stamps=$(addprefix tmp/data/,$(good_xml_tests:.xml=.stamp))
-#fail_xml_tests:=$(notdir $(wildcard faildata/*xml))
-fail_xml_tests=badxml.xml unkelem.xml errmode.xml cmdname.xml cmdcont.xml misopt.xml optcont.xml misparm.xml parmcont.xml \
-	math1.xml math2.xml math3.xml math4.xml ctrlch.xml ctrlch2.xml spec1.xml spec2.xml ctrlcont.xml speccont.xml
+fail_xml_tests:=$(notdir $(wildcard faildata/*xml))
 fail_test_stamps=$(addprefix tmp/faildata/,$(fail_xml_tests:.xml=.stamp))
 
 #
