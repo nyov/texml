@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# $Id: texml.py,v 1.2 2004-03-15 10:42:06 olpa Exp $
+# $Id: texml.py,v 1.3 2004-03-15 13:15:45 olpa Exp $
 
 usage = """Convert TeXML markup to [La]TeX markup. Usage:
 python texml.py [-e encoding] input_file output_file"""
@@ -8,7 +8,7 @@ python texml.py [-e encoding] input_file output_file"""
 # Check command line, print help
 #
 import sys
-if len(sys.argv) < 4:
+if len(sys.argv) < 3:
   print >>sys.stderr, usage
   sys.exit(1)
 
