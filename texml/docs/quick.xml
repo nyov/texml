@@ -19,7 +19,7 @@
 		<p>Use you favourite text editor to create a file <tt>quick.texml</tt> in the folder <tt>c:\texml\bin</tt>. Type in the following text:</p>
 		<lst><xi:include href="../tests/data/quick/quick.texml" parse="text"
 				xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-		<p>Instead of typing this text you can take a ready-t-use file <tt>quick.texml</tt> from the folder <tt>tests\data\quick</tt> in the distribution package.</p>
+		<p>Instead of typing this text you can take a ready-to-use file <tt>quick.texml</tt> from the folder <tt>tests\data\quick</tt> in the distribution package.</p>
 		<p>Some letters are encoded as entities: &#x201c;<tt>&amp;#xD6;</tt>&#x201d; is &#x201c;&#xD6;&#x201d;, &#x201c;<tt>&amp;#xF6;</tt>&#x201d; is &#x201c;&#xF6;&#x201d;, &#x201c;<tt>&amp;#xE7;</tt>&#x201d; is &#x201c;&#xE7;&#x201d;, &#x201c;<tt>&amp;#xA0;</tt>&#x201d; is the no-break space and &#x201c;<tt>&amp;#x2014;</tt>&#x201d; is the em dash.</p>
 	</sect>
 
