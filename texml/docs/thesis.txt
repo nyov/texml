@@ -1,17 +1,17 @@
                         TeXML: an XML vocabulary for TeX
 
-   Thesis of the talk at the First International conference of the
-   open-source developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko,
-   Saint Petersburg.
+   Thesis of the talk at the First International Conference of Open-Source
+   Developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko, Saint
+   Petersburg.
 
      Abstract. The paper describes one of the methods of publishing XML
      documents through LaTeX. We propose to use TeXML, an intermediate
-     presentation of the TeX notation in an XML format.
+     presentation of TeX notation in an XML format.
 
 The need for TeXML
 
-   TeXML[1] is an intermediate presentation of the TeX notation in an XML
-   format. TeXML simplifies creation of printable versions of documents when
+   TeXML[1] is an intermediate presentation of TeX notation in an XML format.
+   TeXML simplifies creation of printable versions of documents when the
    following conditions are true:
 
      * original documents are in XML format,
@@ -19,16 +19,16 @@ The need for TeXML
      * XSLT is the best language for XML transformations.
 
    There are several projects([2], [3], [4], [5]) that transform XML to LaTeX
-   using XSLT. All these projects stuck into the problem that XSLT is very
-   inefficient when result of an XSLT transformation is not XML.
+   using XSLT. All of these projects have the same problem: XSLT is very
+   inefficient when the result of an XSLT transformation is not XML.
 
-   This problem can be solved using an intermediate step. At first, XSLT
-   efficiently transforms XML into the TeXML, and then a TeXML processor
-   serializes TeXML into the TeX format.
+   This problem can be solved using an intermediate step. First, XSLT
+   efficiently transforms XML into TeXML, and then a TeXML processor turns
+   TeXML into the TeX format.
 
 Brief overview of TeXML
 
-   An example demonstrates basic constructions of TeXML:
+   An example to demonstrate the basic syntax of TeXML:
 
  <TeXML>
   <cmd name="documentclass">
@@ -40,7 +40,7 @@ Brief overview of TeXML
   </env>
  </TeXML>
 
-   A result of serialization:
+   The results after processing:
 
  \begin{verbatim}
  \documentclass[a4paper]{minimal}
@@ -48,7 +48,7 @@ Brief overview of TeXML
  Eto~\textemdash{} primer.
  \end{document}
 
-   The main tasks of the serializer:
+   The main tasks of the processor:
 
      * escaping of the TeX special characters (for example, escaping "<" to
        "\textless"),
@@ -58,13 +58,12 @@ Brief overview of TeXML
        and
      * avoiding empty lines in TeX output.
 
-   In addition to these essential transformations, TeXML provides also
+   In addition to these essential transformations, TeXML also provides
    extended functionality.
 
-     * The TeXML language reflects the structured constructions of the LaTeX
-       such as environments or commands with parameters.
-     * Automatic layouting of a TeX code produces nice human-readable
-       documents.
+     * The TeXML language reflects the structured constructions of LaTeX such
+       as environments or commands with parameters.
+     * Automatic layout of TeX code into nice human-readable documents.
 
 TeXML benefits
 
@@ -77,8 +76,9 @@ TeXML benefits
  {\it \textbackslash{}example}
 
    There are several projects that create LaTeX from XML using XSLT, for
-   example: tbook[2], xsltml[3] , dblatex[4] , db2latex[5] . History of these
-   projects demonstrates following problems when generating the TeX fragment:
+   example: tbook[2], xsltml[3], dblatex[4], db2latex[5]. Usage of these
+   projects demonstrates the following problems when generating the TeX
+   fragment:
 
      * special symbols are not escaped,
      * space after a command name is missed (getting "\ittext" instead of
@@ -90,10 +90,10 @@ TeXML benefits
 
 Other versions of TeXML
 
-   During search for a solution for XML publishing through LaTeX I found that
-   Douglas Lovell introduced[6] TeXML approach in the year 1999, and there
-   was even an implementation in Java. This project, TeXMLatte[7], was
-   abandoned a lot of years ago, but its specification survived. Our TeXML is
+   During my search for a solution for XML publishing through LaTeX, I found
+   that Douglas Lovell introduced[6] the TeXML approach in the year 1999, and
+   there was even an implementation in Java. This project, TeXMLatte[7], was
+   abandoned some time ago, but its specification survived. Our TeXML is
    heavely based on this specification.
 
    There is also TeXMLapis[8], a Perl-processor of a subset of TeXML, but its

@@ -1,23 +1,23 @@
 <doc id="texml.thesis">
 	<title>TeXML: an XML vocabulary for TeX</title>
-	<p>Thesis of the talk at the First International conference of the open-source developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko, Saint Petersburg.</p>
-	<blockquote><p>Abstract. The paper describes one of the methods of publishing XML documents through LaTeX. We propose to use TeXML, an intermediate presentation of the TeX notation in an XML format.</p></blockquote>
+	<p>Thesis of the talk at the First International Conference of Open-Source Developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko, Saint Petersburg.</p>
+	<blockquote><p>Abstract. The paper describes one of the methods of publishing XML documents through LaTeX. We propose to use TeXML, an intermediate presentation of TeX notation in an XML format.</p></blockquote>
 
 	<sect>
 		<title>The need for TeXML</title>
-		<p>TeXML<a href="#texml">[1]</a> is an intermediate presentation of the TeX notation in an XML format. TeXML simplifies creation of printable versions of documents when following conditions are true:</p>
+		<p>TeXML<a href="#texml">[1]</a> is an intermediate presentation of TeX notation in an XML format. TeXML simplifies creation of printable versions of documents when the following conditions are true:</p>
 		<ul>
 			<li>original documents are in XML format,</li>
 			<li>printable versions are being created by LaTeX, and</li>
 			<li>XSLT is the best language for XML transformations.</li>
 		</ul>
-		<p>There are several projects(<a href="#tbook">[2]</a>, <a href="#xsltml">[3]</a>, <a href="#dblatex">[4]</a>, <a href="#db2latex">[5]</a>) that transform XML to LaTeX using XSLT. All these projects stuck into the problem that XSLT is very inefficient when result of an XSLT transformation is not XML.</p>
-		<p>This problem can be solved using an intermediate step. At first, XSLT efficiently transforms XML into the TeXML, and then a TeXML processor serializes TeXML into the TeX format.</p>
+		<p>There are several projects(<a href="#tbook">[2]</a>, <a href="#xsltml">[3]</a>, <a href="#dblatex">[4]</a>, <a href="#db2latex">[5]</a>) that transform XML to LaTeX using XSLT. All of these projects have the same problem: XSLT is very inefficient when the result of an XSLT transformation is not XML.</p>
+		<p>This problem can be solved using an intermediate step. First, XSLT efficiently transforms XML into TeXML, and then a TeXML processor turns TeXML into the TeX format.</p>
 	</sect>
 
 	<sect>
 		<title>Brief overview of TeXML</title>
-		<p>An example demonstrates basic constructions of TeXML:</p>
+		<p>An example to demonstrate the basic syntax of TeXML:</p>
 <pre><![CDATA[<TeXML>
  <cmd name="documentclass">
   <opt>a4paper</opt>
@@ -27,23 +27,23 @@
   Eto&nbsp;&mdash; primer.
  </env>
 </TeXML>]]></pre>
-<p>A result of serialization:</p>
+<p>The results after processing:</p>
 <pre><![CDATA[\begin{verbatim}
 \documentclass[a4paper]{minimal}
 \begin{document}
 Eto~\textemdash{} primer.
 \end{document}]]></pre>
-		<p>The main tasks of the serializer:</p>
+		<p>The main tasks of the processor:</p>
 		<ul>
 			<li>escaping of the TeX special characters (for example, escaping &#x201c;<tt>&lt;</tt>&#x201d; to &#x201c;<tt>\textless</tt>&#x201d;),</li>
 			<li>unicode processing (for example, printing russian letter &#x201c;<tt>d</tt>&#x201d; as is or as &#x201c;<tt>\cyrchar\cyrd{}</tt>&#x201d;),</li>
 			<li>disjoining of ligatures (for example, replacing &#x201c;<tt>---</tt>&#x201d; by &#x201c;<tt>-{}-{}-</tt>&#x201d;), and</li>
 			<li>avoiding empty lines in TeX output.</li>
 		</ul>
-		<p>In addition to these essential transformations, TeXML provides also extended functionality.</p>
+		<p>In addition to these essential transformations, TeXML also provides extended functionality.</p>
 		<ul>
-			<li>The TeXML language reflects the structured constructions of the LaTeX such as environments or commands with parameters.</li>
-			<li>Automatic layouting of a TeX code produces nice human-readable documents.</li>
+			<li>The TeXML language reflects the structured constructions of LaTeX such as environments or commands with parameters.</li>
+			<li>Automatic layout of TeX code into nice human-readable documents.</li>
 		</ul>
 	</sect>
 
@@ -53,7 +53,7 @@ Eto~\textemdash{} primer.
 <pre><![CDATA[<group><cmd name="it" gr="0"/>\example</group>]]></pre>
 <p>corresponds to a TeX fragment</p>
 		<pre>{\it \textbackslash{}example}</pre>
-		<p>There are several projects that create LaTeX from XML using XSLT, for example: tbook<a href="#tbook">[2]</a>, xsltml<a href="#xsltml">[3]</a> , dblatex<a href="#dblatex">[4]</a> , db2latex<a href="#db2latex">[5]</a> . History of these projects demonstrates following problems when generating the TeX fragment:</p>
+		<p>There are several projects that create LaTeX from XML using XSLT, for example: tbook<a href="#tbook">[2]</a>, xsltml<a href="#xsltml">[3]</a>, dblatex<a href="#dblatex">[4]</a>, db2latex<a href="#db2latex">[5]</a>. Usage of these projects demonstrates the following problems when generating the TeX fragment:</p>
 		<ul>
 			<li>special symbols are not escaped,</li>
 			<li>space after a command name is missed (getting &#x201c;<tt>\it<i>text</i></tt>&#x201d; instead of &#x201c;<tt>\it&#xa0;<i>text</i></tt>&#x201d;),</li>
@@ -65,7 +65,7 @@ Eto~\textemdash{} primer.
 
 	<sect>
 		<title>Other versions of TeXML</title>
-		<p>During search for a solution for XML publishing through LaTeX I found that Douglas Lovell introduced<a href="#lovell">[6]</a> TeXML approach in the year 1999, and there was even an implementation in Java. This project, TeXMLatt&#xE9;<a href="#texmlatte">[7]</a>, was abandoned a lot of years ago, but its specification survived. Our TeXML is heavely based on this specification.</p>
+		<p>During my search for a solution for XML publishing through LaTeX, I found that Douglas Lovell introduced<a href="#lovell">[6]</a> the TeXML approach in the year 1999, and there was even an implementation in Java. This project, TeXMLatt&#xE9;<a href="#texmlatte">[7]</a>, was abandoned some time ago, but its specification survived. Our TeXML is heavely based on this specification.</p>
 		<p>There is also TeXMLapis<a href="#texmlapis">[8]</a>, a Perl-processor of a subset of TeXML, but its functionality is limited.</p>
 	</sect>
 
