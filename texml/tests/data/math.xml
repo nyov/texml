@@ -16,6 +16,6 @@ category d: ~
 category e: %
 category f:
 also:       |
-also:       <
-also:       >
+also:       &lt;
+also:       &gt;
 </TeXML>
