@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.18 2004-06-21 11:51:29 olpa Exp $
+# $Id: texmlwr.py,v 1.19 2004-06-23 07:17:16 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -229,23 +229,44 @@ class texmlwr:
     except:
       pass
     #
-    # In math mode, we try both math and text rewriting
+    # Symbol have to be rewritten. Let start with math mode.
     #
     chord = ord(ch)
-    if self.mode == MATH:
+    if self.mode == TEXT:
+      #
+      # Text mode, lookup text map
+      #
+      try:
+        self.stream.write(unimap.textmap[chord])
+        return                                             # return
+      except:
+        #
+        # Text mode, lookup math map
+        #
+        tostr = unimap.mathmap.get(chord, None)
+    else: # self.mode == MATH:
+      #
+      # Math mode, lookup math map
+      #
       try:
         self.stream.write(unimap.mathmap[chord])
         return                                             # return
       except:
-        pass
+        #
+        # Math mode, lookup text map
+        #
+        tostr = unimap.textmap.get(chord, None)
     #
-    # Find symbol in text map
+    # If mapping in another mode table is found, use a wrapper
     #
-    try:
-      self.stream.write(unimap.textmap[chord])
+    if tostr != None:
+      if self.mode == TEXT:
+        self.stream.write('\\ensuremath{')
+      else:
+        self.stream.write('\\ensuretext{')
+      self.stream.write(tostr)
+      self.writech('}', 0)
       return                                               # return
-    except:
-      pass
     #
     # Finally, write symbol in &#xNNN; form
     #
