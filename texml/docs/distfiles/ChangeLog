@@ -1,12 +1,29 @@
 
-Version 1.24.devel (17 March 2005)
+Version 1.24.devel (21 March 2005)
 
 * ConTeXt is now namespace aware
   will process documents with the namespace 
+  http://getfo.sourceforge.net/texml/ns1
+
+  will also process documents with no namespace
 
 * ConTeXt is installed the standard way
   libraries are created in the python path;
   scripts are automatically installed in the path
+
+* Error handling
+  
+  exceptions are now classes rather than strings. 
+  This allows for better handling of exceptions.
+
+  Column and line numbers are now outputed as part 
+  of the error messages when an exception is raised.
+
+  exceptions for invalid or ill-formed XML are now
+  handled in the script. Instead of a long message
+  (incomprehensible to non-pythonn developers), the 
+  error message consists of a column number, a line
+  number, and a simple explanation. 
   
 
 Version 1.23.devel (5 March 2005)
