@@ -1,0 +1,27 @@
+                        TeXML: an XML vocabulary for TeX
+
+   Thesis of the talk at the First International conference of the
+   open-source developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko,
+   Saint Petersburg.
+
+     Abstract. The work describes one of the methods of publishing XML
+     documents through LaTeX. We propose to use TeXML, an intermediate
+     presentation of the TeX notation in a XML format.
+
+The need for TeXML
+
+   TeXML is an intermediate presentation of the TeX notation in a XML format.
+   TeXML simplifies creation of printable versions of documents when
+   following conditions are true:
+
+     * original documents are in XML format,
+     * printable versions are being created by LaTeX, and
+     * XSLT is the best language for XML transformations.
+
+   There are several projects that transform XML to LaTeX using XSLT. All
+   these project stuck into the problem that XSLT is very inefficient when
+   result of an XSLT transformation is not XML.
+
+   This problem can be solved using an intermediate step. At first, XSLT
+   efficiently transforms XML into the TeXML, and then TeXML processor
+   serializes TeXML into the TeX format.
