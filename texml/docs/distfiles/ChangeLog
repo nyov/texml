@@ -1,0 +1,12 @@
+* ChangeLog is created.
+
+
+Version 0.91.beta (22 March 2004)
+
+* Under Window, TeXML processor now creates lines with DOS endings.
+  Code should also work correctly in other systems (MacOS etc).
+
+
+Version 0.90.beta (19 March 2004)
+
+* First packaged verion of the TeXML.
