@@ -1,10 +1,9 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.2 2005-03-17 05:10:39 paultremblay Exp $
+# $Id: texml.py,v 1.3 2005-03-20 07:29:13 paultremblay Exp $
 
 VERSION = "1.24.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
 python texml.py [-e encoding] [-w auto_width] [-c|--context] 
-                [--ns ]
 in_file out_file""" % VERSION
 
 
@@ -26,10 +25,10 @@ if len(sys.argv) < 3:
 encoding    = 'ascii'
 width       = 50
 use_context = 0
-use_namespace = 0
+use_namespace = 1
 import getopt
 try:
-  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding=', 'ns'])
+  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding=', ])
 except getopt.GetoptError, e:
   print >>sys.stderr, 'texml: Can\'t parse command line: %s' % e
   print >>sys.stderr, usage
@@ -40,8 +39,6 @@ for o, a in opts:
     sys.exit(1)
   if o in ('-c', '--context'):
     use_context = 1
-  if o in ('--ns'):
-    use_namespace = 1
   if o in ('-w', '--width'):
     try:
       width = int(a)
@@ -97,7 +94,14 @@ parser = xml.sax.make_parser()
 parser.setFeature(feature_namespaces, use_namespace)
 parser.setContentHandler(h)
 parser.setFeature("http://xml.org/sax/features/external-general-entities", False)
-parser.parse(infile)             
+try:
+    parser.parse(infile)             
+except xml.sax._exceptions.SAXParseException, msg:
+    print
+    sys.stderr.write('Invalid XML\n')
+    sys.stderr.write('%s\n' % (str(msg)))
+    f.close()
+    sys.exit(1)
 
 
 

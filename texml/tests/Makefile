@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.11 2005-03-05 17:55:13 olpa Exp $
+# $Id: Makefile,v 1.12 2005-03-20 07:29:13 paultremblay Exp $
 
 python=python
 
@@ -45,7 +45,7 @@ FORCE:
 #
 # Running "good" tests
 #
-tmp/data/%.out: data/%.xml ../bin/texml.py ../bin/*py data/%.out $(init)
+tmp/data/%.out: data/%.xml ../scripts/texml.py ../Texml/*py data/%.out $(init)
 	$(python) $(word 2,$+) $(call params-$*) $< $@
 
 tmp/data/%.stamp: tmp/data/%.out FORCE
@@ -54,7 +54,7 @@ tmp/data/%.stamp: tmp/data/%.out FORCE
 #
 # Running "bad" tests: if fact, we make grep of error message
 #
-tmp/faildata/%.err: faildata/%.xml ../bin/texml.py ../bin/*py $(init)
+tmp/faildata/%.err: faildata/%.xml ../scripts/texml.py ../Texml/*py $(init)
 	$(python) $(word 2,$+) $< $(basename $@).out 2>$@ || true
 
 tmp/faildata/%.stamp: tmp/faildata/%.err FORCE

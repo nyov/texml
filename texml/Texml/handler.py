@@ -49,7 +49,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.3 2005-03-17 05:44:56 paultremblay Exp $
+# $Id: handler.py,v 1.4 2005-03-20 07:29:12 paultremblay Exp $
 
 import xml.sax.handler
 
@@ -59,7 +59,7 @@ import texmlwr
 import specmap
 import StringIO
 import string
-import os
+import os, sys
 
 #
 # TeXML SAX handler works correct but misfeaturely when SAX parser
@@ -89,12 +89,15 @@ class glue_handler(xml.sax.ContentHandler):
     self.flushChars()
     self.h.endDocument()
 
-  def startElement(self, name, attrs):
+  # no longer use
+  def startElement_off(self, name, attrs):
     self.flushChars()
     self.h.startElement(name, attrs)
 
-  def startElementNS(self, name, qname, attrs):
+  def setDocumentLocator(self, locator):
+      self.locator = locator
 
+  def startElementNS(self, name, qname, attrs):
     # change attrs to regular dictionary
     the_attrs = {}
     keys = attrs.keys()
@@ -106,19 +109,27 @@ class glue_handler(xml.sax.ContentHandler):
     name_space = name[0]
     self.__current_name_space = name_space
     local_name = name[1]
-    if name_space == self.__name_space:
+
+    # get the column and line number and use the handler
+    col_num = self.locator.getColumnNumber()
+    line_num =  self.locator.getLineNumber()
+
+    if name_space == self.__name_space or name_space == None:
         self.flushChars()
-        self.h.startElement(local_name, the_attrs)
-    # otherwise, ignore!
+        self.h.startElement(col_num, line_num, local_name, the_attrs)
+    # report an error and quit
+    else:
+        self.h.invalid_xml(col_num, line_num, local_name, name_space)
     
-  def endElement(self, name):
+  # no longer use
+  def endElement_off(self, name):
     self.flushChars()
     self.h.endElement(name)
 
   def endElementNS(self, name, qname):
     name_space = name[0]
     local_name = name[1]
-    if name_space == self.__name_space:
+    if name_space == self.__name_space or name_space == None:
         self.flushChars()
         self.h.endElement(local_name)
     # otherwise, ignore!
@@ -132,8 +143,6 @@ class glue_handler(xml.sax.ContentHandler):
     # instead of onece ('... aa    bb ...')
 
   def characters(self, content):
-    if self.__current_name_space and self.__current_name_space != self.__name_space:
-        return
     if None == self.c:
       self.c = content
     else:
@@ -218,6 +227,14 @@ class Handler:
       'dmath':  self.on_dmath_end
     }
 
+  def invalid_xml(self, col_num, line_num, local_name, ns=None):
+      sys.stderr.write('Invalid XML %s, %s:\n' % (col_num, line_num))
+      if ns:
+        sys.stderr.write('Element "%s" for namespace "%s" not expected\n' % (local_name, ns))
+      else:
+        sys.stderr.write('%s not expected\n' % (local_name))
+      sys.exit(1)
+
   # -------------------------------------------------------------------
   
   def startDocument(self):
@@ -229,12 +246,13 @@ class Handler:
     """ Finalize document """
     self.writer.conditionalNewline()
 
-  def startElement(self, name, attrs):
+  def startElement(self, col_num, line_num, name, attrs):
     """ Handle start of an element"""
     if name in self.model:
       self.model[name](attrs)
     else:
-      raise ValueError("Element '%s' is not expected" % name)
+      self.invalid_xml(col_num, line_num, name)
+      # raise ValueError("Element '%s' is not expected" % name)
 
   def characters(self, content):
     """ Handle text data """
