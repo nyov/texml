@@ -7,7 +7,7 @@
       </group>
     </parm>
   </cmd>
-  <env name="tabular">
+  <env name="tabular" nl2="0">
     <opt>t</opt>
     <parm>r<spec cat="vert"/>c<spec cat="vert"/>l</parm>
     ... table goes here ...
