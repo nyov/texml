@@ -1,17 +1,55 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.19 2004-06-21 08:36:27 olpa Exp $
+# $Id: handler.py,v 1.20 2004-06-21 09:05:25 olpa Exp $
 
 import xml.sax.handler
 import texmlwr
 import specmap
 import StringIO
 
+#
+# TeXML SAX handler works correct but misfeaturely when SAX parser
+# reports characters in several calls instead of one call.
+# This wrappers fixes the problem
+#
+class glue_handler(xml.sax.ContentHandler):
+  
+  def __init__(self, stream):
+    self.h = handler(stream)
+    self.c = None
+
+  def startDocument(self):
+    self.c = None
+    self.h.startDocument()
+
+  def flushChars(self):
+    if self.c != None:
+      self.h.characters(self.c)
+      self.c = None
+
+  def endDocument(self):
+    self.flushChars()
+    self.h.endDocument()
+
+  def startElement(self, name, attrs):
+    self.flushChars()
+    self.h.startElement(name, attrs)
+    
+  def endElement(self, name):
+    self.flushChars()
+    self.h.endElement(name)
+
+  def characters(self, content):
+    if None == self.c:
+      self.c = content
+    else:
+      self.c = self.c + content
+
 # WhiteSpace (WS) elimination
 # In most cases, WS around tags (both opening and closing) are removed.
 # But these tags save ws: <ctrl/> and <spec/>.
 # WS processing is allowed or disallowed by "process_ws".
 
-class handler(xml.sax.handler.ContentHandler):
+class handler:
 
   # Object variables
   # writer
