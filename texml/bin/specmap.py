@@ -1,5 +1,5 @@
 """ Map special TeX symbols """
-# $Id: specmap.py,v 1.1 2004-03-15 12:11:09 olpa Exp $
+# $Id: specmap.py,v 1.2 2004-03-15 13:14:28 olpa Exp $
 
 # text escape map and map escape map should contain the same keys
 
@@ -12,7 +12,7 @@ textescmap = {
   '#':  r'\#',
   '^':  r'\^{}',
   '_':  r'\_',
-  '~':  r'\~{',
+  '~':  r'\~{}',
   '%':  r'\%',
   '|':  r'$|$',
   '<':  r'$<$',
