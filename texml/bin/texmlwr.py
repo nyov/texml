@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.14 2004-06-03 13:02:10 olpa Exp $
+# $Id: texmlwr.py,v 1.15 2004-06-18 13:19:16 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -37,21 +37,30 @@ class texmlwr:
   # ligatures_stack
   # emptylines
   # emptylines_stack
+  #
+  # Current length of a line that is being written. Value usually
+  # incorrect, but always correct to detect the start of a line (0)
+  # approx_current_line_len
+  # If length of a current line is greater the value
+  # then writer converts weak whitespaces into newlines
+  # autonewline_after_len
   
   def __init__(self, stream):
     """ Remember output stream, initialize data structures """
     self.stream = stream
-    self.after_char0d     = 1;
-    self.after_char0a     = 1;
-    self.last_ch          = None;
-    self.mode             = TEXT;
-    self.mode_stack       = [];
-    self.escape           = 1;
-    self.escape_stack     = [];
-    self.ligatures        = 0;
-    self.ligatures_stack  = [];
-    self.emptylines       = 0;
-    self.emptylines_stack = [];
+    self.after_char0d     = 1
+    self.after_char0a     = 1
+    self.last_ch          = None
+    self.mode             = TEXT
+    self.mode_stack       = []
+    self.escape           = 1
+    self.escape_stack     = []
+    self.ligatures        = 0
+    self.ligatures_stack  = []
+    self.emptylines       = 0
+    self.emptylines_stack = []
+    self.approx_current_line_len = 0
+    self.autonewline_after_len   = 50
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -95,11 +104,22 @@ class texmlwr:
 
   def conditionalNewline(self):
     """ Write a new line unless already at the start of a line """
-    if ('\r' != self.last_ch) and ('\n' != self.last_ch):
-      self.write(os.linesep)
+    if self.approx_current_line_len != 0:
+      self.write(os.linesep, 0)
+
+  def writeWeakWS(self):
+    """ Write a whitespace instead of whitespaces deleted from source XML """
+    if self.approx_current_line_len > self.autonewline_after_len:
+      self.conditionalNewline()
+      return                                               # return
+    self.writech(' ', 0)
 
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
+    #
+    # Update counters
+    #
+    self.approx_current_line_len = self.approx_current_line_len + 1
     #
     # Handle ligatures
     #
@@ -143,6 +163,7 @@ class texmlwr:
       #
       if (0 == self.after_char0a) or (0 == self.after_char0d):
         self.stream.write(os.linesep)
+	self.approx_current_line_len = 0
       return                                               # return
     #
     # Not end-of-line symbol. If it has to be escaped, we write
