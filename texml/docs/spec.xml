@@ -110,11 +110,11 @@
 		</table>
 		<p>The LaTeX mapping table is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
 		<p>Empty lines also have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this the processor prints a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
-		<p>The TeXML processor does not disconnect ligatures except &#x201c;<tt>--</tt>&#x201d; and &#x201c;<tt>---</tt>&#x201d;. These ligatures are converted into &#x201c;-{}-&#x201d; and &#x201c;-{}-{}-&#x201d;.</p>
+		<p>The TeXML processor does not disconnect ligatures except &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures are converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d; and &#x201c;<tt>?{}`</tt>&#x201d;.</p>
 		<p>It is possible to tune text translation:</p>
 		<ul>
 			<li><code><![CDATA[<TeXML escape="0">...</TeXML>]]></code> leaves specials as is, without escaping,</li>
-			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves &#x201c;<tt>--</tt>&#x201d; and &#x201c;<tt>---</tt>&#x201d; as is,</li>
+			<li><code><![CDATA[<TeXML ligatures="1">...</TeXML>]]></code> leaves ligatures as is,</li>
 			<li><code><![CDATA[<TeXML emptylines="1">...</TeXML>]]></code> leaves empty lines as is.</li>
 		</ul>
 		<blockquote>
