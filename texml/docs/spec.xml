@@ -15,7 +15,7 @@
 
 	<sect>
 		<title>Text translation</title>
-		<p>Characters are processed as follows:</p>
+		<a name="texttrans"/><p>Characters are processed as follows:</p>
 		<ul>
 			<li>If a character has a special meaning for TeX, then the character is translated according to the table below.</li>
 			<li>If the character belongs to an output encoding, then the character is printed as-is.</li>
@@ -168,5 +168,83 @@ $$\sqrt 2$$</lst>
 	<sect>
 		<title>Encoding control symbols</title>
 		<p>The <e>ch</e> attibute of the <e>ctrl</e> element encodes a control symbol, such as <code>&lt;ctrl ch="&#xa0;"/&gt;</code> for a control space (<code>\&#xa0;</code>).</p>
+	</sect>
+
+	<sect>
+		<title>Encoding special symbols</title>
+		<p>The processor automatically escapes special TeX symbols as <a href="#texttrans">described above</a>. But there are cases when you need these specials literally, as is. In these cases use the attribute <e>cat</e> of the element <e>spec</e> to specify category of a special symbol.</p>
+		<table border="1">
+			<caption><e>cat</e> attribute values</caption>
+			<tr>
+				<th>description</th>
+				<th><e>cat</e> value</th>
+				<th>output</th>
+			</tr>
+			<tr>
+				<td>escape character</td>
+				<td>esc</td>
+				<td>\</td>
+			</tr>
+			<tr>
+				<td>begin group</td>
+				<td>bg</td>
+				<td>{</td>
+			</tr>
+			<tr>
+				<td>end group</td>
+				<td>eg</td>
+				<td>}</td>
+			</tr>
+			<tr>
+				<td>math shift</td>
+				<td>mshift</td>
+				<td>$</td>
+			</tr>
+			<tr>
+				<td>alignment tab</td>
+				<td>align</td>
+				<td>&amp;</td>
+			</tr>
+			<tr>
+				<td>parameter</td>
+				<td>parm</td>
+				<td>#</td>
+			</tr>
+			<tr>
+				<td>superscript</td>
+				<td>sup</td>
+				<td>^</td>
+			</tr>
+			<tr>
+				<td>subscript</td>
+				<td>sub</td>
+				<td>_</td>
+			</tr>
+			<tr>
+				<td>tilde</td>
+				<td>tilde</td>
+				<td>~</td>
+			</tr>
+			<tr>
+				<td>comment</td>
+				<td>comment</td>
+				<td>%</td>
+			</tr>
+			<tr>
+				<td>vertical line</td>
+				<td>vert</td>
+				<td>|</td>
+			</tr>
+			<tr>
+				<td>less than</td>
+				<td>lt</td>
+				<td>&lt;</td>
+			</tr>
+			<tr>
+				<td>greater than</td>
+				<td>gt</td>
+				<td>&gt;</td>
+			</tr>
+		</table>
 	</sect>
 </doc>
