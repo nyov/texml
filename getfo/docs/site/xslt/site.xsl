@@ -14,12 +14,17 @@
 	<body>
 		<x:apply-templates select="document('inc/menu.xml',/)"/>
 		<x:apply-templates select="node()|@*"/>
+		<x:apply-templates select="document('inc/footer.xml',/)"/>
 	</body>
 </x:template>
 
 <x:template match="menu">
 	<x:apply-templates select="node()|@*"/>
 	<hr />
+</x:template>
+
+<x:template match="footer">
+	<x:apply-templates select="node()|@*"/>
 </x:template>
 
 <x:template match="menuitem">
