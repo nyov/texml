@@ -12,11 +12,11 @@ clean:
 	xsltproc $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
 
 index.txt: index.html
-	-links -dump $< >$@
+	links -dump $< >$@
 	echo >>$@
 	echo 'References' >>$@
 	echo >>$@
 	lynx --dump index.html | grep 'http://' | sed 's/^.*http/   http/' >>$@
 
 %.txt: %.html
-	-links -dump $< >$@
+	links -dump $< >$@
