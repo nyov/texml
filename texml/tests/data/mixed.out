@@ -8,3 +8,8 @@ Still in |math| mode
 %
 In $|$text$|$ mode.
 $a<b$ $$c>d$$
+$$
+latex math: \hat{a}
+latex text: \longleftarrow 
+latex none: &#x777;
+$$

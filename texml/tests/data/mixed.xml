@@ -8,4 +8,9 @@ In |math| mode
 </TeXML>
 In |text| mode.
 <math>a&lt;b</math> <dmath>c&gt;d</dmath>
+<dmath>
+latex math: &#xE2;
+latex text: &#x27F5;
+latex none: &#x777;
+</dmath>
 </TeXML>
