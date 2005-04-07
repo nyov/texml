@@ -92,7 +92,7 @@
     </xsl:template>
 
 
-    <!--div for toc on index page-->
+    <!--div for contentx-->
     <xsl:template match="tei:div" mode="toc-index">
         <xsl:element name="p">
             <xsl:attribute name="class">
@@ -277,6 +277,11 @@
               <xsl:text>level</xsl:text>
                 <xsl:text>1</xsl:text>
           </xsl:attribute>
+          <xsl:element name="a">
+              <xsl:attribute name="name">
+                  <xsl:value-of select="generate-id(.)"/>
+              </xsl:attribute>
+          </xsl:element>
           <xsl:apply-templates/>
       </xsl:element>
   </xsl:template>
@@ -288,11 +293,6 @@
               <xsl:text>level</xsl:text>
                 <xsl:text>1</xsl:text>
           </xsl:attribute>
-          <xsl:element name="a">
-              <xsl:attribute name="name">
-                  <xsl:value-of select="generate-id(.)"/>
-              </xsl:attribute>
-          </xsl:element>
           <xsl:apply-templates/>
       </xsl:element>
   </xsl:template>
@@ -398,6 +398,9 @@
   <!--tables-->
   <xsl:template match="tei:table">
       <xsl:element name="table">
+        <xsl:attribute name="id">
+            <xsl:value-of select="@id"/>
+        </xsl:attribute>
         <xsl:choose>
             <xsl:when test="tei:row[@role='label']">
                 <xsl:element name="thead">
@@ -432,6 +435,11 @@
   <!--cell-->
   <xsl:template match="tei:cell">
       <xsl:element name="td">
+        <xsl:if test="not(following-sibling::tei:cell)">
+            <xsl:attribute name="class">
+                <xsl:text>last</xsl:text>
+            </xsl:attribute>
+        </xsl:if>
           <xsl:apply-templates/>
       </xsl:element>
   </xsl:template>

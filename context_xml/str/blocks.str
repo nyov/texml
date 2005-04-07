@@ -704,3 +704,68 @@ to delete the extra space created by the indentin environment.
  \stopnarrower}
 
 :src url=context_examples/footnote5.tex: source file
+
+
+======
+Lists
+======
+
+Default list
+-------------
+
+Form lists by creating an itemize environment. The numbering for the
+itemized list is determined by the first option of the [:cm:
+startitemize] command. Here are the possible values for the first
+option and the result these values produce.
+
+:tb url=table2:
+
+The [:cm: item] command creates the actual item in the list.
+
+:t2x-no-process:
+
+ \startitemize[n]
+ \item {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+ ...
+ \stopitemize
+.. stop block
+
+:src url=context_examples/itemize1.tex: source file
+
+:ul:
+
+  :head: Tips
+
+  * You can define your own characters for non-ordered lists. Use the 
+    [:cm: definesymbol] command, such as: [:cm:
+    definesymbol[1][$\\diamond$]]. 
+    Now start your itemizing environment with [:cm: startitemize[1]].
+
+Customizing lists
+------------------
+
+Customize your list by first using the [:cm: setupitemize] command. If
+you want to put space before or after the list, or inbetween list
+items, first establish definitions that you can use in the
+[:cm: setupitemize] command.
+
+:t2x-no-process:
+
+ \def\Inbetween{\blank[24pt]}
+
+ \def\Before{\blank[24pt]} % between body text and start of list
+
+ \def\After{\blank[18pt]} % between body text and start of list
+
+ \setupitemize[inbetween=\Inbetween,
+ before=\Before,
+ after=\After,
+ stopper=:,
+ left=(,
+ right=),
+ margin=24pt,
+ width=48pt,
+ ]
+ ...
+
+:fig url=itemize1: customizing a list

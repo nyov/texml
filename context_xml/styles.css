@@ -13,4 +13,31 @@ p.figure-caption{position:relative;font-family:"Verdana", "Helvetica", sans-seri
 div.img{border-left:0px solid black;border-right:0px solid black; border-top:0px solid black; border-bottom: 0px solid black;background-color:#ECECEC;padding:20px; text-align:center}
 img {text-align:center;}
 
+table {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: separate;
+	background-color: white;
+        width:3in;
+}
+table th {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset inset inset inset;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+table td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset inset inset inset;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+
+thead>tr>td{border-bottom:1px solid black; font-weight:bold}
 

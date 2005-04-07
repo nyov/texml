@@ -34,7 +34,7 @@
 
 :change date=2005-03-04:
 
-  Changed "you can't change laout of first page" to "yes, this is
+  Changed "you can't change layout of first page" to "yes, this is
   how you do it."
 
 :change date=2005-03-04:
@@ -168,7 +168,7 @@ Width of Body Text
 
 .. The width of your body text determines how much white space you will
 have on the edge of your page. Old tomes on philosophy and anthologies
-on literature have skinny little margis. Childrens' books and picture
+on literature have skinny little margin. Childrens' books and picture
 books such as you have on your coffee table have nice, generous
 margins.
 
@@ -599,7 +599,7 @@ pages, and the fourth for the left margin on even pages.
 :fig url=headers1: \setupheadertexts with four arguments
 
 When pages are mirrored, the third and fourth argument are reversed.
-The placement of the headers and foooters does not change for even
+The placement of the headers and footers does not change for even
 
 :fig url=headers2: headers switched for mirrored layout
 
@@ -619,7 +619,7 @@ some text, it pushes that text all the way to the right.
 
 If we use the [:cm: hfill ] command both before and after the text, it
 puts as much space between the left and the right as possible,
-resulting in text being approxtimately centered. The centering won't
+resulting in text being approximately centered. The centering won't
 be exact because the space of your text on the left will most likely
 not be the same as the space for the text on the right. To fix this,
 use the [:cm: llap] and [:cm: rlap ] commands.
@@ -677,7 +677,7 @@ use the [:cm: llap] and [:cm: rlap ] commands.
   :head: Tips
 
   * You can also use the [:cm: hskip] command to create a specific amount
-    of white space. If you wanted 10 points between Thoreau and Romanicism,
+    of white space. If you wanted 10 points between Thoreau and Romanticism,
     you type [:cm: hskip10pt].
 
 Since [:ab: context] doesn't allow us to create paragraphs in headers
@@ -711,7 +711,7 @@ use [:cm: vskip].
  </cmd>
 
 
-:fig url=vskip: using a \vbox to create multiline header
+:fig url=vskip: using a \vbox to create multi-line header
 
 ========================================================
 Changing the layout for different parts in a document
@@ -721,7 +721,7 @@ Long documents require different layouts for different parts. The
 abstract in a thesis may need a narrower page width. Each chapter
 in a book might have a different header.
 
-[:ab: context] has a hierachy of sections for the user, including
+[:ab: context] has a hierarchy of sections for the user, including
 part, chapter, section, sub-section, and even sub-sub-section. If
 a user structures his document using these divisions, [:ab: context]
 can create a table of contents and keep track of numbering, amongst
@@ -731,7 +731,7 @@ XML author already has access to a powerful numbering scheme and
 the ability to create any type of table of contents she wants. 
 
 Therefore I'll use only one section command, [:cm: part]. The [:cm: part]
-commaond provides the mechanism to re-define physical page size, 
+command provides the mechanism to re-define physical page size, 
 page layout, and headers and footers. By default, the [:cm: part] command
 will force page numbering to begin at one. In order to stop this 
 behavior (and you probably want to), set the option [:op: way 
@@ -755,10 +755,10 @@ Simply follow the same procedure outline previously in this document,
 and the new settings take affect. Remember to issue these commands
 *after* you issue the [:cm: part] command. (The once exception is
 [:cm: setuphead], which is explained below.) If you redefine headers
-and footers before the [:cm: part] command, the new defintions might
+and footers before the [:cm: part] command, the new definitions might
 appear in the previous section.
 
-Here is an example of creating new headers for each chpater in a book. 
+Here is an example of creating new headers for each chapter in a book. 
 
 
 :t2x-no-process:
@@ -792,7 +792,7 @@ Here is an example of creating new headers for each chpater in a book.
   <opt/>
   <opt/>
   <opt>American Literature</opt>
-  <!--the rest of the chpater goes here-->
+  <!--the rest of the chapter goes here-->
  </cmd>
 
 ------------------------------------------------------------
@@ -892,10 +892,10 @@ white space around it.
     been stopped. 
 
   * The [:op: footer=empty] and [:op: footer=high] commands are the
-    equivelent to their header conterparts. The text and or space  at
-    the bottom will be supressed.
+    equivalent to their header counterparts. The text and or space  at
+    the bottom will be suppressed.
 
-Different headers and footers for firt page
+Different headers and footers for first page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The [:cm: setupheader] command only lets us eliminate a header or footer for
@@ -937,20 +937,4 @@ second is the position. The last options is the text placed in the header.
     the [:cm: part] command.
 
   * The [:cm: setuphead] also takes the [:op: footer] option.
-
-
-
-
-==================
-Example Documents
-==================
-
-Here are two example documents, illustrating all the formatting. The
-first is a plain old [:ab: context] document. The second is a TeXML
-document. 
- 
-:divGen type=page_setup1_tex ana=insert-example-text:
-
-:divGen type=page_setup1_texml ana=insert-example-text:
-
 

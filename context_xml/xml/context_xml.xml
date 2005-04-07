@@ -715,7 +715,7 @@ Ernest Hemingwary
     </tei:bibl>
     <tei:bibl ana="section-revision">
      <tei:date value="2005-03-04"/>
-     <tei:note type="revision-description" ana="paragraph">Changed &#8220;you can&#8217;t change laout of first page&#8221; to &#8220;yes, this is how you do it.&#8221;</tei:note>
+     <tei:note type="revision-description" ana="paragraph">Changed &#8220;you can&#8217;t change layout of first page&#8221; to &#8220;yes, this is how you do it.&#8221;</tei:note>
     </tei:bibl>
     <tei:bibl ana="section-revision">
      <tei:date value="2005-03-04"/>
@@ -1297,7 +1297,7 @@ cutspace=50mm,
       </tei:figure>
       <tei:p ana="paragraph">
        When pages are mirrored, the third and fourth argument are reversed. The
-       placement of the headers and foooters does not change for even
+       placement of the headers and footers does not change for even
       </tei:p>
       <tei:figure url="headers2.svg" ana="figure">
        <tei:head ana="head">headers switched for mirrored layout</tei:head>
@@ -1321,7 +1321,7 @@ cutspace=50mm,
        If we use the <tei:seg type="command" ana="context-command">hfill
        </tei:seg> command both before and after the text, it puts as much space
        between the left and the right as possible, resulting in text being
-       approxtimately centered. The centering won&#8217;t be exact because the
+       approximately centered. The centering won&#8217;t be exact because the
        space of your text on the left will most likely not be the same as the
        space for the text on the right. To fix this, use the
        <tei:seg type="command" ana="context-command">llap</tei:seg> and
@@ -1379,7 +1379,7 @@ cutspace=50mm,
          You can also use the
          <tei:seg type="command" ana="context-command">hskip</tei:seg> command
          to create a specific amount of white space. If you wanted 10 points
-         between Thoreau and Romanicism, you type
+         between Thoreau and Romanticism, you type
          <tei:seg type="command" ana="context-command">hskip10pt</tei:seg>.
         </tei:p>
        </tei:item>
@@ -1420,7 +1420,7 @@ Disobedience]
 
 </tei:eg>
       <tei:figure url="vskip.svg" ana="figure">
-       <tei:head ana="head">using a vbox to create multiline header</tei:head>
+       <tei:head ana="head">using a vbox to create multi-line header</tei:head>
       </tei:figure>
      </tei:div>
     </tei:div>
@@ -1433,7 +1433,7 @@ Disobedience]
      </tei:p>
      <tei:p ana="paragraph">
       <tei:seg type="context-name" ana="context-name">context</tei:seg> has a
-      hierachy of sections for the user, including part, chapter, section,
+      hierarchy of sections for the user, including part, chapter, section,
       sub-section, and even sub-sub-section. If a user structures his document
       using these divisions,
       <tei:seg type="context-name" ana="context-name">context</tei:seg> can
@@ -1446,7 +1446,7 @@ Disobedience]
      <tei:p ana="paragraph">
       Therefore I&#8217;ll use only one section command,
       <tei:seg type="command" ana="context-command">part</tei:seg>. The
-      <tei:seg type="command" ana="context-command">part</tei:seg> commaond
+      <tei:seg type="command" ana="context-command">part</tei:seg> command
       provides the mechanism to re-define physical page size, page layout, and
       headers and footers. By default, the
       <tei:seg type="command" ana="context-command">part</tei:seg> command will
@@ -1478,10 +1478,10 @@ Disobedience]
       <tei:seg type="command" ana="context-command">setuphead</tei:seg>, which
       is explained below.) If you redefine headers and footers before the
       <tei:seg type="command" ana="context-command">part</tei:seg> command, the
-      new defintions might appear in the previous section.
+      new definitions might appear in the previous section.
      </tei:p>
      <tei:p ana="paragraph">
-      Here is an example of creating new headers for each chpater in a book.
+      Here is an example of creating new headers for each chapter in a book.
      </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">
 \part{}
@@ -1511,7 +1511,7 @@ Disobedience]
  &lt;opt/&gt;
  &lt;opt/&gt;
  &lt;opt&gt;American Literature&lt;/opt&gt;
- &lt;!--the rest of the chpater goes here--&gt;
+ &lt;!--the rest of the chapter goes here--&gt;
 &lt;/cmd&gt;
 
 </tei:eg>
@@ -1627,14 +1627,14 @@ Disobedience]
           <tei:p ana="paragraph">
            The <tei:seg type="option" ana="option">footer=empty</tei:seg> and
            <tei:seg type="option" ana="option">footer=high</tei:seg> commands
-           are the equivelent to their header conterparts. The text and or space
-           at the bottom will be supressed.
+           are the equivalent to their header counterparts. The text and or
+           space at the bottom will be suppressed.
           </tei:p>
          </tei:item>
         </tei:list>
        </tei:div>
        <tei:div ana="div">
-        <tei:head ana="head">Different headers and footers for firt page</tei:head>
+        <tei:head ana="head">Different headers and footers for first page</tei:head>
         <tei:p ana="paragraph">
          The <tei:seg type="command" ana="context-command">setupheader</tei:seg>
          command only lets us eliminate a header or footer for the first page,
@@ -1695,17 +1695,6 @@ Disobedience]
        </tei:div>
       </tei:div>
      </tei:div>
-    </tei:div>
-    <tei:div ana="div">
-     <tei:head ana="head">Example Documents</tei:head>
-     <tei:p ana="paragraph">
-      Here are two example documents, illustrating all the formatting. The first
-      is a plain old
-      <tei:seg type="context-name" ana="context-name">context</tei:seg>
-      document. The second is a TeXML document.
-     </tei:p>
-     <tei:divGen type="page_setup1_tex" ana="insert-example-text"/>
-     <tei:divGen type="page_setup1_texml" ana="insert-example-text"/>
     </tei:div>
    </tei:div>
    <tei:div ana="div">
@@ -2497,6 +2486,155 @@ months after . . .
         </tei:p>
        </tei:div>
       </tei:div>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Lists</tei:head>
+     <tei:div ana="div">
+      <tei:head ana="head">Default list</tei:head>
+      <tei:p ana="paragraph">
+       Form lists by creating an itemize environment. The numbering for the
+       itemized list is determined by the first option of the
+       <tei:seg type="command" ana="context-command">startitemize</tei:seg>
+       command. Here are the possible values for the first option and the result
+       these values produce.
+      </tei:p>
+      <tei:table id="enumeration">
+       <tei:head>enumeration symbols</tei:head>
+       <tei:row role="label">
+        <tei:cell>setup</tei:cell>
+        <tei:cell>result</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>n</tei:cell>
+        <tei:cell>1,2,3,4</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>a</tei:cell>
+        <tei:cell>a,b,c,d</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>A</tei:cell>
+        <tei:cell>A,B,C,D</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>KA</tei:cell>
+        <tei:cell>A,B,C,D [small caps]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>r</tei:cell>
+        <tei:cell>i,ii,iii,iv</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>R</tei:cell>
+        <tei:cell>I, II, III, IV</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>KR</tei:cell>
+        <tei:cell>I, II, III, IV[small caps]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>m</tei:cell>
+        <tei:cell>1,2,3,4[smaller numbers]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>g</tei:cell>
+        <tei:cell>&#945;,&#946;,&#947;</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>G</tei:cell>
+        <tei:cell>&#913;,&#914;,&#915;</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>1</tei:cell>
+        <tei:cell>&#8226;</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>2</tei:cell>
+        <tei:cell>&#8212;</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>3</tei:cell>
+        <tei:cell>*</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>4</tei:cell>
+        <tei:cell>&#8227;</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>5</tei:cell>
+        <tei:cell>[circle]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>6</tei:cell>
+        <tei:cell>[big circle]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>7</tei:cell>
+        <tei:cell>[bigger circle]</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>8</tei:cell>
+        <tei:cell>&#10063; [box]</tei:cell>
+       </tei:row>
+      </tei:table>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">item</tei:seg> command
+       creates the actual item in the list.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\startitemize[n]
+\item {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+...
+\stopitemize
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/itemize1.tex">source file</tei:xref>
+      </tei:p>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         You can define your own characters for non-ordered lists. Use the
+         <tei:seg type="command" ana="context-command">definesymbol</tei:seg>
+         command, such as:
+         <tei:seg type="command" ana="context-command">definesymbol[1][$\diamond$]</tei:seg>.
+         Now start your itemizing environment with
+         <tei:seg type="command" ana="context-command">startitemize[1]</tei:seg>.
+        </tei:p>
+       </tei:item>
+      </tei:list>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Customizing lists</tei:head>
+      <tei:p ana="paragraph">
+       Customize your list by first using the
+       <tei:seg type="command" ana="context-command">setupitemize</tei:seg>
+       command. If you want to put space before or after the list, or inbetween
+       list items, first establish definitions that you can use in the
+       <tei:seg type="command" ana="context-command">setupitemize</tei:seg>
+       command.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\def\Inbetween{\blank[24pt]}
+
+\def\Before{\blank[24pt]} % between body text and start of list
+
+\def\After{\blank[18pt]} % between body text and start of list
+
+\setupitemize[inbetween=\Inbetween,
+before=\Before,
+after=\After,
+stopper=:,
+left=(,
+right=),
+margin=24pt,
+width=48pt,
+]
+...
+
+</tei:eg>
+      <tei:figure url="itemize1.svg" ana="figure">
+       <tei:head ana="head">customizing a list</tei:head>
+      </tei:figure>
      </tei:div>
     </tei:div>
    </tei:div>

@@ -312,6 +312,15 @@
         <xsl:apply-templates select = "document('/home/paul/Documents/context/tables/table1.xml')"/>
     </xsl:template>
 
+    <xsl:template match="tx:tb">
+        <xsl:variable name="url">
+            <xsl:text>../tables/</xsl:text>
+            <xsl:value-of select="@url"/>
+            <xsl:text>.xml</xsl:text>
+        </xsl:variable>
+        <xsl:apply-templates select = "document($url)"/>
+    </xsl:template>
+
     <xsl:template match="tx:revision">
         <xsl:element name="tei:bibl">
             <xsl:if test="tx:date">
