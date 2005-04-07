@@ -1,0 +1,80 @@
+<table xmlns= "http://www.tei-c.org/ns/1.0" id="enumeration">
+    <head>enumeration symbols</head> 
+    <row role="label">
+        <cell>setup</cell>
+        <cell>result</cell>
+    </row>
+    <row>
+        <cell>n</cell>
+        <cell>1,2,3,4</cell>
+    </row>
+    <row>
+        <cell>a</cell>
+        <cell>a,b,c,d</cell>
+    </row>
+    <row>
+        <cell>A</cell>
+        <cell>A,B,C,D</cell>
+    </row>
+    <row>
+        <cell>KA</cell>
+        <!--small caps-->
+        <cell>A,B,C,D [small caps]</cell>
+    </row>
+    <row>
+        <cell>r</cell>
+        <cell>i,ii,iii,iv</cell>
+    </row>
+    <row>
+        <cell>R</cell>
+        <cell>I, II, III, IV</cell>
+    </row>
+    <row>
+        <cell>KR</cell>
+        <cell>I, II, III, IV[small caps]</cell>
+    </row>
+    <row>
+        <cell>m</cell>
+        <cell>1,2,3,4[smaller numbers]</cell>
+    </row>
+    <row>
+        <cell>g</cell>
+        <cell>&#x03B1;,&#x03B2;,&#x03B3;</cell>
+    </row>
+    <row>
+        <cell>G</cell>
+        <cell>&#x0391;,&#x0392;,&#x0393;</cell>
+    </row>
+    <row>
+        <cell>1</cell>
+        <cell>&#x2022;</cell>
+    </row>
+    <row>
+        <cell>2</cell>
+        <cell>&#x2014;</cell>
+    </row>
+    <row>
+        <cell>3</cell>
+        <cell>*</cell>
+    </row>
+    <row>
+        <cell>4</cell>
+        <cell>&#x2023;</cell>
+    </row>
+    <row>
+        <cell>5</cell>
+        <cell>[circle]</cell>
+    </row>
+    <row>
+        <cell>6</cell>
+        <cell>[big circle]</cell>
+    </row>
+    <row>
+        <cell>7</cell>
+        <cell>[bigger circle]</cell>
+    </row>
+    <row>
+        <cell>8</cell>
+        <cell>&#x274F; [box]</cell>
+    </row>
+</table>
