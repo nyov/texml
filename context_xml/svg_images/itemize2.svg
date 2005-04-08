@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<svg width="830" height="400"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>list</title>
+<g>
+<defs>
+</defs>
+
+
+<text x="50" y="50" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >
+These Names of Virtues with their Precepts were
+</text>
+
+<text x="120" y="130" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >
+(1:) 
+</text>
+
+<text x="200" y="130" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" font-style="italic" >
+Temperance.
+</text>
+
+<text x="340" y="130" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >
+Eat not to Dulness. Drink not to Elevation.
+</text>
+
+<text x="200" y="200" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" font-style="italic" >
+Silence. 
+</text>
+
+<text x="280" y="200" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >
+Speak not but what may benefit other or yourself. 
+</text>
+
+<text x="120" y="200" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >
+    (2:)
+</text>
+
+<text x="200" y="230" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" >Avoid 
+trifling Conversation.
+</text>
+
+<text x="50" y="300" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#959595" > 
+    My intention being to acquire the Habitude of all these Virtues, I judg'd it would
+</text>
+
+
+<!--margin line-->
+<line x1="115.0" y1="122" x2="60.0" y2="122.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="115.0" y1="122" x2="105.0" y2="132.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="115.0" y1="122" x2="105.0" y2="112.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="60.0" y1="122" x2="70.0" y2="112.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="60.0" y1="122" x2="70.0" y2="132.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<!--width line-->
+<line x1="130.0" y1="110" x2="165.0" y2="90.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+<line x1="200.0" y1="110" x2="165.0" y2="90.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<!--left parenthesis-->
+<line x1="120.0" y1="190" x2="95.0" y2="190.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<!--right parenthesis-->
+<line x1="160.0" y1="190" x2="190.0" y2="160.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+<!--colon-->
+<line x1="145.0" y1="205" x2="145.0" y2="225.0"  stroke="#000000" stroke-width="1.0" stroke-opacity="1.0" stroke-linecap="round"/>
+
+
+<text x="10" y="155" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#000000" >
+margin=24pt
+</text>
+
+<text x="105" y="85" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#000000" >
+width=48pt
+</text>
+
+<text x="20" y="200" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#000000" >
+    left=(
+</text>
+<text x="70" y="245" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#000000">
+stopper=:
+</text>
+<text x="195" y="163" font-size="24" font-family="Bitstream Charter" fill-opacity="1.0" fill="#000000">
+right=)
+
+</text>
+
+
+
+
+</g>
+</svg>
+

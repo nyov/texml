@@ -1,5 +1,5 @@
-<table xmlns= "http://www.tei-c.org/ns/1.0" id="enumeration">
-    <head>enumeration symbols</head> 
+<table xmlns= "http://www.tei-c.org/ns/1.0" id="enumeration" ana="table">
+    <head ana="head">enumeration symbols</head> 
     <row role="label">
         <cell>setup</cell>
         <cell>result</cell>

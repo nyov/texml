@@ -250,6 +250,14 @@
                     link to outside source
                 </tei:tagUsage>
    </tei:tagsDecl>
+   <tei:tagsDecl>
+    <tei:rendition id="table-rend">
+                    very complicated
+                </tei:rendition>
+    <tei:tagUsage id="table" gi="table" render="table-rend">
+                    any table
+                </tei:tagUsage>
+   </tei:tagsDecl>
   </tei:encodingDesc>
   <tei:revisionDesc>
    <tei:change rend="start">
@@ -1711,6 +1719,10 @@ Disobedience]
      <tei:date value="2005-03-31"/>
      <tei:note type="revision-description" ana="paragraph">Added many sections, on line spacing, indenting aligning text</tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-07"/>
+     <tei:note type="revision-description" ana="paragraph">Continued adding to info on lists, including customizing lists.  Added 2 graphics on lists. </tei:note>
+    </tei:bibl>
     <tei:div ana="div">
      <tei:head ana="head">Paragraph Formatting</tei:head>
      <tei:p ana="paragraph">
@@ -2118,21 +2130,22 @@ more body text ...\par
        </tei:div>
       </tei:div>
      </tei:div>
-     <tei:div ana="div">
-      <tei:head ana="head">Orphan and Widow Controls</tei:head>
-      <tei:p ana="paragraph">
-       Orphans and widows are the ugly text that appears by themselves at the
-       top or bottom of a page. An orphan is the first line of a paragraph on
-       the last line of a page whereas the last line of the paragraph on a new
-       page is a widow.
-       <tei:seg type="context-name" ana="context-name">context</tei:seg> uses
-       the definitions
-       <tei:seg type="command" ana="context-command">widowpenalty=x</tei:seg>
-       and <tei:seg type="command" ana="context-command">clubpenalty=x</tei:seg>
-       to discourage either of these typographical flaws. The default values for
-       each is 150. Increasing the value to 450 should discourage most widows
-       and orphans.
-      </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Orphan and Widow Controls</tei:head>
+     <tei:p ana="paragraph">
+      Orphans and widows are the ugly text that appears by themselves at the top
+      or bottom of a page. An orphan is the first line of a paragraph on the
+      last line of a page whereas the last line of the paragraph on a new page
+      is a widow.
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> uses the
+      definitions
+      <tei:seg type="command" ana="context-command">widowpenalty=x</tei:seg> and
+      <tei:seg type="command" ana="context-command">clubpenalty=x</tei:seg> to
+      discourage either of these typographical flaws. The default values for
+      each is 150. Increasing the value to 450 should discourage most widows and
+      orphans.
+     </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">\starttext
 % make sure you put these two commands *after*
 % the \starttext command
@@ -2152,44 +2165,43 @@ the text env
 &lt;/env&gt;
 
 </tei:eg>
-      <tei:div ana="div">
-       <tei:head ana="head">Keeping text with next</tei:head>
-       <tei:p ana="paragraph">
-        Many commercial programs such as Microsoft Word, as well as FO, allow
-        for you to keep section headings with the text that follows, so that
-        they won&#8217;t become stuck by themselves at the bottom of the page.
-        You can achieve the same thing with the
-        <tei:seg type="command" ana="context-command">testpage</tei:seg>
-        command.
-       </tei:p>
-       <tei:p ana="paragraph">
-        The <tei:seg type="command" ana="context-command">testpage</tei:seg>
-        command takes one option, a number, which roughly correspond to the
-        number of minimum additional &#8220;lines&#8221; the page should
-        contain. If the number of the option were 2,
-        <tei:seg type="context-name" ana="context-name">context</tei:seg> checks
-        to see if it can fit two more &#8220;lines&#8221; on the page. If not,
-        it breaks the page at the
-        <tei:seg type="command" ana="context-command">testpage</tei:seg> command
-        and puts the text on the next page.
-       </tei:p>
-       <tei:p ana="paragraph">
-        This command has the affect of allowing text to stick together. If you
-        issued this command right before a section title, and used the number 3,
-        <tei:seg type="context-name" ana="context-name">context</tei:seg> would
-        check to see if the heading and two additional &#8220;lines&#8221; below
-        it can fit on the page. If not, it breaks the page, preventing the
-        heading from becoming an orphan.
-       </tei:p>
-       <tei:p ana="paragraph">
-        I put the &#8220;lines&#8221; in quotes because
-        <tei:seg type="context-name" ana="context-name">context</tei:seg>
-        doesn&#8217;t also counts white space as &#8220;lines.&#8221; If you use
-        white space after your title (an most likely you will), you will have to
-        increase the number in the option. Too high a number will certainly
-        prevent orphans of the title, but will also result an ugly empty spaces
-        at the bottom of pages. 5 or 6 will probably work in most situations.
-       </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Keeping text with next</tei:head>
+      <tei:p ana="paragraph">
+       Many commercial programs such as Microsoft Word, as well as FO, allow for
+       you to keep section headings with the text that follows, so that they
+       won&#8217;t become stuck by themselves at the bottom of the page. You can
+       achieve the same thing with the
+       <tei:seg type="command" ana="context-command">testpage</tei:seg> command.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">testpage</tei:seg>
+       command takes one option, a number, which roughly correspond to the
+       number of minimum additional &#8220;lines&#8221; the page should contain.
+       If the number of the option were 2,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> checks
+       to see if it can fit two more &#8220;lines&#8221; on the page. If not, it
+       breaks the page at the
+       <tei:seg type="command" ana="context-command">testpage</tei:seg> command
+       and puts the text on the next page.
+      </tei:p>
+      <tei:p ana="paragraph">
+       This command has the affect of allowing text to stick together. If you
+       issued this command right before a section title, and used the number 3,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> would
+       check to see if the heading and two additional &#8220;lines&#8221; below
+       it can fit on the page. If not, it breaks the page, preventing the
+       heading from becoming an orphan.
+      </tei:p>
+      <tei:p ana="paragraph">
+       I put the &#8220;lines&#8221; in quotes because
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       doesn&#8217;t also counts white space as &#8220;lines.&#8221; If you use
+       white space after your title (an most likely you will), you will have to
+       increase the number in the option. Too high a number will certainly
+       prevent orphans of the title, but will also result an ugly empty spaces
+       at the bottom of pages. 5 or 6 will probably work in most situations.
+      </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% space before the sub-title
 \blank[12pt]
 % make sure the page can contain 5 more virtual lines
@@ -2225,23 +2237,22 @@ Thoreau's Lifestyle
 
 
 </tei:eg>
-      </tei:div>
      </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Footnotes</tei:head>
      <tei:div ana="div">
-      <tei:head ana="head">Footnotes</tei:head>
-      <tei:div ana="div">
-       <tei:head ana="head">default foototes</tei:head>
-       <tei:p ana="paragraph">
-        The <tei:seg type="command" ana="context-command">footnote</tei:seg>
-        command creates footnotes. Put the text of the footnote in the
-        parameter.
-       </tei:p>
+      <tei:head ana="head">default foototes</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">footnote</tei:seg>
+       command creates footnotes. Put the text of the footnote in the parameter.
+      </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">At present I am a sojourner in civilized life
 again. \footnote{Thoreau...}
 </tei:eg>
-       <tei:p ana="paragraph">
-        <tei:xref ana="xref" url="context_examples/footnote.tex">source file</tei:xref>
-       </tei:p>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/footnote.tex">source file</tei:xref>
+      </tei:p>
 <tei:eg rend="xml" ana="xml">At present I am a sojourner in civilized life
 again. 
  &lt;cmd name="footnote"&gt;
@@ -2250,20 +2261,20 @@ again.
   &lt;/parm&gt;
  &lt;/cmd&gt;
 </tei:eg>
-       <tei:p ana="paragraph">
-        <tei:xref ana="xref" url="texml_examples/footnote.xml">source file</tei:xref>
-       </tei:p>
-      </tei:div>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="texml_examples/footnote.xml">source file</tei:xref>
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">customizing footnotes</tei:head>
       <tei:div ana="div">
-       <tei:head ana="head">customizing footnotes</tei:head>
-       <tei:div ana="div">
-        <tei:head ana="head">Basic customization</tei:head>
-        <tei:p ana="paragraph">
-         The
-         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
-         command allows you to many features for footnotes. This command takes
-         one option, but within that option you can set many properties.
-        </tei:p>
+       <tei:head ana="head">Basic customization</tei:head>
+       <tei:p ana="paragraph">
+        The
+        <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+        command allows you to many features for footnotes. This command takes
+        one option, but within that option you can set many properties.
+       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% set up a defintion for the amount of distance
 % between the body text and footnotes
 % and between the footnotes and footer
@@ -2291,85 +2302,85 @@ again.
 At present I am a sojourner in civilized life
 again. \footnote{Thoreau...}
 </tei:eg>
-        <tei:p ana="paragraph">
-         <tei:xref ana="xref" url="context_examples/footnote2.tex">source file</tei:xref>
-        </tei:p>
-        <tei:figure url="footnote2.svg" ana="figure">
-         <tei:head ana="head">customizing footnotes</tei:head>
-        </tei:figure>
-        <tei:list type="unordered" ana="unordered-list">
-         <tei:head ana="head">Tips</tei:head>
-         <tei:item ana="item">
-          <tei:p ana="paragraph">
-           The <tei:seg type="property" ana="property">margindistance</tei:seg>
-           property pushes the footnote marker into the margin by the amount you
-           specify. If you do not specify any amount,
-           <tei:seg type="context-name" ana="context-name">context</tei:seg>
-           will push the marker into the margin by a small amount.
-          </tei:p>
-         </tei:item>
-         <tei:item ana="item">
-          <tei:p ana="paragraph">
-           Other values for
-           <tei:seg type="option" ana="option">conversion</tei:seg> are
-           <tei:seg type="property" ana="property">characters</tei:seg> for
-           lower-case letters;
-           <tei:seg type="property" ana="property">Characters</tei:seg> for
-           upper-case letters;
-           <tei:seg type="property" ana="property">Romannumerals</tei:seg> for
-           upper-case Roman numerals; and
-           <tei:seg type="property" ana="property">set 3</tei:seg> for symbols
-           such as daggers and asteristics. You can also experiment with other
-           sets, such as <tei:seg type="property" ana="property">set 1</tei:seg>
-           or <tei:seg type="property" ana="property">set 2</tei:seg>. Sets
-           indicate a mathmatical set of symbols defined by
-           <tei:seg type="context-name" ana="context-name">context</tei:seg>.
-          </tei:p>
-         </tei:item>
-         <tei:item ana="item">
-          <tei:p ana="paragraph">
-           For indenting footnotes, see the next section
-          </tei:p>
-         </tei:item>
-        </tei:list>
-       </tei:div>
-       <tei:div ana="div">
-        <tei:head ana="head">Changing the footnote number</tei:head>
-        <tei:p ana="paragraph">
-         There are a number of ways to set the number for the footnote marker.
-        </tei:p>
-        <tei:p ana="paragraph">
-         To reset the number for every page so each new page starts at 1 (or the
-         symbol or character associated with 1), set the
-         <tei:seg type="option" ana="option">byway</tei:seg> option in the
-         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
-         to <tei:seg type="property" ana="property">bypage</tei:seg>.
-        </tei:p>
-        <tei:p ana="paragraph">
-         To reset the number for every section, so each new section starts at 1
-         (or the symbol or character associated with 1), set the
-         <tei:seg type="option" ana="option">byway</tei:seg> option in the
-         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
-         to
-         <tei:seg type="property" ana="property"><tei:emph rend="italic" ana="emph-italic">section</tei:emph></tei:seg>,
-         where section is the name of your section. This document uses uses only
-         the <tei:seg type="command" ana="context-command">part</tei:seg>
-         section. In order to have my footnotes start at 1 after each
-         <tei:seg type="command" ana="context-command">part</tei:seg> command, I
-         would type <tei:seg type="option" ana="option">way=bypart</tei:seg>.
-        </tei:p>
-        <tei:p ana="paragraph">
-         To reset the number manually, set the
-         <tei:seg type="option" ana="option">byway</tei:seg> option in the
-         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
-         to <tei:seg type="property" ana="property">bytext</tei:seg>. Before
-         each footnote, issue the
-         <tei:seg type="command" ana="context-command">setnumber</tei:seg>
-         command. Put <tei:seg type="property" ana="property">footnote</tei:seg>
-         as the option, and the desired number
-         <tei:emph rend="italic" ana="emph-italic">minus 1</tei:emph> as the
-         parameter. If you want the number to be 3, use 2 as your parameter.
-        </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote2.tex">source file</tei:xref>
+       </tei:p>
+       <tei:figure url="footnote2.svg" ana="figure">
+        <tei:head ana="head">customizing footnotes</tei:head>
+       </tei:figure>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          The <tei:seg type="property" ana="property">margindistance</tei:seg>
+          property pushes the footnote marker into the margin by the amount you
+          specify. If you do not specify any amount,
+          <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+          push the marker into the margin by a small amount.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          Other values for
+          <tei:seg type="option" ana="option">conversion</tei:seg> are
+          <tei:seg type="property" ana="property">characters</tei:seg> for
+          lower-case letters;
+          <tei:seg type="property" ana="property">Characters</tei:seg> for
+          upper-case letters;
+          <tei:seg type="property" ana="property">Romannumerals</tei:seg> for
+          upper-case Roman numerals; and
+          <tei:seg type="property" ana="property">set 3</tei:seg> for symbols
+          such as daggers and asteristics. You can also experiment with other
+          sets, such as <tei:seg type="property" ana="property">set 1</tei:seg>
+          or <tei:seg type="property" ana="property">set 2</tei:seg>. Sets
+          indicate a mathmatical set of symbols defined by
+          <tei:seg type="context-name" ana="context-name">context</tei:seg>.
+         </tei:p>
+        </tei:item>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          For indenting footnotes, see the next section
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing the footnote number</tei:head>
+       <tei:p ana="paragraph">
+        There are a number of ways to set the number for the footnote marker.
+       </tei:p>
+       <tei:p ana="paragraph">
+        To reset the number for every page so each new page starts at 1 (or the
+        symbol or character associated with 1), set the
+        <tei:seg type="option" ana="option">byway</tei:seg> option in the
+        <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+        to <tei:seg type="property" ana="property">bypage</tei:seg>.
+       </tei:p>
+       <tei:p ana="paragraph">
+        To reset the number for every section, so each new section starts at 1
+        (or the symbol or character associated with 1), set the
+        <tei:seg type="option" ana="option">byway</tei:seg> option in the
+        <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+        to
+        <tei:seg type="property" ana="property"><tei:emph rend="italic" ana="emph-italic">section</tei:emph></tei:seg>,
+        where section is the name of your section. This document uses uses only
+        the <tei:seg type="command" ana="context-command">part</tei:seg>
+        section. In order to have my footnotes start at 1 after each
+        <tei:seg type="command" ana="context-command">part</tei:seg> command, I
+        would type <tei:seg type="option" ana="option">way=bypart</tei:seg>.
+       </tei:p>
+       <tei:p ana="paragraph">
+        To reset the number manually, set the
+        <tei:seg type="option" ana="option">byway</tei:seg> option in the
+        <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+        to <tei:seg type="property" ana="property">bytext</tei:seg>. Before each
+        footnote, issue the
+        <tei:seg type="command" ana="context-command">setnumber</tei:seg>
+        command. Put <tei:seg type="property" ana="property">footnote</tei:seg>
+        as the option, and the desired number
+        <tei:emph rend="italic" ana="emph-italic">minus 1</tei:emph> as the
+        parameter. If you want the number to be 3, use 2 as your parameter.
+       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">\setupfootnotes[way=bytext, conversion=characters]
 
 % set the number manually
@@ -2381,39 +2392,39 @@ near-impossible tasks to become a god} were trifling in comparison
 with those which my neighbors have undertaken;
 
 </tei:eg>
-        <tei:list type="unordered" ana="unordered-list">
-         <tei:head ana="head">Tips</tei:head>
-         <tei:item ana="item">
-          <tei:p ana="paragraph">
-           Always use a number as the parameter of the
-           <tei:seg type="command" ana="context-command">setnumber</tei:seg>
-           command. If you want another footnote marker such as a Roman numeral,
-           use the <tei:seg type="option" ana="option">conversion</tei:seg>
-           option (see above), and
-           <tei:seg type="context-name" ana="context-name">context</tei:seg>
-           will convert whatever number you choose to the appropriate symbol.
-          </tei:p>
-         </tei:item>
-        </tei:list>
-        <tei:p ana="paragraph">
-         <tei:xref ana="xref" url="context_examples/footnote6.tex">source file</tei:xref>
-        </tei:p>
-       </tei:div>
-       <tei:div ana="div">
-        <tei:head ana="head">Space between footnotes</tei:head>
-        <tei:p ana="paragraph">
-         Crete custom space between footnotes by using the
-         <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>
-         command. Like the
-         <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
-         command, this command has an
-         <tei:seg type="property" ana="property">after</tei:seg> and
-         <tei:seg type="property" ana="property">before</tei:seg> property, only
-         in the case of
-         <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>,
-         these properties determine the space between individual footnotes
-         rather than before and after the complete block of footnotes.
-        </tei:p>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          Always use a number as the parameter of the
+          <tei:seg type="command" ana="context-command">setnumber</tei:seg>
+          command. If you want another footnote marker such as a Roman numeral,
+          use the <tei:seg type="option" ana="option">conversion</tei:seg>
+          option (see above), and
+          <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+          convert whatever number you choose to the appropriate symbol.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote6.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Space between footnotes</tei:head>
+       <tei:p ana="paragraph">
+        Crete custom space between footnotes by using the
+        <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>
+        command. Like the
+        <tei:seg type="command" ana="context-command">setupfootnotes</tei:seg>
+        command, this command has an
+        <tei:seg type="property" ana="property">after</tei:seg> and
+        <tei:seg type="property" ana="property">before</tei:seg> property, only
+        in the case of
+        <tei:seg type="command" ana="context-command">setupfootnotedefinition</tei:seg>,
+        these properties determine the space between individual footnotes rather
+        than before and after the complete block of footnotes.
+       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">%set up the amount of space before each footnote
 \def\DistanceBef{\blank[12pt]}
 % set up the amount of space after each footnote
@@ -2430,43 +2441,41 @@ again. \footnote{Thoreau started writing {\sl Walden} in 1846. ..  }
 
 I would fain say something, no so much concerning the Chinese and
 Sandwich Islanders \footnote{Hawaiians} 
-
 </tei:eg>
-        <tei:p ana="paragraph">
-         <tei:xref ana="xref" url="context_examples/footnote3.tex">source file</tei:xref>
-        </tei:p>
-       </tei:div>
-       <tei:div ana="div">
-        <tei:head ana="head">First line indent</tei:head>
-        <tei:p ana="paragraph">
-         To create a footnote with a first line indent, use the
-         <tei:seg type="command" ana="context-command">hspace</tei:seg> command
-         right before your footnote text. You will have to define the actual
-         spacing in a separate command issued previously.
-        </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote3.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">First line indent</tei:head>
+       <tei:p ana="paragraph">
+        To create a footnote with a first line indent, use the
+        <tei:seg type="command" ana="context-command">hspace</tei:seg> command
+        right before your footnote text. You will have to define the actual
+        spacing in a separate command issued previously.
+       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% define amount of space
 \definehspace[footnoteSpace][12pt]
 
 At present I am a sojourner in civilized life
  again. \footnote{\hspace[footnoteSpace]Thoreau started writing ...}
-
 </tei:eg>
-        <tei:p ana="paragraph">
-         <tei:xref ana="xref" url="context_examples/footnote4.tex">source file</tei:xref>
-        </tei:p>
-       </tei:div>
-       <tei:div ana="div">
-        <tei:head ana="head">hanging indent</tei:head>
-        <tei:p ana="paragraph">
-         In order to create a footnote with a hanging indent, you will have to
-         indent the first line by the negative amount of the indent using the
-         <tei:seg type="command" ana="context-command">hskip</tei:seg> command.
-         At the same time, indent the entire footnote by the positive amount of
-         the indent. Last, push the text up by the negative amount of a line by
-         using the <tei:seg type="command" ana="context-command">vskip</tei:seg>
-         command in order to delete the extra space created by the indentin
-         environment.
-        </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote4.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">hanging indent</tei:head>
+       <tei:p ana="paragraph">
+        In order to create a footnote with a hanging indent, you will have to
+        indent the first line by the negative amount of the indent using the
+        <tei:seg type="command" ana="context-command">hskip</tei:seg> command.
+        At the same time, indent the entire footnote by the positive amount of
+        the indent. Last, push the text up by the negative amount of a line by
+        using the <tei:seg type="command" ana="context-command">vskip</tei:seg>
+        command in order to delete the extra space created by the indentin
+        environment.
+       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% define amount to indent
 \setupnarrower[left=12pt]
 
@@ -2481,10 +2490,9 @@ months after . . .
 \stopnarrower}
 
 </tei:eg>
-        <tei:p ana="paragraph">
-         <tei:xref ana="xref" url="context_examples/footnote5.tex">source file</tei:xref>
-        </tei:p>
-       </tei:div>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/footnote5.tex">source file</tei:xref>
+       </tei:p>
       </tei:div>
      </tei:div>
     </tei:div>
@@ -2499,8 +2507,8 @@ months after . . .
        command. Here are the possible values for the first option and the result
        these values produce.
       </tei:p>
-      <tei:table id="enumeration">
-       <tei:head>enumeration symbols</tei:head>
+      <tei:table id="enumeration" ana="table">
+       <tei:head ana="head">enumeration symbols</tei:head>
        <tei:row role="label">
         <tei:cell>setup</tei:cell>
         <tei:cell>result</tei:cell>
@@ -2584,6 +2592,7 @@ months after . . .
       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">\startitemize[n]
 \item {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+\item {\sl Silence.} Speak not but what may benefit other or yourself.
 ...
 \stopitemize
 </tei:eg>
@@ -2594,15 +2603,52 @@ months after . . .
        <tei:head ana="head">Tips</tei:head>
        <tei:item ana="item">
         <tei:p ana="paragraph">
-         You can define your own characters for non-ordered lists. Use the
-         <tei:seg type="command" ana="context-command">definesymbol</tei:seg>
-         command, such as:
-         <tei:seg type="command" ana="context-command">definesymbol[1][$\diamond$]</tei:seg>.
-         Now start your itemizing environment with
-         <tei:seg type="command" ana="context-command">startitemize[1]</tei:seg>.
+         If you use <tei:seg type="property" ana="property">continue</tei:seg>
+         as an additional property in the
+         <tei:seg type="command" ana="context-command">startitemize command, you
+         can continue numbering a list already started.
+         (<tei:seg type="command" ana="context-command">\startitemize[n,
+         continue]</tei:seg>)</tei:seg>
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If you use <tei:seg type="property" ana="property">inmargin</tei:seg>
+         as an additional property in the
+         <tei:seg type="command" ana="context-command">startitemize</tei:seg>
+         command, you will push the markers into the margin.
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If you use the use
+         <tei:seg type="property" ana="property">intro</tei:seg> property in the
+         <tei:seg type="command" ana="context-command">startitemize</tei:seg>
+         command, you will ensure theat the previous paragraph and the list will
+         stick together and not be broken by a page break.
         </tei:p>
        </tei:item>
       </tei:list>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Defining your own marker</tei:head>
+      <tei:p ana="paragraph">
+       If you wish to use your own markers in a list, rather than have
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> provide
+       them, use the command
+       <tei:seg type="command" ana="context-command">sym</tei:seg> instead of
+       <tei:seg type="command" ana="context-command">item</tei:seg>. Within the
+       parameter, provide the marker you want.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">These Names of Virtues with their Precepts were\par
+\startitemize
+\sym{1)} {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+\sym{2)} {\sl Silence.} Speak not but what may benefit other or yourself.
+...
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/itemize3.tex">source file</tei:xref>
+      </tei:p>
      </tei:div>
      <tei:div ana="div">
       <tei:head ana="head">Customizing lists</tei:head>
@@ -2630,10 +2676,15 @@ margin=24pt,
 width=48pt,
 ]
 ...
-
 </tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/itemize2.tex">source file</tei:xref>
+      </tei:p>
       <tei:figure url="itemize1.svg" ana="figure">
-       <tei:head ana="head">customizing a list</tei:head>
+       <tei:head ana="head">customizing a list 1</tei:head>
+      </tei:figure>
+      <tei:figure url="itemize2.svg" ana="figure">
+       <tei:head ana="head">customizing a list 2</tei:head>
       </tei:figure>
      </tei:div>
     </tei:div>

@@ -264,6 +264,14 @@
                     link to outside source
                 </tagUsage>
             </tagsDecl>
+            <tagsDecl>
+                <rendition id = "table-rend">
+                    very complicated
+                </rendition>
+                <tagUsage id="table" gi="table" render="table-rend">
+                    any table
+                </tagUsage>
+            </tagsDecl>
             
         </encodingDesc>
         <revisionDesc>

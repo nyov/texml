@@ -7,6 +7,13 @@ p.index-toc-level2{position:relative; left:35pt;}
 p.index-toc-level3{position:relative; left:45pt;}
 p.index-toc-level4{position:relative; left:55pt;}
 
+h3.level2{font-size:24pt;font-weight:bold}
+h4.level3{font-size:18pt;font-weight:bold}
+h5.level4{font-size:16pt;font-weight:bold}
+h6.level5{font-size:14pt;font-weight:bold}
+
+h3.list-head{font-size:16pt;font-weight:bold;font-style:italic;text-align:center}
+
 div.xml{background-color:#EBF5FC}
 div.context-block-code{background-color:#f0ffe8}
 p.figure-caption{position:relative;font-family:"Verdana", "Helvetica", sans-serif; margin-topx:-15pt; font-weight:bold;font-size:10pt; text-align:center}

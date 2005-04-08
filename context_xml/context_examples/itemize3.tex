@@ -1,25 +1,13 @@
-% customizing a list 2
-% use your own symbols
-% page 
+% customizing a list 2, providing your own markers
 \enableregime[utf]
 \setuppagenumbering[state=stop, way=bytext]
 
 
 \starttext
-\def\Inbetween{\blank[48pt]}
-\def\Before{\blank[24pt]} % between body text and start of list
-\setupitemize[inbetween=\Inbetween,
-before=\Before,
-stopper=:,
-left=(,
-right=),
-margin=10mm,%from edge of where body text would be to number
-width=35mm,% from the left edge of the text to the start of item
-]
 These Names of Virtues with their Precepts were\par
-\startitemize[n]
-\sym{1} {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
-\sym{2} {\sl Silence.} Speak not but what may benefit other or yourself.
+\startitemize
+\sym{1)} {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+\sym{2)} {\sl Silence.} Speak not but what may benefit other or yourself.
 Avoid trifling Conversation.\par
 \stopitemize
 

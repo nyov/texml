@@ -164,6 +164,7 @@
                 <xsl:call-template name="copyright"/>
                 <xsl:call-template name="page-links"/>
                 <xsl:call-template name="logo"/>
+                <xsl:apply-templates select="tei:bibl[last()]" mode="last-updated"/>
             </body>
         </html>
     </xsl:document>
@@ -185,9 +186,18 @@
             </xsl:attribute>
             <xsl:text>home | </xsl:text>
         </xsl:element>
+        <xsl:element name="a">
+            <xsl:attribute name="href">
+                <xsl:text>contents</xsl:text>
+                <xsl:value-of select="$html-suffix"/>
+            </xsl:attribute>
+            <xsl:text>contents | </xsl:text>
+        </xsl:element>
         <xsl:choose>
             <xsl:when test="$page-number = '1'">
+                <!--
                 <xsl:text>previous | </xsl:text>
+                -->
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="a">
@@ -202,7 +212,9 @@
         </xsl:choose>
         <xsl:choose>
             <xsl:when test = "$page-number = $total-pages">
+                <!--
                 <xsl:text>next</xsl:text>
+                -->
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="a">
@@ -248,7 +260,6 @@
       
   </xsl:template>
 
-  <!--for now, get rid of main section head-->
   <xsl:template match="tei:body/tei:div/tei:head">
       <xsl:element name="h2">
           <xsl:attribute name="class">
@@ -270,35 +281,17 @@
   <!--for now, get rid of all the revision history for each main division-->
   <xsl:template match="tei:bibl"/>
 
-  <!--div 1 level-->
-  <xsl:template match="tei:body/tei:div/tei:div">
-      <xsl:element name="div">
-          <xsl:attribute name="class">
-              <xsl:text>level</xsl:text>
-                <xsl:text>1</xsl:text>
-          </xsl:attribute>
-          <xsl:element name="a">
-              <xsl:attribute name="name">
-                  <xsl:value-of select="generate-id(.)"/>
-              </xsl:attribute>
-          </xsl:element>
-          <xsl:apply-templates/>
-      </xsl:element>
-  </xsl:template>
-
-  <!--div head 1 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:head">
-      <xsl:element name="h3">
-          <xsl:attribute name="class">
-              <xsl:text>level</xsl:text>
-                <xsl:text>1</xsl:text>
-          </xsl:attribute>
-          <xsl:apply-templates/>
-      </xsl:element>
+  <xsl:template match="tei:bibl" mode="last-updated">
+    <xsl:element name="p">
+        <b>
+        <xsl:text>last updated: </xsl:text>
+        </b>
+        <xsl:value-of select="tei:date/@value"/>
+    </xsl:element>
   </xsl:template>
 
   <!--div 2 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div">
+  <xsl:template match="tei:body/tei:div/tei:div">
       <xsl:element name="div">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
@@ -314,7 +307,7 @@
   </xsl:template>
 
   <!--div head 2 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:head">
+  <xsl:template match="tei:body/tei:div/tei:div/tei:head">
       <xsl:element name="h3">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
@@ -324,9 +317,8 @@
       </xsl:element>
   </xsl:template>
 
-
   <!--div 3 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div">
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div">
       <xsl:element name="div">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
@@ -342,8 +334,8 @@
   </xsl:template>
 
   <!--div head 3 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:head">
-      <xsl:element name="h3">
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:head">
+      <xsl:element name="h4">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
                 <xsl:text>3</xsl:text>
@@ -352,8 +344,9 @@
       </xsl:element>
   </xsl:template>
 
+
   <!--div 4 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:div">
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div">
       <xsl:element name="div">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
@@ -369,11 +362,38 @@
   </xsl:template>
 
   <!--div head 4 level-->
-  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:div/tei:head">
-      <xsl:element name="h3">
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:head">
+      <xsl:element name="h5">
           <xsl:attribute name="class">
               <xsl:text>level</xsl:text>
                 <xsl:text>4</xsl:text>
+          </xsl:attribute>
+          <xsl:apply-templates/>
+      </xsl:element>
+  </xsl:template>
+
+  <!--div 5 level-->
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:div">
+      <xsl:element name="div">
+          <xsl:attribute name="class">
+              <xsl:text>level</xsl:text>
+                <xsl:text>5</xsl:text>
+          </xsl:attribute>
+          <xsl:element name="a">
+              <xsl:attribute name="name">
+                  <xsl:value-of select="generate-id(.)"/>
+              </xsl:attribute>
+          </xsl:element>
+          <xsl:apply-templates/>
+      </xsl:element>
+  </xsl:template>
+
+  <!--div head 5 level-->
+  <xsl:template match="tei:body/tei:div/tei:div/tei:div/tei:div/tei:div/tei:head">
+      <xsl:element name="h6">
+          <xsl:attribute name="class">
+              <xsl:text>level</xsl:text>
+                <xsl:text>5</xsl:text>
           </xsl:attribute>
           <xsl:apply-templates/>
       </xsl:element>

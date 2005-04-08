@@ -15,6 +15,12 @@
   Added many sections, on line spacing, indenting
   aligning text
 
+:change date=2005-04-07:
+
+  Continued adding to info on lists, including customizing lists. 
+  Added 2 graphics on lists. 
+
+
 
 ====================
 Paragraph Formatting
@@ -387,9 +393,9 @@ command.
   <parm>This text is non-justified</parm>
  </cmd>
 
----------------------------
+==========================
 Orphan and Widow Controls
----------------------------
+==========================
 
 Orphans and widows are the ugly text that appears by themselves at the
 top or bottom of a page.  An orphan is the first line of a paragraph
@@ -488,9 +494,9 @@ but will also result an ugly empty spaces at the bottom of pages. 5 or
  </cmd>
 
 
-----------
+==========
 Footnotes
-----------
+==========
 
 default foototes
 -----------------
@@ -657,6 +663,7 @@ and after the complete block of footnotes.
 
  I would fain say something, no so much concerning the Chinese and
  Sandwich Islanders \footnote{Hawaiians} 
+.. end block
 
 :src url=context_examples/footnote3.tex: source file
 
@@ -675,6 +682,7 @@ actual spacing in a separate command issued previously.
 
  At present I am a sojourner in civilized life
   again. \footnote{\hspace[footnoteSpace]Thoreau started writing ...}
+.. end block
 
 :src url=context_examples/footnote4.tex: source file
 
@@ -726,6 +734,7 @@ The [:cm: item] command creates the actual item in the list.
 
  \startitemize[n]
  \item {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+ \item {\sl Silence.} Speak not but what may benefit other or yourself.
  ...
  \stopitemize
 .. stop block
@@ -734,12 +743,42 @@ The [:cm: item] command creates the actual item in the list.
 
 :ul:
 
-  :head: Tips
+ :head: Tips
 
-  * You can define your own characters for non-ordered lists. Use the 
+ * If you use [:pr: continue] as an additional property in the 
+   [:cm: startitemize command, you can continue numbering a list
+   already started. ([:cm: \\startitemize[n, continue]])
+
+ * If you use [:pr: inmargin] as an additional property in the [:cm:
+   startitemize] command, you will push the markers into the margin.
+
+ * If you use the use [:pr: intro] property in the [:cm: startitemize]
+    command, you will ensure theat the previous paragraph and the list
+    will stick together and not be broken by a page break.
+
+..  * You can define your own characters for non-ordered lists. Use the 
     [:cm: definesymbol] command, such as: [:cm:
     definesymbol[1][$\\diamond$]]. 
     Now start your itemizing environment with [:cm: startitemize[1]].
+
+Defining your own marker
+-------------------------
+
+If you wish to use your own markers in a list, rather than have [:ab:
+context] provide them, use the command [:cm: sym] instead of [:cm:
+item]. Within the parameter, provide the marker you want. 
+
+:t2x-no-process:
+
+ These Names of Virtues with their Precepts were\par
+ \startitemize
+ \sym{1)} {\sl Temperance.} Eat not to dulness. Drink not to Elevation.
+ \sym{2)} {\sl Silence.} Speak not but what may benefit other or yourself.
+ ...
+.. stop block
+ 
+:src url=context_examples/itemize3.tex: source file
+
 
 Customizing lists
 ------------------
@@ -767,5 +806,10 @@ items, first establish definitions that you can use in the
  width=48pt,
  ]
  ...
+.. end block
 
-:fig url=itemize1: customizing a list
+:src url=context_examples/itemize2.tex: source file
+
+:fig url=itemize1: customizing a list 1
+
+:fig url=itemize2: customizing a list 2
