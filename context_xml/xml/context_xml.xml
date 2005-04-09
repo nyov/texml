@@ -1723,6 +1723,10 @@ Disobedience]
      <tei:date value="2005-04-07"/>
      <tei:note type="revision-description" ana="paragraph">Continued adding to info on lists, including customizing lists.  Added 2 graphics on lists. </tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-07"/>
+     <tei:note type="revision-description" ana="paragraph">Added a tip on mutli-paragraphed items.</tei:note>
+    </tei:bibl>
     <tei:div ana="div">
      <tei:head ana="head">Paragraph Formatting</tei:head>
      <tei:p ana="paragraph">
@@ -2628,6 +2632,21 @@ months after . . .
          stick together and not be broken by a page break.
         </tei:p>
        </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         If your item contains more than one paragraph, use the
+         <tei:seg type="command" ana="context-command">par</tei:seg> comand to
+         separate them. Note that the
+         <tei:seg type="context-name" ana="context-name">context</tei:seg>
+         manual suggests you use the
+         <tei:seg type="command" ana="context-command">head</tei:seg> command
+         instead of the
+         <tei:seg type="command" ana="context-command">item</tei:seg> command
+         for items with more than one paragraph, but I found the
+         <tei:seg type="command" ana="context-command">head</tei:seg> command
+         could not handle items with more than 2 paragraphs.
+        </tei:p>
+       </tei:item>
       </tei:list>
      </tei:div>
      <tei:div ana="div">
@@ -2686,6 +2705,214 @@ width=48pt,
       <tei:figure url="itemize2.svg" ana="figure">
        <tei:head ana="head">customizing a list 2</tei:head>
       </tei:figure>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Tables</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-08"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head">Basic Table</tei:head>
+     <tei:div ana="div">
+      <tei:head ana="head">Tables without vertical lines (tabulate)</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">tabulate</tei:seg>
+       environment allows you to create simple tables, suited for tables with
+       large blocks of text. This type of table does not produce vertical lines
+       between cells&#8212;hence the name tabulate, hinting at the type of table
+       created with tabs.
+      </tei:p>
+      <tei:p ana="paragraph">
+       Rather than try to explain the many details of this layout, let me first
+       show the code example.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% start envrionment and setup columns
+\starttabulate[|p(6cm) j3|p(6cm)|]
+
+% create a cell
+\NC American Community Survey 
+%
+%create a cell
+\NC Current Population Survey 
+%
+% end the row
+\NC\NR
+% create a horizontal line
+%
+\HL
+%
+% create a cell
+\NC 
+All dollar values for income are adjusted 
+to latest calendar year of estimates using 
+the Consumer Price Index for the date collected 
+versus the average for the year.
+% create a cell
+\NC None
+%
+% end the row
+\NC\NR
+%
+% end tabulate
+\stoptabulate
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table1.tex">tabulate command</tei:xref>
+      </tei:p>
+      <tei:p ana="paragraph">
+       Begin the table with the
+       <tei:seg type="command" ana="context-command">starttabulate</tei:seg>
+       command. Set up the column information in the first option. The
+       information for formatting each column gets put between the
+       &#8220;|&#8221; character. A one column table needs 2 &#8220;|&#8221;
+       characters, a two column table needs 3 &#8220;|&#8221; characters, and so
+       on.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The first colum of my table has two commands. The first,
+       <tei:seg type="property" ana="property">p(6cm)</tei:seg>, tells
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> to
+       create a 6 cm paragraph for the column. If the column contains cells with
+       brief text that aren&#8217;t really paragraphs, use the
+       <tei:seg type="property" ana="property">l</tei:seg>,
+       <tei:seg type="property" ana="property">r</tei:seg>, or
+       <tei:seg type="property" ana="property">c</tei:seg> property. The
+       <tei:seg type="property" ana="property">l</tei:seg> command aligns the
+       text left; the <tei:seg type="property" ana="property">r</tei:seg> aligns
+       the text right; and the
+       <tei:seg type="property" ana="property">c</tei:seg> command centers the
+       text. For example, for a two-column table, my setups might look like
+       this:
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% make two columns, both aligned left
+\starttabulate[|l|l|]
+
+</tei:eg>
+      <tei:p ana="paragraph">
+       In addtion, one can use the
+       <tei:seg type="property" ana="property">w</tei:seg> property for a one
+       line column. Like the <tei:seg type="property" ana="property">p</tei:seg>
+       option, the [:pr; w] option takes a dimmension in parenthesis.
+      </tei:p>
+      <tei:p ana="paragraph">
+       Each column must contain one of the above properties, so that
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> knows
+       how to format it.
+      </tei:p>
+      <tei:p ana="paragraph">
+       The setups for each column can have additional commands. The
+       <tei:seg type="property" ana="property">j3</tei:seg> option in my table
+       creates space after the column. A number lower than 3 creates less space,
+       while a number greater than 3 creates more. The opposite property,
+       <tei:seg type="property" ana="property">i</tei:seg> creates space before
+       the column, and functions just like its counterpart
+       <tei:seg type="property" ana="property">j</tei:seg>. The property
+       <tei:seg type="property" ana="property">k</tei:seg> seems to create space
+       on either side of the column.
+      </tei:p>
+      <tei:p ana="paragraph">
+       Here is a summary of the options for the column setups.
+      </tei:p>
+      <tei:table id="format-char" ana="table">
+       <tei:head ana="head">Formatting Characters for Tables</tei:head>
+       <tei:row role="label">
+        <tei:cell>option</tei:cell>
+        <tei:cell>result</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>l</tei:cell>
+        <tei:cell>align left</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>r</tei:cell>
+        <tei:cell>align right</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>c</tei:cell>
+        <tei:cell>align center</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>p(dimen)</tei:cell>
+        <tei:cell>create a paragraph with width dimen</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>w(dimen)</tei:cell>
+        <tei:cell>create a column with width dimen</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>f #1</tei:cell>
+        <tei:cell>font</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>B</tei:cell>
+        <tei:cell>bold</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>I</tei:cell>
+        <tei:cell>italic</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>S</tei:cell>
+        <tei:cell>slanted</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>T</tei:cell>
+        <tei:cell>Type</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>R</tei:cell>
+        <tei:cell>roman</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>m</tei:cell>
+        <tei:cell>math</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>M</tei:cell>
+        <tei:cell>display math</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>h</tei:cell>
+        <tei:cell>hook (inner level of par lines)</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>b</tei:cell>
+        <tei:cell>before (may be command)</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>a</tei:cell>
+        <tei:cell>after (may be command)</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>i&lt;number&gt;</tei:cell>
+        <tei:cell>skip left of column</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>j&lt;number&gt;</tei:cell>
+        <tei:cell>skip right of column</tei:cell>
+       </tei:row>
+       <tei:row>
+        <tei:cell>k&lt;number&gt;</tei:cell>
+        <tei:cell>skip around column</tei:cell>
+       </tei:row>
+      </tei:table>
+      <tei:p ana="paragraph">
+       Within the body of the table itself, issue comand in order to create
+       cells, rows, and horiziontal lines. The
+       <tei:seg type="command" ana="context-command">NC</tei:seg> command
+       creates a new cell. The
+       <tei:seg type="command" ana="context-command">NR</tei:seg> command
+       creates a new row. The
+       <tei:seg type="command" ana="context-command">HL</tei:seg> creates a
+       horizontal line.
+      </tei:p>
+      <tei:p ana="paragraph">
+       You must end every rown (including the last) with the
+       <tei:seg type="command" ana="context-command">NR</tei:seg> command.
+      </tei:p>
      </tei:div>
     </tei:div>
    </tei:div>

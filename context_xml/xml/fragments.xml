@@ -6,6 +6,7 @@
 <!ENTITY page-layout SYSTEM "page_layout.xml">
 <!ENTITY getting-started SYSTEM "getting_started.xml">
 <!ENTITY blocks SYSTEM "blocks.xml">
+<!ENTITY tables SYSTEM "tables.xml">
 
 
 ]
@@ -298,6 +299,10 @@
             <div ana="div">
                 <head ana="head">Blocks</head>
                 &blocks;
+            </div>
+            <div ana="div">
+                <head ana="head">Tables</head>
+                &tables;
             </div>
         </body>
     </text>
