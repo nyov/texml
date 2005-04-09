@@ -20,6 +20,9 @@
   Continued adding to info on lists, including customizing lists. 
   Added 2 graphics on lists. 
 
+:change date=2005-04-07:
+
+  Added a tip on mutli-paragraphed items.
 
 
 ====================
@@ -755,6 +758,13 @@ The [:cm: item] command creates the actual item in the list.
  * If you use the use [:pr: intro] property in the [:cm: startitemize]
     command, you will ensure theat the previous paragraph and the list
     will stick together and not be broken by a page break.
+
+ * If your item contains more than one paragraph, use the [:cm: par]
+   comand to separate them. Note that the [:ab: context] manual
+   suggests you use the [:cm: head] command instead of the [:cm: item]
+   command for items with more than one paragraph, but I found the
+   [:cm: head] command could not handle items with more than 2
+   paragraphs.
 
 ..  * You can define your own characters for non-ordered lists. Use the 
     [:cm: definesymbol] command, such as: [:cm:

@@ -1,0 +1,105 @@
+:title: Tables
+
+:author: Paul Tremblay
+
+:change date=2005-04-08:
+
+  First started writing
+
+=============
+Basic Table
+=============
+
+-----------------------------------------
+Tables without vertical lines (tabulate)
+-----------------------------------------
+
+The [:cm: tabulate] environment allows you to create simple tables,
+suited for tables with large blocks of text. This type of table
+does not produce vertical lines between cells--hence the name
+tabulate, hinting at the type of table created with tabs. 
+
+Rather than try to explain the many details of this layout, let me
+first show the code example.
+
+:t2x-no-process:
+
+ % start envrionment and setup columns
+ \starttabulate[|p(6cm) j3|p(6cm)|]
+ 
+ % create a cell
+ \NC American Community Survey 
+ %
+ %create a cell
+ \NC Current Population Survey 
+ %
+ % end the row
+ \NC\NR
+ % create a horizontal line
+ %
+ \HL
+ %
+ % create a cell
+ \NC 
+ All dollar values for income are adjusted 
+ to latest calendar year of estimates using 
+ the Consumer Price Index for the date collected 
+ versus the average for the year.
+ % create a cell
+ \NC None
+ %
+ % end the row
+ \NC\NR
+ %
+ % end tabulate
+ \stoptabulate
+.. end block
+
+:src url=context_examples/table1.tex: tabulate command
+
+Begin the table with the [:cm: starttabulate] command. Set up the
+column information in the first option. The information for formatting
+each column gets put between the "|" character. A one column table
+needs 2 "|" characters, a two column table needs 3 "|" characters, and
+so on. 
+
+The first colum of my table has two commands. The first, [:pr:
+p(6cm)], tells [:ab: context] to create a 6 cm paragraph for the
+column. If the column contains cells with brief text that aren't
+really paragraphs, use the [:pr: l], [:pr: r], or [:pr: c] property.
+The [:pr: l] command aligns the text left; the [:pr: r] aligns the
+text right; and the [:pr: c] command centers the text. For example,
+for a two-column table, my setups might look like this:
+
+:t2x-no-process:
+
+ % make two columns, both aligned left
+ \starttabulate[|l|l|]
+
+In addtion, one can use the [:pr: w] property for a one line column.
+Like the [:pr: p] option, the [:pr; w] option takes a dimmension in
+parenthesis.
+
+Each column must contain one of the above properties, so that [:ab:
+context] knows how to format it.
+
+The setups for each column can have additional commands. The [:pr: j3]
+option in my table creates space after the column. A number lower
+than 3 creates less space, while a number greater than 3 creates more.
+The opposite property, [:pr: i] creates space before the column, and
+functions just like its counterpart [:pr: j]. The property [:pr: k]
+seems to create space on either side of the column.
+
+Here is a summary of the options for the column setups.
+ 
+:tb url=table3:
+
+
+Within the body of the table itself, issue comand in order to create
+cells, rows, and horiziontal lines. The [:cm: NC] command creates a
+new cell. The [:cm: NR] command creates a new row. The [:cm: HL]
+creates a horizontal line.
+
+You must end every rown (including the last) with the [:cm: NR]
+command.
+
