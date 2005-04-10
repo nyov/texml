@@ -3,6 +3,20 @@
 %http://www.census.gov/hhes/www/hlthins/hlthin03/hlthtables03.html
 \starttext
 
+
+% CAPTION SETUP
+% ==============
+% * use bold slanted for the font 
+%
+% * put the caption at the top (other
+%   possibilites are bottom, none,  high low middle 
+%
+% * do not number it.
+%
+% * align left. Other possiblities are middle, right, no
+\setupcaption[table][style=boldslanted, location=top, number=no,
+align=left]
+
 \placetable[here][tab:insurance]{Percentage of People without health
 insurance in US}
 \starttable[|l w(30mm)|l|l|]
