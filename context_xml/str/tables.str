@@ -6,13 +6,16 @@
 
   First started writing
 
-=============
-Basic Table
-=============
+:change date=2005-04-09:
 
------------------------------------------
+  Added most infomration on creating tabulation tables and basic
+  tables, including customizing line widths, captions; and merging
+  cells. 
+
+
+==========================================
 Tables without vertical lines (tabulate)
------------------------------------------
+==========================================
 
 The [:cm: tabulate] environment allows you to create simple tables,
 suited for tables with large blocks of text. This type of table
@@ -55,7 +58,10 @@ first show the code example.
  \stoptabulate
 .. end block
 
-:src url=context_examples/table1.tex: tabulate command
+:src url=context_examples/table1.tex: source file
+
+Setting up the columns
+-----------------------
 
 Begin the table with the [:cm: starttabulate] command. Set up the
 column information in the first option. The information for formatting
@@ -94,6 +100,8 @@ Here is a summary of the options for the column setups.
  
 :tb url=table3:
 
+Body commands
+--------------
 
 Within the body of the table itself, issue comand in order to create
 cells, rows, and horiziontal lines. The [:cm: NC] command creates a
@@ -103,3 +111,191 @@ creates a horizontal line.
 You must end every rown (including the last) with the [:cm: NR]
 command.
 
+===============
+Standard table
+===============
+
+The standard table commands give us pretty good flexibility in
+creating complicated tables. 
+
+------------
+Basic Table
+------------
+
+Here is a basic table.
+
+:t2x-no-process:
+
+ \placetable[here][tab:insurance]{Percentage of People without health
+ insurance in US}
+ \starttable[|l w(30mm)|l|l|]
+ \HL
+ \VL State     \VL 3-year average \VL 2-year average \VL\SR
+ \HL[4]
+ \VL Alabama   \VL 13.3           \VL 13.5           \VL\FR
+ \HL
+ \VL Alaska    \VL 17.8           \VL 18.8            \VL\MR
+ \HL
+ \VL Arizona   \VL 17.3            \VL 16.9           \VL\LR
+ \HL
+ \stoptable
+.. end block
+
+:src url=context_examples/table2.tex: source file
+
+The placetable command
+-----------------------
+
+The [:cm: placetable] command acts the same way as the [:cm:
+placefloat] command. The first option, [:pr: here] tells [:ab:
+context] to place the table (if possible) in the current location. The
+next option is a reference marker. The parameter is the caption of
+the table. If you don't want a title but do want the word "table" and
+number, leave the parameter empty. If you do not want any caption at
+all, use [:pr: none] for your parameter.
+
+See below for for customizing the caption. Here is are the source
+files that create customize captions.
+
+:src url=context_examples/table3.tex: [:ab: tex] source file
+
+Setting up the columns
+-----------------------
+
+The column setup should look familiar. I setup 3 columns, and made
+sure the first column was at least 30 mm wide.
+
+Body commands
+--------------
+
+Rather than using the [:cm: NC] command to creat a new cell, this
+table uses [:cm: VL], which creates a vertical line between each cell.
+
+Notice how the [:cm: HL] command has the option [:pr: 4]. This option
+increases the line width by a factor of 4. You can use any integer you
+want--the larger the number, the thicker the width. You can use
+the same option after a [:cm: VL] command.
+
+The endings for each row are different than the [:cm: NL] commands
+fromt the tabulate table. Each ending performs a different function. 
+
+\* The [:cm: SR] command puts extra space between it and the next row.
+(Frankly, I don't find this to be the case with my table, but this is
+what it is supposed to do.)
+
+\* The [:cm: FR] command establishes the correct distance for the first
+row.
+
+\* The [:cm: MR] establishes the correct distance for the middle row.
+
+\* The [:cm: LR] command establishes the correct distance for the last
+row.
+
+:ul:
+
+ :head: Tips
+
+ * You can use the [:cm: AR] or automatic row command in place of 
+   the [:cm: SR], [:cm: FR], and [:cm: LR] commands. The [:cm: AR]
+   command seems to do a good job adjusting the height.
+
+
+Merging cells horizontally
+---------------------------
+
+In order to merge cells horizontally, use the [:cm: NC] instead of the
+[:cm: VL] command, and omit any text for the cell to be merged. In
+other words, simpley create an empty cell with no border.
+
+:t2x-no-process:
+
+ \starttable[|l w(30mm)|l|l|]
+ \HL
+ \VL State     \VL 3-year average \VL 2-year average \VL\SR
+ \HL[4]
+ \VL Alabama   \NC                \VL 13.5           \VL\FR
+ ...
+.. end block
+
+:src url=context_examples/table4.tex: source file
+
+Merging cells vertically
+--------------------------
+
+In order to merge cells vertically, don't use the [:cm: HR] command to
+draw a continuous line. Instead, use a combination of the [:cm:
+DL], [:cm: DC] and [:cm: DR] commands to draw lines under the columns you
+want.  
+
+\* The [:cm: DL] command draws a line under the next column, *and then
+skips a column.* This last part is important to remember. If you
+start your line-drawing commands with a [:cm: DL] command, [:ab:
+context] draws a line under column one and then leaves a blank for
+column two. In essence, the [:cm: DL] command issues two commands:
+(1) draw a line across the column(s); and (2) create an empty space
+across the following column.
+
+If you want to draw a line across two columns, use an option after the
+[:cm: DL] command, and make the option the number of how lines you
+wish to draw. 
+
+:t2x-no-process:
+
+ % draw a line across two columns, then down't draw a line across the
+ % next
+ \DL[2] ...
+..end block
+
+Note the difference between the first and second command below. 
+The first leaves no line under the middle column. The second command
+leaves no line under the third column.
+
+:t2x-no-process:
+
+ % draws a line for column one, skips column two, and draws a line 
+ % for column three
+ \DL \DL ...
+ % draws a line for columns one and two, and skips column three
+ \DL[2] ...
+.. end block
+
+\* The [:cm: DC] command tells [:ab: context] to draw no line.
+
+:t2x-no-process:
+
+ % skips column one before drawing a line for column two
+ % and leaving the a blank for column 3
+ \DC \DL ...
+.. end block
+
+\* The [:cm: DR] command is used to end a row which contains [:cm:
+DL] or [:cm: DC] command.
+
+:t2x-no-process:
+
+ % draws a line for column one, skips column two, and draws a line 
+ % for column three
+ % (same as above, except now the rows are properly ended)
+ \DL \DL \DR
+ % draws a line for columns one and two, and skips column three
+ \DL[2] \DR
+.. end block
+
+:src url=context_examples/table5.tex: source file
+
+---------------
+More Examples
+---------------
+
+Here are some more examples of tables.
+
+This table is an example of merging cells horizontally and vertically.
+It also shows how to cutomize a header, center cell text, and create
+blank cells. 
+
+:src url=context_examples/table7.tex: source file
+
+This table is likewise a good example of merging cells horizontally
+and vertically. 
+
+:src url=context_examples/table8.tex: source file

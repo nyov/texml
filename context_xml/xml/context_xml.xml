@@ -2714,21 +2714,23 @@ width=48pt,
      <tei:date value="2005-04-08"/>
      <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-09"/>
+     <tei:note type="revision-description" ana="paragraph">Added most infomration on creating tabulation tables and basic tables, including customizing line widths, captions; and merging cells. </tei:note>
+    </tei:bibl>
     <tei:div ana="div">
-     <tei:head ana="head">Basic Table</tei:head>
-     <tei:div ana="div">
-      <tei:head ana="head">Tables without vertical lines (tabulate)</tei:head>
-      <tei:p ana="paragraph">
-       The <tei:seg type="command" ana="context-command">tabulate</tei:seg>
-       environment allows you to create simple tables, suited for tables with
-       large blocks of text. This type of table does not produce vertical lines
-       between cells&#8212;hence the name tabulate, hinting at the type of table
-       created with tabs.
-      </tei:p>
-      <tei:p ana="paragraph">
-       Rather than try to explain the many details of this layout, let me first
-       show the code example.
-      </tei:p>
+     <tei:head ana="head">Tables without vertical lines (tabulate)</tei:head>
+     <tei:p ana="paragraph">
+      The <tei:seg type="command" ana="context-command">tabulate</tei:seg>
+      environment allows you to create simple tables, suited for tables with
+      large blocks of text. This type of table does not produce vertical lines
+      between cells&#8212;hence the name tabulate, hinting at the type of table
+      created with tabs.
+     </tei:p>
+     <tei:p ana="paragraph">
+      Rather than try to explain the many details of this layout, let me first
+      show the code example.
+     </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% start envrionment and setup columns
 \starttabulate[|p(6cm) j3|p(6cm)|]
 
@@ -2759,9 +2761,11 @@ versus the average for the year.
 % end tabulate
 \stoptabulate
 </tei:eg>
-      <tei:p ana="paragraph">
-       <tei:xref ana="xref" url="context_examples/table1.tex">tabulate command</tei:xref>
-      </tei:p>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="context_examples/table1.tex">source file</tei:xref>
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Setting up the columns</tei:head>
       <tei:p ana="paragraph">
        Begin the table with the
        <tei:seg type="command" ana="context-command">starttabulate</tei:seg>
@@ -2899,6 +2903,9 @@ versus the average for the year.
         <tei:cell>skip around column</tei:cell>
        </tei:row>
       </tei:table>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Body commands</tei:head>
       <tei:p ana="paragraph">
        Within the body of the table itself, issue comand in order to create
        cells, rows, and horiziontal lines. The
@@ -2912,6 +2919,235 @@ versus the average for the year.
       <tei:p ana="paragraph">
        You must end every rown (including the last) with the
        <tei:seg type="command" ana="context-command">NR</tei:seg> command.
+      </tei:p>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Standard table</tei:head>
+     <tei:p ana="paragraph">
+      The standard table commands give us pretty good flexibility in creating
+      complicated tables.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Basic Table</tei:head>
+      <tei:p ana="paragraph">
+       Here is a basic table.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\placetable[here][tab:insurance]{Percentage of People without health
+insurance in US}
+\starttable[|l w(30mm)|l|l|]
+\HL
+\VL State     \VL 3-year average \VL 2-year average \VL\SR
+\HL[4]
+\VL Alabama   \VL 13.3           \VL 13.5           \VL\FR
+\HL
+\VL Alaska    \VL 17.8           \VL 18.8            \VL\MR
+\HL
+\VL Arizona   \VL 17.3            \VL 16.9           \VL\LR
+\HL
+\stoptable
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table2.tex">source file</tei:xref>
+      </tei:p>
+      <tei:div ana="div">
+       <tei:head ana="head">The placetable command</tei:head>
+       <tei:p ana="paragraph">
+        The <tei:seg type="command" ana="context-command">placetable</tei:seg>
+        command acts the same way as the
+        <tei:seg type="command" ana="context-command">placefloat</tei:seg>
+        command. The first option,
+        <tei:seg type="property" ana="property">here</tei:seg> tells
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> to
+        place the table (if possible) in the current location. The next option
+        is a reference marker. The parameter is the caption of the table. If you
+        don&#8217;t want a title but do want the word &#8220;table&#8221; and
+        number, leave the parameter empty. If you do not want any caption at
+        all, use <tei:seg type="property" ana="property">none</tei:seg> for your
+        parameter.
+       </tei:p>
+       <tei:p ana="paragraph">
+        See below for for customizing the caption. Here is are the source files
+        that create customize captions.
+       </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table3.tex"><tei:seg type="tex-name" ana="tex-name">tex</tei:seg> source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Setting up the columns</tei:head>
+       <tei:p ana="paragraph">
+        The column setup should look familiar. I setup 3 columns, and made sure
+        the first column was at least 30 mm wide.
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Body commands</tei:head>
+       <tei:p ana="paragraph">
+        Rather than using the
+        <tei:seg type="command" ana="context-command">NC</tei:seg> command to
+        creat a new cell, this table uses
+        <tei:seg type="command" ana="context-command">VL</tei:seg>, which
+        creates a vertical line between each cell.
+       </tei:p>
+       <tei:p ana="paragraph">
+        Notice how the
+        <tei:seg type="command" ana="context-command">HL</tei:seg> command has
+        the option <tei:seg type="property" ana="property">4</tei:seg>. This
+        option increases the line width by a factor of 4. You can use any
+        integer you want&#8212;the larger the number, the thicker the width. You
+        can use the same option after a
+        <tei:seg type="command" ana="context-command">VL</tei:seg> command.
+       </tei:p>
+       <tei:p ana="paragraph">
+        The endings for each row are different than the
+        <tei:seg type="command" ana="context-command">NL</tei:seg> commands
+        fromt the tabulate table. Each ending performs a different function.
+       </tei:p>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">SR</tei:seg> command
+        puts extra space between it and the next row. (Frankly, I don&#8217;t
+        find this to be the case with my table, but this is what it is supposed
+        to do.)
+       </tei:p>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">FR</tei:seg> command
+        establishes the correct distance for the first row.
+       </tei:p>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">MR</tei:seg>
+        establishes the correct distance for the middle row.
+       </tei:p>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">LR</tei:seg> command
+        establishes the correct distance for the last row.
+       </tei:p>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          You can use the
+          <tei:seg type="command" ana="context-command">AR</tei:seg> or
+          automatic row command in place of the
+          <tei:seg type="command" ana="context-command">SR</tei:seg>,
+          <tei:seg type="command" ana="context-command">FR</tei:seg>, and
+          <tei:seg type="command" ana="context-command">LR</tei:seg> commands.
+          The <tei:seg type="command" ana="context-command">AR</tei:seg> command
+          seems to do a good job adjusting the height.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Merging cells horizontally</tei:head>
+       <tei:p ana="paragraph">
+        In order to merge cells horizontally, use the
+        <tei:seg type="command" ana="context-command">NC</tei:seg> instead of
+        the <tei:seg type="command" ana="context-command">VL</tei:seg> command,
+        and omit any text for the cell to be merged. In other words, simpley
+        create an empty cell with no border.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\starttable[|l w(30mm)|l|l|]
+\HL
+\VL State     \VL 3-year average \VL 2-year average \VL\SR
+\HL[4]
+\VL Alabama   \NC                \VL 13.5           \VL\FR
+...
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table4.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Merging cells vertically</tei:head>
+       <tei:p ana="paragraph">
+        In order to merge cells vertically, don&#8217;t use the
+        <tei:seg type="command" ana="context-command">HR</tei:seg> command to
+        draw a continuous line. Instead, use a combination of the
+        <tei:seg type="command" ana="context-command">DL</tei:seg>,
+        <tei:seg type="command" ana="context-command">DC</tei:seg> and
+        <tei:seg type="command" ana="context-command">DR</tei:seg> commands to
+        draw lines under the columns you want.
+       </tei:p>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">DL</tei:seg> command
+        draws a line under the next column,
+        <tei:emph rend="italic" ana="emph-italic">and then skips a
+        column.</tei:emph> This last part is important to remember. If you start
+        your line-drawing commands with a
+        <tei:seg type="command" ana="context-command">DL</tei:seg> command,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> draws
+        a line under column one and then leaves a blank for column two. In
+        essence, the <tei:seg type="command" ana="context-command">DL</tei:seg>
+        command issues two commands: (1) draw a line across the column(s); and
+        (2) create an empty space across the following column.
+       </tei:p>
+       <tei:p ana="paragraph">
+        If you want to draw a line across two columns, use an option after the
+        <tei:seg type="command" ana="context-command">DL</tei:seg> command, and
+        make the option the number of how lines you wish to draw.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% draw a line across two columns, then down't draw a line across the
+% next
+\DL[2] ...
+</tei:eg>
+       <tei:p ana="paragraph">
+        Note the difference between the first and second command below. The
+        first leaves no line under the middle column. The second command leaves
+        no line under the third column.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% draws a line for column one, skips column two, and draws a line 
+% for column three
+\DL \DL ...
+% draws a line for columns one and two, and skips column three
+\DL[2] ...
+</tei:eg>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">DC</tei:seg> command
+        tells <tei:seg type="context-name" ana="context-name">context</tei:seg>
+        to draw no line.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% skips column one before drawing a line for column two
+% and leaving the a blank for column 3
+\DC \DL ...
+</tei:eg>
+       <tei:p ana="paragraph">
+        * The <tei:seg type="command" ana="context-command">DR</tei:seg> command
+        is used to end a row which contains
+        <tei:seg type="command" ana="context-command">DL</tei:seg> or
+        <tei:seg type="command" ana="context-command">DC</tei:seg> command.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% draws a line for column one, skips column two, and draws a line 
+% for column three
+% (same as above, except now the rows are properly ended)
+\DL \DL \DR
+% draws a line for columns one and two, and skips column three
+\DL[2] \DR
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table5.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">More Examples</tei:head>
+      <tei:p ana="paragraph">
+       Here are some more examples of tables.
+      </tei:p>
+      <tei:p ana="paragraph">
+       This table is an example of merging cells horizontally and vertically. It
+       also shows how to cutomize a header, center cell text, and create blank
+       cells.
+      </tei:p>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table7.tex">source file</tei:xref>
+      </tei:p>
+      <tei:p ana="paragraph">
+       This table is likewise a good example of merging cells horizontally and
+       vertically.
+      </tei:p>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table8.tex">source file</tei:xref>
       </tei:p>
      </tei:div>
     </tei:div>
