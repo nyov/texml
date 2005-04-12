@@ -12,6 +12,15 @@
   tables, including customizing line widths, captions; and merging
   cells. 
 
+:change date=2005-04-10:
+  
+  Added most information for creating basic table.
+
+:change date=2005-04-11:
+
+  Added most information on creating TABLE tables, including mering
+  cells and customizing cells by numers and columns.
+
 
 ==========================================
 Tables without vertical lines (tabulate)
@@ -283,7 +292,43 @@ DL] or [:cm: DC] command.
 
 :src url=context_examples/table5.tex: source file
 
----------------
+Creating a multi-paged table
+-----------------------------
+
+In order to create a multi-page table with this type of table, follow
+the example below. I'm not sure of all the details of this type of
+table, but I have been told it is depreacted, and that for multi-page
+tables it might be better to use the type of table in the next
+section. None-the-less, I was able to get this table to work.
+
+:t2x-no-process:
+
+ % split the table across pages
+ \splitfloat
+ % make sure your group the \placetable with {}
+ {\placetable{Percentage of People without health
+ insurance in US}}
+ % make sure you group everything else with {}
+ % theis table head will repeated on each page
+ {\starttablehead
+ \HL
+ \VL State     \VL 3-year average \VL 2-year average  \VL\SR
+ \HL[4]
+ \stoptablehead
+ % this detail will be repeated at the bottom of each page
+ \starttabletail
+ \HL[4]
+ \stoptabletail
+ % create a starttables--notice the plural!
+ \starttables[|l w(30mm)|l|l|]
+ \VL Alabama   \VL 13.3      \VL 13.5   \VL\FR
+ \HL
+ ...
+ \stoptables}
+.. stop block
+
+:src url=context_examples/table9.tex: source file
+
 More Examples
 ---------------
 
@@ -299,3 +344,227 @@ This table is likewise a good example of merging cells horizontally
 and vertically. 
 
 :src url=context_examples/table8.tex: source file
+
+==================
+Tables with TABLE
+==================
+
+The TABLE is the most powerful and flexible tables module in [:ab:
+context]. Its sytax is closest to css stylesheets. 
+
+You can find a PDF file with many examples at 
+[:xref url=http\://www.pragma-ade.com/general/manuals/enattab.pdf:
+url=http\://www.pragma-ade.com/general/manuals/enattab.pdf]
+
+The following is a simple table.
+
+
+:t2x-no-process:
+
+ \bTABLE
+ \bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+ \bTR \bTD Alabama \eTD \bTD 13.3 \eTD \bTD 13.5 \eTD \eTR
+ ...
+ \eTABLE
+.. stop block
+
+:src url=context_examples/table10.tex: source file
+
+Each command in the TABLE environment is paired: [:cm: bTABLE] is matched
+with [:cm: eTable], [:cm: bTR] is matched with [:cm: eTR], and so on.
+The lower-case "b" stands for beginn, while the lower-case "e" stands
+for end.
+
+The commands otherwise look very much like XHTML format, with TR
+standing for table row, and TD for table cell. 
+
+Merging cells horizontally
+===========================
+
+In order to merge cells horiziontally, use the [:op: nc] option after
+the cell you want to merge. The [:pr: nc] stands for number of
+columns.
+
+:t2x-no-process:
+
+ \bTABLE
+ \bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+ %
+ % merge the first two cells
+ \bTR \bTD[nc=2] Alabama \eTD  \bTD 13.5 \eTD \eTR
+ %
+ % merge last two cells
+ \bTR \bTD Alaska \eTD \bTD[nc=2] 17.8 \eTD  \eTR
+ %
+ %merget all three cells
+ \bTR \bTD[nc=3] Arizona \eTD  \eTR
+ \eTABLE
+.. end block
+
+:src url=context_examples/table11.tex: source file
+
+Merging cells vertically
+===========================
+
+In order to merge cells vertically, use the [:op: nr] option after
+the cell you want to merge. The [:pr: nj] stands for number of
+rows.
+
+:t2x-no-process:
+
+ \bTABLE
+ \bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+ %
+ % merge first cell down one
+ \bTR \bTD[nr=2] Alabama \eTD \bTD 13.3 \eTD \bTD 13.5 \eTD \eTR
+ %
+ % merge last cell down one
+ \bTR \bTD 17.8 \eTD \bTD[nr=2] 18.8 \eTD \eTR
+ \bTR \bTD Arizona \eTD \bTD 17.3 \eTD  \eTR
+ \eTABLE
+.. end block
+
+:src url=context_examples/table12.tex: source file
+
+Creating multi-page tables
+===========================
+
+In order to make sure a larget TABLE can split across pages, use
+the option [:op: split=yes] right after the [:cm: bTABLE] command.
+
+:t2x-no-process:
+
+ \bTABLE[split=yes]
+.. end block
+
+If you want create tables in which the header is
+repeated with each page, divide your table into the head, body, and
+foot. Use the [:cm: bTABLEhead] and [:cm: eTABLEhead] to create the
+head. Use the [:cm: bTABLEbody] and [:cm: eTABLEbody] to create
+the body. Use the [:cm: bTABLEfoot] and [:cm: eTABLEfoot] to create
+the foot.
+
+Use the option [:op: split=repeat] right after the [:cm: bTABLE] command.
+
+The head will appear at the top of the table on each page. The foot
+will appear once at the bottom of the table.
+
+:t2x-no-process:
+
+ % split the table across pages and make sure the head is foot are repeated
+ \bTABLE[split=repeat]
+ % create the head
+ \bTABLEhead
+ \bTR \bTD State  \eTD \bTD 3-year average \eTD \bTD 2-year average \eTD \eTR
+ \eTABLEhead
+ % create the body
+ \bTABLEbody
+ \bTR \bTD Alabama  \eTD \bTD 13.3  \eTD \bTD 13.5  \eTD \eTR
+ \bTR \bTD Alaska  \eTD \bTD 17.8  \eTD \bTD 18.8  \eTD \eTR
+ ...
+ \eTABLEbody
+ % create the foot
+ \bTABLEfoot
+ \bTR \bTD[nc=3] Details may not sum to totals because of rounding. \eTD \eTR
+ \eTABLEfoot
+ \eTABLE
+.. endblock
+
+
+:src url=context_examples/table16.tex: source file
+
+Customizing TABLE
+==================
+
+Customizing cells and rows in TABLE is more straightforward than with
+other table modules. Use the [:cm: setupTABLE] command. The first few
+commands of this option describe the rows, columns, or cells that need
+to be customized. The last option describes the actual customization. 
+
+You can use as many [:cm: setupTABLE] commands as you have
+customizations.
+
+cell numbers
+------------
+
+Each cell in the TABLE environment is assigned both a row and column
+number. 
+
+:fig url=rows_columns_1: each cell as a row and column number
+
+If the table has merged cells, the numbering does not change. The
+invisible cells are given their number, and the non-invisible cells
+keep theirs.
+
+:fig url=rows_columns_2: each cell as a row and column number
+
+customization options
+----------------------
+
+Here is a table of possible properties you can use to customize each
+cell.
+
+:tb url=table4:
+
+Changing cells by their numbers
+-----------------------------------
+
+To change something for individual cells using cell addressing (that
+is, identifying the cells by their rows and numbers), use the
+[:setupTABLE] command, followed by the  number of the column, followed
+by the number followed by the number of the row, and finally followed
+by the desired customization. The following table makes the first cell
+(1, 1) and the middle cell (2, 2) red.
+
+:t2x-no-process:
+
+ %needed to get color
+ \setupcolors[state=start]
+ %
+ % set up first column, first row
+ \setupTABLE[1][1][background=color, backgroundcolor=red]
+ %
+ % setup second column, second row
+ \setupTABLE[2][2][background=color, backgroundcolor=red]
+.. end block
+
+:src url=context_examples/table13.tex: source file
+
+Changing rows
+--------------
+
+To change the appearance of one or more rows, use "r" as the property
+for your first option. In the second option, describe which rows you
+want to change. Use [:pr: each] for every row; [:pr: odd] for odd
+rows; [:pr: even] for even rows; [:pr: first] for the first row; 
+[:pr: last] for the last row; a number to indicate a certain row; a
+series of numbers separated by commas to indicate a series of rows.
+
+:t2x-no-process:
+
+ % change color of all even rows to red
+ %\setupTABLE[r][even][background=color, backgroundcolor=red]
+.. end block
+
+:src url=context_examples/table14.tex: source file
+
+Changing columns
+-----------------
+
+To change the appearance of one or more rows, use "c" as the property
+for your first option. You can use the same positional properties as
+you do for rows (see above).
+
+:t2x-no-process:
+
+ % change color of all even columns to red
+ %\setupTABLE[c][even][background=color, backgroundcolor=red]
+.. end block
+
+:src url=context_examples/table15.tex: source file
+
+.. TODO
+
+.. make new picts
+.. make table for position elements of row
+.. \bTABLE[width=5\hsize

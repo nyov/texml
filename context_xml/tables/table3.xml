@@ -1,0 +1,84 @@
+<table xmlns= "http://www.tei-c.org/ns/1.0" id="format-char" ana="table">
+    <head ana="head">Formatting Characters for Tables</head> 
+    <row role="label">
+        <cell>option</cell>
+        <cell>result</cell>
+    </row>
+    <row>
+        <cell>l</cell>
+        <cell>align left</cell>
+    </row>
+    <row>
+        <cell>r</cell>
+        <cell>align right</cell>
+    </row>
+    <row>
+        <cell>c</cell>
+        <cell>align center</cell>
+    </row>
+    <row>
+        <cell>p(dimen)</cell>
+        <cell>create a paragraph with width dimen</cell>
+    </row>
+    <row>
+        <cell>w(dimen)</cell>
+        <cell>create a column with width dimen</cell>
+    </row>
+    <row>
+        <cell>f #1</cell>
+        <cell>font</cell>
+    </row>
+    <row>
+        <cell>B</cell>
+        <cell>bold</cell>
+    </row>
+    <row>
+        <cell>I</cell>
+        <cell>italic</cell>
+    </row>
+    <row>
+        <cell>S</cell>
+        <cell>slanted</cell>
+    </row>
+    <row>
+        <cell>T</cell>
+        <cell>Type</cell>
+    </row>
+    <row>
+        <cell>R</cell>
+        <cell>roman</cell>
+    </row>
+    <row>
+        <cell>m</cell>
+        <cell>math</cell>
+    </row>
+    <row>
+        <cell>M</cell>
+        <cell>display math</cell>
+    </row>
+    <row>
+        <cell>h</cell>
+        <cell>hook (inner level of par lines)</cell>
+    </row>
+    <row>
+        <cell>b</cell>
+        <cell>before (may be command)</cell>
+    </row>
+    <row>
+        <cell>a</cell>
+        <cell>after (may be command)</cell>
+    </row>
+    <row>
+        <cell>i&lt;number&gt;</cell>
+        <cell>skip left of column</cell>
+    </row>
+    <row>
+        <cell>j&lt;number&gt;</cell>
+        <cell>skip right of column</cell>
+    </row>
+    <row>
+        <cell>k&lt;number&gt;</cell>
+        <cell>skip around column</cell>
+    </row>
+</table>
+

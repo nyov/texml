@@ -3128,27 +3128,342 @@ insurance in US}
         <tei:xref ana="xref" url="context_examples/table5.tex">source file</tei:xref>
        </tei:p>
       </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Creating a multi-paged table</tei:head>
+       <tei:p ana="paragraph">
+        In order to create a multi-page table with this type of table, follow
+        the example below. I&#8217;m not sure of all the details of this type of
+        table, but I have been told it is depreacted, and that for multi-page
+        tables it might be better to use the type of table in the next section.
+        None-the-less, I was able to get this table to work.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% split the table across pages
+\splitfloat
+% make sure your group the \placetable with {}
+{\placetable{Percentage of People without health
+insurance in US}}
+% make sure you group everything else with {}
+% theis table head will repeated on each page
+{\starttablehead
+\HL
+\VL State     \VL 3-year average \VL 2-year average  \VL\SR
+\HL[4]
+\stoptablehead
+% this detail will be repeated at the bottom of each page
+\starttabletail
+\HL[4]
+\stoptabletail
+% create a starttables--notice the plural!
+\starttables[|l w(30mm)|l|l|]
+\VL Alabama   \VL 13.3      \VL 13.5   \VL\FR
+\HL
+...
+\stoptables}
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table9.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">More Examples</tei:head>
+       <tei:p ana="paragraph">
+        Here are some more examples of tables.
+       </tei:p>
+       <tei:p ana="paragraph">
+        This table is an example of merging cells horizontally and vertically.
+        It also shows how to cutomize a header, center cell text, and create
+        blank cells.
+       </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table7.tex">source file</tei:xref>
+       </tei:p>
+       <tei:p ana="paragraph">
+        This table is likewise a good example of merging cells horizontally and
+        vertically.
+       </tei:p>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table8.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Tables with TABLE</tei:head>
+     <tei:p ana="paragraph">
+      The TABLE is the most powerful and flexible tables module in
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>. Its
+      sytax is closest to css stylesheets.
+     </tei:p>
+     <tei:p ana="paragraph">
+      You can find a PDF file with many examples at
+      <tei:xref ana="xref" url="http://www.pragma-ade.com/general/manuals/enattab.pdf">url=http://www.pragma-ade.com/general/manuals/enattab.pdf</tei:xref>
+     </tei:p>
+     <tei:p ana="paragraph">
+      The following is a simple table.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\bTABLE
+\bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+\bTR \bTD Alabama \eTD \bTD 13.3 \eTD \bTD 13.5 \eTD \eTR
+...
+\eTABLE
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="context_examples/table10.tex">source file</tei:xref>
+     </tei:p>
+     <tei:p ana="paragraph">
+      Each command in the TABLE environment is paired:
+      <tei:seg type="command" ana="context-command">bTABLE</tei:seg> is matched
+      with <tei:seg type="command" ana="context-command">eTable</tei:seg>,
+      <tei:seg type="command" ana="context-command">bTR</tei:seg> is matched
+      with <tei:seg type="command" ana="context-command">eTR</tei:seg>, and so
+      on. The lower-case &#8220;b&#8221; stands for beginn, while the lower-case
+      &#8220;e&#8221; stands for end.
+     </tei:p>
+     <tei:p ana="paragraph">
+      The commands otherwise look very much like XHTML format, with TR standing
+      for table row, and TD for table cell.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Merging cells horizontally</tei:head>
+      <tei:p ana="paragraph">
+       In order to merge cells horiziontally, use the
+       <tei:seg type="option" ana="option">nc</tei:seg> option after the cell
+       you want to merge. The
+       <tei:seg type="property" ana="property">nc</tei:seg> stands for number of
+       columns.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\bTABLE
+\bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+%
+% merge the first two cells
+\bTR \bTD[nc=2] Alabama \eTD  \bTD 13.5 \eTD \eTR
+%
+% merge last two cells
+\bTR \bTD Alaska \eTD \bTD[nc=2] 17.8 \eTD  \eTR
+%
+%merget all three cells
+\bTR \bTD[nc=3] Arizona \eTD  \eTR
+\eTABLE
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table11.tex">source file</tei:xref>
+      </tei:p>
      </tei:div>
      <tei:div ana="div">
-      <tei:head ana="head">More Examples</tei:head>
+      <tei:head ana="head">Merging cells vertically</tei:head>
       <tei:p ana="paragraph">
-       Here are some more examples of tables.
+       In order to merge cells vertically, use the
+       <tei:seg type="option" ana="option">nr</tei:seg> option after the cell
+       you want to merge. The
+       <tei:seg type="property" ana="property">nj</tei:seg> stands for number of
+       rows.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\bTABLE
+\bTR \bTD State \eTD \bTD3-year average \eTD \bTD2-year average \eTD \eTR
+%
+% merge first cell down one
+\bTR \bTD[nr=2] Alabama \eTD \bTD 13.3 \eTD \bTD 13.5 \eTD \eTR
+%
+% merge last cell down one
+\bTR \bTD 17.8 \eTD \bTD[nr=2] 18.8 \eTD \eTR
+\bTR \bTD Arizona \eTD \bTD 17.3 \eTD  \eTR
+\eTABLE
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table12.tex">source file</tei:xref>
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Creating multi-page tables</tei:head>
+      <tei:p ana="paragraph">
+       In order to make sure a larget TABLE can split across pages, use the
+       option <tei:seg type="option" ana="option">split=yes</tei:seg> right
+       after the <tei:seg type="command" ana="context-command">bTABLE</tei:seg>
+       command.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\bTABLE[split=yes]
+</tei:eg>
+      <tei:p ana="paragraph">
+       If you want create tables in which the header is repeated with each page,
+       divide your table into the head, body, and foot. Use the
+       <tei:seg type="command" ana="context-command">bTABLEhead</tei:seg> and
+       <tei:seg type="command" ana="context-command">eTABLEhead</tei:seg> to
+       create the head. Use the
+       <tei:seg type="command" ana="context-command">bTABLEbody</tei:seg> and
+       <tei:seg type="command" ana="context-command">eTABLEbody</tei:seg> to
+       create the body. Use the
+       <tei:seg type="command" ana="context-command">bTABLEfoot</tei:seg> and
+       <tei:seg type="command" ana="context-command">eTABLEfoot</tei:seg> to
+       create the foot.
       </tei:p>
       <tei:p ana="paragraph">
-       This table is an example of merging cells horizontally and vertically. It
-       also shows how to cutomize a header, center cell text, and create blank
-       cells.
+       Use the option <tei:seg type="option" ana="option">split=repeat</tei:seg>
+       right after the
+       <tei:seg type="command" ana="context-command">bTABLE</tei:seg> command.
       </tei:p>
       <tei:p ana="paragraph">
-       <tei:xref ana="xref" url="context_examples/table7.tex">source file</tei:xref>
+       The head will appear at the top of the table on each page. The foot will
+       appear once at the bottom of the table.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% split the table across pages and make sure the head is foot are repeated
+\bTABLE[split=repeat]
+% create the head
+\bTABLEhead
+\bTR \bTD State  \eTD \bTD 3-year average \eTD \bTD 2-year average \eTD \eTR
+\eTABLEhead
+% create the body
+\bTABLEbody
+\bTR \bTD Alabama  \eTD \bTD 13.3  \eTD \bTD 13.5  \eTD \eTR
+\bTR \bTD Alaska  \eTD \bTD 17.8  \eTD \bTD 18.8  \eTD \eTR
+...
+\eTABLEbody
+% create the foot
+\bTABLEfoot
+\bTR \bTD[nc=3] Details may not sum to totals because of rounding. \eTD \eTR
+\eTABLEfoot
+\eTABLE
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/table16.tex">source file</tei:xref>
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Customizing TABLE</tei:head>
+      <tei:p ana="paragraph">
+       Customizing cells and rows in TABLE is more straightforward than with
+       other table modules. Use the
+       <tei:seg type="command" ana="context-command">setupTABLE</tei:seg>
+       command. The first few commands of this option describe the rows,
+       columns, or cells that need to be customized. The last option describes
+       the actual customization.
       </tei:p>
       <tei:p ana="paragraph">
-       This table is likewise a good example of merging cells horizontally and
-       vertically.
+       You can use as many
+       <tei:seg type="command" ana="context-command">setupTABLE</tei:seg>
+       commands as you have customizations.
       </tei:p>
-      <tei:p ana="paragraph">
-       <tei:xref ana="xref" url="context_examples/table8.tex">source file</tei:xref>
-      </tei:p>
+      <tei:div ana="div">
+       <tei:head ana="head">cell numbers</tei:head>
+       <tei:p ana="paragraph">
+        Each cell in the TABLE environment is assigned both a row and column
+        number.
+       </tei:p>
+       <tei:figure url="rows_columns_1.svg" ana="figure">
+        <tei:head ana="head">each cell as a row and column number</tei:head>
+       </tei:figure>
+       <tei:p ana="paragraph">
+        If the table has merged cells, the numbering does not change. The
+        invisible cells are given their number, and the non-invisible cells keep
+        theirs.
+       </tei:p>
+       <tei:figure url="rows_columns_2.svg" ana="figure">
+        <tei:head ana="head">each cell as a row and column number</tei:head>
+       </tei:figure>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">customization options</tei:head>
+       <tei:p ana="paragraph">
+        Here is a table of possible properties you can use to customize each
+        cell.
+       </tei:p>
+       <tei:table id="table-setup-options" ana="table">
+        <tei:head ana="head">Possible options for setupTABLE</tei:head>
+        <tei:row role="label">
+         <tei:cell>option</tei:cell>
+         <tei:cell>result</tei:cell>
+         <tei:cell>note</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>width=&lt;dimen&gt;</tei:cell>
+         <tei:cell>set height</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>heigth=&lt;dimen&gt;</tei:cell>
+         <tei:cell>set height</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>background=color</tei:cell>
+         <tei:cell>sets color</tei:cell>
+         <tei:cell>used in conjuction with color=&lt;color&gt;;use the word 
+            "color," not the name of the color</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>color=&lt;color&gt;</tei:cell>
+         <tei:cell>sets color</tei:cell>
+         <tei:cell>used in conjuction with backgroundcolor=color</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>frame=&lt;off&gt;|&lt;on&gt;</tei:cell>
+         <tei:cell>turns frame (borders) off or on</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>framecolor=&lt;off&gt;|&lt;on&gt;</tei:cell>
+         <tei:cell>set color of border</tei:cell>
+        </tei:row>
+        <tei:row>
+         <tei:cell>rulethickness=&lt;dimen&gt;|&lt;on&gt;</tei:cell>
+         <tei:cell>set thickness of rule</tei:cell>
+        </tei:row>
+       </tei:table>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing cells by their numbers</tei:head>
+       <tei:p ana="paragraph">
+        To change something for individual cells using cell addressing (that is,
+        identifying the cells by their rows and numbers), use the [:setupTABLE]
+        command, followed by the number of the column, followed by the number
+        followed by the number of the row, and finally followed by the desired
+        customization. The following table makes the first cell (1, 1) and the
+        middle cell (2, 2) red.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">%needed to get color
+\setupcolors[state=start]
+%
+% set up first column, first row
+\setupTABLE[1][1][background=color, backgroundcolor=red]
+%
+% setup second column, second row
+\setupTABLE[2][2][background=color, backgroundcolor=red]
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table13.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing rows</tei:head>
+       <tei:p ana="paragraph">
+        To change the appearance of one or more rows, use &#8220;r&#8221; as the
+        property for your first option. In the second option, describe which
+        rows you want to change. Use
+        <tei:seg type="property" ana="property">each</tei:seg> for every row;
+        <tei:seg type="property" ana="property">odd</tei:seg> for odd rows;
+        <tei:seg type="property" ana="property">even</tei:seg> for even rows;
+        <tei:seg type="property" ana="property">first</tei:seg> for the first
+        row; <tei:seg type="property" ana="property">last</tei:seg> for the last
+        row; a number to indicate a certain row; a series of numbers separated
+        by commas to indicate a series of rows.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% change color of all even rows to red
+%\setupTABLE[r][even][background=color, backgroundcolor=red]
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table14.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing columns</tei:head>
+       <tei:p ana="paragraph">
+        To change the appearance of one or more rows, use &#8220;c&#8221; as the
+        property for your first option. You can use the same positional
+        properties as you do for rows (see above).
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% change color of all even columns to red
+%\setupTABLE[c][even][background=color, backgroundcolor=red]
+</tei:eg>
+       <tei:p ana="paragraph">
+        <tei:xref ana="xref" url="context_examples/table15.tex">source file</tei:xref>
+       </tei:p>
+      </tei:div>
      </tei:div>
     </tei:div>
    </tei:div>

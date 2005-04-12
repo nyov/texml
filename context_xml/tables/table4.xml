@@ -1,0 +1,41 @@
+<table xmlns= "http://www.tei-c.org/ns/1.0" 
+    id="table-setup-options" ana="table">
+    <head ana="head">Possible options for setupTABLE</head> 
+    <row role="label">
+        <cell>option</cell>
+        <cell>result</cell>
+        <cell>note</cell>
+    </row>
+    <row>
+        <cell>width=&lt;dimen&gt;</cell>
+        <cell>set height</cell>
+    </row>
+    <row>
+        <cell>heigth=&lt;dimen&gt;</cell>
+        <cell>set height</cell>
+    </row>
+    <row>
+        <cell>background=color</cell>
+        <cell>sets color</cell>
+        <cell>used in conjuction with color=&lt;color&gt;;use the word 
+            "color," not the name of the color</cell>
+        
+    </row>
+    <row>
+        <cell>color=&lt;color&gt;</cell>
+        <cell>sets color</cell>
+        <cell>used in conjuction with backgroundcolor=color</cell>
+    </row>
+    <row>
+        <cell>frame=&lt;off&gt;|&lt;on&gt;</cell>
+        <cell>turns frame (borders) off or on</cell>
+    </row>
+    <row>
+        <cell>framecolor=&lt;color&gt;</cell>
+        <cell>set color of border</cell>
+    </row>
+    <row>
+        <cell>rulethickness=&lt;dimen&gt;</cell>
+        <cell>set thickness of rule for entire frame around cell</cell>
+    </row>
+</table>
