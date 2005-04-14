@@ -1,3 +1,25 @@
+:title: Blocks
 
-.. \definehspace[mine][12pt]
-.. \hspace[mine]
+:author: Paul Tremblay
+
+:change date=2005-03-08:
+
+  First started writing
+
+
+This document is incomplete and will remain so until I find time. 
+
+==========================
+Creating horizontal space
+==========================
+
+Create space with the [:cm: hspace] command. You will first have to define the
+amount of space with the [:cm: definespace] command. 
+
+:t2x-no-process:
+
+ \definehspace[mine][12pt]
+ \hspace[mine]
+.. end block
+
+:src url=context_examples/inline1.tex: source file

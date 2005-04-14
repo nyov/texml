@@ -1,0 +1,49 @@
+:title: Lines and Frames
+
+:author: Paul Tremblay
+
+:change date=2005-04-13:
+
+ First started writing
+
+========
+Overview
+========
+
+This section will be sketchy and incomplete until I find more time.
+Look in the main manual in the chapter by the same name ("Lines and
+Frames") for more information. From what I can tell, the information
+seems pretty good and does need much more elaboration.
+
+======
+Frames
+======
+
+A simply frame can be formed with the [:cm: framed] command:
+
+:t2x-no-process:
+
+ \framed{text in frame}
+
+======
+Lines
+======
+
+
+:t2x-no-process:
+
+ \setupthinrule[rulethickness=1pt]
+ \thinrule
+
+-----------------
+lines with fills
+-----------------
+
+Use [:cm: dotfill] to use a dotted leader, as with a table of
+contents.
+
+:t2x-no-process:
+
+ Chater 8\dotfill 99
+ ...
+.. end block

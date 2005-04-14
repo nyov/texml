@@ -7,6 +7,8 @@
 <!ENTITY getting-started SYSTEM "getting_started.xml">
 <!ENTITY blocks SYSTEM "blocks.xml">
 <!ENTITY tables SYSTEM "tables.xml">
+<!ENTITY inline SYSTEM "inline.xml">
+<!ENTITY lines_frames SYSTEM "lines_frames.xml">
 
 
 ]
@@ -303,6 +305,14 @@
             <div ana="div">
                 <head ana="head">Tables</head>
                 &tables;
+            </div>
+            <div ana="div">
+                <head ana="head">Inline</head>
+                &inline;
+            </div>
+            <div ana="div">
+                <head ana="head">Lines and Frames</head>
+                &lines_frames;
             </div>
         </body>
     </text>

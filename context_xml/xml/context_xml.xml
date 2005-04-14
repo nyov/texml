@@ -2718,6 +2718,14 @@ width=48pt,
      <tei:date value="2005-04-09"/>
      <tei:note type="revision-description" ana="paragraph">Added most infomration on creating tabulation tables and basic tables, including customizing line widths, captions; and merging cells. </tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-10"/>
+     <tei:note type="revision-description" ana="paragraph">Added most information for creating basic table.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-11"/>
+     <tei:note type="revision-description" ana="paragraph">Added most information on creating TABLE tables, including mering cells and customizing cells by numers and columns.</tei:note>
+    </tei:bibl>
     <tei:div ana="div">
      <tei:head ana="head">Tables without vertical lines (tabulate)</tei:head>
      <tei:p ana="paragraph">
@@ -3378,7 +3386,7 @@ insurance in US}}
          <tei:cell>set height</tei:cell>
         </tei:row>
         <tei:row>
-         <tei:cell>heigth=&lt;dimen&gt;</tei:cell>
+         <tei:cell>height=&lt;dimen&gt;</tei:cell>
          <tei:cell>set height</tei:cell>
         </tei:row>
         <tei:row>
@@ -3397,12 +3405,12 @@ insurance in US}}
          <tei:cell>turns frame (borders) off or on</tei:cell>
         </tei:row>
         <tei:row>
-         <tei:cell>framecolor=&lt;off&gt;|&lt;on&gt;</tei:cell>
+         <tei:cell>framecolor=&lt;color&gt;</tei:cell>
          <tei:cell>set color of border</tei:cell>
         </tei:row>
         <tei:row>
-         <tei:cell>rulethickness=&lt;dimen&gt;|&lt;on&gt;</tei:cell>
-         <tei:cell>set thickness of rule</tei:cell>
+         <tei:cell>rulethickness=&lt;dimen&gt;</tei:cell>
+         <tei:cell>set thickness of rule for entire frame around cell</tei:cell>
         </tei:row>
        </tei:table>
       </tei:div>
@@ -3464,6 +3472,75 @@ insurance in US}}
         <tei:xref ana="xref" url="context_examples/table15.tex">source file</tei:xref>
        </tei:p>
       </tei:div>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Inline</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-03-08"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:p ana="paragraph">
+     This document is incomplete and will remain so until I find time.
+    </tei:p>
+    <tei:div ana="div">
+     <tei:head ana="head">Creating horizontal space</tei:head>
+     <tei:p ana="paragraph">
+      Create space with the
+      <tei:seg type="command" ana="context-command">hspace</tei:seg> command.
+      You will first have to define the amount of space with the
+      <tei:seg type="command" ana="context-command">definespace</tei:seg>
+      command.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\definehspace[mine][12pt]
+\hspace[mine]
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="context_examples/inline1.tex">source file</tei:xref>
+     </tei:p>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Lines and Frames</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-13"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head">Overview</tei:head>
+     <tei:p ana="paragraph">
+      This section will be sketchy and incomplete until I find more time. Look
+      in the main manual in the chapter by the same name (&#8220;Lines and
+      Frames&#8221;) for more information. From what I can tell, the information
+      seems pretty good and does need much more elaboration.
+     </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Frames</tei:head>
+     <tei:p ana="paragraph">
+      A simply frame can be formed with the
+      <tei:seg type="command" ana="context-command">framed</tei:seg> command:
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\framed{text in frame}
+
+</tei:eg>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Lines</tei:head>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupthinrule[rulethickness=1pt]
+\thinrule
+
+</tei:eg>
+     <tei:div ana="div">
+      <tei:head ana="head">lines with fills</tei:head>
+      <tei:p ana="paragraph">
+       Use <tei:seg type="command" ana="context-command">dotfill</tei:seg> to
+       use a dotted leader, as with a table of contents.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">Chater 8\dotfill 99
+...
+</tei:eg>
      </tei:div>
     </tei:div>
    </tei:div>
