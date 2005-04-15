@@ -483,5 +483,21 @@
     </xsl:choose>
 </xsl:template>
 
+<xsl:template match="tx:status">
+    <xsl:element name="tei:p">
+        <xsl:attribute name="ana">
+            <xsl:text>paragraph</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="rend">
+            <xsl:text>status</xsl:text>
+        </xsl:attribute>
+        <xsl:apply-templates/>
+    </xsl:element>
+</xsl:template>
+
+<xsl:template match="tx:status-table">
+    <xsl:apply-templates/>
+</xsl:template>
+
 </xsl:stylesheet>
 

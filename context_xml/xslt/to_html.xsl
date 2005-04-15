@@ -170,6 +170,61 @@
     </xsl:document>
   </xsl:template>
 
+  <!--INDEX-->
+  <xsl:template match="tei:body/tei:div[@id='intro-id']">
+    <xsl:variable name="output">
+        <xsl:text>index</xsl:text>
+        <xsl:value-of select = "$html-suffix"/>
+    </xsl:variable>
+    <xsl:document href="{$output}" method="xml">
+        <html>
+            <head>
+                <title>index.html</title>
+                <xsl:element name="link">
+                    <xsl:attribute name="rel">
+                        <xsl:text>stylesheet</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="type">
+                        <xsl:text>text/css</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="href">
+                        <xsl:text>styles.css</xsl:text>
+                    </xsl:attribute>
+                </xsl:element>
+            </head>
+            <body>
+                <h1 class ="main-title">Welcome to context-xml</h1>
+                <xsl:apply-templates/>
+                <p>
+        Author: Paul Tremblay phthenry [at] {iglou} [dot] com
+        </p>
+
+        <p><a href="contents.html">
+            Contents
+            
+        </a></p>
+        <p>
+
+        <a href="http://sourceforge.net">
+            <img src="http://sourceforge.net/sflogo.php?group_id=102261&amp;type=5" 
+            width="210" 
+            height="62" 
+            border="0" 
+            alt="SourceForge.net Logo" />
+        </a>
+            
+        </p>
+            </body>
+        </html>
+    </xsl:document>
+  </xsl:template>
+
+  <xsl:template match="tei:body/tei:div[@id='intro-id']/tei:head" priority="100"/>
+
+  <xsl:template match="tei:p[@rend='status']"/>
+
+<!--END INDEX-->
+
   <!--get rid of bug pages-->
   <xsl:template match="tei:div[@type='unsure']" priority="10"/>
 

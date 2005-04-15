@@ -1,8 +1,8 @@
-:title: Blocks
+:title: Inline
 
 :author: Paul Tremblay
 
-:change date=2005-03-08:
+:change date=2005-04-14:
 
   First started writing
 
@@ -23,3 +23,12 @@ amount of space with the [:cm: definespace] command.
 .. end block
 
 :src url=context_examples/inline1.tex: source file
+
+.. TODO
+.. font 
+.. size
+.. family
+.. style
+.. word spacing
+.. superscript
+.. subscript

@@ -24,7 +24,6 @@ class Validate:
         if out_text:
             not_valid = 1
             print 'Doc not a valid TEI doc'
-            print out_text
             return 1, out_text
         else:
             print 'Document valid'

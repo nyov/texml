@@ -77,4 +77,32 @@ table#table-setup-options td {
 
 thead>tr>td{border-bottom:1px solid black; font-weight:bold}
 
+/* fourth table */
+table#status {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: separate;
+	background-color: white;
+        width:6in;
+}
+table#table-setup-options th {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset inset inset inset;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+table#table-setup-options td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: inset inset inset inset;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+
+thead>tr>td{border-bottom:1px solid black; font-weight:bold}
 

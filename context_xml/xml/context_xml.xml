@@ -272,6 +272,30 @@
  </tei:teiHeader>
  <tei:text>
   <tei:body>
+   <tei:div ana="div" id="intro-id">
+    <tei:head ana="head">Introduction</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-14"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:p ana="paragraph" rend="status">
+     Alpah version
+    </tei:p>
+    <tei:p ana="paragraph">
+     context-xml is a documentation project to show how to use
+     <tei:seg type="context-name" ana="context-name">context</tei:seg> to format
+     XML. It is meant as a replacement to the java FOP engine, which seems to be
+     incomplete and a dead-end project.
+    </tei:p>
+    <tei:table id="status" ana="table">
+     <tei:head ana="head">Status</tei:head>
+     <tei:row role="label">
+      <tei:cell>Feature</tei:cell>
+      <tei:cell>Implemented</tei:cell>
+      <tei:cell>note</tei:cell>
+     </tei:row>
+    </tei:table>
+   </tei:div>
    <tei:div ana="div">
     <tei:head ana="head">Getting Started</tei:head>
     <tei:bibl ana="section-revision">
@@ -3478,7 +3502,7 @@ insurance in US}}
    <tei:div ana="div">
     <tei:head ana="head">Inline</tei:head>
     <tei:bibl ana="section-revision">
-     <tei:date value="2005-03-08"/>
+     <tei:date value="2005-04-14"/>
      <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
     </tei:bibl>
     <tei:p ana="paragraph">

@@ -3,6 +3,7 @@
 <!DOCTYPE TEI 
 
 [
+<!ENTITY intro SYSTEM "intro.xml">
 <!ENTITY page-layout SYSTEM "page_layout.xml">
 <!ENTITY getting-started SYSTEM "getting_started.xml">
 <!ENTITY blocks SYSTEM "blocks.xml">
@@ -290,6 +291,10 @@
     </teiHeader>
     <text>
         <body >
+            <div ana="div" id="intro-id">
+                <head ana="head">Introduction</head>
+                &intro;
+            </div>
             <div ana="div">
                 <head ana="head">Getting Started</head>
                 &getting-started;
