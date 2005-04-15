@@ -1,0 +1,140 @@
+<table xmlns= "http://www.tei-c.org/ns/1.0" 
+    id="status" ana="table">
+    <head ana="head">Status</head> 
+    <row role="label">
+        <cell>Feature</cell>
+        <cell>Implemented</cell>
+        <cell>note</cell>
+    </row>
+    <row>
+        <cell>page-layout heigth, width</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>page-layout, margins, top, bottom, left, right</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>page-layout, header and footer</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>page-layout, static content right left</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>page-layout, first page</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>page-layout, odd even page</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>page-layout, last page</cell>
+        <cell>no</cell>
+        <cell>May not be possible</cell>
+    </row>
+    <row>
+        <cell>paragraph formatting, space before after</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>paragraph formatting, first-line-indent</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>paragraph formatting, block indent</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>paragraph formatting, aligning text left, right, justfied, center</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>paragraph formatting, columns</cell>
+        <cell>no</cell>
+
+        <cell>columns are not directly supported in FO, but are in  <tei:seg
+        type="context-name" ana="context-name">context</tei:seg></cell>
+
+    </row>
+    <row>
+        <cell>orpan and widow control</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>footnotes</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>local footnotes (as in tables)</cell>
+        <cell>no</cell>
+        <cell>Don't necessarily need special code for this</cell>
+    </row>
+    <row>
+        <cell>margin notes</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>lists, space between items, margin space, space before and after heading, space before and after number</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>table, basic</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>table,multi-paged</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>table, merge cells</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>inline, horizontal space</cell>
+        <cell>yes</cell>
+    </row>
+    <row>
+        <cell>inline, italics, bold, slanted</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>inline, font-size</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>inline, font-family</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>word spacing</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>kearning</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>superscript, subscript</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>images</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>floats</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>frames</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>horizontal lines</cell>
+        <cell>partial</cell>
+        <cell>no different types of lines</cell>
+    </row>
+</table>

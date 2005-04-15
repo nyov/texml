@@ -49,7 +49,7 @@
         <xsl:document href="{$output}" method="xml">
             <html>
                 <head>
-                    <title><xsl:value-of select = "$index-title"/></title>
+                    <title><xsl:value-of select = "contents"/></title>
                 </head>
                 <xsl:element name="link">
                     <xsl:attribute name="rel">

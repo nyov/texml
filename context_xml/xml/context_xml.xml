@@ -294,6 +294,128 @@
       <tei:cell>Implemented</tei:cell>
       <tei:cell>note</tei:cell>
      </tei:row>
+     <tei:row>
+      <tei:cell>page-layout heigth, width</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, margins, top, bottom, left, right</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, header and footer</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, static content right left</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, first page</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, odd even page</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-layout, last page</tei:cell>
+      <tei:cell>no</tei:cell>
+      <tei:cell>May not be possible</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, space before after</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, first-line-indent</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, block indent</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, aligning text left, right, justfied, center</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, columns</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>orpan and widow control</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>footnotes</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>margin notes</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>lists, space between items, margin space, space before and after heading, space before and after number</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>table, basic</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>table,multi-paged</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>table, merge cells</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>inline, horizontal space</tei:cell>
+      <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>inline, italics, bold, slanted</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>inline, font-size</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>inline, font-family</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>word spacing</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>kearning</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>superscript, subscript</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>images</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>floats</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>frames</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>horizontal lines</tei:cell>
+      <tei:cell>partial</tei:cell>
+      <tei:cell>no different types of lines</tei:cell>
+     </tei:row>
     </tei:table>
    </tei:div>
    <tei:div ana="div">
