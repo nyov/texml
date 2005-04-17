@@ -194,17 +194,19 @@
             </head>
             <body>
                 <h1 class ="main-title">Welcome to context-xml</h1>
+                <p>
+                    <a href="contents.html">Contents of Documentation</a>
+                </p>
                 <xsl:apply-templates/>
                 <p>
         Author: Paul Tremblay phthenry [at] {iglou} [dot] com
         </p>
+        <xsl:element name="p">
+            <b>Last Updated: </b>
+            <xsl:call-template name="site-last-updated"/>
+        </xsl:element>
 
-        <p><a href="contents.html">
-            Contents
-            
-        </a></p>
         <p>
-
         <a href="http://sourceforge.net">
             <img src="http://sourceforge.net/sflogo.php?group_id=102261&amp;type=5" 
             width="210" 
@@ -217,6 +219,69 @@
             </body>
         </html>
     </xsl:document>
+  </xsl:template>
+
+  <xsl:template name="site-last-updated">
+      <xsl:variable name="update-string">
+          <xsl:for-each select = "//tei:bibl/tei:date/@value">
+              <xsl:value-of select="."/>
+              <xsl:text>;</xsl:text>
+          </xsl:for-each>
+      </xsl:variable>
+      <xsl:variable name="last-updated">
+          <xsl:call-template name="munge-update-string">
+              <xsl:with-param name="the-string" select = "$update-string"/>
+          </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="date">
+         <xsl:value-of select="substring($last-updated, 1,4)"/> 
+        <xsl:text>-</xsl:text>
+         <xsl:value-of select="substring($last-updated, 5,2)"/> 
+         <xsl:text>-</xsl:text>
+         <xsl:value-of select="substring($last-updated, 7,2)"/> 
+      </xsl:variable>
+      <xsl:value-of select="$date"/>
+  </xsl:template>
+
+  <xsl:template name="munge-update-string">
+    <xsl:param name="the-string"/>
+    <xsl:param name="most-recent" select="number('00000000')"/>
+    <xsl:variable name="current-date">
+        <xsl:variable name="temp"  select = "substring-before($the-string, ';')"/>
+        <xsl:value-of select="number(translate($temp, '-',''))"/>
+    </xsl:variable>
+    <xsl:choose>
+        <xsl:when test = "normalize-space($current-date)">
+            <xsl:variable name="this-most-recent">
+                <xsl:choose>
+                    <xsl:when test="$current-date &gt; $most-recent">
+                        <xsl:value-of select = "$current-date"/>
+                    </xsl:when> 
+                    <xsl:otherwise>
+                        <xsl:value-of select = "$most-recent"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="next-string">
+                <xsl:value-of select= "substring-after($the-string, ';')"/>
+            </xsl:variable>
+            <xsl:choose>
+                <xsl:when test="normalize-space($next-string)">
+                    <xsl:call-template name="munge-update-string">
+                        <xsl:with-param name="the-string" select = "$next-string"/>
+                        <xsl:with-param name="most-recent" select = "$this-most-recent"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select= "$this-most-recent"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select= "$most-recent"/>
+        </xsl:otherwise>
+    </xsl:choose>
+      
   </xsl:template>
 
   <xsl:template match="tei:body/tei:div[@id='intro-id']/tei:head" priority="100"/>

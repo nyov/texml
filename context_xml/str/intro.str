@@ -6,12 +6,13 @@
 
   First started writing
 
-:status: Alpah version
-
-
 context-xml is a documentation project to show how to use [:ab: context] to
 format XML. It is meant as a replacement to the java FOP engine, which seems
 to be incomplete and a dead-end project.  
+
+
+:status: Alpah version
+
 
 :status-table:
 

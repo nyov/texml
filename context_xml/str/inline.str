@@ -6,8 +6,75 @@
 
   First started writing
 
+:change date=2005-04-16:
+  
+  Added how to change font size and font style.
 
 This document is incomplete and will remain so until I find time. 
+
+====================
+Changing Font Style
+====================
+
+In order to create a different font style, such as italics or bold, start a
+group with an open bracket, issue the command, and close the group with a
+closed bracket. 
+
+
+:t2x-no-process:
+
+ % create itlaics style
+{\it The Old Man and the Sea}
+.. end block
+
+Here are the comands for the different font styles.
+
+:t2x-no-process:
+
+ {\bf bold }
+ {\sl slanted}
+ {\it italics}
+ {\sc small caps}
+
+[:ab: context] has a style that most word processors don't, the slanted style.
+This style slants the style like italics, but is still distince. 
+
+===========
+Font Size
+===========
+
+---------------------------
+Setting the body font size
+---------------------------
+
+Set the body font size with the [:cm: setupbodyfont] command.
+
+:t2x-no-process:
+
+ \setupbodyfont[12pt]
+.. end block
+
+The [:cm: setupbodyfont] is also used to set up font family. 
+
+
+-----------------------
+Changing the font size
+-----------------------
+
+Use the [:cm: switchtobodyfont] to switch your body font.
+
+:t2x-no-process:
+
+ {\switchtobodyfont[18pt] 18 point font}
+.. end block
+
+.. could also talk about propotional font switching.
+
+..:ul:
+
+..  :head: Tips
+
+..  * You can also switch the font through the 
 
 ==========================
 Creating horizontal space
@@ -24,11 +91,3 @@ amount of space with the [:cm: definespace] command.
 
 :src url=context_examples/inline1.tex: source file
 
-.. TODO
-.. font 
-.. size
-.. family
-.. style
-.. word spacing
-.. superscript
-.. subscript

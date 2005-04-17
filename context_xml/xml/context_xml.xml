@@ -278,20 +278,20 @@
      <tei:date value="2005-04-14"/>
      <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
     </tei:bibl>
-    <tei:p ana="paragraph" rend="status">
-     Alpah version
-    </tei:p>
     <tei:p ana="paragraph">
      context-xml is a documentation project to show how to use
      <tei:seg type="context-name" ana="context-name">context</tei:seg> to format
      XML. It is meant as a replacement to the java FOP engine, which seems to be
      incomplete and a dead-end project.
     </tei:p>
+    <tei:p ana="paragraph" rend="status">
+     Alpah version
+    </tei:p>
     <tei:table id="status" ana="table">
      <tei:head ana="head">Status</tei:head>
      <tei:row role="label">
       <tei:cell>Feature</tei:cell>
-      <tei:cell>Implemented</tei:cell>
+      <tei:cell>Documented</tei:cell>
       <tei:cell>note</tei:cell>
      </tei:row>
      <tei:row>
@@ -342,14 +342,30 @@
      <tei:row>
       <tei:cell>paragraph formatting, columns</tei:cell>
       <tei:cell>no</tei:cell>
+      <tei:cell>columns are not directly supported in FO, but are in  
+            <tei:seg type="context-name" ana="context-name">context</tei:seg>
+      </tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>paragraph formatting, verbatim text</tei:cell>
+      <tei:cell>no</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>orpan and widow control</tei:cell>
       <tei:cell>yes</tei:cell>
+      <tei:cell>Not available with FOP, but available in 
+<tei:seg type="context-name" ana="context-name">context</tei:seg>!
+
+        </tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>footnotes</tei:cell>
       <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>local footnotes (as in tables)</tei:cell>
+      <tei:cell>no</tei:cell>
+      <tei:cell>Don't necessarily need special code for this</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>margin notes</tei:cell>
@@ -377,15 +393,17 @@
      </tei:row>
      <tei:row>
       <tei:cell>inline, italics, bold, slanted</tei:cell>
-      <tei:cell>no</tei:cell>
+      <tei:cell>yes</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>inline, font-size</tei:cell>
-      <tei:cell>no</tei:cell>
+      <tei:cell>yes</tei:cell>
+      <tei:cell>Could also explain how to increase proportionally</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>inline, font-family</tei:cell>
       <tei:cell>no</tei:cell>
+      <tei:cell>Definitely availabe, but takes a lot of knowledge and patience</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>word spacing</tei:cell>
@@ -3627,9 +3645,67 @@ insurance in US}}
      <tei:date value="2005-04-14"/>
      <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-16"/>
+     <tei:note type="revision-description" ana="paragraph">Added how to change font size and font style.</tei:note>
+    </tei:bibl>
     <tei:p ana="paragraph">
      This document is incomplete and will remain so until I find time.
     </tei:p>
+    <tei:div ana="div">
+     <tei:head ana="head">Changing Font Style</tei:head>
+     <tei:p ana="paragraph">
+      In order to create a different font style, such as italics or bold, start
+      a group with an open bracket, issue the command, and close the group with
+      a closed bracket.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% create itlaics style
+</tei:eg>
+     <tei:p ana="paragraph">
+      {it The Old Man and the Sea} .. end block
+     </tei:p>
+     <tei:p ana="paragraph">
+      Here are the comands for the different font styles.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\bf bold }
+{\sl slanted}
+{\it italics}
+{\sc small caps}
+
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> has a
+      style that most word processors don&#8217;t, the slanted style. This style
+      slants the style like italics, but is still distince.
+     </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Font Size</tei:head>
+     <tei:div ana="div">
+      <tei:head ana="head">Setting the body font size</tei:head>
+      <tei:p ana="paragraph">
+       Set the body font size with the
+       <tei:seg type="command" ana="context-command">setupbodyfont</tei:seg>
+       command.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupbodyfont[12pt]
+</tei:eg>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">setupbodyfont</tei:seg>
+       is also used to set up font family.
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Changing the font size</tei:head>
+      <tei:p ana="paragraph">
+       Use the
+       <tei:seg type="command" ana="context-command">switchtobodyfont</tei:seg>
+       to switch your body font.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\switchtobodyfont[18pt] 18 point font}
+</tei:eg>
+     </tei:div>
+    </tei:div>
     <tei:div ana="div">
      <tei:head ana="head">Creating horizontal space</tei:head>
      <tei:p ana="paragraph">

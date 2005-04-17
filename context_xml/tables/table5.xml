@@ -3,7 +3,7 @@
     <head ana="head">Status</head> 
     <row role="label">
         <cell>Feature</cell>
-        <cell>Implemented</cell>
+        <cell>Documented</cell>
         <cell>note</cell>
     </row>
     <row>
@@ -55,13 +55,22 @@
         <cell>paragraph formatting, columns</cell>
         <cell>no</cell>
 
-        <cell>columns are not directly supported in FO, but are in  <tei:seg
-        type="context-name" ana="context-name">context</tei:seg></cell>
+        <cell>columns are not directly supported in FO, but are in  
+            <seg type="context-name" ana="context-name">context</seg>
+        </cell>
 
+    </row>
+    <row>
+        <cell>paragraph formatting, verbatim text</cell>
+        <cell>no</cell>
     </row>
     <row>
         <cell>orpan and widow control</cell>
         <cell>yes</cell>
+        <cell>Not available with FOP, but available in 
+<seg type="context-name" ana="context-name">context</seg>!
+
+        </cell>
     </row>
     <row>
         <cell>footnotes</cell>
@@ -98,15 +107,17 @@
     </row>
     <row>
         <cell>inline, italics, bold, slanted</cell>
-        <cell>no</cell>
+        <cell>yes</cell>
     </row>
     <row>
         <cell>inline, font-size</cell>
-        <cell>no</cell>
+        <cell>yes</cell>
+        <cell>Could also explain how to increase proportionally</cell>
     </row>
     <row>
         <cell>inline, font-family</cell>
         <cell>no</cell>
+        <cell>Definitely availabe, but takes a lot of knowledge and patience</cell>
     </row>
     <row>
         <cell>word spacing</cell>
