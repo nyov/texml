@@ -1,11 +1,11 @@
 body {width:7in;}
 
-p.index-toc-level1{position:relative; left:20pt;}
 h2.page-head{text-align:center}
 
-p.index-toc-level2{position:relative; left:35pt;}
-p.index-toc-level3{position:relative; left:45pt;}
-p.index-toc-level4{position:relative; left:55pt;}
+p.index-toc-level1{position:relative; left:40pt;margin-bottom:-9pt}
+p.index-toc-level2{position:relative; left:80pt;margin-bottom:-9pt}
+p.index-toc-level3{position:relative; left:120pt;margin-bottom:-9pt}
+p.index-toc-level4{position:relative; left:160pt;margin-bottom:-9pt}
 
 h3.level2{font-size:24pt;font-weight:bold}
 h4.level3{font-size:18pt;font-weight:bold}

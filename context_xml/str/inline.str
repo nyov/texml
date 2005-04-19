@@ -10,24 +10,28 @@
   
   Added how to change font size and font style.
 
-This document is incomplete and will remain so until I find time. 
+:change date=2005-04-18:
 
-====================
-Changing Font Style
-====================
+ Added using font size proportionally; subscript and superscript;
+ font faces (serif, mono-spaced, etc);
 
-In order to create a different font style, such as italics or bold, start a
-group with an open bracket, issue the command, and close the group with a
-closed bracket. 
+
+===========================================
+Changing font style (italics, bold, etc.)
+===========================================
+
+In order to create a different font style, such as italics or bold,
+start a group with an open bracket, issue the command, and close the
+group with a closed bracket. 
 
 
 :t2x-no-process:
 
- % create itlaics style
-{\it The Old Man and the Sea}
+ % create italics style
+ {\it The Old Man and the Sea}
 .. end block
 
-Here are the comands for the different font styles.
+Here are the commands for the different font styles.
 
 :t2x-no-process:
 
@@ -35,9 +39,37 @@ Here are the comands for the different font styles.
  {\sl slanted}
  {\it italics}
  {\sc small caps}
+.. end block
 
-[:ab: context] has a style that most word processors don't, the slanted style.
-This style slants the style like italics, but is still distince. 
+
+:src url=context_examples/inline1.tex: source file
+
+:ul:
+
+  :head: Tips
+
+  * [:ab: context] has a style that most word processors don't, the
+    slanted style.  This style slants the style like italics, but is
+    still distinct. 
+
+=============================================
+Changing font face (serif, sans serif, etc.)
+=============================================
+
+The default font face for [:ab: context] is serif. In order to create
+different font faces, such as sans serif, look at the following
+example.
+
+:t2x-no-process:
+
+ {\rm roman text}
+ {\tt mono spaced font}
+ {\ss sans serif}
+ {\hw this is hand written style}
+ {\cg this is caligraphic style}
+.. end block
+
+:src url=context_examples/font_styles2.tex: source file
 
 ===========
 Font Size
@@ -57,9 +89,9 @@ Set the body font size with the [:cm: setupbodyfont] command.
 The [:cm: setupbodyfont] is also used to set up font family. 
 
 
------------------------
-Changing the font size
------------------------
+----------------------------------
+Explicitly changing the font size
+----------------------------------
 
 Use the [:cm: switchtobodyfont] to switch your body font.
 
@@ -68,20 +100,61 @@ Use the [:cm: switchtobodyfont] to switch your body font.
  {\switchtobodyfont[18pt] 18 point font}
 .. end block
 
-.. could also talk about propotional font switching.
+:src url=context_examples/font_size2.tex: source file
 
-..:ul:
+--------------------------------------
+Proportionally changing the font size
+--------------------------------------
 
-..  :head: Tips
+An alternative to explicitly changing font size by a declaration is
+switching them proportionally by increasing or decreasing them by a
+size. (I'm not sure exactly how [:ab: context] determines a size.) In
+order to increase the font size, use the letter [:pr: a], [:pr: b],
+[:pr: c], or [:pr: d] after a font command (which I'll explain below).
+In order to decrease the font size, use one or more of the letter
+[:pr: x] after a font command.
 
-..  * You can also switch the font through the 
+By font command, I mean any command that changes a font's appearance,
+such as [:cm: bf]. If you wanted to create a font face which is bold
+in appearance, and decrease it by one size, type:
+
+:t2x-no-process:
+
+ {\bfx bold reduced by one size}
+.. end block
+
+If you just want to change the font size without changing any other
+characteristic, use the [:cm: tf] (type face) command followed by a
+letter.
+
+:t2x-no-process:
+
+ {\tfa increase the font size by one size}
+.. end block
+
+You can use the font-increasing/decreasing letters with [:cm: bf],
+[:cm: sl], [:cm: it], [:cm: rm], [:cm: ss], [:cm: tt], [:cm: cg],
+[:cm: hw], and [:cm: sc]. I may have missed some commands, so if
+you think you can add a letter after a font command, experiment.
+
+:t2x-no-process:
+
+ {\tfxx decrease the font size by two}
+ {\tfa increase font size by one}
+ {\bfa increase font size by one and make bold}
+ {\tfb increase font size by two}
+ {\ssd create a sans serif font and increase its size by four}
+.. end block
+
+:src url=context_examples/font_size1.tex: source file
+
 
 ==========================
 Creating horizontal space
 ==========================
 
-Create space with the [:cm: hspace] command. You will first have to define the
-amount of space with the [:cm: definespace] command. 
+Create space with the [:cm: hspace] command. You will first have to
+define the amount of space with the [:cm: definespace] command. 
 
 :t2x-no-process:
 
@@ -91,3 +164,32 @@ amount of space with the [:cm: definespace] command.
 
 :src url=context_examples/inline1.tex: source file
 
+==========================
+Superscript and Subscript
+==========================
+
+The [:cm: high] and [:cm: low] commands create super- and subscript
+text.
+
+:t2x-no-process:
+
+ You can walk in \high{high} heels, but your height is still the same.\par
+ You can walk in \low{low} heels, but your height is still the same.\par
+.. end block
+
+:src url=context_examples/super_sub_script.tex: source file
+
+--------------------------
+Text on top of each other
+--------------------------
+
+Create text on top of each other with the [:cm: lohi] command. This
+command takes two parameter. The first parameters will be formatted as
+subscript, and the second will be formatted on top of that.
+
+:t2x-no-process:
+
+ You can walk in \lohi{low}{high} heels, but your height is still the same.\par
+.. end block
+
+:src url=context_examples/super_sub_script.tex: source file

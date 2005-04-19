@@ -7,6 +7,18 @@
         <cell>note</cell>
     </row>
     <row>
+        <cell>description of how to use dimensions</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>index of the contents of this web-site</cell>
+        <cell>no</cell>
+    </row>
+    <row>
+        <cell>example files for each category</cell>
+        <cell>partial</cell>
+    </row>
+    <row>
         <cell>page-layout heigth, width</cell>
         <cell>yes</cell>
     </row>
@@ -34,6 +46,10 @@
         <cell>page-layout, last page</cell>
         <cell>no</cell>
         <cell>May not be possible</cell>
+    </row>
+    <row>
+        <cell>page-numbers</cell>
+        <cell>no</cell>
     </row>
     <row>
         <cell>paragraph formatting, space before after</cell>
@@ -86,8 +102,13 @@
         <cell>no</cell>
     </row>
     <row>
-        <cell>lists, space between items, margin space, space before and after heading, space before and after number</cell>
+        <cell>lists, space between items, margin space, space before 
+        and after heading, space before and after number</cell>
         <cell>yes</cell>
+    </row>
+    <row>
+        <cell>lines, as in poetry</cell>
+        <cell>no</cell>
     </row>
     <row>
         <cell>table, basic</cell>
@@ -112,7 +133,6 @@
     <row>
         <cell>inline, font-size</cell>
         <cell>yes</cell>
-        <cell>Could also explain how to increase proportionally</cell>
     </row>
     <row>
         <cell>inline, font-family</cell>
@@ -129,7 +149,7 @@
     </row>
     <row>
         <cell>superscript, subscript</cell>
-        <cell>no</cell>
+        <cell>yes</cell>
     </row>
     <row>
         <cell>images</cell>
@@ -147,5 +167,9 @@
         <cell>horizontal lines</cell>
         <cell>partial</cell>
         <cell>no different types of lines</cell>
+    </row>
+    <row>
+        <cell>verbatim text</cell>
+        <cell>no</cell>
     </row>
 </table>

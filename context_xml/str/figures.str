@@ -1,0 +1,27 @@
+:title: Figures
+
+:author: Paul Tremblay
+
+:change date=2005-03-19:
+
+  First started writing
+
+According to [:ab: context] gurus, good practice requires that we take three
+minimal steps to place a figure. 
+
+:ul:
+
+ 1. Define a directory where we can find the figure with the [:cm:
+    \setupexternalfigures] command. 
+
+    .. [directory={../png\_images}]
+
+ 2. Set up the picture by telling [:ab: context] where it is, and by setting
+    up options such as width. 
+
+ 3. Placing the figure with a [:cm: externalfigure] command.
+
+You can use a shortcut to combine steps one and two, but we'll stick with the
+longer method for consistency.
+
+

@@ -295,6 +295,18 @@
       <tei:cell>note</tei:cell>
      </tei:row>
      <tei:row>
+      <tei:cell>description of how to use dimensions</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>index of the contents of this web-site</tei:cell>
+      <tei:cell>no</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>example files for each category</tei:cell>
+      <tei:cell>partial</tei:cell>
+     </tei:row>
+     <tei:row>
       <tei:cell>page-layout heigth, width</tei:cell>
       <tei:cell>yes</tei:cell>
      </tei:row>
@@ -322,6 +334,10 @@
       <tei:cell>page-layout, last page</tei:cell>
       <tei:cell>no</tei:cell>
       <tei:cell>May not be possible</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>page-numbers</tei:cell>
+      <tei:cell>no</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>paragraph formatting, space before after</tei:cell>
@@ -372,8 +388,13 @@
       <tei:cell>no</tei:cell>
      </tei:row>
      <tei:row>
-      <tei:cell>lists, space between items, margin space, space before and after heading, space before and after number</tei:cell>
+      <tei:cell>lists, space between items, margin space, space before 
+        and after heading, space before and after number</tei:cell>
       <tei:cell>yes</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>lines, as in poetry</tei:cell>
+      <tei:cell>no</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>table, basic</tei:cell>
@@ -398,7 +419,6 @@
      <tei:row>
       <tei:cell>inline, font-size</tei:cell>
       <tei:cell>yes</tei:cell>
-      <tei:cell>Could also explain how to increase proportionally</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>inline, font-family</tei:cell>
@@ -415,7 +435,7 @@
      </tei:row>
      <tei:row>
       <tei:cell>superscript, subscript</tei:cell>
-      <tei:cell>no</tei:cell>
+      <tei:cell>yes</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>images</tei:cell>
@@ -433,6 +453,10 @@
       <tei:cell>horizontal lines</tei:cell>
       <tei:cell>partial</tei:cell>
       <tei:cell>no different types of lines</tei:cell>
+     </tei:row>
+     <tei:row>
+      <tei:cell>verbatim text</tei:cell>
+      <tei:cell>no</tei:cell>
      </tei:row>
     </tei:table>
    </tei:div>
@@ -3649,34 +3673,58 @@ insurance in US}}
      <tei:date value="2005-04-16"/>
      <tei:note type="revision-description" ana="paragraph">Added how to change font size and font style.</tei:note>
     </tei:bibl>
-    <tei:p ana="paragraph">
-     This document is incomplete and will remain so until I find time.
-    </tei:p>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-18"/>
+     <tei:note type="revision-description" ana="paragraph">Added using font size proportionally; subscript and superscript; font faces (serif, mono-spaced, etc);</tei:note>
+    </tei:bibl>
     <tei:div ana="div">
-     <tei:head ana="head">Changing Font Style</tei:head>
+     <tei:head ana="head">Changing font style (italics, bold, etc.)</tei:head>
      <tei:p ana="paragraph">
       In order to create a different font style, such as italics or bold, start
       a group with an open bracket, issue the command, and close the group with
       a closed bracket.
      </tei:p>
-<tei:eg rend="context-block-code" ana="context-block-code">% create itlaics style
+<tei:eg rend="context-block-code" ana="context-block-code">% create italics style
+{\it The Old Man and the Sea}
 </tei:eg>
      <tei:p ana="paragraph">
-      {it The Old Man and the Sea} .. end block
-     </tei:p>
-     <tei:p ana="paragraph">
-      Here are the comands for the different font styles.
+      Here are the commands for the different font styles.
      </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">{\bf bold }
 {\sl slanted}
 {\it italics}
 {\sc small caps}
-
 </tei:eg>
      <tei:p ana="paragraph">
-      <tei:seg type="context-name" ana="context-name">context</tei:seg> has a
-      style that most word processors don&#8217;t, the slanted style. This style
-      slants the style like italics, but is still distince.
+      <tei:xref ana="xref" url="context_examples/inline1.tex">source file</tei:xref>
+     </tei:p>
+     <tei:list type="unordered" ana="unordered-list">
+      <tei:head ana="head">Tips</tei:head>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> has a
+        style that most word processors don&#8217;t, the slanted style. This
+        style slants the style like italics, but is still distinct.
+       </tei:p>
+      </tei:item>
+     </tei:list>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Changing font face (serif, sans serif, etc.)</tei:head>
+     <tei:p ana="paragraph">
+      The default font face for
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> is
+      serif. In order to create different font faces, such as sans serif, look
+      at the following example.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\rm roman text}
+{\tt mono spaced font}
+{\ss sans serif}
+{\hw this is hand written style}
+{\cg this is caligraphic style}
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="context_examples/font_styles2.tex">source file</tei:xref>
      </tei:p>
     </tei:div>
     <tei:div ana="div">
@@ -3696,7 +3744,7 @@ insurance in US}}
       </tei:p>
      </tei:div>
      <tei:div ana="div">
-      <tei:head ana="head">Changing the font size</tei:head>
+      <tei:head ana="head">Explicitly changing the font size</tei:head>
       <tei:p ana="paragraph">
        Use the
        <tei:seg type="command" ana="context-command">switchtobodyfont</tei:seg>
@@ -3704,6 +3752,66 @@ insurance in US}}
       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">{\switchtobodyfont[18pt] 18 point font}
 </tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/font_size2.tex">source file</tei:xref>
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Proportionally changing the font size</tei:head>
+      <tei:p ana="paragraph">
+       An alternative to explicitly changing font size by a declaration is
+       switching them proportionally by increasing or decreasing them by a size.
+       (I&#8217;m not sure exactly how
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>
+       determines a size.) In order to increase the font size, use the letter
+       <tei:seg type="property" ana="property">a</tei:seg>,
+       <tei:seg type="property" ana="property">b</tei:seg>,
+       <tei:seg type="property" ana="property">c</tei:seg>, or
+       <tei:seg type="property" ana="property">d</tei:seg> after a font command
+       (which I&#8217;ll explain below). In order to decrease the font size, use
+       one or more of the letter
+       <tei:seg type="property" ana="property">x</tei:seg> after a font command.
+      </tei:p>
+      <tei:p ana="paragraph">
+       By font command, I mean any command that changes a font&#8217;s
+       appearance, such as
+       <tei:seg type="command" ana="context-command">bf</tei:seg>. If you wanted
+       to create a font face which is bold in appearance, and decrease it by one
+       size, type:
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\bfx bold reduced by one size}
+</tei:eg>
+      <tei:p ana="paragraph">
+       If you just want to change the font size without changing any other
+       characteristic, use the
+       <tei:seg type="command" ana="context-command">tf</tei:seg> (type face)
+       command followed by a letter.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\tfa increase the font size by one size}
+</tei:eg>
+      <tei:p ana="paragraph">
+       You can use the font-increasing/decreasing letters with
+       <tei:seg type="command" ana="context-command">bf</tei:seg>,
+       <tei:seg type="command" ana="context-command">sl</tei:seg>,
+       <tei:seg type="command" ana="context-command">it</tei:seg>,
+       <tei:seg type="command" ana="context-command">rm</tei:seg>,
+       <tei:seg type="command" ana="context-command">ss</tei:seg>,
+       <tei:seg type="command" ana="context-command">tt</tei:seg>,
+       <tei:seg type="command" ana="context-command">cg</tei:seg>,
+       <tei:seg type="command" ana="context-command">hw</tei:seg>, and
+       <tei:seg type="command" ana="context-command">sc</tei:seg>. I may have
+       missed some commands, so if you think you can add a letter after a font
+       command, experiment.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\tfxx decrease the font size by two}
+{\tfa increase font size by one}
+{\bfa increase font size by one and make bold}
+{\tfb increase font size by two}
+{\ssd create a sans serif font and increase its size by four}
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/font_size1.tex">source file</tei:xref>
+      </tei:p>
      </tei:div>
     </tei:div>
     <tei:div ana="div">
@@ -3721,6 +3829,34 @@ insurance in US}}
      <tei:p ana="paragraph">
       <tei:xref ana="xref" url="context_examples/inline1.tex">source file</tei:xref>
      </tei:p>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Superscript and Subscript</tei:head>
+     <tei:p ana="paragraph">
+      The <tei:seg type="command" ana="context-command">high</tei:seg> and
+      <tei:seg type="command" ana="context-command">low</tei:seg> commands
+      create super- and subscript text.
+     </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">You can walk in \high{high} heels, but your height is still the same.\par
+You can walk in \low{low} heels, but your height is still the same.\par
+</tei:eg>
+     <tei:p ana="paragraph">
+      <tei:xref ana="xref" url="context_examples/super_sub_script.tex">source file</tei:xref>
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Text on top of each other</tei:head>
+      <tei:p ana="paragraph">
+       Create text on top of each other with the
+       <tei:seg type="command" ana="context-command">lohi</tei:seg> command.
+       This command takes two parameter. The first parameters will be formatted
+       as subscript, and the second will be formatted on top of that.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">You can walk in \lohi{low}{high} heels, but your height is still the same.\par
+</tei:eg>
+      <tei:p ana="paragraph">
+       <tei:xref ana="xref" url="context_examples/super_sub_script.tex">source file</tei:xref>
+      </tei:p>
+     </tei:div>
     </tei:div>
    </tei:div>
    <tei:div ana="div">

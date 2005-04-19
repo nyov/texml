@@ -1,0 +1,17 @@
+% figure 1
+
+\setuppagenumbering[state=stop, way=bytext]
+\enableregime[utf]
+\starttext
+
+An example of an external image.\par
+\setupexternalfigures[directory={../png\_images}]
+\useexternalfigure[deer1][deer][scale=250]
+
+
+
+\externalfigure[deer1]
+
+
+
+\stoptext

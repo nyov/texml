@@ -68,7 +68,7 @@
                         <xsl:attribute name="class">
                             <xsl:text>index-toc</xsl:text>
                         </xsl:attribute>
-                        <xsl:for-each select = "/tei:TEI/tei:text/tei:body/tei:div">
+                        <xsl:for-each select = "/tei:TEI/tei:text/tei:body/tei:div[not(@id='intro-id')]">
                             <xsl:element name="p">
                                 <xsl:attribute name="class">
                                     <xsl:text>toc-external</xsl:text>
@@ -85,6 +85,7 @@
                             <xsl:apply-templates select="tei:div" mode="toc-index"/>
                         </xsl:for-each>
                     </xsl:element>
+                    <xsl:call-template name="page-links"/>
                     <xsl:call-template name="logo"/>
                 </body>
             </html>
@@ -199,7 +200,7 @@
                 </p>
                 <xsl:apply-templates/>
                 <p>
-        Author: Paul Tremblay phthenry [at] {iglou} [dot] com
+        <b>Author: </b>Paul Tremblay <br/><b>email: </b>phthenry [at] {iglou} [dot] com
         </p>
         <xsl:element name="p">
             <b>Last Updated: </b>
