@@ -152,8 +152,8 @@
         <cell>yes</cell>
     </row>
     <row>
-        <cell>images</cell>
-        <cell>no</cell>
+        <cell>figures</cell>
+        <cell>yes</cell>
     </row>
     <row>
         <cell>floats</cell>

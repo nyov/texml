@@ -155,16 +155,18 @@ Here is a basic table.
 The placetable command
 -----------------------
 
-The [:cm: placetable] command acts the same way as the [:cm:
-placefloat] command. The first option, [:pr: here] tells [:ab:
-context] to place the table (if possible) in the current location. The
-next option is a reference marker. The parameter is the caption of
-the table. If you don't want a title but do want the word "table" and
-number, leave the parameter empty. If you do not want any caption at
-all, use [:pr: none] for your parameter.
+The [:cm: placetable] command acts the same way as the [:cm: placefloat]
+command. The first option, [:pr: here] tells [:ab: context] to place the table
+(if possible) in the current location. The next option is a reference marker.
+The parameter is the caption of the table. If you don't want a title but do
+want the word "table" and number, leave the parameter empty. If you do not
+want any caption at all, use [:pr: none] for your parameter. If you want a
+caption but not a number, see the section customizing captions on the figures
+and float page.
 
-See below for for customizing the caption. Here is are the source
-files that create customize captions.
+.. need a reference.
+
+Here is are the source files that create customize captions.
 
 :src url=context_examples/table3.tex: [:ab: tex] source file
 
@@ -543,7 +545,7 @@ series of numbers separated by commas to indicate a series of rows.
 :t2x-no-process:
 
  % change color of all even rows to red
- %\setupTABLE[r][even][background=color, backgroundcolor=red]
+ \setupTABLE[r][even][background=color, backgroundcolor=red]
 .. end block
 
 :src url=context_examples/table14.tex: source file
@@ -558,7 +560,7 @@ you do for rows (see above).
 :t2x-no-process:
 
  % change color of all even columns to red
- %\setupTABLE[c][even][background=color, backgroundcolor=red]
+ \setupTABLE[c][even][background=color, backgroundcolor=red]
 .. end block
 
 :src url=context_examples/table15.tex: source file

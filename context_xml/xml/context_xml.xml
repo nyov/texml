@@ -3640,7 +3640,7 @@ insurance in US}}
         by commas to indicate a series of rows.
        </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% change color of all even rows to red
-%\setupTABLE[r][even][background=color, backgroundcolor=red]
+\setupTABLE[r][even][background=color, backgroundcolor=red]
 </tei:eg>
        <tei:p ana="paragraph">
         <tei:xref ana="xref" url="context_examples/table14.tex">source file</tei:xref>
@@ -3654,7 +3654,7 @@ insurance in US}}
         properties as you do for rows (see above).
        </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">% change color of all even columns to red
-%\setupTABLE[c][even][background=color, backgroundcolor=red]
+\setupTABLE[c][even][background=color, backgroundcolor=red]
 </tei:eg>
        <tei:p ana="paragraph">
         <tei:xref ana="xref" url="context_examples/table15.tex">source file</tei:xref>
@@ -3899,6 +3899,173 @@ You can walk in \low{low} heels, but your height is still the same.\par
 <tei:eg rend="context-block-code" ana="context-block-code">Chater 8\dotfill 99
 ...
 </tei:eg>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Figures</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-19"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-04-19"/>
+     <tei:note type="revision-description" ana="paragraph">Started completing.</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head">Including figures</tei:head>
+     <tei:p ana="paragraph">
+      According to
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> gurus,
+      good practice requires that we take three minimal steps to place a figure.
+     </tei:p>
+     <tei:list type="ordered" ana="ordered-list">
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        Define a directory where we can find the figure with the
+        <tei:seg type="command" ana="context-command">setupexternalfigures</tei:seg>
+        command.
+       </tei:p>
+      </tei:item>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        Set up the picture by telling
+        <tei:seg type="context-name" ana="context-name">context</tei:seg> by
+        giving it a name, a location, and by setting up other options. Use the
+        <tei:seg type="command" ana="context-command">useexternalfigure</tei:seg>
+        for this.
+       </tei:p>
+      </tei:item>
+      <tei:item ana="item">
+       <tei:p ana="paragraph">
+        Placing the figure with a
+        <tei:seg type="command" ana="context-command">externalfigure</tei:seg>
+        command.
+       </tei:p>
+      </tei:item>
+     </tei:list>
+     <tei:p ana="paragraph">
+      You can use a shortcut to combine steps one and two, but we&#8217;ll stick
+      with the longer method for consistency.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Setting up figures default</tei:head>
+      <tei:p ana="paragraph">
+       The
+       <tei:seg type="command" ana="context-command">setupexternalfigures</tei:seg>
+       command can tell
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> where
+       to search for your graphics.
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+       look in your present directory to find the graphics. If you graphics are
+       in another directory, use the
+       <tei:seg type="option" ana="option">directory</tei:seg> option. The path
+       takes unix-style syntax, and can be an absolute or relative.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% look in the same parent directory as the tex file for a 
+% directory called pngImages
+\setupexternalfigures[directory={../pngImages}]
+</tei:eg>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         You can also set the
+         <tei:seg type="option" ana="option">maxwidth</tei:seg> and
+         <tei:seg type="option" ana="option">maxheight</tei:seg> with this
+         command.
+         <tei:seg type="command" ana="context-command">setupexternalfigures[maxheight=5in]</tei:seg>
+        </tei:p>
+       </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         You can also set as your first option the
+         <tei:seg type="property" ana="property">frame</tei:seg> or
+         <tei:seg type="property" ana="property">empty</tei:seg>.
+         <tei:seg type="property" ana="property">frame</tei:seg> puts a frame
+         around each figure.
+         <tei:seg type="property" ana="property">empty</tei:seg> does not place
+         the text, but does reserve the necessary space, so is useful for test
+         runs.
+        </tei:p>
+       </tei:item>
+      </tei:list>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Setting up options for individual figure</tei:head>
+      <tei:p ana="paragraph">
+       The
+       <tei:seg type="command" ana="context-command">useexternalfigure</tei:seg>
+       command allows you to to create many options for the figure, such as how
+       much you scale it.
+      </tei:p>
+      <tei:p ana="paragraph">
+       For our sake, put a reference in the first option of this command. Use
+       any unique name, such as &#8220;figure 1&#8221; or &#8220;dolpin
+       1&#8221;.
+      </tei:p>
+      <tei:p ana="paragraph">
+       In the second option, put the name of the actual graphic as it is on your
+       system, minus the extension and minus the directories. If the path to the
+       graphic is &#8220;/home/paul/graphics/thoreau.jpg,&#8221; you would
+       simply write &#8220;thoreau&#8221;.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\useexternalfigure[dolphin ref][dophin]
+</tei:eg>
+      <tei:div ana="div">
+       <tei:head ana="head">Scaling the figure</tei:head>
+       <tei:div ana="div">
+        <tei:head ana="head">By percentage</tei:head>
+        <tei:p ana="paragraph">
+         Use the <tei:seg type="option" ana="option">scale</tei:seg> option to
+         scale the figure in terms of percentage. To scale the figure by 50
+         percent, use 500; to scale it 120 percent, use 1200.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% scale the figure down by 50 percent.
+\useexternalfigure[dolphin ref][dophin][scale=500]
+</tei:eg>
+        <tei:p ana="paragraph">
+         You can also scale the figure according the the font size by using the
+         <tei:seg type="option" ana="option">hfactor=x</tei:seg> or
+         <tei:seg type="option" ana="option">wfactor</tei:seg> option, where x
+         is some percentage is a percentage of the font&#8217;s height or width.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% scale the figure twice as big as height of the font.
+\useexternalfigure[thoreau ref][thoreau][hafactor=20]
+</tei:eg>
+       </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">Specify heigth and width</tei:head>
+        <tei:p ana="paragraph">
+         Use the heigth or width option to specify an explicit dimension. If you
+         use only one of these dimensions,
+         <tei:seg type="context-name" ana="context-name">context</tei:seg> will
+         scale the graphic proportionally.
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\useexternalfigure[thoreau ref][thoreau][height=2in]
+</tei:eg>
+       </tei:div>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Placing the figure</tei:head>
+      <tei:p ana="paragraph">
+       Place the figure with the
+       <tei:seg type="command" ana="context-command">externalfigure</tei:seg>
+       command.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% place the figure
+\externalfigure[thoreau ref]
+</tei:eg>
+      <tei:list type="unordered" ana="unordered-list">
+       <tei:head ana="head">Tips</tei:head>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         This is the simplest way to place a figure. You can also place it as a
+         float (see below), which gives you more control over placement.
+        </tei:p>
+       </tei:item>
+      </tei:list>
      </tei:div>
     </tei:div>
    </tei:div>

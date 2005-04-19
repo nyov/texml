@@ -1,27 +1,245 @@
-:title: Figures
+:title: Figures and Floats
 
 :author: Paul Tremblay
 
-:change date=2005-03-19:
+:change date=2005-04-19:
 
   First started writing
+
+:change date=2005-04-19:
+
+  Started completing.
+
+==================
+Including figures
+==================
 
 According to [:ab: context] gurus, good practice requires that we take three
 minimal steps to place a figure. 
 
-:ul:
+:ol:
 
  1. Define a directory where we can find the figure with the [:cm:
-    \setupexternalfigures] command. 
+    setupexternalfigures] command. 
 
     .. [directory={../png\_images}]
 
- 2. Set up the picture by telling [:ab: context] where it is, and by setting
-    up options such as width. 
+ 2. Set up the picture by telling [:ab: context] by giving it a name,
+    a location, and by setting up other options. Use the [:cm:
+    useexternalfigure] for this. 
 
  3. Placing the figure with a [:cm: externalfigure] command.
 
 You can use a shortcut to combine steps one and two, but we'll stick with the
 longer method for consistency.
 
+---------------------------
+Setting up figures default
+---------------------------
 
+The [:cm: setupexternalfigures] command can tell [:ab: context] where
+to search for your graphics. [:ab: context] will look in your present
+directory to find the graphics. If you graphics are in another
+directory, use the [:op: directory] option. The path takes
+unix-style syntax, and can be an absolute or relative.  
+
+:t2x-no-process:
+
+ % look in the same parent directory as the tex file for a 
+ % directory called pngImages
+ \setupexternalfigures[directory={../pngImages}]
+.. end block
+
+:ul:
+
+  :head: Tips
+
+  * You can also set the [:op: maxwidth] and [:op: maxheight] 
+    with this command. [:cm: setupexternalfigures[maxheight=5in]]
+
+  * You can also set as your first option the [:pr: frame] or [:pr:
+    empty]. [:pr: frame] puts a frame around each figure. [:pr: empty]
+    does not place the text, but does reserve the necessary space, so
+    is useful for test runs.
+
+------------------------------------------
+Setting up options for individual figure
+------------------------------------------
+
+The [:cm: useexternalfigure] command allows you to to create many
+options for the figure, such as how much you scale it.
+
+For our sake, put a reference in the first option of this command. Use
+any unique name, such as "figure 1" or "dolpin 1". 
+
+In the second option, put the name of the actual graphic as it is on
+your system, minus the extension and minus the directories. If
+the path to the graphic is "/home/paul/graphics/thoreau.jpg," you
+would simply write "thoreau".
+
+
+:t2x-no-process:
+
+ \useexternalfigure[dolphin ref][dophin]
+.. end block
+
+Scaling the figure
+-------------------
+
+By percentage
+^^^^^^^^^^^^^^
+
+Use the [:op: scale] option to scale the figure in terms of
+percentage. To scale the figure by 50 percent, use 500; to scale it
+120 percent, use 1200.
+
+:t2x-no-process:
+
+ % scale the figure down by 50 percent.
+ \useexternalfigure[dolphin ref][dophin][scale=500]
+.. end block
+
+You can also scale the figure according the the font size by using the
+[:op: hfactor=x] or [:op: wfactor] option, where x is some percentage
+is a percentage of the font's height or width. 
+
+:t2x-no-process:
+
+ % scale the figure twice as big as height of the font.
+ \useexternalfigure[thoreau ref][thoreau][hafactor=20]
+.. end block
+
+.. using the wfactor
+
+
+Specify heigth and width
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the heigth or width option to specify an explicit dimension. If
+you use only one of these dimensions, [:ab: context] will scale the
+graphic proportionally.
+
+:t2x-no-process:
+
+ \useexternalfigure[thoreau ref][thoreau][height=2in]
+.. end block
+
+To Fit
+^^^^^^^
+
+If you want the figure to retain its maxium size, but still fit on the
+page, set the [:op: factor] option to [:pr: max], [:pr: fit], or
+[:pr: broad]. [:pr: max] will make the image fit on a page. [:pr: will
+make the figure fit in the remaining space on a page. [:pr: broad]
+will also make the figure fit on the remaining space on the page, with
+room for the caption.
+
+:t2x-no-process:
+
+ \useexternalfigure[thoreau ref][thoreau][factor=broad]
+.. end block
+
+--------------------
+Placing the figure
+--------------------
+
+Place the figure with the [:cm: externalfigure] command.
+
+:t2x-no-process:
+
+ % place the figure
+ \externalfigure[thoreau ref]
+.. end block
+
+
+:ul:
+
+  :head: Tips
+
+  * This is the simplest way to place a figure. You can also place
+    it as a float (see below), which gives you more control over
+    placement.
+
+  * The [:cm: placefigure] command also takes a second optional
+    option. This option can be any of the values we mentioned above,
+    such as height or scale. [:cm: externalfigure[thoreau
+    ref][scale=500]]. Obviously, it makes no sense to define 
+    values such as scale in both the [:cm: useexternalfigure]
+    and [:cm: placefigure] command. However, sometimes it is useful
+    to do scaling in the [:cm: useexternalfigure] command, especially
+    when you are using floats in combination with buffers. (See
+    below.)
+
+
+
+=======
+Floats
+=======
+
+Floats are elements like tables or figures that are placed (and
+numbered) automatically by [:ab: context]. For XML, we don't need the
+automatic numbering, but we do need the care [:ab: context] takes in
+making sure a float fits on a page, and that the caption fits with it.
+
+The [:cm: placetable] is an example of a float. However, there are
+other ways to place a table.
+
+---------------------
+customizing captions
+---------------------
+
+In order to customize your captions, use the [:cm: setupcaptions]
+command. The first option of this command defines the type of caption:
+table, figure, etc. The second option defines the actual setups,
+including the placement, alignment, and font-style.
+
+location
+=========
+
+The location defines where the caption is placed. A value of [:pr:
+top] places the caption on the top; a value of [:pr: bottom] places it
+on the bottom; a value of [:pr: none] supreses the figure; a value of
+[:pr: high] places the caption to the upper left of the figure; a
+value of [:pr: middle] places the figure in the left of the figure,
+mid-way; and a value of [:pr: low] places the caption to the lower
+left of the figure.
+
+supressing numbers
+===================
+
+By default, [:ab: context] prepends a label to captions, such as
+table 1. In order to turn off this automatic numbering, set [:op:
+number] equal to [:pr: no].
+
+alignment
+==========
+
+Set [:op: align] equal to [:pr: right] for ragged right alignment,
+[:pr left] to push the text to the left border and [:pr: middle] to
+center the caption.
+
+font style
+============
+
+The option [:op: style] sets the style of the font. The options are
+self-explanatory, and are [:pr: normal], [:pr: bold], [:pr: slanted],
+[:pr: boldslanted], [:pr: type] (for mono spaced), [:pr: cap], and
+[:pr: small] (for small cap, I believe).
+
+number style
+=============
+
+If you choose automatic numbering, use the [:op: conversion] option to
+choose a style. The choices are the same as with the [:op: conversion]
+option for a list.
+
+:t2x-no-process:
+
+ \setupcaption[table][style=boldslanted, 
+ location=top, number=no, align=left]
+
+--------
+figures
+--------
+
+A float for a figure is set up with the [:cm: placefigure] command. 

@@ -10,6 +10,7 @@
 <!ENTITY tables SYSTEM "tables.xml">
 <!ENTITY inline SYSTEM "inline.xml">
 <!ENTITY lines_frames SYSTEM "lines_frames.xml">
+<!ENTITY figures SYSTEM "figures.xml">
 
 
 ]
@@ -318,6 +319,10 @@
             <div ana="div">
                 <head ana="head">Lines and Frames</head>
                 &lines_frames;
+            </div>
+            <div ana="div">
+                <head ana="head">Figures and Floats</head>
+                &figures;
             </div>
         </body>
     </text>
