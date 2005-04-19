@@ -215,7 +215,7 @@ alignment
 ==========
 
 Set [:op: align] equal to [:pr: right] for ragged right alignment,
-[:pr left] to push the text to the left border and [:pr: middle] to
+[:pr: left] to push the text to the left border and [:pr: middle] to
 center the caption.
 
 font style

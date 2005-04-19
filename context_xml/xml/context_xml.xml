@@ -438,8 +438,8 @@
       <tei:cell>yes</tei:cell>
      </tei:row>
      <tei:row>
-      <tei:cell>images</tei:cell>
-      <tei:cell>no</tei:cell>
+      <tei:cell>figures</tei:cell>
+      <tei:cell>yes</tei:cell>
      </tei:row>
      <tei:row>
       <tei:cell>floats</tei:cell>
@@ -3160,11 +3160,11 @@ insurance in US}
         don&#8217;t want a title but do want the word &#8220;table&#8221; and
         number, leave the parameter empty. If you do not want any caption at
         all, use <tei:seg type="property" ana="property">none</tei:seg> for your
-        parameter.
+        parameter. If you want a caption but not a number, see the section
+        customizing captions on the figures and float page.
        </tei:p>
        <tei:p ana="paragraph">
-        See below for for customizing the caption. Here is are the source files
-        that create customize captions.
+        Here is are the source files that create customize captions.
        </tei:p>
        <tei:p ana="paragraph">
         <tei:xref ana="xref" url="context_examples/table3.tex"><tei:seg type="tex-name" ana="tex-name">tex</tei:seg> source file</tei:xref>
@@ -3903,7 +3903,7 @@ You can walk in \low{low} heels, but your height is still the same.\par
     </tei:div>
    </tei:div>
    <tei:div ana="div">
-    <tei:head ana="head">Figures</tei:head>
+    <tei:head ana="head">Figures and Floats</tei:head>
     <tei:bibl ana="section-revision">
      <tei:date value="2005-04-19"/>
      <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
@@ -4045,6 +4045,24 @@ You can walk in \low{low} heels, but your height is still the same.\par
 <tei:eg rend="context-block-code" ana="context-block-code">\useexternalfigure[thoreau ref][thoreau][height=2in]
 </tei:eg>
        </tei:div>
+       <tei:div ana="div">
+        <tei:head ana="head">To Fit</tei:head>
+        <tei:p ana="paragraph">
+         If you want the figure to retain its maxium size, but still fit on the
+         page, set the <tei:seg type="option" ana="option">factor</tei:seg>
+         option to <tei:seg type="property" ana="property">max</tei:seg>,
+         <tei:seg type="property" ana="property">fit</tei:seg>, or
+         <tei:seg type="property" ana="property">broad</tei:seg>.
+         <tei:seg type="property" ana="property">max</tei:seg> will make the
+         image fit on a page. <tei:seg type="property" ana="property">will make
+         the figure fit in the remaining space on a page.
+         <tei:seg type="property" ana="property">broad</tei:seg> will also make
+         the figure fit on the remaining space on the page, with room for the
+         caption.</tei:seg>
+        </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\useexternalfigure[thoreau ref][thoreau][factor=broad]
+</tei:eg>
+       </tei:div>
       </tei:div>
      </tei:div>
      <tei:div ana="div">
@@ -4065,7 +4083,125 @@ You can walk in \low{low} heels, but your height is still the same.\par
          float (see below), which gives you more control over placement.
         </tei:p>
        </tei:item>
+       <tei:item ana="item">
+        <tei:p ana="paragraph">
+         The <tei:seg type="command" ana="context-command">placefigure</tei:seg>
+         command also takes a second optional option. This option can be any of
+         the values we mentioned above, such as height or scale.
+         <tei:seg type="command" ana="context-command">externalfigure[thoreau
+         ref][scale=500]</tei:seg>. Obviously, it makes no sense to define
+         values such as scale in both the
+         <tei:seg type="command" ana="context-command">useexternalfigure</tei:seg>
+         and <tei:seg type="command" ana="context-command">placefigure</tei:seg>
+         command. However, sometimes it is useful to do scaling in the
+         <tei:seg type="command" ana="context-command">useexternalfigure</tei:seg>
+         command, especially when you are using floats in combination with
+         buffers. (See below.)
+        </tei:p>
+       </tei:item>
       </tei:list>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Floats</tei:head>
+     <tei:p ana="paragraph">
+      Floats are elements like tables or figures that are placed (and numbered)
+      automatically by
+      <tei:seg type="context-name" ana="context-name">context</tei:seg>. For
+      XML, we don&#8217;t need the automatic numbering, but we do need the care
+      <tei:seg type="context-name" ana="context-name">context</tei:seg> takes in
+      making sure a float fits on a page, and that the caption fits with it.
+     </tei:p>
+     <tei:p ana="paragraph">
+      The <tei:seg type="command" ana="context-command">placetable</tei:seg> is
+      an example of a float. However, there are other ways to place a table.
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">customizing captions</tei:head>
+      <tei:p ana="paragraph">
+       In order to customize your captions, use the
+       <tei:seg type="command" ana="context-command">setupcaptions</tei:seg>
+       command. The first option of this command defines the type of caption:
+       table, figure, etc. The second option defines the actual setups,
+       including the placement, alignment, and font-style.
+      </tei:p>
+      <tei:div ana="div">
+       <tei:head ana="head">location</tei:head>
+       <tei:p ana="paragraph">
+        The location defines where the caption is placed. A value of
+        <tei:seg type="property" ana="property">top</tei:seg> places the caption
+        on the top; a value of
+        <tei:seg type="property" ana="property">bottom</tei:seg> places it on
+        the bottom; a value of
+        <tei:seg type="property" ana="property">none</tei:seg> supreses the
+        figure; a value of
+        <tei:seg type="property" ana="property">high</tei:seg> places the
+        caption to the upper left of the figure; a value of
+        <tei:seg type="property" ana="property">middle</tei:seg> places the
+        figure in the left of the figure, mid-way; and a value of
+        <tei:seg type="property" ana="property">low</tei:seg> places the caption
+        to the lower left of the figure.
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">supressing numbers</tei:head>
+       <tei:p ana="paragraph">
+        By default,
+        <tei:seg type="context-name" ana="context-name">context</tei:seg>
+        prepends a label to captions, such as table 1. In order to turn off this
+        automatic numbering, set
+        <tei:seg type="option" ana="option">number</tei:seg> equal to
+        <tei:seg type="property" ana="property">no</tei:seg>.
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">alignment</tei:head>
+       <tei:p ana="paragraph">
+        Set <tei:seg type="option" ana="option">align</tei:seg> equal to
+        <tei:seg type="property" ana="property">right</tei:seg> for ragged right
+        alignment, <tei:seg type="property" ana="property">left</tei:seg> to
+        push the text to the left border and
+        <tei:seg type="property" ana="property">middle</tei:seg> to center the
+        caption.
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">font style</tei:head>
+       <tei:p ana="paragraph">
+        The option <tei:seg type="option" ana="option">style</tei:seg> sets the
+        style of the font. The options are self-explanatory, and are
+        <tei:seg type="property" ana="property">normal</tei:seg>,
+        <tei:seg type="property" ana="property">bold</tei:seg>,
+        <tei:seg type="property" ana="property">slanted</tei:seg>,
+        <tei:seg type="property" ana="property">boldslanted</tei:seg>,
+        <tei:seg type="property" ana="property">type</tei:seg> (for mono
+        spaced), <tei:seg type="property" ana="property">cap</tei:seg>, and
+        <tei:seg type="property" ana="property">small</tei:seg> (for small cap,
+        I believe).
+       </tei:p>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">number style</tei:head>
+       <tei:p ana="paragraph">
+        If you choose automatic numbering, use the
+        <tei:seg type="option" ana="option">conversion</tei:seg> option to
+        choose a style. The choices are the same as with the
+        <tei:seg type="option" ana="option">conversion</tei:seg> option for a
+        list.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupcaption[table][style=boldslanted, 
+location=top, number=no, align=left]
+
+</tei:eg>
+      </tei:div>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">figures</tei:head>
+      <tei:p ana="paragraph">
+       A float for a figure is set up with the
+       <tei:seg type="command" ana="context-command">placefigure</tei:seg>
+       command.
+      </tei:p>
      </tei:div>
     </tei:div>
    </tei:div>
