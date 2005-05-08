@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.1 2005-03-17 04:16:24 paultremblay Exp $
+# $Id: texmlwr.py,v 1.2 2005-05-08 19:55:03 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -46,6 +46,9 @@ class texmlwr:
   # > autonewline_after_len
   # > allow_weak_ws_to_nl
   # > is_after_weak_ws
+  # We usually don't allow empty lines in output because such lines
+  # cause a paragraph break in TeX.
+  # > line_is_blank
   
   def __init__(self, stream, autonl_width, context = None):
     """ Remember output stream, initialize data structures """
@@ -53,6 +56,7 @@ class texmlwr:
     self.after_char0d     = 1
     self.after_char0a     = 1
     self.last_ch          = None
+    self.line_is_blank    = 1
     self.mode             = TEXT
     self.mode_stack       = []
     self.escape           = 1
@@ -193,7 +197,7 @@ class texmlwr:
       #
       # TeX interprets empty line as \par, fix this problem
       #
-      if (self.last_ch == '\n') and (not self.emptylines):
+      if self.line_is_blank and (not self.emptylines):
         self.writech('%', 0)
       #
       # Now create newline, update counters and return
@@ -201,8 +205,17 @@ class texmlwr:
       self.stream.write(os.linesep)
       self.approx_current_line_len = 0
       self.last_ch                 = ch
+      self.line_is_blank           = 1
       return                                               # return
+    #
+    # Remember the last character
+    #
     self.last_ch = ch
+    #
+    # Reset the flag of a blank line
+    #
+    if not ch in ('\x20', '\x09'):
+      self.line_is_blank = 0
     #
     # Handle specials
     #
