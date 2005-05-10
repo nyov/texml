@@ -57,6 +57,6 @@ setup(name="texml",
     license = 'GNU GPL',
     url = 'http://getfo.sourceforge.net/texml/index.html',
     packages=['Texml'],
-    scripts=['scripts/texml.py', 'scripts/texml_con],
+    scripts=['scripts/texml.py', 'scripts/texml_con'],
     )
 

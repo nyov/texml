@@ -6,4 +6,5 @@ include tests/data/quick/*
 include tests/faildata/*
 include docs/html/*
 include license.txt
+include scripts/*
 
