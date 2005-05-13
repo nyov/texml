@@ -15,6 +15,10 @@
  Added using font size proportionally; subscript and superscript;
  font faces (serif, mono-spaced, etc);
 
+:change date=2005-05-08:
+
+ Added how to combine bold and slanted; added the em command.
+
 
 ===========================================
 Changing font style (italics, bold, etc.)
@@ -38,6 +42,8 @@ Here are the commands for the different font styles.
  {\bf bold }
  {\sl slanted}
  {\it italics}
+ {\bi bold and italics}
+ {\bs bold and slanted}
  {\sc small caps}
 .. end block
 
@@ -51,6 +57,22 @@ Here are the commands for the different font styles.
   * [:ab: context] has a style that most word processors don't, the
     slanted style.  This style slants the style like italics, but is
     still distinct. 
+
+-------------------------------
+Using em for more flexibility
+-------------------------------
+
+The [:cm: em] command allows more flexibility for emphasizing text because 
+it takes the context into consideration. If the surrounding font is upright,
+it will make the emphasized text slanted. If the surronding text is slanted, 
+it will make it upright. The following example is hypothetical title of a book
+about the American novel *Huck Finn.* The title itself will be slanted, but
+Huck Finn will not. 
+
+:t2x-no-process:
+
+ {\em Thoughts on {\em Huck Finn}}
+
 
 =============================================
 Changing font face (serif, sans serif, etc.)

@@ -713,6 +713,28 @@ use [:cm: vskip].
 
 :fig url=vskip: using a \vbox to create multi-line header
 
+Still Another Example of Customization
+----------------------------------------
+
+I came across a problem in formatting a footer with a thesis. I needed
+a 1-inch space at the bottom, with a page number centered in the
+middle, and 1/2 an inch from the bottom. None of the above commands
+allowed me to both center the page number and control its vertical
+placement, so I finally had to settle for this work-around.
+
+:t2x-no-process:
+
+ \setupfootertexts[\vbox{\centerline{\pagenumber }\vskip12pt }]
+  [][][]  
+.. end block
+
+
+The  [:cm: vbox] command functions exactly as above. The [:cm:
+centerline] command centers the page number. The [:cm: vskip] command
+put space between the bottom of the footer space and the actual
+number. In other words, it raised up the number. A greater number for
+[:cm: vskip] would have made the number even higher.  
+
 ========================================================
 Changing the layout for different parts in a document
 ========================================================

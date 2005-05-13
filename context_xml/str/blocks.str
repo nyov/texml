@@ -24,6 +24,9 @@
 
   Added a tip on mutli-paragraphed items.
 
+:change date=2005-05-19:
+
+  Added how to align blocks of text.
 
 ====================
 Paragraph Formatting
@@ -328,17 +331,39 @@ non-justified, use the [:cm: setupalign] command with the option of
 
   :head: Tips
 
-  * To align a whole block of text to the left, set the option
-  to [:pr: left].
+  * To align text to the left, set the option to [:pr: left].
 
-  * To center a whole block of text, set the option to [:pr: middle].
+  * To center the text, set the option to [:pr: middle].
 
-  * Justified text is easier to read because the spaces between
-  the words are the same.
+  * Justified text is easier to read because the spaces between the
+    words are the same.
 
   * Kudos for the developers of [:ab: context] for making
   non-justified text so easy to use. In other forms of [:ab: tex],
   using non-justified text required complicated code.
+
+Changing alignment on a block of text
+---------------------------------------
+
+The above code works for setting the alignment for the entire
+document. To change just a block of text, start a new [:pr: alignment]
+enviornment. Within this enivronment, the text will take on the
+justification assigned to it.
+
+:t2x-no-process:
+
+ \startalignment[middle]
+ {\bfd ABSTRACT OF THESIS}\par 
+ \blank[.5in]
+ \stopalignment
+
+:ul:
+
+  :head: Tips
+
+  * As the exmple shows, this structure is good for titles of
+    sections. The examples below don't allow the fexibilit that 
+    of the [:cm: startalignment] environment. 
 
 Changing alignment of small portions of text
 ---------------------------------------------

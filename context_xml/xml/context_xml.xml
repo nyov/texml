@@ -1618,6 +1618,32 @@ Disobedience]
       <tei:figure url="vskip.svg" ana="figure">
        <tei:head ana="head">using a vbox to create multi-line header</tei:head>
       </tei:figure>
+      <tei:div ana="div">
+       <tei:head ana="head">Still Another Example of Customization</tei:head>
+       <tei:p ana="paragraph">
+        I came across a problem in formatting a footer with a thesis. I needed a
+        1-inch space at the bottom, with a page number centered in the middle,
+        and 1/2 an inch from the bottom. None of the above commands allowed me
+        to both center the page number and control its vertical placement, so I
+        finally had to settle for this work-around.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupfootertexts[\vbox{\centerline{\pagenumber }\vskip12pt }]
+ [][][]  
+
+
+</tei:eg>
+       <tei:p ana="paragraph">
+        The <tei:seg type="command" ana="context-command">vbox</tei:seg> command
+        functions exactly as above. The
+        <tei:seg type="command" ana="context-command">centerline</tei:seg>
+        command centers the page number. The
+        <tei:seg type="command" ana="context-command">vskip</tei:seg> command
+        put space between the bottom of the footer space and the actual number.
+        In other words, it raised up the number. A greater number for
+        <tei:seg type="command" ana="context-command">vskip</tei:seg> would have
+        made the number even higher.
+       </tei:p>
+      </tei:div>
      </tei:div>
     </tei:div>
     <tei:div ana="div">
@@ -1914,6 +1940,10 @@ Disobedience]
     <tei:bibl ana="section-revision">
      <tei:date value="2005-04-07"/>
      <tei:note type="revision-description" ana="paragraph">Added a tip on mutli-paragraphed items.</tei:note>
+    </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-05-19"/>
+     <tei:note type="revision-description" ana="paragraph">Added how to align blocks of text.</tei:note>
     </tei:bibl>
     <tei:div ana="div">
      <tei:head ana="head">Paragraph Formatting</tei:head>
@@ -2239,13 +2269,13 @@ more body text ...\par
         <tei:head ana="head">Tips</tei:head>
         <tei:item ana="item">
          <tei:p ana="paragraph">
-          To align a whole block of text to the left, set the option to
+          To align text to the left, set the option to
           <tei:seg type="property" ana="property">left</tei:seg>.
          </tei:p>
         </tei:item>
         <tei:item ana="item">
          <tei:p ana="paragraph">
-          To center a whole block of text, set the option to
+          To center the text, set the option to
           <tei:seg type="property" ana="property">middle</tei:seg>.
          </tei:p>
         </tei:item>
@@ -2262,6 +2292,33 @@ more body text ...\par
           making non-justified text so easy to use. In other forms of
           <tei:seg type="tex-name" ana="tex-name">tex</tei:seg>, using
           non-justified text required complicated code.
+         </tei:p>
+        </tei:item>
+       </tei:list>
+      </tei:div>
+      <tei:div ana="div">
+       <tei:head ana="head">Changing alignment on a block of text</tei:head>
+       <tei:p ana="paragraph">
+        The above code works for setting the alignment for the entire document.
+        To change just a block of text, start a new
+        <tei:seg type="property" ana="property">alignment</tei:seg> enviornment.
+        Within this enivronment, the text will take on the justification
+        assigned to it.
+       </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\startalignment[middle]
+{\bfd ABSTRACT OF THESIS}\par 
+\blank[.5in]
+\stopalignment
+
+</tei:eg>
+       <tei:list type="unordered" ana="unordered-list">
+        <tei:head ana="head">Tips</tei:head>
+        <tei:item ana="item">
+         <tei:p ana="paragraph">
+          As the exmple shows, this structure is good for titles of sections.
+          The examples below don&#8217;t allow the fexibilit that of the
+          <tei:seg type="command" ana="context-command">startalignment</tei:seg>
+          environment.
          </tei:p>
         </tei:item>
        </tei:list>
@@ -3677,6 +3734,10 @@ insurance in US}}
      <tei:date value="2005-04-18"/>
      <tei:note type="revision-description" ana="paragraph">Added using font size proportionally; subscript and superscript; font faces (serif, mono-spaced, etc);</tei:note>
     </tei:bibl>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-05-08"/>
+     <tei:note type="revision-description" ana="paragraph">Added how to combine bold and slanted; added the em command.</tei:note>
+    </tei:bibl>
     <tei:div ana="div">
      <tei:head ana="head">Changing font style (italics, bold, etc.)</tei:head>
      <tei:p ana="paragraph">
@@ -3693,6 +3754,8 @@ insurance in US}}
 <tei:eg rend="context-block-code" ana="context-block-code">{\bf bold }
 {\sl slanted}
 {\it italics}
+{\bi bold and italics}
+{\bs bold and slanted}
 {\sc small caps}
 </tei:eg>
      <tei:p ana="paragraph">
@@ -3708,6 +3771,23 @@ insurance in US}}
        </tei:p>
       </tei:item>
      </tei:list>
+     <tei:div ana="div">
+      <tei:head ana="head">Using em for more flexibility</tei:head>
+      <tei:p ana="paragraph">
+       The <tei:seg type="command" ana="context-command">em</tei:seg> command
+       allows more flexibility for emphasizing text because it takes the context
+       into consideration. If the surrounding font is upright, it will make the
+       emphasized text slanted. If the surronding text is slanted, it will make
+       it upright. The following example is hypothetical title of a book about
+       the American novel <tei:emph rend="italic" ana="emph-italic">Huck
+       Finn.</tei:emph> The title itself will be slanted, but Huck Finn will
+       not.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">{\em Thoughts on {\em Huck Finn}}
+
+
+</tei:eg>
+     </tei:div>
     </tei:div>
     <tei:div ana="div">
      <tei:head ana="head">Changing font face (serif, sans serif, etc.)</tei:head>
@@ -4201,6 +4281,30 @@ location=top, number=no, align=left]
        A float for a figure is set up with the
        <tei:seg type="command" ana="context-command">placefigure</tei:seg>
        command.
+      </tei:p>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Moving floats</tei:head>
+      <tei:p ana="paragraph">
+       One should be able to easily move floats around. Imagine that you are
+       using a gui application, like MS Word, or something professional like
+       Quark Express. You have imported a picture into this appliation. You
+       place your mouse on the picture and move the picture up or down. You go
+       to a dialogue box and determine how much space should go before the
+       picture and the float. Commercial applications have been able to perform
+       these basic operations for over 20 years.
+      </tei:p>
+      <tei:p ana="paragraph">
+       Unfortunately, I don&#8217;t see a similar way to perform the same
+       function in
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>. The
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> mailing
+       list pointed me to a PDF document with so much complicated code that
+       after 1 hour of not finding anything close to a solution, left me with a
+       feeling of despair about the usefullness of
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>.
+       Hopefully I will stumble upon a solution that will prove my frustration
+       was for nothing.
       </tei:p>
      </tei:div>
     </tei:div>

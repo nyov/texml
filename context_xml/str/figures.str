@@ -22,8 +22,6 @@ minimal steps to place a figure.
  1. Define a directory where we can find the figure with the [:cm:
     setupexternalfigures] command. 
 
-    .. [directory={../png\_images}]
-
  2. Set up the picture by telling [:ab: context] by giving it a name,
     a location, and by setting up other options. Use the [:cm:
     useexternalfigure] for this. 
@@ -243,3 +241,23 @@ figures
 --------
 
 A float for a figure is set up with the [:cm: placefigure] command. 
+
+--------------
+Moving floats
+--------------
+
+One should be able to easily move floats around. Imagine that you are
+using a gui application, like MS Word, or something professional like
+Quark Express. You have imported a picture into this appliation. You
+place your mouse on the picture and move the picture up or down. You
+go to a dialogue box and determine how much space should go before the
+picture and the float. Commercial applications have been able to
+perform these basic operations for over 20 years.
+
+Unfortunately, I don't see a similar way to perform the same function
+in [:ab: context]. The [:ab: context] mailing list pointed me to a PDF
+document with so much complicated code that after 1 hour of not
+finding anything close to a solution, left me with a feeling of
+despair about the usefullness of [:ab: context]. Hopefully I will
+stumble upon a solution that will prove my frustration was for
+nothing. 
