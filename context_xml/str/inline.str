@@ -73,6 +73,18 @@ Huck Finn will not.
 
  {\em Thoughts on {\em Huck Finn}}
 
+-------------------------------
+Underlining Text
+-------------------------------
+
+Underline text with the [:cm: underbar] and [:cm: underbars] commands.  The
+[:cm: underbar] command puts one line under all the text. The [:cm: underbars]
+underlines each word individually.
+
+:t2x-no-process:
+
+ \underbar{underlined text}
+ \underbar{underline individual words}
 
 =============================================
 Changing font face (serif, sans serif, etc.)

@@ -385,6 +385,25 @@ the [:op: state] to [:pr: stop], and the [:op: way] option to [:pr: bytext].
  </cmd>
 .. end block
 
+setupreferencing
+-----------------
+
+By default, [:ab: context] puts part numbers for cross references. We can 
+generate our own section numbers, so we want to turn this off.
+
+:t2x-no-process:
+
+ \setupreferencing[partnumber=no]
+.. end block
+
+:t2x-no-process rend=xml:
+
+ <cmd name="setupreferencing">
+  <opt>partnumber=no<opt>
+ </cmd>
+.. end block
+
+
 input
 -------
 

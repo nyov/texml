@@ -857,6 +857,21 @@ Ernest Hemingwary
 </tei:eg>
      </tei:div>
      <tei:div ana="div">
+      <tei:head ana="head">setupreferencing</tei:head>
+      <tei:p ana="paragraph">
+       By default,
+       <tei:seg type="context-name" ana="context-name">context</tei:seg> puts
+       part numbers for cross references. We can generate our own section
+       numbers, so we want to turn this off.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupreferencing[partnumber=no]
+</tei:eg>
+<tei:eg rend="xml" ana="xml">&lt;cmd name="setupreferencing"&gt;
+ &lt;opt&gt;partnumber=no&lt;opt&gt;
+&lt;/cmd&gt;
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
       <tei:head ana="head">input</tei:head>
       <tei:p ana="paragraph">
        The <tei:seg type="command" ana="context-command">input</tei:seg> command
@@ -1629,8 +1644,6 @@ Disobedience]
        </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">\setupfootertexts[\vbox{\centerline{\pagenumber }\vskip12pt }]
  [][][]  
-
-
 </tei:eg>
        <tei:p ana="paragraph">
         The <tei:seg type="command" ana="context-command">vbox</tei:seg> command
@@ -1916,6 +1929,49 @@ Disobedience]
         </tei:list>
        </tei:div>
       </tei:div>
+     </tei:div>
+    </tei:div>
+    <tei:div ana="div">
+     <tei:head ana="head">Page Numbering</tei:head>
+     <tei:p ana="paragraph">
+      The command
+      <tei:seg type="command" ana="context-command">pagenumber</tei:seg> prints
+      out a page number wherever it is issued (for example, in a header or
+      footer).
+     </tei:p>
+     <tei:div ana="div">
+      <tei:head ana="head">Resetting the page number</tei:head>
+      <tei:p ana="paragraph">
+       In order to reset the page number, use the
+       <tei:seg type="command" ana="context-command">setuppagenumbers</tei:seg>
+       command. Set the option
+       <tei:seg type="option" ana="option">number</tei:seg> to the desired
+       number.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% sets the current page number to 3
+\setuppagenumber[number=3]
+
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Formatting the page number</tei:head>
+      <tei:p ana="paragraph">
+       In order to change the page number to something different than an Arabic
+       number, use the
+       <tei:seg type="command" ana="context-command">setuppagenumbering</tei:seg>
+       command. Set the <tei:seg type="option" ana="option">conversion</tei:seg>
+       option to <tei:seg type="property" ana="property">characters</tei:seg>
+       for lower-case letters,
+       <tei:seg type="property" ana="property">Characters</tei:seg> for
+       upper-case letters,
+       <tei:seg type="property" ana="property">romannumerals</tei:seg> for
+       lower-case Roman Numerals, and
+       <tei:seg type="property" ana="property">Romannumerals</tei:seg> for
+       upper-case Roman Numerals.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">% Changes "3" to "iii"
+\setuppagenumbering[conversion=romannumerals]
+</tei:eg>
      </tei:div>
     </tei:div>
    </tei:div>
@@ -3785,6 +3841,22 @@ insurance in US}}
       </tei:p>
 <tei:eg rend="context-block-code" ana="context-block-code">{\em Thoughts on {\em Huck Finn}}
 
+</tei:eg>
+     </tei:div>
+     <tei:div ana="div">
+      <tei:head ana="head">Underlining Text</tei:head>
+      <tei:p ana="paragraph">
+       Underline text with the
+       <tei:seg type="command" ana="context-command">underbar</tei:seg> and
+       <tei:seg type="command" ana="context-command">underbars</tei:seg>
+       commands. The
+       <tei:seg type="command" ana="context-command">underbar</tei:seg> command
+       puts one line under all the text. The
+       <tei:seg type="command" ana="context-command">underbars</tei:seg>
+       underlines each word individually.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\underbar{underlined text}
+\underbar{underline individual words}
 
 </tei:eg>
      </tei:div>
@@ -4305,6 +4377,50 @@ location=top, number=no, align=left]
        <tei:seg type="context-name" ana="context-name">context</tei:seg>.
        Hopefully I will stumble upon a solution that will prove my frustration
        was for nothing.
+      </tei:p>
+     </tei:div>
+    </tei:div>
+   </tei:div>
+   <tei:div ana="div">
+    <tei:head ana="head">Other</tei:head>
+    <tei:bibl ana="section-revision">
+     <tei:date value="2005-05-15"/>
+     <tei:note type="revision-description" ana="paragraph">First started writing</tei:note>
+    </tei:bibl>
+    <tei:div ana="div">
+     <tei:head ana="head">Referencing Page Numbers</tei:head>
+     <tei:div ana="div">
+      <tei:head ana="head">Getting rid of part numbers</tei:head>
+      <tei:p ana="paragraph">
+       If you have used the
+       <tei:seg type="command" ana="context-command">part</tei:seg> command to
+       create a new run of pages, you will want to get rid of
+       <tei:seg type="context-name" ana="context-name">context</tei:seg>&#8217;s
+       feature that automatically generates part numbers. If you don&#8217;t
+       disable this feature, you will always get a part number in front of your
+       page number. Most likely, you don&#8217;t want this part number, since
+       you can generate your own numbers in XSLT.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\setupreferencing[partnumber=no]
+</tei:eg>
+      <tei:p ana="paragraph">
+       In order to reference a page number (such as when producing a table of
+       contents), create an anchor and then point to that anchor. For example,
+       if we want to create a table of contents that list the the page number
+       for each chapter, we first set up the anchor at the chapter.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\reference[chapt-1-id]
+</tei:eg>
+      <tei:p ana="paragraph">
+       In order to get the page number to this chapter, use the at command,
+       using the same id as for the chapter.
+      </tei:p>
+<tei:eg rend="context-block-code" ana="context-block-code">\at[partnumber=no]
+\reference[chapt-1-id]
+</tei:eg>
+      <tei:p ana="paragraph">
+       With XSLT, normally one uses the generate-id() function to create unique
+       ids for each section.
       </tei:p>
      </tei:div>
     </tei:div>

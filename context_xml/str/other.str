@@ -1,0 +1,51 @@
+:title: Getting Started
+
+:author: Paul Tremblay
+
+:change date=2005-05-15:
+
+  First started writing
+
+=========================
+Referencing Page Numbers
+=========================
+
+------------------------------
+Getting rid of part numbers
+------------------------------
+
+If you have used the [:cm: part] command to create a new run of 
+pages, you will want to get rid of [:ab: context]'s feature that 
+automatically generates part numbers. If you don't disable this 
+feature, you will always get a part number in front of your page 
+number. Most likely, you don't want this part number, since you 
+can generate your own numbers in XSLT.
+
+:t2x-no-process:
+
+ \setupreferencing[partnumber=no]
+.. end block
+
+In order to reference a page number (such as when producing a table 
+of contents), create an anchor and then point to that anchor. For 
+example, if we want to create a table of contents that list the 
+the page number for each chapter, we first set up the anchor at 
+the chapter.
+
+
+:t2x-no-process:
+
+ \reference[chapt-1-id]
+.. end block
+
+In order to get the page number to this chapter, use the at command, 
+using the same id as for the chapter.
+
+:t2x-no-process:
+
+ \at[partnumber=no]
+ \reference[chapt-1-id]
+.. end block
+
+With XSLT, normally one uses the generate-id() function to create unique
+ids for each section. 

@@ -960,3 +960,36 @@ second is the position. The last options is the text placed in the header.
 
   * The [:cm: setuphead] also takes the [:op: footer] option.
 
+====================
+Page Numbering
+====================
+
+The command [:cm: pagenumber] prints out a page number wherever it is issued
+(for example, in a header or footer). 
+
+--------------------------
+Resetting the page number
+--------------------------
+
+In order to reset the page number, use the [:cm: setuppagenumbers] command.
+Set the option [:op: number] to the desired number.
+
+:t2x-no-process:
+
+ % sets the current page number to 3
+ \setuppagenumber[number=3]
+
+---------------------------
+Formatting the page number
+---------------------------
+
+In order to change the page number to something different than an Arabic
+number, use the [:cm: setuppagenumbering] command. Set the [:op: conversion]
+option to [:pr: characters] for lower-case letters, [:pr: Characters] for
+upper-case letters, [:pr: romannumerals] for lower-case Roman Numerals, and
+[:pr: Romannumerals] for upper-case Roman Numerals.
+
+:t2x-no-process:
+
+ % Changes "3" to "iii"
+ \setuppagenumbering[conversion=romannumerals]
