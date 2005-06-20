@@ -1,3 +1,18 @@
+Version 1.27.devel (20 June 2005)
+
+* New feature: "--ascii" parameter. Now it's possible to
+  generate plain ASCII TeX files in a desired encoding.
+  Non-ascii bytes are encoded as "^^XX".
+	The test file "chinese1.xml" is a working example of
+  a Chinese LaTeX file.
+
+* TeXML issues a warning is an XML symbol isn't converted to
+  TeX and printed as '&#xNNN;'
+
+* Refactoring. Code for tuning output stream is moved from
+  "handler.py" to "texmlwr.py".
+
+
 Version 1.26.devel (8 May 2005)
 
 * Bug is fixed. Now lines which consist of space characters and
@@ -38,7 +53,7 @@ Version 1.24.devel (21 March 2005)
 
   exceptions for invalid or ill-formed XML are now
   handled in the script. Instead of a long message
-  (incomprehensible to non-pythonn developers), the 
+  (incomprehensible to non-python developers), the
   error message consists of a column number, a line
   number, and a simple explanation. 
   
