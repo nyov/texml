@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.4 2005-06-20 10:37:59 olpa Exp $
+# $Id: texmlwr.py,v 1.5 2005-06-20 10:52:28 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -14,6 +14,7 @@ import unimap
 import specmap
 import codecs
 import os
+import sys
 import string
 
 #
@@ -54,6 +55,9 @@ class texmlwr:
   # stream have failed, then the code converts the symbol to bytes,
   # and these bytes are written in the ^^xx format.
   #
+  # bad_enc_warned: TeXML issues warning if it fails to convert
+  # a symbol. This flag controls that warning was issued only once.
+  #
   
   def __init__(self, stream, encoding, autonl_width, use_context = 0, always_ascii = 0):
     """ Remember output stream, initialize data structures """
@@ -65,7 +69,7 @@ class texmlwr:
 	encoding        = 'ascii'
       self.stream     = stream_encoder(stream, encoding)
     except Exception, e:
-      raise ValueError("texml: Can't create encoder: '%s'" % e)
+      raise ValueError("Can't create encoder: '%s'" % e)
     # Continue initialization
     self.after_char0d     = 1
     self.after_char0a     = 1
@@ -84,6 +88,7 @@ class texmlwr:
     self.allow_weak_ws_to_nl     = 1
     self.is_after_weak_ws        = 0
     self.use_context      = use_context
+    self.bad_enc_warned   = 0
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -293,7 +298,7 @@ class texmlwr:
       self.writech('}', 0)
       return                                               # return
     #
-    # Finally, write symbol in ^^XX or &#xNNN; form
+    # Try write the symbol in the ^^XX form
     #
     if self.always_ascii:
       try:
@@ -303,6 +308,12 @@ class texmlwr:
 	return
       except Exception, e:
 	pass
+    #
+    # Finally, warn about bad symbol and write it in the &#xNNN; form
+    #
+    if not self.bad_enc_warned:
+      sys.stderr.write("texml: not all XML symbols are converted\n");
+      self.bad_enc_warned = 1
     self.write('&#x%X;' % chord, 0)
 
   def write(self, str, escape = None):
