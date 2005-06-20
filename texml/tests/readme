@@ -44,6 +44,7 @@ The ending "_ns" means that an example uses the TeXML namespace.
 + texmlapis  long test from Chris Houser's TeXMLapis
 + quick      example from the quick start document
 + context    test of the conTeXt mode
++ chinese1   test of the option "--ascii". A complete Chinese example.
 
 Tests that will fail:
 

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.14 2005-03-23 19:52:55 olpa Exp $
+# $Id: Makefile,v 1.15 2005-06-20 10:54:53 olpa Exp $
 
 all: tests
 
@@ -17,20 +17,21 @@ texml_script=../scripts/texml_local
 #
 # Individual test parameters to converter
 #
-params-mixed   = -e ascii
-params-koi8    = -e koi8-r
+params-mixed      = -e ascii
+params-koi8       = -e koi8-r
 params-koi8_ns    = -e koi8-r
-params-koi8bad = -e koi8-r
+params-koi8bad    = -e koi8-r
 params-koi8bad_ns = -e koi8-r
-params-latex   = -e koi8-r
+params-latex      = -e koi8-r
 params-latex_ns   = -e koi8-r
-params-cmdnest = -e ascii
-params-wselim2 = -w 100
+params-cmdnest    = -e ascii
+params-wselim2    = -w 100
 params-wselim2_ns = -w 100
-params-quick   = -w 60
+params-quick      = -w 60
 params-quick_ns   = -w 60
-params-context = --context -e utf8
+params-context    = --context -e utf8
 params-context_ns = --context -e utf8
+params-chinese1   = -e utf8 -a
 
 tests: $(good_test_stamps) $(fail_test_stamps)
 
