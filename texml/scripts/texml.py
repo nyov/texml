@@ -1,9 +1,9 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.9 2005-05-08 19:53:50 olpa Exp $
+# $Id: texml.py,v 1.10 2005-06-20 10:18:27 olpa Exp $
 
 VERSION = "1.26.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
-python texml.py [-e encoding] [-w auto_width] [-c|--context] in_file out_file""" % VERSION
+python texml.py [-e encoding] [-w auto_width] [-c|--context] [-a|--ascii] in_file out_file""" % VERSION
 
 
 
@@ -21,13 +21,14 @@ if len(sys.argv) < 3:
 #
 # Parse command line options
 #
-encoding    = 'ascii'
-width       = 50
-use_context = 0
+encoding      = 'ascii'
+always_ascii  = 0
+width         = 50
+use_context   = 0
 use_namespace = 1
 import getopt
 try:
-  opts, args = getopt.getopt(sys.argv[1:], 'hcw:e:', ['help', 'context', 'width=', 'encoding=', ])
+  opts, args = getopt.getopt(sys.argv[1:], 'hcaw:e:', ['help', 'context', 'ascii', 'width=', 'encoding=', ])
 except getopt.GetoptError, e:
   print >>sys.stderr, 'texml: Can\'t parse command line: %s' % e
   print >>sys.stderr, usage
@@ -38,6 +39,8 @@ for o, a in opts:
     sys.exit(1)
   if o in ('-c', '--context'):
     use_context = 1
+  if o in ('-a', '--ascii'):
+    always_ascii = 1
   if o in ('-w', '--width'):
     try:
       width = int(a)
@@ -73,23 +76,33 @@ if '-' == outfile:
   f = sys.stdout
 else:
   f = file(outfile, 'wb')
+import Texml.texmlwr
+texml_writer =  Texml.texmlwr.texmlwr(
+    stream       = f,
+    encoding     = encoding,
+    autonl_width = width,
+    use_context  = use_context,
+    always_ascii = always_ascii,
+)
 
+#
+# An error handler
+#
 def quit(msg):
     sys.stderr.write(msg)
     f.close()
     sys.exit(1)
 
+#
 # import main class and parse
+#
 import Texml.handler
 transform_obj = Texml.handler.ParseFile()
 try:
     transform_obj.parse_file(
-        encoding = encoding, 
-        read_obj = infile, 
-        write_obj = f, 
-        width = width, 
-        use_context = use_context,
-
+        read_obj     = infile,
+        texml_writer = texml_writer,
+        use_context  = use_context,
     )
 
 except xml.sax._exceptions.SAXParseException, msg:

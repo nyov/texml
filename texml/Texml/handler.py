@@ -13,20 +13,23 @@ Use:
     # create a write object. This should be a write obj or standard out
     # write_obj = sys.stdout
     write_obj =  file('out_file.tex', 'wb')
-
-    # encoding
-    # encoding = 'ascii'
-    # I'm not sure about other values
-    encoding = 'utf8'
-
-    # any integer for width of text
-    width = 55
-
-    # whether or not to use context. Choose 1 to run in context mode; choose 
-    # 0 or None otherwise
-    # use_context = 1
-    use_context = 0
-
+    # Tune the write object
+    # encoding     = 'ascii', 'utf8', 'latin1', ...
+    #            everything Python codecs support
+    # autonl_width = desired width of output
+    # use_context  = 1/0
+    #            whether (1) or not 9) to use conTeXt.
+    # always_ascii = 1/0
+    #            use only ASCII letters and escape-sequences for
+    #            non-ascii characters
+    write_obj = Texml.texmlwr.texmlwr(
+      stream       = f,
+      encoding     = encoding,
+      autonl_width = width,
+      use_context  = use_context,
+      always_ascii = always_ascii,
+    )
+    
     # create a transform object
     transform_obj = Texml.handler.ParseFile()
 
@@ -50,7 +53,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.9 2005-04-05 05:14:32 paultremblay Exp $
+# $Id: handler.py,v 1.10 2005-06-20 10:18:24 olpa Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -80,21 +83,9 @@ class ParseFile:
     def __init__(self):
         pass
 
+    def parse_file(self, texml_writer, read_obj, use_context):
 
-    def __encode(self, write_obj, encoding):
-        import Texml.texmlwr
-        try:
-            write_obj = Texml.texmlwr.stream_encoder(write_obj, encoding)
-        except Exception, e:
-            print >>sys.stderr, "texml: Can't create encoder: '%s'" % e
-            sys.exit(5)
-        return write_obj
-
-    def parse_file(self, encoding, write_obj, read_obj, width, use_context):
-
-        write_obj = self.__encode(write_obj, encoding)
-
-        handle = glue_handler(write_obj, width, use_context)
+        handle = glue_handler(texml_writer, use_context)
 
         parser = xml.sax.make_parser()
         parser.setFeature(feature_namespaces, 1)
@@ -118,9 +109,9 @@ class glue_handler(xml.sax.ContentHandler):
 
   """
   
-  def __init__(self, stream, autonl_width, use_context, 
+  def __init__(self, texml_writer, use_context,
         name_space = 'http://getfo.sourceforge.net/texml/ns1'):
-    self.h = Handler(stream, autonl_width, use_context)
+    self.h = Handler(texml_writer, use_context)
     self.c = None
 
     self.__name_space = name_space
@@ -242,11 +233,11 @@ class Handler:
   # has_parm # Stacking is not required: if <cmd/> is in <cmd/>,
   #          # then is it wrapped by <parm/> or <opt/>
 
-  def __init__(self, stream, autonl_width, use_context):
+  def __init__(self, texml_writer, use_context):
     """ Create writer, create maps """
     self.__use_context = use_context
     # Paul Tremblay added this on 2005-03-08
-    self.writer        = texmlwr.texmlwr(stream, autonl_width, use_context)
+    self.writer        = texml_writer
     self.cmdname_stack = []
     self.endenv_stack  = []
     self.cmdname       = ''
@@ -258,7 +249,7 @@ class Handler:
     self.process_ws_stack    = []
     self.nl_spec             = None
     self.nl_spec_stack       = []
-    self.__name_space = None
+    self.__name_space        = None
     #
     # Create handler maps
     #

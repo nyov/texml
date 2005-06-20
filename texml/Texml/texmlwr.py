@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.2 2005-05-08 19:55:03 olpa Exp $
+# $Id: texmlwr.py,v 1.3 2005-06-20 10:18:24 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -49,10 +49,21 @@ class texmlwr:
   # We usually don't allow empty lines in output because such lines
   # cause a paragraph break in TeX.
   # > line_is_blank
+  #
+  # "last_codec" is used with option "always_ascii". If attempts to
+  # write a character as ASCII have failed, the codec converts the
+  # symbol to bytes, and this bytes are written in the ^^xx format.
+  #
   
-  def __init__(self, stream, autonl_width, context = None):
+  def __init__(self, stream, encoding, autonl_width, use_context = 0, always_ascii = 0):
     """ Remember output stream, initialize data structures """
-    self.stream = stream
+    # Tune utput stream
+    try:
+      self.last_codec = None
+      self.stream     = stream_encoder(stream, encoding)
+    except Exception, e:
+      raise ValueError("texml: Can't create encoder: '%s'" % e)
+    # Continue initialization
     self.after_char0d     = 1
     self.after_char0a     = 1
     self.last_ch          = None
@@ -69,8 +80,7 @@ class texmlwr:
     self.autonewline_after_len   = autonl_width
     self.allow_weak_ws_to_nl     = 1
     self.is_after_weak_ws        = 0
-    # Paul Tremblay added this on 2005-03-08
-    self.context = context
+    self.use_context      = use_context
 
   def stack_mode(self, mode):
     """ Put new mode into the stack of modes """
@@ -223,7 +233,7 @@ class texmlwr:
       try:
         if self.mode == TEXT:
             # Paul Tremblay changed this code on 2005-03-08
-          if self.context:
+          if self.use_context:
             self.write(specmap.textescmap_context[ch], 0)
           else:
             self.write(specmap.textescmap[ch], 0)
@@ -280,8 +290,15 @@ class texmlwr:
       self.writech('}', 0)
       return                                               # return
     #
-    # Finally, write symbol in &#xNNN; form
+    # Finally, write symbol in ^^XX or &#xNNN; form
     #
+    if self.last_codec:
+      try:
+	bytes = self.last_codec.encode(ch)
+	for by in bytes:
+	  self.write('^^%x02' % ord(by), 0);
+      except:
+	pass
     self.write('&#x%X;' % chord, 0)
 
   def write(self, str, escape = None):
