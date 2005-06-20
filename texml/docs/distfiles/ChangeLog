@@ -3,7 +3,7 @@ Version 1.27.devel (20 June 2005)
 * New feature: "--ascii" parameter. Now it's possible to
   generate plain ASCII TeX files in a desired encoding.
   Non-ascii bytes are encoded as "^^XX".
-	The test file "chinese1.xml" is a working example of
+  The test file "chinese1.xml" is a working example of
   a Chinese LaTeX file.
 
 * TeXML issues a warning is an XML symbol isn't converted to
