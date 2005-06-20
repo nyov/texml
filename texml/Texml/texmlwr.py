@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.3 2005-06-20 10:18:24 olpa Exp $
+# $Id: texmlwr.py,v 1.4 2005-06-20 10:37:59 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -50,16 +50,19 @@ class texmlwr:
   # cause a paragraph break in TeX.
   # > line_is_blank
   #
-  # "last_codec" is used with option "always_ascii". If attempts to
-  # write a character as ASCII have failed, the codec converts the
-  # symbol to bytes, and this bytes are written in the ^^xx format.
+  # always_ascii: If attempts to write a character to the output
+  # stream have failed, then the code converts the symbol to bytes,
+  # and these bytes are written in the ^^xx format.
   #
   
   def __init__(self, stream, encoding, autonl_width, use_context = 0, always_ascii = 0):
     """ Remember output stream, initialize data structures """
-    # Tune utput stream
+    # Tune output stream
+    self.always_ascii = always_ascii
+    self.encoding     = encoding
     try:
-      self.last_codec = None
+      if always_ascii:
+	encoding        = 'ascii'
       self.stream     = stream_encoder(stream, encoding)
     except Exception, e:
       raise ValueError("texml: Can't create encoder: '%s'" % e)
@@ -292,12 +295,13 @@ class texmlwr:
     #
     # Finally, write symbol in ^^XX or &#xNNN; form
     #
-    if self.last_codec:
+    if self.always_ascii:
       try:
-	bytes = self.last_codec.encode(ch)
+	bytes = ch.encode(self.encoding)
 	for by in bytes:
-	  self.write('^^%x02' % ord(by), 0);
-      except:
+	  self.write('^^%02x' % ord(by), 0);
+	return
+      except Exception, e:
 	pass
     self.write('&#x%X;' % chord, 0)
 
