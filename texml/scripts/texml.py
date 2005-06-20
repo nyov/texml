@@ -1,7 +1,7 @@
 #!/usr/local/bin/python
-# $Id: texml.py,v 1.10 2005-06-20 10:18:27 olpa Exp $
+# $Id: texml.py,v 1.11 2005-06-20 10:53:09 olpa Exp $
 
-VERSION = "1.26.devel"; # GREPVERSION # Format of this string is important
+VERSION = "1.27.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
 python texml.py [-e encoding] [-w auto_width] [-c|--context] [-a|--ascii] in_file out_file""" % VERSION
 
@@ -76,14 +76,6 @@ if '-' == outfile:
   f = sys.stdout
 else:
   f = file(outfile, 'wb')
-import Texml.texmlwr
-texml_writer =  Texml.texmlwr.texmlwr(
-    stream       = f,
-    encoding     = encoding,
-    autonl_width = width,
-    use_context  = use_context,
-    always_ascii = always_ascii,
-)
 
 #
 # An error handler
@@ -96,21 +88,26 @@ def quit(msg):
 #
 # import main class and parse
 #
+import Texml.texmlwr
 import Texml.handler
 transform_obj = Texml.handler.ParseFile()
 try:
-    transform_obj.parse_file(
-        read_obj     = infile,
-        texml_writer = texml_writer,
-        use_context  = use_context,
-    )
+  texml_writer =  Texml.texmlwr.texmlwr(
+      stream       = f,
+      encoding     = encoding,
+      autonl_width = width,
+      use_context  = use_context,
+      always_ascii = always_ascii,
+      )
+  transform_obj.parse_file(
+      read_obj     = infile,
+      texml_writer = texml_writer,
+      use_context  = use_context,
+      )
 
-except xml.sax._exceptions.SAXParseException, msg:
-    msg = '%s\n' % (str(msg))
-    quit(msg)
-except Texml.handler.InvalidXmlException, msg:
-    msg = '%s\n' % (str(msg))
-    quit(msg)
+except Exception, msg:
+  msg = 'texml: %s\n' % (str(msg))
+  quit(msg)
 
 f.close()
 sys.exit(0)
