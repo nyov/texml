@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.6 2005-09-07 11:18:51 olpa Exp $
+# $Id: texmlwr.py,v 1.7 2005-09-07 15:42:38 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -334,16 +334,6 @@ class texmlwr:
 
   def writepdfch(self, ch):
     """ Write char in Acrobat utf16be encoding """
-    #
-    # Retain ascii symbols and digits
-    #
-    if  (ch in string.ascii_letters) or (ch in string.digits):
-      self.write(r'\000', 0)
-      self.writech(ch, 0)
-      return
-    #
-    # Convert everything else
-    #
     bytes = ch.encode('utf_16_be')
     for by in bytes:
       self.write('\\%03o' % ord(by), 0)
