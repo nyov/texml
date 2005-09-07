@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.5 2005-06-20 10:52:28 olpa Exp $
+# $Id: texmlwr.py,v 1.6 2005-09-07 11:18:51 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -8,6 +8,7 @@ DEFAULT = 0
 TEXT    = 1
 MATH    = 2
 ASIS    = 3
+PDF     = 4
 WEAK_WS_IS_NEWLINE = 2
 
 import unimap
@@ -66,7 +67,7 @@ class texmlwr:
     self.encoding     = encoding
     try:
       if always_ascii:
-	encoding        = 'ascii'
+        encoding        = 'ascii'
       self.stream     = stream_encoder(stream, encoding)
     except Exception, e:
       raise ValueError("Can't create encoder: '%s'" % e)
@@ -165,6 +166,14 @@ class texmlwr:
 
   def writech(self, ch, esc_specials):
     """ Write a char, (maybe) escaping specials """
+    #
+    # Write for PDF string
+    #
+    if  PDF == self.mode:
+      self.stack_mode(TEXT)
+      self.writepdfch(ch)
+      self.unstack_mode()
+      return                                               # return
     #
     # Write a suspended whitespace
     #
@@ -302,12 +311,12 @@ class texmlwr:
     #
     if self.always_ascii:
       try:
-	bytes = ch.encode(self.encoding)
-	for by in bytes:
-	  self.write('^^%02x' % ord(by), 0);
-	return
+        bytes = ch.encode(self.encoding)
+        for by in bytes:
+          self.write('^^%02x' % ord(by), 0)
+        return
       except Exception, e:
-	pass
+        pass
     #
     # Finally, warn about bad symbol and write it in the &#xNNN; form
     #
@@ -322,6 +331,23 @@ class texmlwr:
       escape = self.escape
     for ch in str:
       self.writech(ch, escape)
+
+  def writepdfch(self, ch):
+    """ Write char in Acrobat utf16be encoding """
+    #
+    # Retain ascii symbols and digits
+    #
+    if  (ch in string.ascii_letters) or (ch in string.digits):
+      self.write(r'\000', 0)
+      self.writech(ch, 0)
+      return
+    #
+    # Convert everything else
+    #
+    bytes = ch.encode('utf_16_be')
+    for by in bytes:
+      self.write('\\%03o' % ord(by), 0)
+      
 #
 # Wrapper over output stream to write is desired encoding
 #

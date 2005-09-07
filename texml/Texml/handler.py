@@ -53,7 +53,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.11 2005-09-07 10:29:33 olpa Exp $
+# $Id: handler.py,v 1.12 2005-09-07 11:18:51 olpa Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -259,7 +259,8 @@ class Handler:
       'env':    self.on_env,
       'group':  self.on_group,
       'ctrl':   self.on_ctrl,
-      'spec':   self.on_spec
+      'spec':   self.on_spec,
+      'pdf':    self.on_pdf
     }
     self.model_content          = self.model_nomath.copy()
     self.model_content['math']  = self.on_math
@@ -282,7 +283,8 @@ class Handler:
       'opt':    self.on_opt_end,
       'parm':   self.on_parm_end,
       'math':   self.on_math_end,
-      'dmath':  self.on_dmath_end
+      'dmath':  self.on_dmath_end,
+      'pdf':    self.on_pdf_end
     }
 
   def set_location(self, col, line):
@@ -645,3 +647,12 @@ class Handler:
   def on_dmath_end(self):
     self.on_math_end()
     self.writer.writech('$', 0)
+    
+  # -----------------------------------------------------------------
+
+  def on_pdf(self, attrs):
+    self.stack_model({})
+    self.writer.stack_mode(texmlwr.PDF)
+
+  def on_pdf_end(self):
+    self.writer.unstack_mode()
