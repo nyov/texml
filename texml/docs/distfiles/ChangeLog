@@ -1,3 +1,19 @@
+2005-09-07  Oleg Paraschenko  olpa@users.sourceforge.net
+
+* text.py: Version number is updated: 1.28.devel.
+* dtd/texml.dtd: Element "pdf" is added.
+* handler.py, texmlwr.py: Support of the element "pdf".
+* data/pdfstring.xml, data/pdfstring.out, faildata/pdfstring.xml,
+  faildata/pdfstring.grep, test/readme: Tests for the "pdf" element.
+* handler.py: doesn't print error on it's own. Instead, returns the
+  text to the caller, and caller should print the message.
+  The function "__print_error" is deleted. The format "prefix:\n"
+  is changed to "prefix: ".
+* unimap.py: no more "&lt;" and "&gt;" instead of "<" and ">".
+  Thanks Felix Wiemann for reporting the bug.
+  http://sourceforge.net/mailarchive/forum.php?thread_id=7467879&forum_id=44318
+
+
 Version 1.27.devel (20 June 2005)
 
 * New feature: "--ascii" parameter. Now it's possible to
