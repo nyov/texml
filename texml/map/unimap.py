@@ -1296,8 +1296,8 @@ mathmap = {
 0x0226B: r'\gg{}',
 0x0226C: r'\between{}',
 0x0226D: r'\not\kern-0.3em\times{}',
-0x0226E: r'\not&lt;',
-0x0226F: r'\not&gt;',
+0x0226E: r'\not<',
+0x0226F: r'\not>',
 0x02270: r'\not\leq{}',
 0x02271: r'\not\geq{}',
 0x02272: r'\lessequivlnt{}',
@@ -1520,7 +1520,7 @@ mathmap = {
 0x02980: r'\Elztfnc{}',
 0x02985: r'\ElsevierGlyph{3018}',
 0x02986: r'\Elroang{}',
-0x02993: r'&lt;\kern-0.58em(',
+0x02993: r'<\kern-0.58em(',
 0x02994: r'\ElsevierGlyph{E291}',
 0x02999: r'\Elzddfnc{}',
 0x0299C: r'\Angle{}',
@@ -2561,4 +2561,3 @@ mathmap = {
 0x1D7FE: r'\mathtt{8}',
 0x1D7FF: r'\mathtt{9}',
 }
-

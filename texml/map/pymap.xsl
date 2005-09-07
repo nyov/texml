@@ -1,7 +1,7 @@
 <x:stylesheet version='1.0' xmlns:x='http://www.w3.org/1999/XSL/Transform'>
-<!-- $Id: pymap.xsl,v 1.7 2004-06-23 09:55:16 olpa Exp $ -->
+<!-- $Id: pymap.xsl,v 1.8 2005-09-07 09:39:23 olpa Exp $ -->
 
-<x:output mode="text" omit-xml-declaration="yes"/>
+<x:output method="text" omit-xml-declaration="yes"/>
 
 <x:template match="/">
 	<x:text>textmap = {&#xa;</x:text>
