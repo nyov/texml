@@ -53,7 +53,7 @@ Use:
 
 
 """
-# $Id: handler.py,v 1.10 2005-06-20 10:18:24 olpa Exp $
+# $Id: handler.py,v 1.11 2005-09-07 10:29:33 olpa Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -292,21 +292,18 @@ class Handler:
   def set_namespace(self, name):
       self.__name_space = name
 
-  def __print_error(self, msg):
-      sys.stderr.write(msg)
-
   def invalid_xml(self,  local_name):
-      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       if self.__name_space:
         msg += 'Element "%s" for namespace "%s" not expected' % (local_name, self.__name_space)
       else:
         msg += '%s not expected' % (local_name)
 
-      raise InvalidXmlException, self.__print_error(msg)
+      raise InvalidXmlException, msg
 
   def invalid_xml_other(self, msg):
       # for other types of invalid XML
-      raise InvalidXmlException, self.__print_error(msg)
+      raise InvalidXmlException, msg
 
   # -------------------------------------------------------------------
   
@@ -334,7 +331,7 @@ class Handler:
     #
     # Elements like <spec/> should be empty
     if self.no_text_content:
-      msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       msg  += "Text content is not expected: '%s'" % content.encode('latin-1', 'replace')
       self.invalid_xml_other(msg)
     # Element <cmd/> should not have text content,
@@ -344,7 +341,7 @@ class Handler:
     if self.text_is_only_spaces:
       stripped = content.lstrip()
       if 0 != len(stripped):
-        msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+        msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
         msg += "Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace')
         self.invalid_xml_other(msg)
       return                                               # return
@@ -393,7 +390,7 @@ class Handler:
       return 0
     # raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
 
-    msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+    msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
     msg += "Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval)
     self.invalid_xml_other(msg)
 
@@ -411,7 +408,7 @@ class Handler:
     elif 'math' == str:
       mode = texmlwr.MATH
     else:
-      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       msg += "Unknown value of TeXML/@mode attribute: '%s'" % str
       self.invalid_xml_other(msg)
     emptylines = self.get_boolean(attrs, 'emptylines', None)
@@ -446,7 +443,7 @@ class Handler:
     #
     name = attrs.get('name', '')
     if 0 == len(name):
-      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       msg += "Attribute cmd/@name is empty" 
       self.invalid_xml_other(msg)
     if self.get_boolean(attrs, 'nl1', 0):
@@ -521,7 +518,7 @@ class Handler:
     #
     name = attrs.get('name', '')
     if 0 == len(name):
-      msg = 'Invalid XML %s, %s\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       msg += 'Attribute env/@name is empty'
       self.invalid_xml_other(msg)
     # added by Paul Tremblay on 2004-02-19
@@ -589,7 +586,7 @@ class Handler:
     #
     ch = attrs.get('ch', '')
     if 1 != len(ch):
-      msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+      msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
       msg += "Attribute ctrl/@ch is not a char: '%s'" % ch 
       self.invalid_xml_other(msg)
     self.writer.writech('\\', 0)
@@ -612,7 +609,7 @@ class Handler:
       self.writer.conditionalNewline()
     else:
       if not (cat in specmap.tocharmap):
-        msg = 'Invalid XML %s, %s:\n' % (self.__col_num, self.__line_num)
+        msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
         msg += "Attribute spec/@cat unknown: '%s'" % cat 
         self.invalid_xml_other(msg)
       ch = specmap.tocharmap[cat]
