@@ -45,6 +45,7 @@ The ending "_ns" means that an example uses the TeXML namespace.
 + quick      example from the quick start document
 + context    test of the conTeXt mode
 + chinese1   test of the option "--ascii". A complete Chinese example.
++ pdfstring  creating utf16be strings for PDF.
 
 Tests that will fail:
 
@@ -73,3 +74,4 @@ Tests that will fail:
 + badlig     value of TeXML/@ligatures is not 0 or 1
 + badtyline  value of TeXML/@emptylines is not 0 or 1
 + badns      incorrect namespace
++ pdfstring  an element inside "pdf"
