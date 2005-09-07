@@ -1,4 +1,4 @@
-<!ENTITY % nomath  "#PCDATA|TeXML|cmd|env|group|ctrl|spec">
+<!ENTITY % nomath  "#PCDATA|TeXML|cmd|env|group|ctrl|spec|pdf">
 
 <!ENTITY % content "%nomath;|math|dmath">
 
@@ -55,6 +55,8 @@
 >
 
 <!ELEMENT spec   EMPTY>
+
+<!ELEMENT pdf    (#PCDATA)>
 
 <!--
 ; Should be so:
