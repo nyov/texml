@@ -18,10 +18,8 @@ is very good at a
 Unfortunately, the standard XML transformation system XSL\footnote{\href{http://www.w3.org/Style/XSL/}{http://www.w3.org/Style/XSL/}}
 is not powerful enough to
   translate from normal XML formats to \LaTeX{} directly.  So when you use XML
-  to edit, store, and distribute your source documents,
-\TeX ML provides the
-  bridge you need to leverage the power of \LaTeX{}
-when formatting your
+  to edit, store, and distribute your source documents, \TeX ML provides the
+  bridge you need to leverage the power of \LaTeX{} when formatting your
   document for the printed page.\par{}
 The DTD and other documentation about \TeX ML\footnote{\href{http://www.alphaworks.ibm.com/formula/texml}{http://www.alphaworks.ibm.com/formula/texml}}
 is available
@@ -29,8 +27,7 @@ is available
   alphaWorks\footnote{\href{http://www.alphaworks.ibm.com/formula/texml}{http://www.alphaworks.ibm.com/formula/texml}}.  My interpretation of their software license does not allow
   me to redistribute those materials here.\par{}
 \section{\TeX MLapis vs. \TeX MLatte}
-There is already a \TeX ML-to-\TeX{} translator called
-\TeX MLatte\footnote{\href{http://www.alphaworks.ibm.com/formula/texml}{http://www.alphaworks.ibm.com/formula/texml}}, but I
+There is already a \TeX ML-to-\TeX{} translator called \TeX MLatte\footnote{\href{http://www.alphaworks.ibm.com/formula/texml}{http://www.alphaworks.ibm.com/formula/texml}}, but I
   was completely unable to get it to work.  It's written in Java\footnote{\href{http://java.sun.com/}{http://java.sun.com/}}
 and the perhaps the runtime engines I
   have around are drastically sub-standard or something, but for whatever
@@ -50,6 +47,5 @@ interpreter.  It has it's own
   seems to comply with available specs and examples.\par{}
 \section{How to get it}
 This page documents texmlapis-1.1.tar.gz\footnote{\href{http://bluweb.com/chouser/proj/texmlapis/texmlapis-1.1.tar.gz}{http://bluweb.com/chouser/proj/texmlapis/texmlapis-1.1.tar.gz}},
-  but you can always find the latest version at \TeX
-MLapis\footnote{\href{http://bluweb.com/chouser/proj/texmlapis}{http://bluweb.com/chouser/proj/texmlapis}}.\par{}
+  but you can always find the latest version at \TeX MLapis\footnote{\href{http://bluweb.com/chouser/proj/texmlapis}{http://bluweb.com/chouser/proj/texmlapis}}.\par{}
 \end{document}

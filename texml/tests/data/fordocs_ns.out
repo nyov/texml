@@ -6,8 +6,7 @@
 \begin{=================}\end{=================}
 \documentclass[12pt]{letter}
 \begin{=================}\end{=================}
-... Visit \href{TeXML homepage}{http://getfo.org/texml/}
-...
+... Visit \href{TeXML homepage}{http://getfo.org/texml/} ...
 \begin{=================}\end{=================}
 ... \item{}first \item{}second
 \item{}third
@@ -51,9 +50,8 @@ $\ensuretext{\textexclamdown{}} \longleftarrow{}$
 \begin{=================}\end{=================}
 $a \/\/ $b
 \begin{=================}\end{=================}
-text mode here: \textvert{}\^ math mode here: |\hat{}
-text in math in text: \textvert{}\^ again math mode: |\hat{}
-again text mode: \textvert{}\^
+text mode here: \textvert{}\^ math mode here: |\hat{} text in math in text: \textvert{}\^
+again math mode: |\hat{} again text mode: \textvert{}\^
 \begin{=================}\end{=================}
 { \it{} text }
   {
