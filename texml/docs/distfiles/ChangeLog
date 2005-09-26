@@ -1,6 +1,14 @@
+2005-09-26  Oleg Paraschenko  olpa@users.sourceforge.net
+
+* texml.py: Version number is updated: 1.29.devel.
+* texml.py: Default width now is 62 symbols.
+* texmlwr.py: If symbol couldn't be translated to an encoding,
+  command "\unicodechar" is written instead of an #&xNNN; entity.
+
+
 2005-09-07  Oleg Paraschenko  olpa@users.sourceforge.net
 
-* text.py: Version number is updated: 1.28.devel.
+* texml.py: Version number is updated: 1.28.devel.
 * dtd/texml.dtd: Element "pdf" is added.
 * handler.py, texmlwr.py: Support of the element "pdf".
 * data/pdfstring.xml, data/pdfstring.out, faildata/pdfstring.xml,
