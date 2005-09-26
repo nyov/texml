@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.7 2005-09-07 15:42:38 olpa Exp $
+# $Id: texmlwr.py,v 1.8 2005-09-26 15:03:09 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -323,7 +323,7 @@ class texmlwr:
     if not self.bad_enc_warned:
       sys.stderr.write("texml: not all XML symbols are converted\n");
       self.bad_enc_warned = 1
-    self.write('&#x%X;' % chord, 0)
+    self.write('\\unicodechar{%d}' % chord, 0)
 
   def write(self, str, escape = None):
     """ Write symbols char-by-char in current mode of escaping """
