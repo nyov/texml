@@ -4,7 +4,8 @@ include tests/data/*
 include tests/data/quick/
 include tests/data/quick/*
 include tests/faildata/*
-include docs/html/*
+include docs/*html
+include docs/*txt
 include license.txt
 include scripts/*
 
