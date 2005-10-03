@@ -1,9 +1,7 @@
-import sys, os, commands
+import sys
 from distutils.core import setup
-import shutil
-
-
-
+import os.path
+import re
 
 def test_for_sax():
     try:
@@ -23,30 +21,24 @@ def get_dtd_location():
 
 
 def get_version():
-    """
-    I like to have one place where my version is stored. 
-    For now, hard-code this.
-
-    """
-    return '1.25.devel'
-    temp_module =  os.getcwd()
-    sys.path.insert(0, temp_module)
-    import texml.version
-    vers_obj = texml.version.Version()
-    version = vers_obj.get_version()
+    # Take the version from "scripts/texml.py"
+    version    = None
+    version_re = re.compile('^VERSION[^"]*"([^"]+)"; # GREPVERSION')
+    f = open(os.path.join('scripts', 'texml.py'))
+    for line in f:
+      match = version_re.search(line)
+      if match:
+        version = match.group(1)
+        break
+    f.close()
+    if None == version:
+      raise "Can't find version"
     return version
 
 if 'build' in sys.argv:
     test_for_sax()
 
 version = get_version()
-
-# where you want to put the dtd
-# dtd_location = get_dtd_location()
-
-# where the dtd resides
-
-# schemas_dir = os.path.join(os.getenv('paxbac_write_dir'), 'important_info', 'schemas')
 
 setup(name="texml",
     version= version ,
