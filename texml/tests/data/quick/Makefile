@@ -3,10 +3,10 @@ all: quick.pdf
 quick.pdf: quick.tex
 	pdflatex $<
 
-pyfiles := $(wildcard ../../../bin/*py)
+pyfiles := $(wildcard ../../../bin/*py) ../../../scripts/texml_local
 
 quick.tex: quick.texml $(pyfiles)
-	../../../bin/texml.py --width 60 $< $@
+	../../../scripts/texml_local --width 60 $< $@
 
 quick.texml: quick.xsl quick.html
 	xsltproc -o $@ $+
