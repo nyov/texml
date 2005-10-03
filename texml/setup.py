@@ -10,7 +10,7 @@ def test_for_sax():
         import xml.sax
     except ImportError:
         sys.stderr.write('Please install the python pyxml modules\n')
-        sys.stdout.write('You must have this module before you can install paxbac\n')
+        sys.stdout.write('You must have this module before you can install texml\n')
         sys.exit(1)
 
 def get_dtd_location():
