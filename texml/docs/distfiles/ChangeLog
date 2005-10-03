@@ -1,3 +1,15 @@
+2005-10-03  Oleg Paraschenko  olpa@users.sourceforge.net
+
+* scripts/texml/texml.py: First line now is "#!python".
+* scripts/texml: New file.
+* scripts/texml_local: Old content of PYTHONPATH is retained.
+* tests/data/quick/Makefile: Switched from using "texml.py" to
+using "texml_local".
+* setup.py: Version string is extracted from "scripts/texml.py".
+* MANIFEST.in: HTML and text documentation is added.
+* README: typo is fixed.
+
+
 2005-09-26  Oleg Paraschenko  olpa@users.sourceforge.net
 
 * texml.py: Version number is updated: 1.29.devel.
