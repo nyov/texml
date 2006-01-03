@@ -1,5 +1,5 @@
 """ Map special TeX symbols """
-# $Id: specmap.py,v 1.1 2005-03-17 04:16:24 paultremblay Exp $
+# $Id: specmap.py,v 1.2 2006-01-03 07:22:25 paultremblay Exp $
 import os
 
 # text escape map and math escape map should contain the same keys
@@ -38,7 +38,7 @@ textescmap_context = {
   '<':  r'\textless{}',
   '>':  r'\textgreater{}',
   # not special but typography
-  u'\u00a9': r'\textcopyright{}'
+  # u'\u00a9': r'\textcopyright{}'
 }
 
 mathescmap = {
