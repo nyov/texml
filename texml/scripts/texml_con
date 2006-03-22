@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# $Id: texml_con,v 1.2 2005-04-05 05:14:33 paultremblay Exp $
+# $Id: texml_con,v 1.3 2006-03-22 22:51:55 paultremblay Exp $
 """
 
 This script uses the TeXML libraries to convert a file to ConTeXt. It then
@@ -70,8 +70,9 @@ texml_con <any texexec options> file
 
         for arg in args:
             if not os.path.isfile(arg):
-                sys.stderr.write('"%s" not a file\n' % arg)
-                continue
+                # sys.stderr.write('"%s" not a file\n' % arg)
+                msg = '"%s" not a file\n' % arg
+                self.__quit(msg = msg)
             filename, ext = os.path.splitext(arg)
             new_tex_file = '%s.tex' % filename 
             error = self.__convert_one_file_to_context(
@@ -112,7 +113,12 @@ texml_con <any texexec options> file
         write_obj.close()
 
     def __texexec(self, options, tex_file):
-        command = 'texexec %s %s' % (options, tex_file)
+        dirname, filename = os.path.split(tex_file)
+        if dirname:
+            if self.__level > 2:
+                sys.stdout.write('moving to directory "%s"\n' % dirname)
+            os.chdir(dirname)
+        command = 'texexec %s %s' % (options, filename)
         if self.__level > 2:
             sys.stdout.write('Executing command "%s"\n' % command)
         error = os.system(command)
