@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# $Id: texml_con,v 1.3 2006-03-22 22:51:55 paultremblay Exp $
+# $Id: texml_con,v 1.4 2006-03-22 23:09:16 paultremblay Exp $
 """
 
 This script uses the TeXML libraries to convert a file to ConTeXt. It then
@@ -91,6 +91,41 @@ texml_con <any texexec options> file
             sys.stdout.write('Converting %s to ConTeXt file %s\n' % (path, tex_path))
         transform_obj = Texml.handler.ParseFile()
         write_obj = file(tex_path, 'wb')
+
+        try:
+          texml_writer =  Texml.texmlwr.texmlwr(
+              stream       = write_obj,
+              encoding     = encoding,
+              autonl_width = width,
+              use_context  = 1,
+              always_ascii = 0,
+              )
+          transform_obj.parse_file(
+              read_obj     = path,
+              texml_writer = texml_writer,
+              use_context  = 1,
+              )
+
+
+        except xml.sax._exceptions.SAXParseException, msg:
+            error = 'Invalid XML\n'
+            error += '%s\n' % (str(msg))
+            return error
+        except Texml.handler.InvalidXmlException, msg:
+            error = 'Invalid XML\n'
+            error += '%s\n' % (str(msg))
+            return error
+        write_obj.close()
+
+
+
+
+
+
+
+
+        
+        """
         try:
             transform_obj.parse_file(
                 encoding = encoding, 
@@ -111,6 +146,7 @@ texml_con <any texexec options> file
             return error
 
         write_obj.close()
+        """
 
     def __texexec(self, options, tex_file):
         dirname, filename = os.path.split(tex_file)
