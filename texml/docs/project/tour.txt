@@ -1,0 +1,45 @@
+=============================
+TeXML tour
+=============================
+
+-----------------------------
+Simple TeXML file
+-----------------------------
+
+Simple TeXML file:
+
+<TeXML>
+<TeXML escape="0">
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+</TeXML>
+<env name="document">
+I'm not afraid of the symbols
+$, ^, > and others.
+</env>
+</TeXML>
+
+After converting to TeX, the result is:
+
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\begin{document}
+I'm not afraid of the symbols
+\$, \^{}, \textgreater{} and others.
+\end{document}
+
+This example demonstrates:
+
+* the XML root element is TeXML,
+* TeX special symbols are escaped automatically,
+* it's possible to disable escaping (but it's not recommended).
+
+By the way, while preparing original LaTeX example, I made two errors:
+
+* "\textgreater" instead of "\textgreater{}",
+* "\^," instead of "\^{},".
+
+TeXML saves me from such dummy errors.
+
