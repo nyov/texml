@@ -113,4 +113,56 @@ Instead of manually preparing content for pdfstrings, it's easier to use TeXML:
 
 It's much better but still isn't ideal. The same string is written three times. This issue is fixed on the next step.
 
+-----------
+TeXML, XSLT
+-----------
+
+In this example we use XSLT to convert XML to LaTeX. Input XML:
+
+<document>
+ <section>
+  <title>Заголовок</title>
+  <para>first paragraph</para>
+  <para>second paragraph</para>
+  ... more paragraphs ...
+ </section>
+ ... more sections ...
+</document>
+
+An XSLT program to convert such XML documents:
+
+<xsl:stylesheet
+<xsl:indent ?
+<!-- convert "document" -->
+<xsl:template match="document">
+<TeXML>
+<TeXML escape="0">
+...
+</TeXML>
+<xsl:apply-templates/>
+</xsl:template>
+<!-- convert "para" -->
+para: apply + \par
+<!-- convert section by converting "title" -->
+<xsl:template match="title">
+<cmd name="section">
+<opt>
+<cmd name="texorpdfstring">
+<parm><xsl:value-of select="."/></parm>
+<parm><pdf><xsl:value-of select="."/></parm>
+</cmd>
+</opt>
+<parm><xsl:value-of select="."/></parm>
+</cmd>
+
+Using this XSLT to the XML document above, we get the following TeXML:
+
+... example ...
+
+TeXML results in the following LaTeX:
+
+... example ...
+
+Now about the issue appeared on the previous step. The same content is used three times inside the command "\section". But on this step it's no more an issue: these strings are generated automatically from the only one source.
+
 
