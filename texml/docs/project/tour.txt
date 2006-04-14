@@ -165,4 +165,29 @@ TeXML results in the following LaTeX:
 
 Now about the issue appeared on the previous step. The same content is used three times inside the command "\section". But on this step it's no more an issue: these strings are generated automatically from the only one source.
 
+---------
+Encodings
+---------
+
+Consider TeXML with Russian letters:
+
+<TeXML>текст</TeXML>
+
+Default translation to LaTeX produces:
+
+...
+
+The result is correct, but those who speak Russian prefer to see the real Russian letters as is instead of the commands.
+
+To achive this, specify desired output encoding to TeXML processor using command line parameter "--encoding" or "-e". When output encoding is, for example, koi8-r, the result is:
+
+текст
+
+------------
+Ascii output
+------------
+
+The following LaTeX document contains "Hello, World!" written in Chinese:
+
+...
 
