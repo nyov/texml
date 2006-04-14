@@ -43,3 +43,74 @@ By the way, while preparing original LaTeX example, I made two errors:
 
 TeXML saves me from such dummy errors.
 
+Disabling escaping is not recommended. In most cases, it's a misuse of TeXML. But to make the examples simple, I do use it for creating the LaTeX header.
+
+------------------------------
+Harder TeXML file
+------------------------------
+
+Here is a harder TeXML file:
+
+<TeXML>
+<cmd name="documentclass">
+<opt>a4paper</opt>
+<parm>article</parm>
+</cmd>
+...
+<env name="document">
+Hello, <group><cmd name="it"/>World</group>!
+</env>
+</TeXML>
+
+After converting to TeX, the result is:
+
+....
+\begin{document}
+Hello, {\it{World}}!
+\end{document}
+
+This example demonstrates the three most often used TeXML elements:
+
+* cmd creates a LaTeX command,
+* env creates a LaTeX environment,
+* group creates a LaTeX group,
+
+and also
+
+* how to create LaTeX header using regular TeXML instead of disabling escaping.
+
+You see that TeXML code is more verbose than LaTeX code. Yes, it's so. But don't worry: you needn't create TeXML manually. Instead, TeXML is intended to be created from XSLT.
+
+Also, you see that XSLT layout isn't ideal. It is fixed in the next example.
+
+-------------
+Better layout
+-------------
+
+TeXML, XML ...
+
+This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from the code written by a human.
+
+---------
+pdfstring
+---------
+
+First start with LaTeX code
+
+...copy/paste...
+
+The code looks find and (successfully ?) compiled by LaTeX. But when using pdflatex, the error is raised:
+
+...copy/paste...
+
+A possible solution is to use "......", but this solution is not generic. It doesn't work, for example, for Greek or Arabian letters. I prefer to use a generic solution which uses unicode strings for pdf names:
+
+...copy/paste...
+
+Instead of manually preparing content for pdfstrings, it's easier to use TeXML:
+
+...copy/paste...
+
+It's much better but still isn't ideal. The same string is written three times. This issue is fixed on the next step.
+
+
