@@ -1,0 +1,36 @@
+NAME
+
+texml - Serialize TeXML to TeX (LaTeX, ConTeXt)
+
+SYNOPSIS
+
+texml [ options ] inputfile outputfile
+
+DESCRIPTION
+
+The TeXML processor converts TeXML file <i>inputfile</i> to TeX file <i>outfile</i>. The special file name "<b>-</b>" means the standard input or standard output, correspondingly.
+
+OPTIONS
+
+-w, --width width
+
+If possible, split long lines on smaller ones of the desired width.
+
+-e, --encoding encoding
+
+Output encoding. Should be known to the Python codecs. Default is ASCII.
+
+-a, --ascii
+
+Use only ASCII symbols for output. Non-ASCII characters are escaped using <b>^^XX</b> form, where XX is a hexadecimal code of the character.
+
+-c, --context
+
+Activate ConTeXt support.
+
+AUTHOR
+
+Oleg Parashchenko <olpa@users.sourceforge.net>, http://uucode.com/blog/
+
+TeXML home page is http://getfo.sourceforge.net/texml/
+
