@@ -1,36 +1,26 @@
-NAME
-
-texml - Serialize TeXML to TeX (LaTeX, ConTeXt)
-
-SYNOPSIS
-
-texml [ options ] inputfile outputfile
-
-DESCRIPTION
-
-The TeXML processor converts TeXML file <i>inputfile</i> to TeX file <i>outfile</i>. The special file name "<b>-</b>" means the standard input or standard output, correspondingly.
-
-OPTIONS
-
--w, --width width
-
+.TH texml 1  "April 16, 2006" "version 2.0"
+.SH NAME
+texml \- Serialize TeXML to TeX (LaTeX, ConTeXt)
+.SH SYNOPSIS
+.B texml
+[ \fIoptions\fR ] \fIinputfile\fR \fIoutputfile\fR
+.SH DESCRIPTION
+Convert TeXML file \fIinputfile\fR to TeX file \fIoutfile\fR. The special file name "\fI\-\fR" means the standard input or standard output, correspondingly.
+.TP
+\fB\-w\fR, \fB\-\-width\fR \fIwidth\fR
 If possible, split long lines on smaller ones of the desired width.
-
--e, --encoding encoding
-
+.TP
+\fB\-e\fR, \fB\-\-encoding\fR \fIencoding\fR
 Output encoding. Should be known to the Python codecs. Default is ASCII.
-
--a, --ascii
-
-Use only ASCII symbols for output. Non-ASCII characters are escaped using <b>^^XX</b> form, where XX is a hexadecimal code of the character.
-
--c, --context
-
+.TP
+\fB\-a\fR, \fB\-\-ascii\fR
+Use only ASCII symbols for output. Non-ASCII characters are escaped using \fB^^XX\fR form, where \fBXX\fR is a hexadecimal code of the character.
+.TP
+\fB\-c\fR, \fB\-\-context\fR
 Activate ConTeXt support.
+.SH AUTHOR
+Oleg Parashchenko <olpa@users.sourceforge.net>
+.SH SEE ALSO
+http://getfo.sourceforge.net/texml/
 
-AUTHOR
-
-Oleg Parashchenko <olpa@users.sourceforge.net>, http://uucode.com/blog/
-
-TeXML home page is http://getfo.sourceforge.net/texml/
-
+http://uucode.com/blog/category/texml/
