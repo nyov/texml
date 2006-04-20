@@ -1,78 +1,72 @@
 <doc id="texml.index">
-	<title>TeXML: an XML vocabulary for TeX</title>
-	<p>TeXML is an XML vocabulary for TeX. A processor translates TeXML source into TeX. Thesis: <a href="thesis.html">a need for TeXML, brief overview, benefits</a>.</p>
-	<table border="1" width="100%">
-		<caption>Example of TeXML to TeX translation</caption>
+	<keywords>texml,xml,pdf,xml publishing</keywords>
+	<description>TeXML is an XML syntax for TeX and also for LaTeX and ConTeXt. TeXML simplifies XML to TeX conversion.</description>
+	<title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
+	<ul>
+		<li>Do you generate TeX code? Then <a href="">download</a> (TODO) and try TeXML.</li>
+		<li>Do you convert XML to TeX? Then you must use TeXML.</li>
+	</ul>
+	<p>TODO: Testimonial: find a cite from the tbook author</p>
+	<p>TODO: Images below in tables. Two axes: x: convert, serialize; y: efforts</p>
+	<table border="0" width="100%">
 		<tr>
-			<th width="50%">TeXML</th>
-			<th>TeX</th>
-		</tr>
-		<tr>
-			<td>
-<lst><![CDATA[<cmd name="documentclass">
-  <opt>12pt</opt>
-  <parm>letter</parm>
-</cmd>]]></lst>
+			<td width="33%">
+				First image<br />
+				XML to TeX using Perl, Java<br />
+				Big peak on "convert", small peak on "serialize"<br />
+				100*k man-hours
 			</td>
-			<td>
-<lst>\documentclass[12pt]{letter}</lst>
+			<td width="33%">
+				Second image<br />
+				XML to TeX using XSLT<br />
+				Very small peak on "convert", big peak on "serialize"<br />
+				100*k man-hours
+			</td>
+			<td width="33%">
+				Third image<br />
+				XML to TeX using XSLT and TeXML<br />
+				Very small peak on "convert", zero on "serialize".<br />
+				k man-hours
 			</td>
 		</tr>
 	</table>
-	<p>One of the main benefits of TeXML usage is automatic translation of the TeX special symbols.</p>
-	<table border="1" width="100%">
-		<caption>Example of translation of special TeX symbols</caption>
-		<tr>
-			<th width="50%">TeXML</th>
-			<th>TeX</th>
-		</tr>
-		<tr>
-			<td><lst>&lt;TeXML&gt;\section{No&amp;#xa0;break}&lt;/TeXML&gt;</lst></td>
-			<td><lst>\textbackslash{}section\{No~break\}</lst></td>
-		</tr>
-	</table>
-	<p>The TeXML processor supports different output encodings and escapes out-of-encoding chars automatically.</p>
-	<table border="1" width="100%">
-		<caption>Example of translation of non-ASCII characters</caption>
-		<tr>
-			<th width="38%" align="left">TeXML</th>
-			<td><lst>&lt;TeXML&gt;&amp;#x422;&amp;#x435;&amp;#x425;&lt;/TeXML&gt;</lst></td>
-		</tr>
-		<tr>
-			<th align="left">TeX in ASCII encoding</th>
-			<td><lst>\cyrchar\CYRT{}\cyrchar\cyre{}\cyrchar\CYRH{}</lst></td>
-		</tr>
-		<tr>
-			<th align="left">TeX in Russian encoding</th>
-			<td><lst>TeX</lst></td>
-		</tr>
-	</table>
-	<p>Rationales and objectives of TeXML were presented by Douglas Lovell at the TeX Users Group meeting in 1999. His paper is available online on the TUG site: &#8220;<a href="http://www.tug.org/TUG99-web/pdf/lovell.pdf">TeXML: Typesetting XML with TeX</a>&#8221; (PDF, 180 Kb).</p>
-	<p>There was TeXMLatt&#xE9;, a Java implementation of <a href="http://www.alphaworks.ibm.com/tech/texml">TeXML by IBM alphaWorks</a>, but it &#8220;has been retired&#8221;. There is also <a href="http://www.bluweb.com/us/chouser/proj/texmlapis/">TeXMLapis</a> by Chris Houser, a Perl implementation of TeXML.</p>
-	<sect>
-		<title>Documentation</title>
-		<ul>
-			<li><a href="quick.html">Quick Start</a></li>
-			<li><a href="thesis.html">Thesis for a conference</a></li>
-			<li><a href="spec.html">TeXML specification</a></li>
-		</ul>
-	</sect>
-	<sect>
-		<title>Getting TeXML</title>
-		<p>The TeXML processor is a Python script. You need <a href="http://python.org/">Python</a> 2.2.3 to run the script. Additional modules are not required.</p>
-		<p>You can download Python TeXML from the SourceForge <a href="http://sourceforge.net/project/showfiles.php?group_id=102261">project download area</a>. The current version is 1.20. A distribution archive with extension <tt>.tar.gz</tt> is a package for Unix and with <tt>.zip</tt> is for Windows. The only difference between them is in the line endings (Unix or DOS style).</p>
-		<p>The software is released under the <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License</a>.</p>
-		<p>Support is available through the TeXML SourceForge <a href="http://sourceforge.net/projects/getfo/">project area</a> (TeXML is a part of the GetFO project).</p>
-	</sect>
-	<sect>
-		<title>Thanks</title>
-		<ul>
-			<li>Douglas Lovell for TeXMLatt&#xE9; and original TeXML specification</li>
-			<li>Heinz Pommer and <a href="http://bitplant.de/">bitplant.de</a> for supporting the project</li>
-			<li>Vitaly Ostanin for discussions on XML publishing</li>
-			<li>Simon Goodson for proofreading the documentation of the version 1.00</li>
-			<li>Stephen Robertson for testing, bug reports and essentian suggestions for improvement</li>
-			<li>Jason Santos for proofreading the documentation of the version 1.20</li>
-		</ul>
-	</sect>
+	<p>Traditional languages are not convinient to work with XML. On the other side, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
+	<ul>
+		<li>TeXML is an XML syntax for TeX. XSLT is an ideal tool to convert XML to XML.</li>
+		<li>A TeXML processor makes the rest, serializing TeXML to TeX.</li>
+	</ul>
+	<p>More TeXML benefits:</p>
+	<ul>
+		<li>LaTeX and ConTeXt support.</li>
+		<li>No need to bother about escaping TeX special characters.</li>
+		<li>No need to bother about empty lines in paragraphs.</li>
+		<li>More than 700 unicode characters are mapped to LaTeX commands.</li>
+		<li>Support for international publishing.</li>
+		<li>Generated TeX code is human-friendly.</li>
+		<li>TODO: Open source under Apache license. Can be used in commercial applications.</li>
+	</ul>
+	<p>More:</p>
+	<ul>
+		<li><a href="">Download</a> TeXML (TODO)</li>
+		<li>Take a TeXML tour:
+			<ul>
+				<li>step 1: <a href="">...</a></li>
+				<li>... TODO ...</li>
+				<li>step N: <a href="">...</a></li>
+			</ul>
+		</li>
+		<li>Look into a <a href="quick.html">quick start</a></li>
+		<li>Check a <a href="thesis.html">thesis</a> for a conference</li>
+		<li>Read documentation:
+			<ul>
+				<li><a href="">Installing TeXML</a></li>
+				<li><a href="">Using TeXML</a></li>
+				<li><a href="">Using TeXML in Python</a></li>
+				<li><a href="spec.html">TeXML specification</a></li>
+			</ul>
+		</li>
+		<li>Visit ??? about XML publishing through ConTeXt and TeXML <a href="">??</a></li>
+	</ul>
+	<p><adsense>TODO: adsense</adsense></p>
+	<p>TODO: SF logo, project link</p>
 </doc>
