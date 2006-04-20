@@ -1,14 +1,9 @@
 #!/usr/bin/env python
-# $Id: texml.py,v 1.15 2006-04-18 05:41:11 paultremblay Exp $
+# $Id: texml.py,v 1.16 2006-04-20 04:20:30 olpa Exp $
 
-VERSION = "1.29.devel"; # GREPVERSION # Format of this string is important
+VERSION = "1.30.devel"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
 python texml.py [-e encoding] [-w auto_width] [-c|--context] [-a|--ascii] in_file out_file""" % VERSION
-
-
-
-# added this Paul Tremblay
-from xml.sax.handler import feature_namespaces
 
 #
 # Check command line, print help
@@ -65,6 +60,7 @@ if len(args) != 2:
 # Prepare transformation-1: input file, XML parser
 #
 import xml.sax 
+from xml.sax.handler import feature_namespaces
 
 if '-' == infile:
   infile = sys.stdin
@@ -88,27 +84,13 @@ def quit(msg):
 #
 # import main class and parse
 #
-import Texml.texmlwr
-import Texml.handler
-transform_obj = Texml.handler.ParseFile()
+import Texml.processor
 try:
-  texml_writer =  Texml.texmlwr.texmlwr(
-      stream       = f,
-      encoding     = encoding,
-      autonl_width = width,
-      use_context  = use_context,
-      always_ascii = always_ascii,
-      )
-  transform_obj.parse_file(
-      read_obj     = infile,
-      texml_writer = texml_writer,
-      use_context  = use_context,
-      )
-
+  Texml.processor.process(infile, f, encoding, width, always_ascii, use_context)
+    
 except Exception, msg:
   msg = 'texml: %s\n' % (str(msg))
   quit(msg)
 
 f.close()
 sys.exit(0)
-
