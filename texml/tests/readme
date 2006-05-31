@@ -46,6 +46,7 @@ The ending "_ns" means that an example uses the TeXML namespace.
 + context    test of the conTeXt mode
 + chinese1   test of the option "--ascii". A complete Chinese example.
 + pdfstring  creating utf16be strings for PDF.
++ tour_*     examples from TeXML tour
 
 Tests that will fail:
 
