@@ -4,9 +4,19 @@
 	<title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
 	<ul>
 		<li>Do you generate TeX code? Then <a href="">download</a> (TODO) and try TeXML.</li>
-		<li>Do you convert XML to TeX? Then you must use TeXML.</li>
+		<li>Do you convert XML to TeX? Then you ought to use TeXML.</li>
 	</ul>
-	<p>TODO: Testimonial: find a cite from the tbook author</p>
+	<h2>TeXML vs XSL-FO</h2>
+	<ul>
+		<li>Both TeXML and XSL-FO are an intermediate step in publishing XML as PDF.</li>
+		<li>&#x2014; With XSL-FO, you create or re-use an XSL-FO stylesheet.
+			<br />&#x2014; By analogue, with TeXML, you create or re-use a TeXML stylesheet.</li>
+		<li>&#x2014; Open-source XSL-FO tools are not yet of production quality,
+			<br />&#x2014; LaTeX is.</li>
+		<li>&#x2014; XSL-FO is for good enough PDFs,
+			<br />&#x2014; TeXML is targeted to the minority who create excellent documents.</li>
+	</ul>
+	<h2>TeXML vs Perl/Java/Python/etc</h2>
 	<p>TODO: Images below in tables. Two axes: x: convert, serialize; y: efforts</p>
 	<table border="0" width="100%">
 		<tr>
@@ -35,7 +45,7 @@
 		<li>TeXML is an XML syntax for TeX. XSLT is an ideal tool to convert XML to XML.</li>
 		<li>A TeXML processor makes the rest, serializing TeXML to TeX.</li>
 	</ul>
-	<p>More TeXML benefits:</p>
+	<h2>TeXML benefits</h2>
 	<ul>
 		<li>LaTeX and ConTeXt support.</li>
 		<li>No need to bother about escaping TeX special characters.</li>
@@ -45,7 +55,7 @@
 		<li>Generated TeX code is human-friendly.</li>
 		<li>TODO: Open source under Apache license. Can be used in commercial applications.</li>
 	</ul>
-	<p>More:</p>
+	<h2>Resources</h2>
 	<ul>
 		<li><a href="">Download</a> TeXML (TODO)</li>
 		<li>Take a TeXML tour:
