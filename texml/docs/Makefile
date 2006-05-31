@@ -1,8 +1,5 @@
 # Generates documentation for distribution package
 
-# We use GetFO stylesheets
-getfo=../../getfo/docs/xslt
-
 all: index.html index.txt spec.html spec.txt quick.html quick.txt thesis.html thesis.txt
 
 distclean:
@@ -11,7 +8,7 @@ distclean:
 clean:
 	rm -f *~
 
-%.html: %.xml $(getfo)/tohtml.xsl $(getfo)/tohtmlhtml.xsl
+%.html: %.xml support/tohtml.xsl support/tohtmlhtml.xsl
 	xsltproc --xinclude $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
 
 texml.tmp: texml.1
