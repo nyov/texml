@@ -11,6 +11,9 @@ clean:
 %.html: %.xml support/tohtml.xsl support/tohtmlhtml.xsl
 	xsltproc --xinclude $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
 
+tour_%.html: tour.xml support/tohtml.xsl support/tohtmlhtml.xsl
+	xsltproc --xinclude --stringparam doc.id texml.tour.$* $(word 2,$+) $< | xsltproc -o $@ $(word 3,$+) -
+
 texml.tmp: texml.1
 	-man2html $< | tidy -asxml -numeric >$@
 

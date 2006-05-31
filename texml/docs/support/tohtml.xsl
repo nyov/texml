@@ -2,10 +2,23 @@
 <!-- creates HTML from a pre-HTML -->
 <x:output method="xml"/>
 
+<x:param name="doc.id"/>
+
 <x:template match="node()|@*">
   <x:copy>
     <x:apply-templates select="node()|@*" />
   </x:copy>
+</x:template>
+
+<x:template match="docs">
+  <x:choose>
+    <x:when test="not(doc[@id=$doc.id])">
+      <x:message terminate="yes">Can't find document with id '<x:value-of select="$doc.id"/>'</x:message>
+    </x:when>
+    <x:otherwise>
+      <x:apply-templates select="doc[@id=$doc.id]"/>
+    </x:otherwise>
+  </x:choose>
 </x:template>
 
 <x:template match="doc">
