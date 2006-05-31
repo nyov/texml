@@ -1,0 +1,29 @@
+<!DOCTYPE docs [
+<!ENTITY path "../tests/data">
+]>
+<docs>
+  <doc id="texml.tour.simple">
+    <title>Simple TeXML file</title>
+    <p>TeXML example:</p>
+    <example>
+      <lst><xi:include href="&path;/tour_simple.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    </example>
+    <p>After converting to TeX, the result is:</p>
+    <example>
+      <lst><xi:include href="&path;/tour_simple.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    </example>
+    <p>This example demonstrates:</p>
+    <ul>
+      <li>the XML root element is <tt>TeXML</tt>,</li>
+      <li>TeX special symbols are escaped automatically,</li>
+      <li>it's possible to disable escaping.</li>
+    </ul>
+    <p>By the way, while preparing the original LaTeX example, I made two errors:</p>
+    <ul>
+      <li><tt>\textgreater</tt> instead of <tt>\textgreater{}</tt> (result&#xa0;&#x2014; no space after &gt;),</li>
+      <li><tt>\^</tt> instead of <tt>\^{}</tt> (TODO result&#xa0;&#x2014; circumflex over comma instead of <tt>^</tt>).</li>
+    </ul>
+    <p>TeXML saves me from such dummy errors.</p>
+    <p>Disabling escaping is not recommended. In most cases, it's a misuse of TeXML. But to make the examples simple, I do use it for creating the LaTeX header.</p>
+  </doc>
+</docs>
