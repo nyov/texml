@@ -1,37 +1,37 @@
-<doc id="texml.spec" xmlns:my="my:my:my">
+<doc id="texml.spec">
 	<title>TeXML specification</title>
 	<p><a href="http://getfo.org/texml/">TeXML</a> is an XML syntax for TeX. A processor translates TeXML source into TeX.</p>
 	<p>The Document Type Definition (DTD) for TeXML can be found in a TeXML distribution package.</p>
 
 	<sect>
 		<title toc="0">Table of Contents</title>
-		<my:toc />
+		<toc />
 	</sect>
 
 	
 	<sect>
 		<title>Root element: <e>TeXML</e></title>
-		<my:example><lst><![CDATA[<?xml version="1.0" encoding="..."?>
+		<example><lst><![CDATA[<?xml version="1.0" encoding="..."?>
 <TeXML>
   ... your content here ...
 </TeXML>
-]]></lst></my:example>
+]]></lst></example>
 		<p>The root element of a TeXML document is the element <e>TeXML</e>.</p>
 	</sect>
 	
 	<sect>
 		<title>Encoding commands: <e>cmd</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 <lst><![CDATA[<cmd name="documentclass">
   <opt>12pt</opt>
   <parm>letter</parm>
 </cmd>]]></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>\documentclass[12pt]{letter}</lst>
-		</my:example>
+		</example>
 		<a name="cmd"/><p>The TeXML <e>cmd</e> element encodes TeX commands.</p>
 		<ul>
 			<li>To add options to a command, add <e>opt</e> children to the <e>cmd</e> element. The processor places <e>opt</e> children within square braces, as LaTeX style options.</li>
@@ -43,73 +43,73 @@
 
 	<sect>
 		<title>Encoding environments: <e>env</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 <lst>&lt;env name="document"&gt;
 ...
 &lt;/env&gt;</lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 <lst>\begin{document}
 ...
 \end{document}</lst>
-		</my:example>
+		</example>
 		<p>The element <e>env</e> is a convenience for expressing LaTeX environments.</p>
 	</sect>
 
 
 	<sect>
 		<title>Encoding groups: <e>group</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 			<lst><![CDATA[<group><cmd name="it"/>italics</group>]]></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>{\it italics}</lst>
-		</my:example>
+		</example>
 		<p>The <e>group</e> element is a convenience for encoding groups. The processor will supply an opening brace at the beginning, and a closing brace at the end of the group.</p>
 	</sect>
 
 	<sect>
 		<title>Encoding math groups: <e>math</e> and <e>dmath</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 <lst><![CDATA[<math>a+b</math>
 <dmath><cmd name="sqrt"><parm>2</parm></cmd></dmath>]]></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 <lst>$a+b$
 $$\sqrt{2}$$</lst>
-		</my:example>
+		</example>
 		<p>Elements <e>math</e> and <e>dmath</e> are conveniences for encoding math groups. The processor inserts the appropriate math shift symbol at the beginning and end of the group and also switches mode to <tt>math</tt> inside the group.</p>
 	</sect>
 
 	<sect>
 		<title>Encoding control symbols: <e>ctrl</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 			<lst>line1&lt;ctrl ch="\"/>line2</lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>line1\\line2</lst>
-		</my:example>
+		</example>
 		<p>The <e>ch</e> attibute of the <e>ctrl</e> element encodes a control symbol.</p>
 	</sect>
 
 	<sect>
 		<title>Encoding special symbols: <e>spec</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 			<lst><![CDATA[<spec cat="vert"/>l<spec cat="vert"/>]]></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>|l|</lst>
-		</my:example>
+		</example>
 		<p>The attribute <e>cat</e> of the element <e>spec</e> creates the corresponding symbol verbatim, without escaping.</p>
 		<table border="1">
 			<caption><e>cat</e> attribute values</caption>
@@ -188,20 +188,20 @@ $$\sqrt{2}$$</lst>
 
 	<sect>
 		<title>PDF literals: <e>pdf</e></title>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 			<lst>&lt;pdf>&#964;&#949;&#967;&lt;/pdf></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>\003\304\003\265\003\307</lst>
-		</my:example>
+		</example>
 		<p>Content of the element <e>pdf</e> is converted to UTF16BE encoding and represented using escaped octal codes. The result is a PDF unicode string.</p>
 	</sect>
 
 	<sect>
 		<title>Advanced topics</title>
-		<sect><my:toc/></sect>
+		<sect><toc/></sect>
 		
 	<sect>
 		<title>Characters</title>
@@ -213,9 +213,9 @@ $$\sqrt{2}$$</lst>
 			<li>Otherwise the character is output as <tt>\unicodechar{NNNNN}</tt> where <tt>NNNNN</tt> is the decimal code for the character.</li>
 		</ul>
 		<p>To leave specials as is, without escaping, use the <e>TeXML</e> attribute <e>escape</e>:</p>
-		<my:example>
+		<example>
 			<lst><![CDATA[<TeXML escape="0">...</TeXML>]]></lst>
-		</my:example>
+		</example>
 		<table border="1">
 			<caption>Mapping of the special symbols</caption>
 			<tr>
@@ -292,53 +292,53 @@ $$\sqrt{2}$$</lst>
 		<p>The LaTeX mapping table for unicode characters is automatically generated from the file <a href="http://www.w3.org/Math/characters/unicode.xml">unicode.xml</a>. This file is an appendix for the W3C MathML specification.</p>
 		<p>If a replacement of an unicode character <i>a)</i> is valid only in math mode and <i>b)</i> the current mode is text, then the replacement is wrapped by the command &#x201c;<tt>\ensuremath</tt>&#x201d;. Likewise if a replacement <i>a)</i> is valid only in text mode and <i>b)</i> the current mode is math, then wrapper &#x201c;<tt>\ensuretext</tt>&#x201d; is used.</p>
 		<p>LaTeX does not have the command &#x201c;<tt>\ensuretext</tt>&#x201d; so you should define it yourself. One of the approaches is:</p>
-		<my:example>
+		<example>
 			<lst>\def\ensuretext{\textrm}</lst>
-		</my:example>
+		</example>
 	</sect>
 
 	<sect>
 		<title>Empty lines</title>
 		<p>Empty lines have a special meaning for TeX. They cause automatic generation of the TeX command <tt>\par</tt>. To avoid this, the processor outputs a line with the one symbol <tt>%</tt> (TeX comment) instead of a empty line.</p>
 		<p>To leave empty lines as is, use the <e>TeXML</e> attribute <e>emptylines</e>:</p>
-		<my:example>
+		<example>
 			<lst><![CDATA[<TeXML emptylines="1">...</TeXML>]]></lst>
-		</my:example>
+		</example>
 	</sect>
 
 	<sect>
 		<title>Ligatures</title>
 		<p>The TeXML processor disconnects well-known ligatures &#x201c;<tt>--</tt>&#x201d;, &#x201c;<tt>---</tt>&#x201d;, &#x201c;<tt>``</tt>&#x201d;, &#x201c;<tt>''</tt>&#x201d;, &#x201c;<tt>!`</tt>&#x201d; and &#x201c;<tt>?`</tt>&#x201d;. These ligatures are converted into &#x201c;<tt>-{}-</tt>&#x201d;, &#x201c;<tt>-{}-{}-</tt>&#x201d;, &#x201c;<tt>`{}`</tt>&#x201d;, &#x201c;<tt>'{}'</tt>&#x201d;, &#x201c;<tt>!{}`</tt>&#x201d;, and &#x201c;<tt>?{}`</tt>&#x201d; respectively.</p>
 		<p>To leave ligatures as is, use the <e>TeXML</e> attribute <e>ligatures</e>:</p>
-		<my:example>
+		<example>
 			<lst><![CDATA[<TeXML ligatures="1">...</TeXML>]]></lst>
-		</my:example>
+		</example>
 	</sect>
 
 	<sect>
 		<title>Modes</title>
 		<p>There are two modes: <tt>text</tt> and <tt>math</tt>. Modes only affect the translation of characters.</p>
 		<p>The default mode is <tt>text</tt>. In order to change mode, use the <e>mode</e> attribute of the element <e>TeXML</e>. The possible values for this attribute are <tt>math</tt> and <tt>text</tt>. If the element <e>TeXML</e> is used without attribute <e>mode</e>, then the mode is not changed.</p>
-		<my:example>
+		<example>
 <lst><![CDATA[<TeXML mode="math">
   ... math mode here ...
   <TeXML mode="text">... text mode here ...</TeXML>
 </TeXML>]]></lst>
-		</my:example>
+		</example>
 		<p>Elements <e>math</e> and <e>dmath</e> also change mode to <tt>math</tt>.</p>
 	</sect>
 
 	<sect>
 		<title>Empty group after a command</title>
 		<p>If a command has no parameters and options then the TeXML processor adds an empty group &#x201c;<tt>{}</tt>&#x201d; after the command name: &#x201c;<tt>\smth{}</tt>&#x201d;. Without the empty group, the following whitespace is ignored by TeX, but sometimes it is exactly what you need. In this case set attribute &#x201c;<tt>gr</tt>&#x201d; (shortcut for &#x201c;group&#x201d;) to &#x201c;<tt>0</tt>&#x201d;.</p>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 			<lst><![CDATA[<cmd name="it"/> once, <cmd name="it" gr="0"/> twice]]></lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 			<lst>\it{} once, \it twice</lst>
-		</my:example>
+		</example>
 	</sect>
 
 
@@ -350,11 +350,11 @@ $$\sqrt{2}$$</lst>
 			<li>introduces its own whitespace which would look reasonable from a human point of view.</li>
 		</ul>
 		<p>If you find that something goes wrong you can switch off whitespace elimination using the <e>ws</e> attribute of the <e>TeXML</e> tag.</p>
-		<my:example>
+		<example>
 			<lst><![CDATA[<TeXML ws="1">
   ... whitespace is verbatim here ...
 </TeXML>]]></lst>
-		</my:example>
+		</example>
 		<p>If the TeXML elements <tt>ctrl</tt> or <tt>spec</tt> have any content (including whitespace) then the TeXML processor reports an error.</p>
 		<p>The program deletes any whitespace that is located directly in the TeXML element <tt>cmd</tt>.</p>
 		<p>Insignificant whitespace is whitespace around any opening or closing tag, for example, whitespace around &#x201c;<tt>... &lt;TeXML&gt; ...</tt>&#x201d; and &#x201c;<tt>... &lt;/TeXML&gt; ...</tt>&#x201d;. The XML reader converts insignificant whitespace into the <i>weak&#xa0;space</i>.</p>
@@ -407,28 +407,28 @@ $$\sqrt{2}$$</lst>
 	<sect>
 		<title>TeXML namespace</title>
 		<p>TeXML namespace is <tt>http://getfo.sourceforge.net/texml/ns1</tt>.</p>
-		<my:example>
+		<example>
 			<lst><![CDATA[<TeXML xmlns="http://getfo.sourceforge.net/texml/ns1">
   ...
 </TeXML>]]></lst>
-		</my:example>
+		</example>
 	</sect>
 
 	<sect>
 		<title>ConTeXt support</title>
 		<p>In the ConTeXt mode, the element <e>env</e> creates ConTeXt environments.</p>
-		<my:example>
+		<example>
 			<title>TeXML:</title>
 <lst>&lt;env name="document"&gt;
 ...
 &lt;/env&gt;</lst>
-		</my:example>
-		<my:example>
+		</example>
+		<example>
 			<title>TeX:</title>
 <lst>\begindocument
 ...
 \enddocument</lst>
-		</my:example>
+		</example>
 		<p>To activate ConTeXt mode, give the command line option <tt>-c</tt> or <tt>--context</tt> to the TeXML processor.</p>
 	</sect>
 </sect>
