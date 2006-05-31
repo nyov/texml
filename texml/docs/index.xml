@@ -42,7 +42,7 @@
 	</table>
 	<p>Traditional languages are not convinient to work with XML. On the other side, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
 	<ul>
-		<li>TeXML is an XML syntax for TeX. XSLT is an ideal tool to convert XML to XML.</li>
+		<li>XSLT is an ideal tool to convert XML to XML, and TeXML is an XML syntax for TeX.</li>
 		<li>A TeXML processor makes the rest, serializing TeXML to TeX.</li>
 	</ul>
 	<h2>TeXML benefits</h2>
@@ -53,7 +53,7 @@
 		<li>More than 700 unicode characters are mapped to LaTeX commands.</li>
 		<li>Support for international publishing.</li>
 		<li>Generated TeX code is human-friendly.</li>
-		<li>TODO: Open source under Apache license. Can be used in commercial applications.</li>
+		<li>Open source under the MIT/X Consortium license. Can be used in commercial applications.</li>
 	</ul>
 	<h2>Resources</h2>
 	<ul>
