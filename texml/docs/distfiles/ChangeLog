@@ -1,3 +1,8 @@
+2006-06-01  Oleg Paraschenko  olpa@users.sourceforge.net
+
+* Texml/specmap.py: "|" is now "\textbar".
+
+
 2005-10-03  Oleg Paraschenko  olpa@users.sourceforge.net
 
 * scripts/texml/texml.py: First line now is "#!python".
