@@ -1,5 +1,5 @@
 """ Map special TeX symbols """
-# $Id: specmap.py,v 1.2 2006-01-03 07:22:25 paultremblay Exp $
+# $Id: specmap.py,v 1.3 2006-06-01 04:42:18 olpa Exp $
 import os
 
 # text escape map and math escape map should contain the same keys
@@ -15,7 +15,7 @@ textescmap = {
   '_':  r'\_',
   '~':  r'\textasciitilde{}',
   '%':  r'\%',
-  '|':  r'\textvert{}',
+  '|':  r'\textbar{}',
   '<':  r'\textless{}',
   '>':  r'\textgreater{}',
   # not special but typography
