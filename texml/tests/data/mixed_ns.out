@@ -1,6 +1,6 @@
-In \textvert{}text\textvert{} mode. Still in \textvert{}text\textvert{} mode
-In |math| mode: |\hat{}. In \textvert{}text\textvert{} mode inside math mode
-Still in |math| mode In \textvert{}text\textvert{} mode: \textvert{}\^.
+In \textbar{}text\textbar{} mode. Still in \textbar{}text\textbar{} mode
+In |math| mode: |\hat{}. In \textbar{}text\textbar{} mode inside math mode
+Still in |math| mode In \textbar{}text\textbar{} mode: \textbar{}\^.
 The symbol can be only in math: \ensuremath{\longleftarrow{}} $a<b$
 $$c>d$$
 $$ unicode mapping in math mode:
