@@ -17,3 +17,4 @@ category f:
 also:       \textbar{}
 also:       \textless{}
 also:       \textgreater{}
+also:       [\mbox{-}] // non-breaking hyphen

@@ -18,4 +18,5 @@ category f:
 also:       |
 also:       &lt;
 also:       &gt;
+also:       [&#x2011;] // non-breaking hyphen
 </TeXML>
