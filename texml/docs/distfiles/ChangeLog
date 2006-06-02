@@ -1,3 +1,9 @@
+2006-06-02  Oleg Paraschenko  olpa@users.sourceforge.net
+
+* Texml/specmap.py: mapping for the non-breaking hyphen,
+as suggested by aul Tremblay.
+
+
 2006-06-01  Oleg Paraschenko  olpa@users.sourceforge.net
 
 * Texml/specmap.py: "|" is now "\textbar".
