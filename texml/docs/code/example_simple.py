@@ -4,14 +4,9 @@
 import sys
 import Texml.processor
 
-# Set up the input file and the output file object
-infile = 'document.xml'
-out = file('out.tex', 'w')
-# Older versions of python need the following code:
-# out = open('out.tex', 'w')
+# Use the standard input and output
+in_stream  = sys.stdin
+out_stream = sys.stdout
 
 # Convert
-Texml.processor.process(infile, out)
-
-# Clean up resources
-out.close()
+Texml.processor.process(in_stream, out_stream)
