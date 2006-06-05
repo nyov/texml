@@ -7,6 +7,7 @@
     <li>Set up the input and output streams</li>
     <li>Call on the function <tt>process</tt></li>
     <li>Use a try-except block around the call to <tt>process</tt></li>
+    <li>Clean up resources</li>
   </ul>
   <sect>
     <title>Parameters to the function <tt>process</tt></title>
@@ -24,5 +25,14 @@
       <dt><tt>use_context</tt></dt>
       <dd>ConTeXt is an alternative to LaTeX. In ConTeXt mode, TeXML translation is slightly different. Set to <tt>1</tt> (<tt>True</tt>) to activate this mode. Optional, default is <tt>0</tt> (<tt>False</tt>, LaTeX mode).</dd>
     </dl>
+    <p>If the input file doesn't conform to the TeXML specification, then the exception <tt>TeXML.handler.InvalidXmlException</tt> is raised. If the input parameters are invalid, then the exception <tt>ValueError</tt> is raised. Expect that the underlying libraries might also raise exceptions, such as <tt>xml.sax.SAXException</tt>.</p>
+  </sect>
+  <sect>
+    <title>Simplest example</title>
+    <lst><xi:include href="code/example_simple.py" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+  </sect>
+  <sect>
+    <title>Full example</title>
+    <lst><xi:include href="code/example_full.py" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </sect>
 </doc>
