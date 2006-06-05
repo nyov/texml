@@ -92,4 +92,10 @@
   </x:if>
 </x:template>
 
+<x:template match="tour-links">
+  <x:for-each select="document('tour.xml',/)/docs/doc">
+    <li>Step <x:value-of select="position()"/>: <a href="{translate(substring-after(@id,'.'),'.','_')}.html"><x:value-of select="title"/></a></li>
+  </x:for-each>
+</x:template>
+
 </x:stylesheet>
