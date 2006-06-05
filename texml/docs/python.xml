@@ -1,0 +1,28 @@
+<doc id="texml.python">
+  <title>Using TeXML in Python</title>
+  <p>The module <tt>Texml.process</tt> converts a TeXML file to a TeX file.</p>
+  <p>Basic use requires the following:</p>
+  <ul>
+    <li>Import the needed libraries</li>
+    <li>Set up the input and output streams</li>
+    <li>Call on the function <tt>process</tt></li>
+    <li>Use a try-except block around the call to <tt>process</tt></li>
+  </ul>
+  <sect>
+    <title>Parameters to the function <tt>process</tt></title>
+    <dl>
+      <dt><tt>in_stream</tt></dt>
+      <dd>An input TeXML document as a filename or a file object. Mandatory.</dd>
+      <dt><tt>out_stream</tt></dt>
+      <dd>An output TeX document as a file object.</dd>
+      <dt><tt>autonl_width</tt></dt>
+      <dd>Recommended width to split long lines on smaller ones. Optional, default is <tt>62</tt>.</dd>
+      <dt><tt>encoding</tt></dt>
+      <dd>Output encoding. Should be known to the Python codecs. Optional, default is <tt>ascii</tt>.</dd>
+      <dt><tt>always_ascii</tt></dt>
+      <dd>Use only ASCII symbols for output. Non-ASCII bytes are escaped using the <tt>^^XX</tt> form, where <tt>XX</tt> is a hexadecimal code of the character. Optional, default is <tt>0</tt> (<tt>False</tt>, do not encode as ASCII).</dd>
+      <dt><tt>use_context</tt></dt>
+      <dd>ConTeXt is an alternative to LaTeX. In ConTeXt mode, TeXML translation is slightly different. Set to <tt>1</tt> (<tt>True</tt>) to activate this mode. Optional, default is <tt>0</tt> (<tt>False</tt>, LaTeX mode).</dd>
+    </dl>
+  </sect>
+</doc>
