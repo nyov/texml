@@ -7,7 +7,7 @@ import Texml.processor
 # Input can be given by a filename, output should be a file object
 infile = 'document.xml'
 out    = file('out.tex', 'w')
-# older versions of python need the following code:
+# Older versions of python need the following code:
 # out = open('out.tex', 'w')
 
 # More parameters
