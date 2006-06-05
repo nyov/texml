@@ -1,0 +1,8 @@
+\documentclass{article}
+\usepackage[T2A]{fontenc}
+\usepackage[koi8-r]{inputenc}
+\usepackage{hyperref}
+\begin{document}
+\section{Заголовок (Title)}
+Текст (Text)
+\end{document}
