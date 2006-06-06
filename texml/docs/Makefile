@@ -1,6 +1,10 @@
 # Generates documentation for distribution package
 
-all: index.html index.txt spec.html spec.txt quick.html quick.txt thesis.html thesis.txt
+all: $(html) $(text)
+
+html: index.html spec.html thesis.html python.html texml.html tour_simple.html tour_harder.html tour_better.html tour_pdf.html
+
+text: index.txt  spec.txt thesis.txt
 
 distclean:
 	rm -f *~ *.txt *.html
