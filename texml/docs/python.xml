@@ -2,20 +2,20 @@
   <title>Using TeXML in Python</title>
   <p>The module <tt>Texml.process</tt> converts a TeXML file to a TeX file.</p>
   <p>Basic use requires the following:</p>
-  <ul>
+  <ol>
     <li>Import the needed libraries</li>
     <li>Set up the input and output streams</li>
     <li>Call on the function <tt>process</tt></li>
     <li>Use a try-except block around the call to <tt>process</tt></li>
     <li>Clean up resources</li>
-  </ul>
+  </ol>
   <sect>
-    <title>Parameters to the function <tt>process</tt></title>
+    <title>Parameters for the function <tt>process</tt></title>
     <dl>
       <dt><tt>in_stream</tt></dt>
-      <dd>An input TeXML document as a filename or a file object. Mandatory.</dd>
+      <dd>An input TeXML document as a file object or the path to a file. Mandatory.</dd>
       <dt><tt>out_stream</tt></dt>
-      <dd>An output TeX document as a file object.</dd>
+      <dd>An output TeX document as a file object. Mandatory.</dd>
       <dt><tt>autonl_width</tt></dt>
       <dd>Recommended width to split long lines on smaller ones. Optional, default is <tt>62</tt>.</dd>
       <dt><tt>encoding</tt></dt>

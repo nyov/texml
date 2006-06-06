@@ -4,17 +4,17 @@
 import sys
 import Texml.processor
 
-# Input can be given by a filename, output should be a file object
+# Input can be given by a path, output should be a file object
 infile = 'document.xml'
 out    = file('out.tex', 'w')
 # Older versions of python need the following code:
 # out = open('out.tex', 'w')
 
-# More parameters
-width        = 62
+# Parameters
+width        = 75
 encoding     = 'UTF-8'
-always_ascii = 0
-use_context  = 0
+always_ascii = 1
+use_context  = 1
 
 # Convert TeXML inside a try-except block
 try:
