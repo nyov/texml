@@ -116,4 +116,16 @@
     <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option) is written only once. More, It is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
   </doc>
 
+  <!-- ============== Encodings ============= -->
+  <doc id="texml.tour.encoding">
+    <title>Encodings</title>
+    <p>Consider TeXML with Russian letters:</p>
+    <lst>&lt;TeXML>&#1090;&#1077;&#1082;&#1089;&#1090;&lt;/TeXML></lst>
+    <p>Default translation to LaTeX produces:</p>
+    <lst>\cyrchar\cyrt{}\cyrchar\cyre{}\cyrchar\cyrk{}....</lst>
+    <p>The result is correct, but those who speak Russian prefer to see the real Russian letters as is instead of the commands.</p>
+    <p>To achive this, specify the desired output encoding to TeXML processor using the command line parameter <tt>--encoding</tt> or <tt>-e</tt>. When the output encoding is, for example, koi8-r, the result is:</p>
+    <lst>&#1090;&#1077;&#1082;&#1089;&#1090;</lst>
+  </doc>
+  
 </docs>
