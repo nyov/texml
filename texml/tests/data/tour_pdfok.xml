@@ -9,7 +9,7 @@
   <cmd name="section">
     <opt>
       <cmd name="texorpdfstring">
-        <parm></parm>
+        <parm>Заголовок (Title)</parm>
         <parm><pdf>Заголовок (Title)</pdf></parm>
       </cmd>
     </opt>
