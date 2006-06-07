@@ -1,0 +1,9 @@
+<document>
+  <section>
+    <title>Заголовок (Title)</title>
+    <para>first paragraph</para>
+    <para>second paragraph</para>
+    ... more paragraphs ...
+  </section>
+  ... more sections ...
+</document>
