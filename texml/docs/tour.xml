@@ -104,4 +104,16 @@
     </example>
   </doc>
 
+  <!-- ============ XML+XSLT ========== -->
+  <doc id="texml.tour.xslt">
+    <title>TeXML and XSLT</title>
+    <p>TeXML code is too verbose and sometimes redundant to be authored manually. For example, on the previous step, the TeXML code contains the same string 3 times.</p>
+    <p>Actually, it's not a problem. TeXML is not intended to be created manually. Instead, TeXML is to be generated, preferrably by XSLT from XML.</p>
+    <p>Let's generate the TeXML code similar to that on the previous step. The source XML:</p>
+    <lst><xi:include href="code/tour_xslt.xml" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>An XSLT program to convert such XML documents:</p>
+    <lst><xi:include href="code/tour_xslt.xsl" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option) is written only once. More, It is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
+  </doc>
+
 </docs>
