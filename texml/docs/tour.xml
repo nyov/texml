@@ -127,5 +127,21 @@
     <p>To achive this, specify the desired output encoding to TeXML processor using the command line parameter <tt>--encoding</tt> or <tt>-e</tt>. When the output encoding is, for example, koi8-r, the result is:</p>
     <lst>&#1090;&#1077;&#1082;&#1089;&#1090;</lst>
   </doc>
+
+  <!-- ============= Ascii output =========== -->
+  <doc id="texml.tour.ascii">
+    <title>ASCII output</title>
+    <p>The following LaTeX document contains &#x201c;Hello, World!&#x201d; written in Chinese:</p>
+    <lst><xi:include href="code/tour_ascii.tex" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>LaTeX successfully compiles this document. But imagine:</p>
+    <ul>
+      <li>you've got a problem with a CJK or other non-latin document,</li>
+      <li>latin documents have no this problem, so</li>
+      <li>you want to ask for help.</li>
+    </ul>
+    <p>To get help, you should provide a minimal example to reproduce a problem. Unfortunately, in most cases, your non-ASCII example will be corrupted.</p>
+    <p>Luckily, TeX provides ASCII sequences to encode non-ASCII bytes. With the command line flag <tt>--ascii</tt> (or&#xa0;<tt>-a</tt>), the TeXML processor uses such sequences. For example, the same LaTeX document is written the following way:</p>
+    <lst><xi:include href="&path;/chinese1.out" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+  </doc>
   
 </docs>
