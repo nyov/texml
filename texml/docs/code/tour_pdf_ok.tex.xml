@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="koi8-r"?>
+<span><span class="synStatement">\documentclass</span><span class="synSpecial">{</span><span class="synPreProc">article</span><span class="synSpecial">}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">T2A</span><span class="synSpecial">]{fontenc}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">koi8-r</span><span class="synSpecial">]{inputenc}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant"><em>unicode</em></span><span class="synSpecial">]{hyperref}</span>
+<span class="synPreProc">\begin{document}</span>
+<span class="synPreProc">\section</span><span class="synSpecial">[</span> <span class="synStatement">\<em>texorpdfstring</em></span><span class="synSpecial">{</span>Заголовок (Title)<span class="synSpecial">}{</span><em>\004\027\004\060\004\063
+\004\076\004\073\004\076\004\062\004\076\004\072\000\040\000\050\000
+\124\000\151\000\164\000\154\000\145\000\051</em><span class="synSpecial">}</span>
+<span class="synSpecial">]{</span>Заголовок (Title)<span class="synSpecial">}</span> Текст (Text)
+<span class="synPreProc">\end{document}</span>
+</span>

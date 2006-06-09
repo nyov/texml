@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="koi8-r"?>
+<span><span class="synStatement">\documentclass</span><span class="synSpecial">{</span><span class="synPreProc">article</span><span class="synSpecial">}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">T2A</span><span class="synSpecial">]{fontenc}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">koi8-r</span><span class="synSpecial">]{inputenc}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">{hyperref}</span>
+<span class="synPreProc">\begin{document}</span>
+<span class="synPreProc">\section</span><span class="synSpecial">{</span><em>Заголовок (Title)</em><span class="synSpecial">}</span>
+Текст (Text)
+<span class="synPreProc">\end{document}</span>
+</span>
