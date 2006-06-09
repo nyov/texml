@@ -1,0 +1,8 @@
+<span><span class="synStatement">\documentclass</span><span class="synSpecial">[</span><span class="synConstant">a4paper</span><span class="synSpecial">]{</span><span class="synPreProc">article</span><span class="synSpecial">}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">latin1</span><span class="synSpecial">]{inputenc}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">T1</span><span class="synSpecial">]{fontenc}</span>
+<span class="synPreProc">\begin{document}</span>
+I'm not afraid of the symbols
+<em><span class="synStatement">\textdollar</span><span class="synSpecial">{}</span></em>, <em>\^<span class="synSpecial">{}</span></em>, <em><span class="synStatement">\textgreater</span><span class="synSpecial">{}</span></em> and others.
+<span class="synPreProc">\end{document}</span>
+</span>

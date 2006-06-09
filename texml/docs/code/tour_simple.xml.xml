@@ -1,0 +1,12 @@
+<span><span class="synIdentifier">&lt;<em>TeXML</em>&gt;</span>
+<span class="synIdentifier">&lt;TeXML </span><em><span class="synType">escape</span>=<span class="synConstant">&quot;0&quot;</span></em><span class="synIdentifier">&gt;</span>
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+<span class="synIdentifier">&lt;/TeXML&gt;</span>
+<span class="synIdentifier">&lt;env </span><span class="synType">name</span>=<span class="synConstant">&quot;document&quot;</span><span class="synIdentifier">&gt;</span>
+I'm not afraid of the symbols
+<em>$</em>, <em>^</em>, <em>&gt;</em> and others.
+<span class="synIdentifier">&lt;/env&gt;</span>
+<span class="synIdentifier">&lt;/TeXML&gt;</span>
+</span>
