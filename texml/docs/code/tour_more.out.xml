@@ -1,0 +1,5 @@
+<span><span class="synStatement">\<em>documentclass</em></span><span class="synSpecial">[</span><span class="synConstant">a4paper</span><span class="synSpecial">]{</span><span class="synPreProc">article</span><span class="synSpecial">}</span> ....
+<span class="synPreProc">\begin{<em>document</em>}</span>
+Hello, <em><span class="synSpecial">{</span></em><span class="synType">\<em>it</em></span><span class="synSpecial">{}</span>World<span class="synSpecial">}</span>!
+<span class="synPreProc">\end{document}</span>
+</span>

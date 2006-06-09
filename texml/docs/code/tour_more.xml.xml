@@ -1,0 +1,11 @@
+<span><span class="synIdentifier">&lt;TeXML&gt;</span>
+  <span class="synIdentifier">&lt;<em>cmd</em> </span><span class="synType">name</span>=<span class="synConstant">&quot;documentclass&quot;</span><span class="synIdentifier">&gt;</span>
+    <span class="synIdentifier">&lt;opt&gt;</span>a4paper<span class="synIdentifier">&lt;/opt&gt;</span>
+    <span class="synIdentifier">&lt;parm&gt;</span>article<span class="synIdentifier">&lt;/parm&gt;</span>
+  <span class="synIdentifier">&lt;/cmd&gt;</span>
+  ....
+  <span class="synIdentifier">&lt;<em>env</em> </span><span class="synType">name</span>=<span class="synConstant">&quot;document&quot;</span><span class="synIdentifier">&gt;</span>
+  Hello, <span class="synIdentifier">&lt;<em>group</em>&gt;&lt;<em>cmd</em> </span><span class="synType">name</span>=<span class="synConstant">&quot;it&quot;</span><span class="synIdentifier">/&gt;</span>World<span class="synIdentifier">&lt;/group&gt;</span>!
+  <span class="synIdentifier">&lt;/env&gt;</span>
+<span class="synIdentifier">&lt;/TeXML&gt;</span>
+</span>
