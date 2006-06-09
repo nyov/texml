@@ -7,79 +7,74 @@
   
   <doc id="texml.tour.simple">
     <title>Simple TeXML file</title>
-    <p>TeXML example:</p>
-      <lst><xi:include href="&path;/tour_simple.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    <p>After converting to TeX, the result is:</p>
-      <lst><xi:include href="&path;/tour_simple.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>An example of a simple TeXML document:</p>
+    <lst><xi:include href="code/tour_simple.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>The result of conversion to TeX is the LaTeX document:</p>
+    <lst><xi:include href="code/tour_simple.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>This example demonstrates:</p>
     <ul>
-      <li>the XML root element is <tt>TeXML</tt>,</li>
+      <li>the root element is <tt>TeXML</tt>,</li>
       <li>TeX special symbols are escaped automatically,</li>
       <li>it's possible to disable escaping.</li>
     </ul>
     <p>By the way, while preparing the original LaTeX example, I made two errors:</p>
     <ul>
-      <li><tt>\textgreater</tt> instead of <tt>\textgreater{}</tt> (result&#xa0;&#x2014; no space after &gt;),</li>
-      <li><tt>\^</tt> instead of <tt>\^{}</tt> (result&#xa0;&#x2014; circumflex over comma instead of <tt>^</tt>).</li>
+      <li><tt>\textgreater</tt> instead of <tt>\textgreater{}</tt> (result&#xa0;&#x2014; no space after the symbol <tt>&gt;</tt>),</li>
+      <li><tt>\^</tt> instead of <tt>\^{}</tt> (result&#xa0;&#x2014; circumflex over comma instead of the symbol <tt>^</tt>).</li>
     </ul>
     <p>TeXML saves me from such dummy errors.</p>
-    <p>Disabling escaping is not recommended. In most cases, it's a misuse of TeXML. But to make the examples simple, I do use it for creating the LaTeX header.</p>
+    <p>Disabling escaping is not recommended. In most cases it's a misuse of TeXML. But to make examples simple, I do use it for creating the LaTeX header.</p>
   </doc>
 
-  <!-- ======== Harder TeXML file =========== -->
+  <!-- ======== More TeXML =========== -->
   
-  <doc id="texml.tour.harder">
-    <title>Harder TeXML file</title>
-    <p>Here is a harder TeXML file:</p>
-      <lst><xi:include href="&path;/tour_harder.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+  <doc id="texml.tour.more">
+    <title>More TeXML</title>
+    <p>This TeXML document uses more TeXML elements:</p>
+      <lst><xi:include href="code/tour_more.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>After converting to TeX, the result is:</p>
-      <lst><xi:include href="&path;/tour_harder.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/tour_more.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>This example demonstrates the three most often used TeXML elements:</p>
     <ul>
       <li><tt>cmd</tt> creates a LaTeX command,</li>
       <li><tt>env</tt> env creates a LaTeX environment,</li>
       <li><tt>group</tt> group creates a LaTeX group,</li>
     </ul>
-    <p>and also</p>
-    <ul>
-      <li>how to create LaTeX header using regular TeXML instead of disabling escaping.</li>
-    </ul>
-    <p>You see that TeXML code is more verbose than LaTeX code. Yes, it's so. But don't worry: you needn't create TeXML manually. Instead, TeXML is intended to be created from XSLT.</p>
-    <p>Also, you see that LaTeX layout isn't ideal. It is fixed in the next example.</p>
+    <p>The example also demonstrates how to create the LaTeX header using regular TeXML instead of disabling escaping.</p>
   </doc>
 
   <!-- ============ Better layout ============== -->
   <doc id="texml.tour.better">
     <title>Better layout</title>
-    <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from the code written by a human.</p>
-    <p>On the previous step, we get the following LaTeX code:</p>
-      <lst><xi:include href="&path;/tour_harder.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from code written by a human.</p>
+    <p>On the previous step, we got the following LaTeX document:</p>
+    <lst><xi:include href="code/tour_better1.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>A better code layout is:</p>
-      <lst><xi:include href="&path;/tour_better.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/tour_better2.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>The source TeXML code uses the attributes <tt>nl2</tt> and <tt>gr</tt> to tune the layout:</p>
-      <lst><xi:include href="&path;/tour_better.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/tour_better.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </doc>
 
   <!-- ============ pdf ============== -->
   <doc id="texml.tour.pdf">
     <title>PDF literal strings</title>
     <p>Let's start with the following LaTeX code:</p>
-      <lst><xi:include href="code/tour_pdf_fail.tex.utf" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+      <lst><xi:include href="code/tour_pdf_fail.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>The code looks fine, but due to the Russian letters, LaTeX raises the errors:</p>
       <lst>Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\CYRZ' on input line 6.
 ...</lst>
-    <p>A possible solution is to use "<tt>\usepackagep[<b>unicode</b>]{hyperref}</tt>", but this solution is not generic. It doesn't work, for example, for CJK texts, with some obscure error like:</p>
+    <p>A possible solution is to use "<tt>\usepackagep[<em>unicode</em>]{hyperref}</tt>", but this solution is not generic. For example, for CJK texts, it fails with some obscure error like:</p>
     <lst>! Incomplete \ifx; all text was ignored after line 10.</lst>
     <p>I prefer to use a generic solution which uses the unicode strings for the pdf names:</p>
-      <lst><xi:include href="code/tour_pdf_ok.tex.utf" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+      <lst><xi:include href="code/tour_pdf_ok.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>Comparing to the previous example, I use</p>
     <ul>
       <li>the option <tt>unicode</tt> for the package <tt>hyperref</tt>,</li>
       <li>the command <tt>texorpdfstring</tt> to assign the name for the PDF bookmark entry.</li>
     </ul>
     <p>The content of <tt>texorpdfstring</tt> is created by the TeXML command <tt>pdf</tt>:</p>
-      <lst><xi:include href="&path;/tour_pdfok.xml" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+      <lst><xi:include href="code/tour_pdf_ok.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </doc>
 
   <!-- ============ XML+XSLT ========== -->
@@ -88,21 +83,21 @@
     <p>TeXML code is too verbose and sometimes redundant to be authored manually. For example, on the previous step, the TeXML code contains the same string 3 times.</p>
     <p>Actually, it's not a problem. TeXML is not intended to be created manually. Instead, TeXML is to be generated, preferrably by XSLT from XML.</p>
     <p>Let's generate the TeXML code similar to that on the previous step. The source XML:</p>
-    <lst><xi:include href="code/tour_xslt.xml" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/tour_xslt.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>An XSLT program to convert such XML documents:</p>
-    <lst><xi:include href="code/tour_xslt.xsl" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option) is written only once. More, It is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
+    <lst><xi:include href="code/tour_xslt.xsl.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction is written only once (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option). More, the complexity is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
   </doc>
 
   <!-- ============== Encodings ============= -->
   <doc id="texml.tour.encoding">
     <title>Encodings</title>
     <p>Consider TeXML with Russian letters:</p>
-    <lst>&lt;TeXML>&#1090;&#1077;&#1082;&#1089;&#1090;&lt;/TeXML></lst>
+    <lst><xi:include href="code/tour_encoding1.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>Default translation to LaTeX produces:</p>
-    <lst>\cyrchar\cyrt{}\cyrchar\cyre{}\cyrchar\cyrk{}....</lst>
-    <p>The result is correct, but those who speak Russian prefer to see the real Russian letters as is instead of the commands.</p>
-    <p>To achive this, specify the desired output encoding to TeXML processor using the command line parameter <tt>--encoding</tt> or <tt>-e</tt>. When the output encoding is, for example, koi8-r, the result is:</p>
+    <lst><xi:include href="code/tour_encoding2.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>The result is correct, but those who speak Russian prefer to see the real Russian letters instead of the substitutional commands.</p>
+    <p>To achieve this, specify the desired output encoding to the TeXML processor using the command line parameter <tt>--encoding</tt> (or <tt>-e</tt>). When the output encoding is, for example, koi8-r, the result is:</p>
     <lst>&#1090;&#1077;&#1082;&#1089;&#1090;</lst>
   </doc>
 
@@ -110,16 +105,16 @@
   <doc id="texml.tour.ascii">
     <title>ASCII output</title>
     <p>The following LaTeX document contains &#x201c;Hello, World!&#x201d; written in Chinese:</p>
-    <lst><xi:include href="code/tour_ascii.tex" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/tour_ascii.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>LaTeX successfully compiles this document. But imagine:</p>
     <ul>
       <li>you've got a problem with a CJK or other non-latin document,</li>
       <li>latin documents have no this problem, so</li>
       <li>you want to ask for help.</li>
     </ul>
-    <p>To get help, you should provide a minimal example to reproduce a problem. Unfortunately, in most cases, your non-ASCII example will be corrupted.</p>
-    <p>Luckily, TeX provides ASCII sequences to encode non-ASCII bytes. With the command line flag <tt>--ascii</tt> (or&#xa0;<tt>-a</tt>), the TeXML processor uses such sequences. For example, the same LaTeX document is written the following way:</p>
-    <lst><xi:include href="&path;/chinese1.out" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>To get help, you should provide a minimal example to reproduce the problem. Unfortunately, in most cases, your non-ASCII example will be corrupted.</p>
+    <p>Luckily, TeX provides ASCII sequences to encode non-ASCII bytes. With the command line flag <tt>--ascii</tt> (or&#xa0;<tt>-a</tt>), the TeXML processor uses such sequences. For example, the same LaTeX document is written in the following way:</p>
+    <lst><xi:include href="code/tour_ascii.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </doc>
   
 </docs>
