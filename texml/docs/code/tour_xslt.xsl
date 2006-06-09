@@ -3,12 +3,14 @@
 <!-- convert "document": create header and continue -->
 <xsl:template match="document">
   <TeXML>
+    <!-- create header -->
     <TeXML escape="0">
 \documentclass{article}
 \usepackage[T2A]{fontenc}
 \usepackage[koi8-r]{inputenc}
 \usepackage[unicode]{hyperref}
     </TeXML>
+    <!-- process content -->
     <env name="document">
       <xsl:apply-templates/>
     </env>
