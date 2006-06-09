@@ -27,6 +27,7 @@
       <title><x:value-of select="title" /></title>
       <meta name="keywords" content="{keywords}" />
       <meta name="description" content="{description}" />
+      <link rel="stylesheet" type="text/css" href="texml.css" />
     </head>
     <body>
       <x:apply-templates select="node()" />
