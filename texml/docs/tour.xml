@@ -8,13 +8,9 @@
   <doc id="texml.tour.simple">
     <title>Simple TeXML file</title>
     <p>TeXML example:</p>
-    <example>
       <lst><xi:include href="&path;/tour_simple.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>After converting to TeX, the result is:</p>
-    <example>
       <lst><xi:include href="&path;/tour_simple.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>This example demonstrates:</p>
     <ul>
       <li>the XML root element is <tt>TeXML</tt>,</li>
@@ -35,13 +31,9 @@
   <doc id="texml.tour.harder">
     <title>Harder TeXML file</title>
     <p>Here is a harder TeXML file:</p>
-    <example>
       <lst><xi:include href="&path;/tour_harder.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>After converting to TeX, the result is:</p>
-    <example>
       <lst><xi:include href="&path;/tour_harder.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>This example demonstrates the three most often used TeXML elements:</p>
     <ul>
       <li><tt>cmd</tt> creates a LaTeX command,</li>
@@ -61,47 +53,33 @@
     <title>Better layout</title>
     <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from the code written by a human.</p>
     <p>On the previous step, we get the following LaTeX code:</p>
-    <example>
       <lst><xi:include href="&path;/tour_harder.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>A better code layout is:</p>
-    <example>
       <lst><xi:include href="&path;/tour_better.out" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>The source TeXML code uses the attributes <tt>nl2</tt> and <tt>gr</tt> to tune the layout:</p>
-    <example>
       <lst><xi:include href="&path;/tour_better.xml" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
   </doc>
 
   <!-- ============ pdf ============== -->
   <doc id="texml.tour.pdf">
     <title>PDF literal strings</title>
     <p>Let's start with the following LaTeX code:</p>
-    <example>
       <lst><xi:include href="code/tour_pdf_fail.tex.utf" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>The code looks fine, but due to the Russian letters, LaTeX raises the errors:</p>
-    <example>
       <lst>Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\CYRZ' on input line 6.
 ...</lst>
-    </example>
     <p>A possible solution is to use "<tt>\usepackagep[<b>unicode</b>]{hyperref}</tt>", but this solution is not generic. It doesn't work, for example, for CJK texts, with some obscure error like:</p>
-    <example><lst>! Incomplete \ifx; all text was ignored after line 10.</lst></example>
+    <lst>! Incomplete \ifx; all text was ignored after line 10.</lst>
     <p>I prefer to use a generic solution which uses the unicode strings for the pdf names:</p>
-    <example>
       <lst><xi:include href="code/tour_pdf_ok.tex.utf" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
     <p>Comparing to the previous example, I use</p>
     <ul>
       <li>the option <tt>unicode</tt> for the package <tt>hyperref</tt>,</li>
       <li>the command <tt>texorpdfstring</tt> to assign the name for the PDF bookmark entry.</li>
     </ul>
     <p>The content of <tt>texorpdfstring</tt> is created by the TeXML command <tt>pdf</tt>:</p>
-    <example>
       <lst><xi:include href="&path;/tour_pdfok.xml" parse="text" encoding="utf8" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    </example>
   </doc>
 
   <!-- ============ XML+XSLT ========== -->
