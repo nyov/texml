@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="koi8-r"?>
+<span><span class="synIdentifier">&lt;document&gt;</span>
+  <span class="synIdentifier">&lt;section&gt;</span>
+    <span class="synIdentifier">&lt;title&gt;</span>Заголовок (Title)<span class="synIdentifier">&lt;/title&gt;</span>
+    <span class="synIdentifier">&lt;para&gt;</span>first paragraph<span class="synIdentifier">&lt;/para&gt;</span>
+    <span class="synIdentifier">&lt;para&gt;</span>second paragraph<span class="synIdentifier">&lt;/para&gt;</span>
+    ... more paragraphs ...
+  <span class="synIdentifier">&lt;/section&gt;</span>
+  ... more sections ...
+<span class="synIdentifier">&lt;/document&gt;</span>
+</span>

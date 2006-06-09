@@ -1,0 +1,10 @@
+<span><span class="synStatement">\documentclass</span><span class="synSpecial">{</span><span class="synPreProc">article</span><span class="synSpecial">}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">encapsulated</span><span class="synSpecial">]{CJK}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">{ucs}</span>
+<span class="synStatement">\usepackage</span><span class="synSpecial">[</span><span class="synConstant">utf8x</span><span class="synSpecial">]{inputenc}</span>
+<span class="synPreProc">\begin{document}</span>
+<span class="synStatement">\begin</span><span class="synSpecial">{</span><span class="synPreProc">CJK</span><span class="synSpecial">}{</span>UTF8<span class="synSpecial">}{</span>cyberbit<span class="synSpecial">}</span>
+<span class="synSpecial"><em>^^e4^^b8^^96^^e7^^95^^8c^^ef^^bc^^8c^^e4^^bd^^a0^^e5^^a5^^bd^^ef^^bc^^81</em></span>
+<span class="synStatement">\end</span><span class="synSpecial">{</span><span class="synPreProc">CJK</span><span class="synSpecial">}</span>
+<span class="synPreProc">\end{document}</span>
+</span>

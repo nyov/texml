@@ -1,0 +1,40 @@
+<span><span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">stylesheet</span><span class="synIdentifier"> </span><span class="synType">version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synIdentifier"> </span><span class="synType">xmlns</span><span class="synComment">:</span><span class="synType">xsl</span>=<span class="synConstant">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span><span class="synIdentifier">&gt;</span>
+
+<span class="synComment">&lt;!-- convert &quot;document&quot;: create header and continue --&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier"> </span><span class="synType">match</span>=<span class="synConstant">&quot;document&quot;</span><span class="synIdentifier">&gt;</span>
+  <span class="synIdentifier">&lt;TeXML&gt;</span>
+    <span class="synComment">&lt;!-- create header --&gt;</span>
+    <span class="synIdentifier">&lt;TeXML </span><span class="synType">escape</span>=<span class="synConstant">&quot;0&quot;</span><span class="synIdentifier">&gt;</span>
+\documentclass{article}
+\usepackage[T2A]{fontenc}
+\usepackage[koi8-r]{inputenc}
+\usepackage[unicode]{hyperref}
+    <span class="synIdentifier">&lt;/TeXML&gt;</span>
+    <span class="synComment">&lt;!-- process content --&gt;</span>
+    <span class="synIdentifier">&lt;env </span><span class="synType">name</span>=<span class="synConstant">&quot;document&quot;</span><span class="synIdentifier">&gt;</span>
+      <span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">apply-templates</span><span class="synIdentifier">/&gt;</span>
+    <span class="synIdentifier">&lt;/env&gt;</span>
+  <span class="synIdentifier">&lt;/TeXML&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier">&gt;</span>
+
+<span class="synComment">&lt;!-- convert &quot;para&quot;: process content and add &quot;\par&quot; --&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier"> </span><span class="synType">match</span>=<span class="synConstant">&quot;para&quot;</span><span class="synIdentifier">&gt;</span>
+  <span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">apply-templates</span><span class="synIdentifier"> /&gt;</span>
+  <span class="synIdentifier">&lt;cmd </span><span class="synType">name</span>=<span class="synConstant">&quot;par&quot;</span><span class="synIdentifier"> </span><span class="synType">gr</span>=<span class="synConstant">&quot;0&quot;</span><span class="synIdentifier"> </span><span class="synType">nl2</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier">&gt;</span>
+
+<span class="synComment">&lt;!-- convert sections by converting &quot;title&quot; --&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier"> </span><span class="synType">match</span>=<span class="synConstant">&quot;title&quot;</span><span class="synIdentifier">&gt;</span>
+  <span class="synIdentifier">&lt;cmd </span><span class="synType">name</span>=<span class="synConstant">&quot;section&quot;</span><span class="synIdentifier">&gt;</span>
+    <span class="synIdentifier">&lt;opt&gt;</span>
+      <span class="synIdentifier">&lt;cmd </span><span class="synType">name</span>=<span class="synConstant">&quot;texorpdfstring&quot;</span><span class="synIdentifier">&gt;</span>
+        <span class="synIdentifier">&lt;parm&gt;&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">value-of</span><span class="synIdentifier"> </span><span class="synType">select</span>=<span class="synConstant">&quot;.&quot;</span><span class="synIdentifier">/&gt;&lt;/parm&gt;</span>
+        <span class="synIdentifier">&lt;parm&gt;&lt;pdf&gt;&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">value-of</span><span class="synIdentifier"> </span><span class="synType">select</span>=<span class="synConstant">&quot;.&quot;</span><span class="synIdentifier">/&gt;&lt;/pdf&gt;&lt;/parm&gt;</span>
+      <span class="synIdentifier">&lt;/cmd&gt;</span>
+    <span class="synIdentifier">&lt;/opt&gt;</span>
+    <span class="synIdentifier">&lt;parm&gt;&lt;</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">value-of</span><span class="synIdentifier"> </span><span class="synType">select</span>=<span class="synConstant">&quot;.&quot;</span><span class="synIdentifier">/&gt;&lt;/parm&gt;</span>
+  <span class="synIdentifier">&lt;/cmd&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">template</span><span class="synIdentifier">&gt;</span>
+
+<span class="synIdentifier">&lt;/</span><span class="synSpecial">xsl</span><span class="synComment">:</span><span class="synStatement">stylesheet</span><span class="synIdentifier">&gt;</span>
+</span>
