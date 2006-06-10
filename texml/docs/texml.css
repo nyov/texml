@@ -5,6 +5,9 @@ pre, tt, code {
 em {
   background-color: #c0c0ff;
 }
+.footnote {
+  font-size:        66%;
+}
 
 /* syntax highlighting in listings */
 .synComment    { color: #0000FF }
