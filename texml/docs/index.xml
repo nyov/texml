@@ -3,7 +3,7 @@
   <description>TeXML is an XML syntax for TeX and also for LaTeX and ConTeXt. TeXML simplifies XML to TeX conversion.</description>
   <title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
   <ul>
-    <li>Do you generate TeX code? Then <a href="">download</a> (TODO) and try TeXML.</li>
+    <li>Do you generate TeX code? Then <a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.beta1.tar.gz?download">download</a> and try TeXML.</li>
     <li>Do you convert XML to TeX? Then you ought to use TeXML.</li>
   </ul>
   <h2>TeXML vs XSL-FO</h2>
@@ -57,9 +57,9 @@
   </ul>
   <h2>Resources</h2>
   <ul>
-    <li><a href="">Download</a> TeXML (TODO)</li>
+    <li><a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.beta1.tar.gz?download">Download</a> TeXML</li>
     <li><a href="http://lists.sourceforge.net/lists/listinfo/getfo-general">Join</a> the getfo-general mailing list or visit the <a href="http://news.gmane.org/gmane.comp.tex.getfo%2btexml">archive at gmane</a>.</li>
-    <li>Take a TeXML tour:
+    <li>Take the TeXML tour:
       <ul>
         <tour-links />
       </ul>
@@ -73,8 +73,12 @@
         <li><a href="spec.html">TeXML specification</a></li>
       </ul>
     </li>
-    <li>Visit ??? about XML publishing through ConTeXt and TeXML <a href="">??</a></li>
+    <li>Paul Tremblay's documentation for ConTeXt users:
+      <ul>
+        <li><a href="http://wiki.contextgarden.net/Getting_Started_with_XML_and_ConTeXt_using_TEXML">Getting Started with XML and ConTeXt using TeXML</a></li>
+        <li><a href="http://getfo.org/context_xml/index.html">context-xml documentation project</a> as an alternative to XSL-FO</li>
+      </ul>
+    </li>
+    <li>Developer's <a href="http://uucode.com/blog/category/texml/">blog on TeXML</a></li>
   </ul>
-  <p><adsense>TODO: adsense</adsense></p>
-  <p>TODO: SF logo, project link</p>
 </doc>
