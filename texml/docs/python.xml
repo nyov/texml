@@ -29,10 +29,10 @@
   </sect>
   <sect>
     <title>Simplest example</title>
-    <lst><xi:include href="code/example_simple.py" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/example_simple.py.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </sect>
   <sect>
     <title>Full example</title>
-    <lst><xi:include href="code/example_full.py" parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <lst><xi:include href="code/example_full.py.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </sect>
 </doc>
