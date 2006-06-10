@@ -18,21 +18,9 @@
   <sect>
     <title>Brief overview of TeXML</title>
     <p>An example to demonstrate the basic syntax of TeXML:</p>
-<pre><![CDATA[<TeXML>
- <cmd name="documentclass">
-  <opt>a4paper</opt>
-  <parm>minimal</parm>
- </cmd>
- <env name="document">
-  Eto&nbsp;&mdash; primer.
- </env>
-</TeXML>]]></pre>
-<p>The results after processing:</p>
-<pre><![CDATA[\begin{verbatim}
-\documentclass[a4paper]{minimal}
-\begin{document}
-Eto~\textemdash{} primer.
-\end{document}]]></pre>
+    <lst><xi:include href="code/thesis_basic.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>The results after processing:</p>
+    <lst><xi:include href="code/thesis_basic.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>The main tasks of the processor:</p>
     <ul>
       <li>escaping of the TeX special characters (for example, escaping &#x201c;<tt>&lt;</tt>&#x201d; to &#x201c;<tt>\textless</tt>&#x201d;),</li>
@@ -50,9 +38,9 @@ Eto~\textemdash{} primer.
   <sect>
     <title>TeXML benefits</title>
     <p>A simple TeXML code</p>
-<pre><![CDATA[<group><cmd name="it" gr="0"/>\example</group>]]></pre>
-<p>corresponds to a TeX fragment</p>
-    <pre>{\it \textbackslash{}example}</pre>
+    <lst><xi:include href="code/thesis_small.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
+    <p>corresponds to a TeX fragment</p>
+    <lst><xi:include href="code/thesis_small.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>There are several projects that create LaTeX from XML using XSLT, for example: tbook<a href="#tbook">[2]</a>, xsltml<a href="#xsltml">[3]</a>, dblatex<a href="#dblatex">[4]</a>, db2latex<a href="#db2latex">[5]</a>. Usage of these projects demonstrates the following problems when generating the TeX fragment:</p>
     <ul>
       <li>special symbols are not escaped,</li>
