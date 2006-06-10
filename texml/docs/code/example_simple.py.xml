@@ -1,0 +1,13 @@
+<span><span class="synComment">#!/usr/bin/python</span>
+
+<span class="synComment"># Import the needed libraries</span>
+<span class="synPreProc">import</span> sys
+<span class="synPreProc">import</span> Texml.processor
+
+<span class="synComment"># Use the standard input and output</span>
+in_stream  = sys.stdin
+out_stream = sys.stdout
+
+<span class="synComment"># Convert</span>
+Texml.processor.process(in_stream, out_stream)
+</span>

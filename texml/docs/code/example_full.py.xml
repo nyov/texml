@@ -1,0 +1,33 @@
+<span><span class="synComment">#!/usr/bin/python</span>
+
+<span class="synComment"># Import the needed libraries</span>
+<span class="synPreProc">import</span> sys
+<span class="synPreProc">import</span> Texml.processor
+
+<span class="synComment"># Input can be given by a path, output should be a file object</span>
+infile = '<span class="synConstant">document.xml</span>'
+out    = file('<span class="synConstant">out.tex</span>', '<span class="synConstant">w</span>')
+<span class="synComment"># Older versions of python need the following code:</span>
+<span class="synComment"># out = open('out.tex', 'w')</span>
+
+<span class="synComment"># Parameters</span>
+width        = 75
+encoding     = '<span class="synConstant">UTF-8</span>'
+always_ascii = 1
+use_context  = 1
+
+<span class="synComment"># Convert TeXML inside a try-except block</span>
+<span class="synStatement">try</span>:
+  Texml.processor.process(
+      in_stream    = infile,
+      out_stream   = out,
+      autonl_width = width,
+      encoding     = encoding,
+      always_ascii = always_ascii,
+      use_context  = use_context)
+<span class="synStatement">except</span> Exception, msg:
+  <span class="synStatement">print</span> sys.stderr, '<span class="synConstant">texml: %s</span>' % str(msg)
+
+<span class="synComment"># Clean up resources</span>
+out.close()
+</span>
