@@ -1,0 +1,10 @@
+<span><span class="synIdentifier">&lt;TeXML&gt;</span>
+ <span class="synIdentifier">&lt;cmd </span><span class="synType">name</span>=<span class="synConstant">&quot;documentclass&quot;</span><span class="synIdentifier">&gt;</span>
+  <span class="synIdentifier">&lt;opt&gt;</span>a4paper<span class="synIdentifier">&lt;/opt&gt;</span>
+  <span class="synIdentifier">&lt;parm&gt;</span>minimal<span class="synIdentifier">&lt;/parm&gt;</span>
+ <span class="synIdentifier">&lt;/cmd&gt;</span>
+ <span class="synIdentifier">&lt;env </span><span class="synType">name</span>=<span class="synConstant">&quot;document&quot;</span><span class="synIdentifier">&gt;</span>
+  Eto<span class="synType">&amp;</span><span class="synStatement">nbsp</span><span class="synType">;&amp;</span><span class="synStatement">mdash</span><span class="synType">;</span> primer.
+ <span class="synIdentifier">&lt;/env&gt;</span>
+<span class="synIdentifier">&lt;/TeXML&gt;</span>
+</span>

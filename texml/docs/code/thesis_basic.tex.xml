@@ -1,0 +1,5 @@
+<span><span class="synStatement">\documentclass</span><span class="synSpecial">[</span><span class="synConstant">a4paper</span><span class="synSpecial">]{</span><span class="synPreProc">minimal</span><span class="synSpecial">}</span>
+<span class="synPreProc">\begin{document}</span>
+Eto~<span class="synStatement">\textemdash</span><span class="synSpecial">{}</span> primer.
+<span class="synPreProc">\end{document}</span>
+</span>
