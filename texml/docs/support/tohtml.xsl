@@ -30,7 +30,37 @@
       <link rel="stylesheet" type="text/css" href="texml.css" />
     </head>
     <body>
+      <a href="index.html"><img src="texml.png" width="100" heaight="60" alt="TeXML" title="TeXML" border="0" align="right" /></a>
+      <x:if test="preceding-sibling::doc">
+        <div style="width:150;float:right;font-size:66%;">
+          <x:call-template name="tour-step-link">
+            <x:with-param name="preword">Previous </x:with-param>
+            <x:with-param name="id" select="preceding-sibling::doc[1]/@id"/>
+            <x:with-param name="title" select="preceding-sibling::doc[1]/title"/>
+          </x:call-template>
+        </div>
+      </x:if>
       <x:apply-templates select="node()" />
+      <x:if  test="following-sibling::doc">
+        <p>
+          <x:call-template name="tour-step-link">
+            <x:with-param name="preword">Next </x:with-param>
+            <x:with-param name="id" select="following-sibling::doc[1]/@id"/>
+            <x:with-param name="title" select="following-sibling::doc[1]/title"/>
+          </x:call-template>
+        </p>
+      </x:if>
+      <hr />
+      <div class="footnote">
+        <x:if test="@id!='texml.index'">
+          <a href="index.html"><img src="texml.png" width="100" heaight="60" alt="TeXML" title="TeXML" border="0" vspace="10" /></a><br />
+        </x:if>
+        <x:variable name="url" select="concat('http://getfo.org/texml/',substring-after(@id,'texml.'),'.html')"/>
+        <x:text>This page: </x:text><a href="{$url}"><x:value-of select="$url"/></a><br />
+        <x:if test="@id='texml.index'">
+          <x:text>Project area: </x:text><a href="http://sourceforge.net/projects/getfo/">http://sourceforge.net/projects/getfo/</a>
+        </x:if>
+      </div>
     </body>
   </html>
 </x:template>
@@ -97,6 +127,17 @@
   <x:for-each select="document('tour.xml',/)/docs/doc">
     <li>Step <x:value-of select="position()"/>: <a href="{translate(substring-after(@id,'.'),'.','_')}.html"><x:value-of select="title"/></a></li>
   </x:for-each>
+</x:template>
+
+<x:template name="tour-step-link">
+  <x:param name="preword"/>
+  <x:param name="id"/>
+  <x:param name="title"/>
+  <x:value-of select="$preword"/>
+  <x:text>step: </x:text>
+  <x:text>&#x201c;</x:text>
+  <a href="tour_{substring-after($id,'texml.tour.')}.html"><x:value-of select="translate($title,' ','&#xa0;')"/></a>
+  <x:text>&#x201d;</x:text>
 </x:template>
 
 </x:stylesheet>
