@@ -40,7 +40,7 @@
       </td>
     </tr>
   </table>
-  <p>Traditional languages are not convinient to work with XML. On the other side, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
+  <p>Traditional languages are not convinient to work with XML. On the other hand, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
   <ul>
     <li>XSLT is an ideal tool to convert XML to XML, and TeXML is an XML syntax for TeX.</li>
     <li>A TeXML processor makes the rest, serializing TeXML to TeX.</li>
