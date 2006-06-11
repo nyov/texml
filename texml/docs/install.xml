@@ -1,4 +1,13 @@
 <doc id="texml.install">
   <title>TeXML installation</title>
-  <p>TODO</p>
+  <p>TeXML is written in Python and supports the standard Python installation process:</p>
+  <lst>$ python setup.py install</lst>
+  <p>If execution is failed with the message like &#x201c;No module named distutils&#x201d;, make sure that Python development libraries are installed (the RPM package name might be <tt>python-devel</tt>).</p>
+  <p>It installs:</p>
+  <ul>
+    <li>TeXML Python modules,</li>
+    <li>command-line program <tt>texml</tt>, and</li>
+    <li>documentation, including the man page for <tt>texml</tt>.</li>
+  </ul>
+  <p>It is possible to use TeXML locally, without installation. The script <tt>texml_local</tt> can be found in the folder <tt>scripts</tt> of the TeXML distribution archive. For Windows, use the batch file <tt>texml_local.bat</tt>. If required, correct the path to Python interpreter before using the scripts.</p>
 </doc>
