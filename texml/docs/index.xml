@@ -73,12 +73,7 @@
         <li><a href="spec.html">TeXML specification</a></li>
       </ul>
     </li>
-    <li>Paul Tremblay's documentation for ConTeXt users:
-      <ul>
-        <li><a href="http://wiki.contextgarden.net/Getting_Started_with_XML_and_ConTeXt_using_TEXML">Getting Started with XML and ConTeXt using TeXML</a></li>
-        <li><a href="http://getfo.org/context_xml/index.html">context-xml documentation project</a> as an alternative to XSL-FO</li>
-      </ul>
-    </li>
+    <li>Paul Tremblay's <a href="http://getfo.org/context_xml/index.html">context-xml documentation project</a> as an alternative to XSL-FO</li>
     <li>Developer's <a href="http://uucode.com/blog/category/texml/">blog on TeXML</a></li>
   </ul>
 </doc>
