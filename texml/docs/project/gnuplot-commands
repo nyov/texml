@@ -1,0 +1,29 @@
+unset title
+set yrange [0:1]
+set xtics ("x" 100)
+set ytics ("y" 100)
+set size .5,.5
+set xlabel "  convert              serialize " 0,1.8 
+set ylabel "cost "0.5,0
+
+set key  samplen -10 width 0 height 0 nobox
+A(x) = exp(-(x+2)*(x+2)) + exp(-(x-2)*(x-2))/8
+plot [-4:4] A(x) with boxes fill t "Perl/Java/Python/etc"
+
+A(x) = exp(-(x+2)*(x+2))/8 + exp(-(x-2)*(x-2))
+set key  samplen -10 width 0 height 0 nobox left
+plot [-4:4] A(x) with boxes fill t "XSLT only"
+
+A(x) = exp(-(x+2)*(x+2))/8
+set key  samplen -10 width 0 height 0 nobox right
+plot [-4:4] A(x) with boxes fill t "XSLT+TeXML"
+
+
+set terminal png small notransparent xffffff x000000 x000000 x000000 x000000 x000000 x000000 x000000
+set output "output.png"
+set output "graph1.png"
+set output "graph2.png"
+set output "graph3.png"
+replot
+
+set terminal x11
