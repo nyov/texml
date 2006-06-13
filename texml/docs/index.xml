@@ -17,27 +17,17 @@
       <br />&#x2014; TeXML is targeted to the minority who create excellent documents.</li>
   </ul>
   <h2>TeXML vs Perl/Java/Python/etc</h2>
-  <p>TODO: Images below in tables. Two axes: x: convert, serialize; y: efforts</p>
+  <p>Cost of converting XML to LaTeX using different approaches:</p>
   <table border="0" width="100%">
     <tr>
-      <td width="33%">
-        First image<br />
-        XML to TeX using Perl, Java<br />
-        Big peak on "convert", small peak on "serialize"<br />
-        100*k man-hours
-      </td>
-      <td width="33%">
-        Second image<br />
-        XML to TeX using XSLT<br />
-        Very small peak on "convert", big peak on "serialize"<br />
-        100*k man-hours
-      </td>
-      <td width="33%">
-        Third image<br />
-        XML to TeX using XSLT and TeXML<br />
-        Very small peak on "convert", zero on "serialize".<br />
-        k man-hours
-      </td>
+      <th>100*k man-hours</th>
+      <th>100*k man-hours</th>
+      <th>k man-hours</th>
+    </tr>
+    <tr>
+      <td width="33%" align="center"><img src="graph1.png" width="320" height="240" border="0" alt="Cost of XML to TeX using Perl/Java/Python/etc" title="Cost of XML to TeX using Perl/Java/Python/etc" /></td>
+      <td width="33%" align="center"><img src="graph2.png" width="320" height="240" border="0" alt="Cost of XML to TeX using XSLT only" title="Cost of XML to TeX using XSLT only" /></td>
+      <td width="33%" align="center"><img src="graph3.png" width="320" height="240" border="0" alt="Cost of XML to TeX using XSLT plus TeXML" title="Cost of XML to TeX using XSLT plus TeXML" /></td>
     </tr>
   </table>
   <p>Traditional languages are not convinient to work with XML. On the other hand, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
