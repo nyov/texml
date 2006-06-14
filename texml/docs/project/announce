@@ -148,7 +148,7 @@ TeXML is an XML vocabulary for TeX. The processor transforms
 TeXML markup into the TeX markup, escaping special and
 out-of-encoding characters.
 
-Vendor name: Oleg Paraschenko
+Vendor name: Oleg Parashchenko
 
 Vendor homepage URL: http://uucode.com/
 
