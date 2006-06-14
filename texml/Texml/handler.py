@@ -1,5 +1,5 @@
 """ Tranform TeXML SAX stream """
-# $Id: handler.py,v 1.13 2006-04-21 01:47:39 olpa Exp $
+# $Id: handler.py,v 1.14 2006-06-14 04:45:06 olpa Exp $
 
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
@@ -270,7 +270,6 @@ class Handler:
       self.model[name](attrs)
     else:
       self.invalid_xml(name)
-      # raise ValueError("Element '%s' is not expected" % name)
 
   def characters(self, content):
     """ Handle text data """
@@ -336,7 +335,7 @@ class Handler:
       return 1
     elif '0' == aval:
       return 0
-    # raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
+    raise ValueError("Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval))
 
     msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
     msg += "Value of boolean attribute '%s' is not '0' or '1', but '%s'" % (aname, aval)
