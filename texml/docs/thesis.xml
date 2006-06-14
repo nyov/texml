@@ -1,6 +1,6 @@
 <doc id="texml.thesis">
   <title>TeXML: an XML vocabulary for TeX</title>
-  <p>Thesis of the talk at the First International Conference of Open-Source Developers, Obninsk, Russia, 2004. Author: Oleg Paraschenko, Saint Petersburg.</p>
+  <p>Thesis of the talk at the First International Conference of Open-Source Developers, Obninsk, Russia, 2004. Author: Oleg Parashchenko, Saint Petersburg.</p>
   <blockquote><p>Abstract. The paper describes one of the methods of publishing XML documents through LaTeX. We propose to use TeXML, an intermediate presentation of TeX notation in an XML format.</p></blockquote>
 
   <sect>
