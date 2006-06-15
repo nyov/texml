@@ -42,13 +42,14 @@ version = get_version()
 
 setup(name="texml",
     version= version ,
-    description="Convert XML to LaTeX or ConTeXt",
-    long_description = """TeXML is an XML vocabulary for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate TeX files.""",
-    author="Oleg Paraschenko, Paul Tremblay",
+    description="Convert TeXML to LaTeX or ConTeXt",
+    long_description = """TeXML is an XML syntax for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.""",
+    author="Oleg Parashchenko, Paul Tremblay",
     author_email="olpa@ http://uucode.com/",
-    license = 'GNU GPL',
-    url = 'http://getfo.sourceforge.net/texml/index.html',
+    license = 'MIT',
+    url = 'http://getfo.org/texml/',
     packages=['Texml'],
-    scripts=['scripts/texml.py', 'scripts/texml_con'],
-    )
+    scripts=['scripts/texml.py', 'scripts/texml'],
+    data_files=[('share/man/man1', ['docs/texml.1'])]
+  )
 
