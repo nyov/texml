@@ -1,6 +1,6 @@
 <doc id="texml.index">
-  <keywords>texml,xml,pdf,xml publishing</keywords>
-  <description>TeXML is an XML syntax for TeX and also for LaTeX and ConTeXt. TeXML simplifies XML to TeX conversion.</description>
+  <keywords>xml,pdf,texml,publishing,xml2pdf,xmltopdf</keywords>
+  <description>TeXML is an XML syntax for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</description>
   <title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
   <ul>
     <li>Do you generate TeX code? Then <a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.beta1.tar.gz?download">download</a> and try TeXML.</li>
