@@ -2,6 +2,9 @@
 
 * Texml/handler.py: one raise" was incorrectly commented-out.
 * scripts/texml.py: version number is changed to 2.0.0.beta1.
+* scripts/texml.py: the first line now is just "#!python", the
+path is to be corrected by distutils.
+
 
 2006-06-02  Oleg Parashchenko  olpa@users.sourceforge.net
 
