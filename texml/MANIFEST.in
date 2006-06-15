@@ -1,11 +1,15 @@
-include dtd/*
-include tests/*
-include tests/data/*
-include tests/data/quick/
+include dtd/*.dtd
+include docs/*.html
+include docs/*.png
+include docs/*.css
+include docs/texml.1
+include scripts/texml
+include scripts/texml.py
+include scripts/texml_local
+include scripts/texml_local.bat
 include tests/data/quick/*
-include tests/faildata/*
-include docs/*html
-include docs/*txt
+include tests/Makefile
+include tests/readme
+recursive-include tests/data *.xml *.out
+recursive-include tests/faildata *.xml *.out
 include license.txt
-include scripts/*
-
