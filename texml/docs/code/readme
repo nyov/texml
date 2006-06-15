@@ -1,0 +1,32 @@
+Converting code to HTML:
+
+~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html 
+
+(echo -n '<span>'; ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html --filetype tex ~/p/texml/tests/data/chinese1.out; echo -n '</span>') >tour_ascii.out.xml
+(echo -n '<span>'; ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html --filetype xml ~/p/texml/tests/data/chinese1.xml; echo -n '</span>') >tour_pdf_ok.xml.xml
+
+(echo -n '<span>'; ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html --filetype xml tour_xslt.xml; echo -n '</span>') >tour_xslt.xml.xml
+
+(echo -n '<span>'; ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html --filetype tex tour_ascii.tex; echo -n '</span>') >tour_ascii.tex.xml
+(echo -n '<span>'; ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html example_simple.py; echo -n '</span>') >example_simple.py.xml
+
+(echo -n '<span>'; (echo '\cyrchar\cyrt{}\cyrchar\cyre{}\cyrchar\cyrk{}....' | ~/p/xsieve/experiments/programlisting/vimcolor/vimcolor-wrapper --format html --filetype tex); echo -n '</span>') >tour_encoding2.tex.xml
+
+
+cvs add 
+
+
+    --debug      turn on Text::VimColor debugging mode
+    --filetype   set Vim filetype name, if it can't be guessed from
+                 the file's name or contents
+    --format     set format to use for output, can be xml,
+                 html, or pdf
+    --help       show this helpful message
+    --output     set filename to write output to (required with
+                 PDF format, otherwise defaults to standard output)
+    --full-page  output a complete HTML page, not just a fragment
+    --no-inline-stylesheet
+                 don't include the stylesheet in a complete HTML page
+    --let        set a Vim variable with the Vim :let command
+    --unlet      turn off default setting of a Vim variable
+
