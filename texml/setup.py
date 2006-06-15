@@ -2,6 +2,7 @@ import sys
 from distutils.core import setup
 import os.path
 import re
+import glob
 
 def test_for_sax():
     try:
@@ -50,6 +51,12 @@ setup(name="texml",
     url = 'http://getfo.org/texml/',
     packages=['Texml'],
     scripts=['scripts/texml.py', 'scripts/texml'],
-    data_files=[('share/man/man1', ['docs/texml.1'])]
+    data_files=[
+      ('share/man/man1', ['docs/texml.1']),
+      ('share/doc/texml-%s' % version,
+        glob.glob(os.path.join('docs', '*.html')) +
+        glob.glob(os.path.join('docs', '*.css'))  +
+        glob.glob(os.path.join('docs', '*.png')))
+    ]
   )
 
