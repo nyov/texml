@@ -13,3 +13,5 @@ include tests/readme
 recursive-include tests/data *.xml *.out
 recursive-include tests/faildata *.xml *.out
 include license.txt
+include Thanks
+include ChangeLog
