@@ -83,7 +83,7 @@
     <lst><xi:include href="code/tour_xslt.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>An XSLT program to convert such XML documents:</p>
     <lst><xi:include href="code/tour_xslt.xsl.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    <p>On the one hand, the only achievement is that complexity is moved to XSLT. But on the other hand, it's a great improvement: the non-trivial construction is written only once (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option). More, the complexity is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
+    <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction is written only once (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option). More, the complexity is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
   </doc>
 
   <!-- ============== Encodings ============= -->
