@@ -1,5 +1,7 @@
 <doc id="texml.python">
   <title>Using TeXML in Python</title>
+  <keywords>texml,python,module</keywords>
+  <description>How to use TeXML Python module.</description>
   <p>The module <tt>Texml.process</tt> converts a TeXML file to a TeX file.</p>
   <p>Basic use requires the following:</p>
   <ol>

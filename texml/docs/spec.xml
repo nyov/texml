@@ -1,5 +1,7 @@
 <doc id="texml.spec">
   <title>TeXML specification</title>
+  <keywords>texml,specification,pdf</keywords>
+  <description>Specification of the TeXML format, which is an XML syntax for TeX.</description>
   <p><a href="http://getfo.org/texml/">TeXML</a> is an XML syntax for TeX. A processor translates TeXML source into TeX.</p>
   <p>The Document Type Definition (DTD) for TeXML can be found in a TeXML distribution package.</p>
 

@@ -1,5 +1,7 @@
 <doc id="texml.install">
   <title>TeXML installation</title>
+  <keywords>texml,install</keywords>
+  <description>How to install TeXML.</description>
   <p>TeXML is written in Python and supports the standard Python installation process:</p>
   <lst>$ python setup.py install</lst>
   <p>If execution is failed with the message like &#x201c;No module named distutils&#x201d;, make sure that Python development libraries are installed (the RPM package name might be <tt>python-devel</tt>).</p>

@@ -1,5 +1,5 @@
 <doc id="texml.index">
-  <keywords>xml,pdf,texml,publishing,xml2pdf,xmltopdf</keywords>
+  <keywords>tex,xml,latex,context,pdf,texml,xsl,xslt,xslfo,xsl-fo,publishing,xml2pdf,xmltopdf</keywords>
   <description>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</description>
   <title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
   <ul>
