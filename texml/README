@@ -1,28 +1,62 @@
-TeXML project
+TeXML: an XML syntax for TeX (LaTeX, ConTeXt)
 
-http://getfo.org/texml/
+     * Do you generate TeX code? Then download and try TeXML.
+     * Do you convert XML to TeX? Then you ought to use TeXML.
 
-bin     the program
-dist    distribution packages are stored here
-docs    documentation
-dtd     DTD (document type definition) for TeXML
-map     mapping between Unicode and LaTeX, generation of a Python map
-mkdist  scripts to build distribution packages
-tests   TeXML tests and examples
-Texml   the libraries for the latest version
-scripts scripts for the latest version
+   TeXML  is  an  XML  syntax for TeX. The processor transforms the TeXML
+   markup  into  the  TeX  markup,  escaping  special and out-of-encoding
+   characters.  The  intended  audience  is  developers who automatically
+   generate [La]TeX or ConTeXt files.
 
-Installation
-=============
+TeXML vs XSL-FO
 
-To install the latest version:
+     * Both  TeXML  and XSL-FO are an intermediate step in publishing XML
+       as PDF.
+     * -- With XSL-FO, you create or re-use an XSL-FO stylesheet.
+       --  By  analogue,  with  TeXML,  you  create  or  re-use  a  TeXML
+       stylesheet.
+     * -- Open-source XSL-FO tools are not yet of the production quality,
+       -- LaTeX is.
+     * -- XSL-FO is for good enough PDFs,
+       --  TeXML  is  targeted  to  the  minority  who  create  excellent
+       documents.
 
-1. unpack the tar file
+TeXML vs Perl/Java/Python/etc
 
-2. change to the directory created by the tar file.
+   Traditional  languages  are  not  convinient  to work with XML. On the
+   other hand, when using XSLT, generating valid TeX syntax is nightmare.
+   The solution is TeXML.
+   
+     * XSLT  is  an ideal tool to convert XML to XML, and TeXML is an XML
+       syntax for TeX.
+     * A TeXML processor makes the rest, serializing TeXML to TeX.
 
-3. type 
+TeXML benefits
 
-   python setup.py install
+     * LaTeX and ConTeXt support.
+     * No need to bother about escaping TeX special characters.
+     * No need to bother about empty lines in paragraphs.
+     * More than 700 unicode characters are mapped to LaTeX commands.
+     * Support for international publishing.
+     * Generated TeX code is human-friendly.
+     * Open  source  under  the  MIT/X Consortium license. Can be used in
+       commercial applications.
 
-That should be it.
+Resources
+
+* Documentation
+  docs/index.html
+
+* Project home
+  http://getfo.org/texml/
+
+* SourceForge project area
+  http://sourceforge.net/projects/getfo/
+
+* Download
+  http://prdownloads.sourceforge.net/getfo/texml-2.0.0.beta1.tar.gz?download
+
+
+-- 
+Oleg Parashchenko  <olpa users sourceforge net>
+http://uucode.com/blog/category/texml/
