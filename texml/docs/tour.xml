@@ -4,6 +4,8 @@
   
   <doc id="texml.tour.simple">
     <title>Simple TeXML file</title>
+    <keywords>texml,example</keywords>
+    <description>An example of a simple TeXML document and associated discussion.</description>
     <p>An example of a simple TeXML document:</p>
     <lst><xi:include href="code/tour_simple.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>The result of conversion to TeX is the LaTeX document:</p>
@@ -27,6 +29,8 @@
   
   <doc id="texml.tour.more">
     <title>More TeXML</title>
+    <keywords>texml,example</keywords>
+    <description>An example of a TeXML document with the most often used TeXML elements.</description>
     <p>This TeXML document uses more TeXML elements:</p>
       <lst><xi:include href="code/tour_more.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>After converting to TeX, the result is:</p>
@@ -42,7 +46,9 @@
 
   <!-- ============ Better layout ============== -->
   <doc id="texml.tour.better">
+    <keywords>texml,example</keywords>
     <title>Better layout</title>
+    <description>Explanation how to tune layout of the generated TeX code.</description>
     <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from code written by a human.</p>
     <p>On the previous step, we got the following LaTeX document:</p>
     <lst><xi:include href="code/tour_better1.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
@@ -55,6 +61,8 @@
   <!-- ============ pdf ============== -->
   <doc id="texml.tour.pdf">
     <title>PDF literal strings</title>
+    <keywords>texml,example,pdf,utf16be</keywords>
+    <description>Why to generate PDF literal strings and how to do it with TeXML.</description>
     <p>Let's start with the following LaTeX code:</p>
       <lst><xi:include href="code/tour_pdf_fail.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>The code looks fine, but due to the Russian letters, LaTeX raises the errors:</p>
@@ -77,6 +85,8 @@
   <!-- ============ XML+XSLT ========== -->
   <doc id="texml.tour.xslt">
     <title>TeXML and XSLT</title>
+    <keywords>tex,xslt,texml,example</keywords>
+    <description>An example of an XSLT program for converting an XML document to LaTeX.</description>
     <p>TeXML code is too verbose and sometimes redundant to be authored manually. For example, on the previous step, the TeXML code contains the same string 3 times.</p>
     <p>Actually, it's not a problem. TeXML is not intended to be created manually. Instead, TeXML is to be generated, preferrably by XSLT from XML.</p>
     <p>Let's generate the TeXML code similar to that on the previous step. The source XML:</p>
@@ -89,6 +99,8 @@
   <!-- ============== Encodings ============= -->
   <doc id="texml.tour.encoding">
     <title>Encodings</title>
+    <keywords>texml,example,encoding</keywords>
+    <description>Improving generation of non-latin TeX documents by writing in the desired encoding.</description>
     <p>Consider TeXML with Russian letters:</p>
     <lst><xi:include href="code/tour_encoding1.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>Default translation to LaTeX produces:</p>
@@ -101,6 +113,8 @@
   <!-- ============= Ascii output =========== -->
   <doc id="texml.tour.ascii">
     <title>ASCII output</title>
+    <keywords>texml,example,encoding,ascii,cjk,tex,latex</keywords>
+    <description>Improving interchangeability of non-latin TeX documents by writing them using only ASCII letters.</description>
     <p>The following LaTeX document contains &#x201c;Hello, World!&#x201d; written in Chinese:</p>
     <lst><xi:include href="code/tour_ascii.tex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>LaTeX successfully compiles this document. But imagine:</p>
