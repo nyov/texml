@@ -22,7 +22,7 @@ texml.tmp: texml.1
 	-man2html $< | tidy -asxml -numeric >$@
 
 texml.xml: texml.tmp support/man.xsl
-	-xsltproc -o $@ $(word 2,$+) --nonet $<
+	-xsltproc -o $@ --nonet $(word 2,$+) $<
 
 quick.html: ../tests/data/quick/quick.texml ../tests/data/quick/quick.tex ../tests/data/quick/quick.html ../tests/data/quick/quick.xsl
 
