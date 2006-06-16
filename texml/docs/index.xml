@@ -1,11 +1,12 @@
 <doc id="texml.index">
   <keywords>xml,pdf,texml,publishing,xml2pdf,xmltopdf</keywords>
-  <description>TeXML is an XML syntax for TeX. The processor transforms TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</description>
+  <description>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</description>
   <title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
   <ul>
     <li>Do you generate TeX code? Then <a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.beta1.tar.gz?download">download</a> and try TeXML.</li>
     <li>Do you convert XML to TeX? Then you ought to use TeXML.</li>
   </ul>
+  <p>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</p>
   <h2>TeXML vs XSL-FO</h2>
   <ul>
     <li>Both TeXML and XSL-FO are an intermediate step in publishing XML as PDF.</li>
