@@ -11,7 +11,7 @@ include tests/data/quick/*
 include tests/Makefile
 include tests/readme
 recursive-include tests/data *.xml *.out
-recursive-include tests/faildata *.xml *.out
+recursive-include tests/faildata *.xml *.out *.grep
 include license.txt
 include Thanks
 include ChangeLog
