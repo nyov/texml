@@ -49,7 +49,7 @@
     <keywords>texml,example</keywords>
     <title>Better layout</title>
     <description>Explanation how to tune layout of the generated TeX code.</description>
-    <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguished from code written by a human.</p>
+    <p>This example demonstrates how to tune the layout of a generated LaTeX code. The result can be made indistinguishable from code written by a human.</p>
     <p>On the previous step, we got the following LaTeX document:</p>
     <lst><xi:include href="code/tour_better1.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>A better code layout is:</p>
@@ -93,7 +93,7 @@
     <lst><xi:include href="code/tour_xslt.xml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
     <p>An XSLT program to convert such XML documents:</p>
     <lst><xi:include href="code/tour_xslt.xsl.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
-    <p>On the one side, the only achievement is that complexity is moved to XSLT. But on the other side, it's a great improvement: the non-trivial construction is written only once (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option). More, the complexity is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
+    <p>On the one hand, the only achievement is that complexity is moved to XSLT. But on the other hand, it's a great improvement: the non-trivial construction is written only once (<tt>section</tt> command with the <tt>texorpdfstring</tt> and <tt>pdf</tt> commands inside the option). In addition, the complexity is hidden from the authors who write texts in XML and don't know much about LaTeX.</p>
   </doc>
 
   <!-- ============== Encodings ============= -->
@@ -120,11 +120,11 @@
     <p>LaTeX successfully compiles this document. But imagine:</p>
     <ul>
       <li>you've got a problem with a CJK or other non-latin document,</li>
-      <li>latin documents have no this problem, so</li>
+      <li>latin documents don't have this problem, so</li>
       <li>you want to ask for help.</li>
     </ul>
     <p>To get help, you should provide a minimal example to reproduce the problem. Unfortunately, in most cases, your non-ASCII example will be corrupted.</p>
-    <p>Luckily, TeX provides ASCII sequences to encode non-ASCII bytes. With the command line flag <tt>--ascii</tt> (or&#xa0;<tt>-a</tt>), the TeXML processor uses such sequences. For example, the same LaTeX document is written in the following way:</p>
+    <p>Luckily, TeX provides ASCII sequences to encode non-ASCII bytes. With the command line flag <tt>--ascii</tt> (or&#xa0;<tt>-a</tt>), the TeXML processor uses ASCII sequences. For example, the same LaTeX document is written in the following way:</p>
     <lst><xi:include href="code/tour_ascii.out.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/></lst>
   </doc>
   

@@ -39,7 +39,7 @@
   <h2>TeXML benefits</h2>
   <ul>
     <li>LaTeX and ConTeXt support.</li>
-    <li>No need to bother about escaping TeX special characters.</li>
+    <li>No need to bother escaping TeX special characters.</li>
     <li>No need to bother about empty lines in paragraphs.</li>
     <li>More than 700 unicode characters are mapped to LaTeX commands.</li>
     <li>Support for international publishing.</li>
