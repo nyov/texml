@@ -7,7 +7,7 @@
     <li>Do you convert XML to TeX? Then you ought to use TeXML.</li>
   </ul>
   <p>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</p>
-  <h2>TeXML vs XSL-FO</h2>
+  <h2>XML to PDF &#x2014; TeXML vs XSL-FO</h2>
   <ul>
     <li>Both TeXML and XSL-FO are an intermediate step in publishing XML as PDF.</li>
     <li>&#x2014; With XSL-FO, you create or re-use an XSL-FO stylesheet.
@@ -17,8 +17,8 @@
     <li>&#x2014; XSL-FO is for good enough PDFs,
       <br />&#x2014; TeXML is targeted to the minority who create excellent documents.</li>
   </ul>
-  <h2>TeXML vs Perl/Java/Python/etc</h2>
-  <p>Cost of converting XML to LaTeX using different approaches:</p>
+  <h2>XML to TeX &#x2014; TeXML vs Perl/Java/Python/etc</h2>
+  <p>Cost of converting XML to TeX using different approaches:</p>
   <table border="0" width="100%">
     <tr>
       <th>100*k man-hours</th>
@@ -30,8 +30,12 @@
       <td width="33%" align="center"><img src="graph2.png" width="320" height="240" border="0" alt="Cost of XML to TeX using XSLT only" title="Cost of XML to TeX using XSLT only" /></td>
       <td width="33%" align="center"><img src="graph3.png" width="320" height="240" border="0" alt="Cost of XML to TeX using XSLT plus TeXML" title="Cost of XML to TeX using XSLT plus TeXML" /></td>
     </tr>
+    <tr>
+      <td colspan="3"><font size="-1"><i>Convert: decide, for example, that &lt;p&gt; is a paragraph, &lt;note&gt; is a table, etc<br />
+Serialize: write result a valid TeX file</i></font></td>
+    </tr>
   </table>
-  <p>Traditional languages are not convinient to work with XML. On the other hand, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
+  <p>Traditional languages are not convinient to work with XML, therefore the conversion step takes efforts. On the other hand, when using XSLT, generating valid TeX syntax is nightmare. The solution is TeXML.</p>
   <ul>
     <li>XSLT is an ideal tool to convert XML to XML, and TeXML is an XML syntax for TeX.</li>
     <li>A TeXML processor makes the rest, serializing TeXML to TeX.</li>
