@@ -18,7 +18,7 @@
       <br />&#x2014; TeXML is targeted to the minority who create excellent documents.</li>
   </ul>
   <h2>XML to TeX &#x2014; TeXML vs Perl/Java/Python/etc</h2>
-  <p>Cost of converting XML to TeX using different approaches:</p>
+  <p>Development cost of converting XML to TeX using different approaches:</p>
   <table border="0" width="100%">
     <tr>
       <th>100*k man-hours</th>
