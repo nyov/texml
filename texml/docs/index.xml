@@ -14,12 +14,12 @@
     <li>&#x2014; In the XSL-FO way, you need an XSL-FO stylesheet.
       <br />&#x2014; By analogue, in the TeXML way, you need a TeXML stylesheet.</li>
   </ul>
-  <p>Difference:</p>
+  <p>Differences:</p>
   <ul>
-    <li>&#x2014; Open-source XSL-FO tools are not yet of the production quality,
-      <br />&#x2014; LaTeX is.</li>
-    <li>&#x2014; XSL-FO is for good enough PDFs,
-      <br />&#x2014; TeXML is targeted to the minority who create excellent documents.</li>
+    <li>&#x2014; Open-source XSL-FO tools are not yet production quality;
+      <br />&#x2014; LaTeX had been a fully reliable standard for decades.</li>
+    <li>&#x2014; XSL-FO is for good enough PDFs;
+      <br />&#x2014; TeXML is targeted to the minority to create excellent PDFs.</li>
   </ul>
   <h2>XML to TeX &#x2014; TeXML vs Perl/Java/Python/etc</h2>
   <p>Development cost of converting XML to TeX using different approaches:</p>
