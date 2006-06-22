@@ -17,7 +17,7 @@
   <p>Differences:</p>
   <ul>
     <li>&#x2014; Open-source XSL-FO tools are not yet production quality;
-      <br />&#x2014; LaTeX had been a fully reliable standard for decades.</li>
+      <br />&#x2014; LaTeX had been a reliable standard for decades.</li>
     <li>&#x2014; XSL-FO is for good enough PDFs;
       <br />&#x2014; TeXML is targeted to the minority to create excellent PDFs.</li>
   </ul>
