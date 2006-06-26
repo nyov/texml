@@ -1,7 +1,7 @@
 TeXML: an XML syntax for TeX (LaTeX, ConTeXt)
 
-     * Do you generate TeX code? Then download and try TeXML.
      * Do you convert XML to TeX? Then you ought to use TeXML.
+     * Do you generate TeX code? Then download and try TeXML.
 
    TeXML  is  an  XML  syntax for TeX. The processor transforms the TeXML
    markup  into  the  TeX  markup,  escaping  special and out-of-encoding
@@ -15,17 +15,19 @@ TeXML vs XSL-FO
      * -- With XSL-FO, you create or re-use an XSL-FO stylesheet.
        --  By  analogue,  with  TeXML,  you  create  or  re-use  a  TeXML
        stylesheet.
-     * -- Open-source XSL-FO tools are not yet of the production quality,
+     * -- Open-source XSL-FO tools are not yet of the production quality;
        -- LaTeX is.
-     * -- XSL-FO is for good enough PDFs,
+     * -- XSL-FO is for good enough PDFs;
        --  TeXML  is  targeted  to  the  minority  who  create  excellent
        documents.
 
 TeXML vs Perl/Java/Python/etc
 
-   Traditional  languages  are  not  convinient  to work with XML. On the
-   other hand, when using XSLT, generating valid TeX syntax is nightmare.
-   The solution is TeXML.
+   Traditional  languages  are  not  convenient  to work with XML
+   because they don't' handle trees very well. On the other hand, XSLT
+   can handle trees very well, but does a very poor jobs with strings,
+   so that generating valid TeX syntax is nightmare.  The solution is
+   TeXML.
    
      * XSLT  is  an ideal tool to convert XML to XML, and TeXML is an XML
        syntax for TeX.
