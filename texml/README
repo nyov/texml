@@ -1,33 +1,35 @@
 TeXML: an XML syntax for TeX (LaTeX, ConTeXt)
 
-     * Do you convert XML to TeX? Then you ought to use TeXML.
      * Do you generate TeX code? Then download and try TeXML.
+     * Do you convert XML to TeX? Then you ought to use TeXML.
 
    TeXML  is  an  XML  syntax for TeX. The processor transforms the TeXML
    markup  into  the  TeX  markup,  escaping  special and out-of-encoding
    characters.  The  intended  audience  is  developers who automatically
    generate [La]TeX or ConTeXt files.
 
-TeXML vs XSL-FO
+XML to PDF -- TeXML vs XSL-FO
 
+   Similarity:
+   
      * Both  TeXML  and XSL-FO are an intermediate step in publishing XML
        as PDF.
-     * -- With XSL-FO, you create or re-use an XSL-FO stylesheet.
-       --  By  analogue,  with  TeXML,  you  create  or  re-use  a  TeXML
-       stylesheet.
-     * -- Open-source XSL-FO tools are not yet of the production quality;
-       -- LaTeX is.
+     * -- In the XSL-FO way, you need an XSL-FO stylesheet.
+       -- By analogue, in the TeXML way, you need a TeXML stylesheet.
+
+   Differences:
+   
+     * -- Open-source XSL-FO tools are not yet production quality;
+       -- LaTeX has been a reliable standard for decades.
      * -- XSL-FO is for good enough PDFs;
-       --  TeXML  is  targeted  to  the  minority  who  create  excellent
-       documents.
+       -- TeXML is targeted to the minority to create excellent PDFs.
 
-TeXML vs Perl/Java/Python/etc
+XML to TeX -- TeXML vs Perl/Java/Python/etc
 
-   Traditional  languages  are  not  convenient  to work with XML
-   because they don't' handle trees very well. On the other hand, XSLT
-   can handle trees very well, but does a very poor jobs with strings,
-   so that generating valid TeX syntax is nightmare.  The solution is
-   TeXML.
+   XSLT  is  very  poor  at  working with strings, so it is hard to write
+   valid  TeX.  In  contrast, Perl etc. are excellent at handling strings
+   and so can easily produce TeX, but they are inconvenient to manipulate
+   an XML. The solution is TeXML.
    
      * XSLT  is  an ideal tool to convert XML to XML, and TeXML is an XML
        syntax for TeX.
@@ -36,7 +38,7 @@ TeXML vs Perl/Java/Python/etc
 TeXML benefits
 
      * LaTeX and ConTeXt support.
-     * No need to bother about escaping TeX special characters.
+     * No need to bother escaping TeX special characters.
      * No need to bother about empty lines in paragraphs.
      * More than 700 unicode characters are mapped to LaTeX commands.
      * Support for international publishing.
