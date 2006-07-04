@@ -4,6 +4,9 @@ all: html
 
 html: index.html spec.html thesis.html python.html texml.html install.html tour_simple.html tour_more.html tour_better.html tour_pdf.html tour_xslt.html tour_encoding.html tour_ascii.html
 
+# ---------------------------------------------------------
+# generation
+
 distclean:
 	rm -f *~ *.txt *.html
 
@@ -24,12 +27,3 @@ texml.xml: texml.tmp support/man.xsl
 
 quick.html: ../tests/data/quick/quick.texml ../tests/data/quick/quick.tex ../tests/data/quick/quick.html ../tests/data/quick/quick.xsl
 
-index.txt: index.html
-	links -dump $< >$@
-	echo >>$@
-	echo 'References' >>$@
-	echo >>$@
-	lynx --dump index.html | grep 'http://' | sed 's/^.*http/   http/' >>$@
-
-%.txt: %.html
-	links -dump $< >$@
