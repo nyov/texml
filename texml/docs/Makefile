@@ -2,10 +2,14 @@
 
 all: html
 
-html: index.html spec.html thesis.html python.html texml.html install.html tour_simple.html tour_more.html tour_better.html tour_pdf.html tour_xslt.html tour_encoding.html tour_ascii.html
+support_files = $(wildcard *.css) $(wildcard *.png)
+html_files = index.html spec.html thesis.html python.html texml.html install.html tour_simple.html tour_more.html tour_better.html tour_pdf.html tour_xslt.html tour_encoding.html tour_ascii.html
+
+html: $(html_files)
 
 # ---------------------------------------------------------
 # generation
+ifneq ($(MAKECMDGOALS),site)
 
 distclean:
 	rm -f *~ *.txt *.html
@@ -26,4 +30,18 @@ texml.xml: texml.tmp support/man.xsl
 	-xsltproc -o $@ --nonet $(word 2,$+) $<
 
 quick.html: ../tests/data/quick/quick.texml ../tests/data/quick/quick.tex ../tests/data/quick/quick.html ../tests/data/quick/quick.xsl
+
+endif
+
+# ---------------------------------------------------------
+# site generation
+
+site: $(addprefix site/,$(html_files) $(support_files))
+
+site/%.html: %.html
+	cp -a $@ $<
+
+site/%: %
+	cp $@ $<
+
 
