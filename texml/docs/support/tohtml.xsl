@@ -55,7 +55,7 @@
         <x:if test="@id!='texml.index'">
           <a href="index.html"><img src="texml.png" width="100" heaight="60" alt="TeXML" title="TeXML" border="0" vspace="10" /></a><br />
         </x:if>
-        <x:variable name="url" select="concat('http://getfo.org/texml/',substring-after(@id,'texml.'),'.html')"/>
+        <x:variable name="url" select="concat('http://getfo.org/texml/',translate(substring-after(@id,'texml.'),'.','_'),'.html')"/>
         <x:text>This page: </x:text><a href="{$url}"><x:value-of select="$url"/></a><br />
         <x:if test="@id='texml.index'">
           <x:text>Project area: </x:text><a href="http://sourceforge.net/projects/getfo/">http://sourceforge.net/projects/getfo/</a>
