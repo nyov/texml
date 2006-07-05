@@ -36,12 +36,19 @@ endif
 # ---------------------------------------------------------
 # site generation
 
-site: $(addprefix site/,$(html_files) $(support_files))
+site_files = $(addprefix site/,$(html_files) $(support_files))
 
-site/%.html: %.html
-	cp -a $@ $<
+site: $(site_files)
+
+site/%.html: %.html support/add_adsense.pl
+	perl -w $(word 2,$+) $< >$@
 
 site/%: %
-	cp $@ $<
+	cp $< $@
 
 
+# ---------------------------------------------------------
+# site upload
+
+sync:
+	rsync -av $(site_files) getfo@getfo.org:public_html/texml/
