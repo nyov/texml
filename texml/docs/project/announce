@@ -490,4 +490,14 @@ TeXML -- это язык, предназначенный для представления TeX-документов в виде XML. 
 
 Домашняя страница TeXML: http://getfo.sourceforge.net/texml/
 
+-------------
+
+ChangeLog:
+
+* Rework of documentation
+* Support for international publishing
+* ConTeXt support
+* TeXML can be used as a Python module
+* Standard pythonic installation
+* Switched to MIT license
 
