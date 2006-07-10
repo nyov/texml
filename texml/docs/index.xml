@@ -36,7 +36,7 @@
     </tr>
     <tr>
       <td colspan="3"><font size="-1"><i>Convert: decide, for example, that &lt;p&gt; is a paragraph, &lt;note&gt; is a table, etc<br />
-Serialize: write result a valid TeX file</i></font></td>
+Serialize: write result as a valid TeX file</i></font></td>
     </tr>
   </table>
   <p>XSLT is very poor at working with strings, so it is hard to write valid TeX. In contrast, Perl etc. are excellent at handling strings and so can easily produce TeX, but they are inconvenient to manipulate an XML. The solution is TeXML.</p>
