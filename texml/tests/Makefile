@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.16 2006-06-05 05:23:33 olpa Exp $
+# $Id: Makefile,v 1.17 2006-07-20 03:41:23 olpa Exp $
 
 all: tests
 
@@ -33,6 +33,7 @@ params-context    = --context -e utf8
 params-context_ns = --context -e utf8
 params-chinese1   = -e utf8 -a
 params-tour_pdfok = -e koi8-r
+params-aenc       = --encoding utf8 -a
 
 tests: $(good_test_stamps) $(fail_test_stamps)
 
