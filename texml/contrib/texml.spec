@@ -1,5 +1,5 @@
-%define version 2.0.0
-%define release alt2
+%define version 2.0.1
+%define release alt1
 
 %setup_python_module texml
 
@@ -39,6 +39,9 @@ cp INSTALLED_FILES INSTALLED_FILES.0 && /bin/sed 's/texml.1/texml.1.gz/' INSTALL
 %files -f INSTALLED_FILES
 
 %changelog
+* Thu Jul 20 2006 Oleg Parashchenko <olpa@altlinux.ru> 2.0.1-alt1
+- New TeXML version.
+
 * Tue Jul 11 2006 Oleg Parashchenko <olpa@altlinux.ru> 2.0.0-alt2
 - Field "Packager" is added to spec-file.
 
