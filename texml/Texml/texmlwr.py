@@ -1,5 +1,5 @@
 """ TeXML Writer and string services """
-# $Id: texmlwr.py,v 1.8 2005-09-26 15:03:09 olpa Exp $
+# $Id: texmlwr.py,v 1.9 2006-07-20 03:56:27 olpa Exp $
 
 #
 # Modes of processing of special characters
@@ -268,6 +268,17 @@ class texmlwr:
     except:
       pass
     #
+    # Try write the symbol in the ^^XX form
+    #
+    if self.always_ascii:
+      try:
+        bytes = ch.encode(self.encoding)
+        for by in bytes:
+          self.write('^^%02x' % ord(by), 0)
+        return
+      except Exception, e:
+        pass
+    #
     # Symbol have to be rewritten. Let start with math mode.
     #
     chord = ord(ch)
@@ -306,17 +317,6 @@ class texmlwr:
       self.write(tostr, 0)
       self.writech('}', 0)
       return                                               # return
-    #
-    # Try write the symbol in the ^^XX form
-    #
-    if self.always_ascii:
-      try:
-        bytes = ch.encode(self.encoding)
-        for by in bytes:
-          self.write('^^%02x' % ord(by), 0)
-        return
-      except Exception, e:
-        pass
     #
     # Finally, warn about bad symbol and write it in the &#xNNN; form
     #
