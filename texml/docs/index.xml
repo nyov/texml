@@ -74,5 +74,6 @@ Serialize: write result as a valid TeX file</i></font></td>
     </li>
     <li>Paul Tremblay's <a href="http://getfo.org/context_xml/index.html">context-xml documentation project</a> as an alternative to XSL-FO</li>
     <li>Developer's <a href="http://uucode.com/blog/category/texml/">blog on TeXML</a></li>
+    <li><a href="http://consodoc.com/">Consodoc</a> publishing server: XML to beautiful documents</li>
   </ul>
 </doc>
