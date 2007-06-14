@@ -27,3 +27,13 @@ set output "graph3.png"
 replot
 
 set terminal x11
+
+----------
+
+alternative:
+
+set terminal postscript color
+set output "graph1.eps"
+set output "graph2.eps"
+set output "graph3.eps"
+replot
