@@ -36,7 +36,7 @@ endif
 # ---------------------------------------------------------
 # site generation
 
-site_files = $(addprefix site/,$(html_files) $(support_files))
+site_files = $(addprefix site/,$(html_files) $(support_files) favicon.ico)
 
 site: $(site_files)
 
