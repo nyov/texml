@@ -3,7 +3,7 @@
   <description>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</description>
   <title>TeXML: an XML syntax for TeX (LaTeX, ConTeXt)</title>
   <ul>
-    <li>Do you generate TeX code? Then <a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.tar.gz?download">download</a> and try TeXML.</li>
+    <li>Do you generate TeX code? Then <a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.1.tar.gz?download">download</a> and try TeXML.</li>
     <li>Do you convert XML to TeX? Then you ought to use TeXML.</li>
   </ul>
   <p>TeXML is an XML syntax for TeX. The processor transforms the TeXML markup into the TeX markup, escaping special and out-of-encoding characters. The intended audience is developers who automatically generate [La]TeX or ConTeXt files.</p>
@@ -56,7 +56,7 @@ Serialize: write result as a valid TeX file</i></font></td>
   </ul>
   <h2>Resources</h2>
   <ul>
-    <li><a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.0.tar.gz?download">Download</a> TeXML</li>
+    <li><a href="http://prdownloads.sourceforge.net/getfo/texml-2.0.1.tar.gz?download">Download</a> TeXML</li>
     <li><a href="http://lists.sourceforge.net/lists/listinfo/getfo-general">Join</a> the getfo-general mailing list or visit the <a href="http://news.gmane.org/gmane.comp.tex.getfo%2btexml">archive at gmane</a>.</li>
     <li>Take the TeXML tour:
       <ul>
