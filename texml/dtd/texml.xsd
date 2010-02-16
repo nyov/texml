@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://getfo.sourceforge.net/texml/ns1"
+	xmlns:tns="http://getfo.sourceforge.net/texml/ns1"
+	elementFormDefault="qualified">
+
+	<xs:group name="noMathGroup">
+		<xs:choice>
+			<xs:element ref="tns:TeXML" />
+			<xs:element ref="tns:cmd" />
+			<xs:element ref="tns:env" />
+			<xs:element ref="tns:group" />
+			<xs:element ref="tns:ctrl" />
+			<xs:element ref="tns:spec" />
+			<xs:element ref="tns:pdf" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="noMathType" mixed="true">
+		<xs:group ref="tns:noMathGroup" minOccurs="0" maxOccurs="unbounded" />
+	</xs:complexType>
+
+	<xs:group name="contentGroup">
+		<xs:choice>
+			<xs:group ref="tns:noMathGroup" />
+			<xs:element ref="tns:math" />
+			<xs:element ref="tns:dmath" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="contentType" mixed="true">
+		<xs:group ref="tns:contentGroup" minOccurs="0" maxOccurs="unbounded" />
+	</xs:complexType>
+
+	<xs:group name="cmdGroup">
+		<xs:choice>
+			<xs:element ref="tns:opt" />
+			<xs:element ref="tns:parm" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="inOptGroup">
+		<xs:choice>
+			<xs:group ref="tns:contentGroup" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="inOptType" mixed="true">
+		<xs:group ref="tns:inOptGroup" minOccurs="0" maxOccurs="unbounded" />
+	</xs:complexType>
+
+	<xs:simpleType name="Boolean01">
+		<xs:annotation>
+			<xs:documentation>
+				The TeXML processor does not support the values "true" or "false."
+				If support is added, all Boolean01 types can be replaced by
+				xs:boolean. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="TeXML">
+		<xs:annotation>
+			<xs:documentation>
+				The root element of a TeXML document.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:group ref="tns:contentGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xs:attribute name="mode">
+				<xs:annotation>
+					<xs:documentation>
+						There are two modes: text and math. Modes only
+						affect the translation of characters.
+
+						The default mode is text. In
+						order to change mode, use the mode
+						attribute of the element TeXML.
+						The possible values for this
+						attribute are math and text. If the
+						element TeXML is used without
+						attribute mode, then the mode is not
+						changed.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="text" />
+						<xs:enumeration value="math" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="escape" type="tns:Boolean01" >
+				<xs:annotation>
+					<xs:documentation>Leave special characters as is, without escaping.</xs:documentation>
+				</xs:annotation></xs:attribute>
+			<xs:attribute name="emptylines" type="tns:Boolean01" >
+				<xs:annotation>
+					<xs:documentation>Leave empty lines as is.</xs:documentation>
+				</xs:annotation></xs:attribute>
+			<xs:attribute name="ligatures" type="tns:Boolean01" >
+				<xs:annotation>
+					<xs:documentation>Leave ligatures as is.</xs:documentation>
+				</xs:annotation></xs:attribute>
+			<xs:attribute name="ws" type="tns:Boolean01" >
+				<xs:annotation>
+					<xs:documentation>Switch off whitespace elimination.</xs:documentation>
+				</xs:annotation></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="env">
+		<xs:annotation>
+			<xs:documentation>
+				The element env is a convenience for expressing LaTeX environments.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="tns:contentGroup" />
+				<xs:group ref="tns:cmdGroup" />
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation>Name of the environment</xs:documentation>
+				</xs:annotation></xs:attribute>
+			<xs:attribute name="begin" type="xs:string" />
+			<xs:attribute name="end" type="xs:string" />
+			<xs:attribute name="start" type="xs:string" />
+			<xs:attribute name="stop" type="xs:string" />
+			<xs:attribute name="nl1" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a newline before the beginning of an environment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="nl2" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a newline after the beginning of an environment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="nl3" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a newline before the end of an environment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="nl4" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a newline after the end of an environment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="group" type="tns:contentType">
+		<xs:annotation>
+			<xs:documentation>
+				The group element is a convenience for encoding groups. The
+				processor will supply an opening brace at the beginning, and a
+				closing brace at the end of the group.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="math" type="tns:noMathType">
+		<xs:annotation>
+			<xs:documentation>
+				Elements math and dmath are conveniences for encoding math groups.
+				The processor inserts the appropriate math shift symbol at the
+				beginning and end of the group and also switches mode to math inside
+				the group.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dmath" type="tns:noMathType">
+		<xs:annotation>
+			<xs:documentation>Elements math and dmath are conveniences for
+				encoding math groups. The processor inserts the appropriate math
+				shift symbol at the beginning and end of the group and also switches
+				mode to math inside the group.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="cmd">
+		<xs:annotation>
+			<xs:documentation>
+				The cmd element encodes TeX commands.
+
+				To add options to a command, add opt children to the cmd element. The
+				processor places opt children within square braces, as LaTeX style
+				options.
+				
+				To add parameters to a command, add parm children to the
+				cmd element. The processor places parm children within TeX groups,
+				that is, curly braces.
+
+				The TeXML cmd can have several parm or opt elements.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="tns:cmdGroup" />
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation>Name of the TeX command</xs:documentation>
+				</xs:annotation></xs:attribute>
+			<xs:attribute name="nl1" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a new line before a TeX command.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="nl2" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						Force a new line after a TeX command.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="gr" type="tns:Boolean01">
+				<xs:annotation>
+					<xs:documentation>
+						If a command has no parameters and options then the TeXML
+						processor adds an empty group “{}” after the command name:
+						“\smth{}”. Without the empty group, the following whitespace is
+						ignored by TeX, but sometimes it is exactly what you need. In this
+						case set attribute “gr” (shortcut for “group”) to “0”.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="opt" type="tns:inOptType">
+		<xs:annotation>
+			<xs:documentation>
+				Options for a TeX command. The processor places opt
+				children within square braces, as LaTeX style
+				options.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<xs:element name="parm" type="tns:inOptType">
+		<xs:annotation>
+			<xs:documentation>
+				Parameters for a TeX command. The processor
+				places parm children within TeX groups, that is,
+				curly braces.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="ctrl">
+		<xs:annotation>
+			<xs:documentation>
+				The ch attibute of the ctrl element encodes a
+				control symbol.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="ch" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						The control symbol
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="spec">
+		<xs:annotation>
+			<xs:documentation>
+				The attribute cat of the element spec creates the corresponding
+				symbol verbatim, without escaping.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="cat" type="tns:catType" use="required" >
+				<xs:annotation>
+					<xs:documentation>The special symbol</xs:documentation>
+				</xs:annotation></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="catType">
+		<xs:annotation>
+			<xs:documentation>
+				Symbols used by the cat attribute of the spec element.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="esc">
+				<xs:annotation>
+					<xs:documentation>Escape character (\)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bg">
+				<xs:annotation>
+					<xs:documentation>Begin group ({)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="eg">
+				<xs:annotation>
+					<xs:documentation>End group (})</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="mshift">
+				<xs:annotation>
+					<xs:documentation>Math shift ($)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="align">
+				<xs:annotation>
+					<xs:documentation>Alignment tab (&amp;)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="parm">
+				<xs:annotation>
+					<xs:documentation>Parameter (#)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sup">
+				<xs:annotation>
+					<xs:documentation>Superscript (^)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sub">
+				<xs:annotation>
+					<xs:documentation>Subscript (_)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tilde">
+				<xs:annotation>
+					<xs:documentation>Tilde (~)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="comment">
+				<xs:annotation>
+					<xs:documentation>Comment (%)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vert">
+				<xs:annotation>
+					<xs:documentation>Vertical line (|)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lt">
+				<xs:annotation>
+					<xs:documentation>Less than (&lt;)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gt">
+				<xs:annotation>
+					<xs:documentation>Greater than (&gt;)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nl">
+				<xs:annotation>
+					<xs:documentation>New line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nl?">
+				<xs:annotation>
+					<xs:documentation>Conditional new line. A new line is created unless it is already created.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="space">
+				<xs:annotation>
+					<xs:documentation>Space character ( )</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nil">
+				<xs:annotation>
+					<xs:documentation>Nothing. The only purpose of it is a side effect: whitespace around it is collapsed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:element name="pdf" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Content of the element pdf is converted to UTF16BE encoding and
+				represented using escaped octal codes. The result is a PDF unicode
+				string.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>
