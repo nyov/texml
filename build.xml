@@ -1,0 +1,109 @@
+<project name="TeX executor" default="dist" basedir=".">
+  <description>
+      TeX executor build file
+  </description>
+  <!-- set global properties for this build -->
+  <property name="dist" location="dist/TeXexec"/>
+  <property name="php" location="php"/>
+  <property name="lib" location="lib"/>
+  <property name="projects" location="projects"/>
+  <property name="doc" location="doc"/>
+  <property name="tests" location="tests"/>
+  <!-- windows specific -->
+  <property name="phpexe-win" location="D:\programs\php\php.exe"/>
+  <property name="phpdoc-win" location="D:\programs\PhpDocumentor\phpdoc"/>
+  <property name="phpunit-win" location="D:\programs\PHPUnit"/>
+  <property name="phpunitexe-win" location="D:\programs\PHPUnit"/>
+  <!-- unix specific -->
+  <property name="phpexe-unix" location="/usr/bin/php"/>
+  <property name="phpdoc-unix" location="/usr/bin/phpdoc"/>
+  <property name="phpunit-unix" location="/usr/share/php/PHPUnit"/>
+  <property name="phpunitexe-unix" location="/usr/bin"/>
+
+  <target name="init">
+      <!-- Create the time stamp -->
+      <tstamp/>
+  </target>
+
+  <target name="dist" depends="tests,exec,gdoc" description="generate the distribution" >
+      <delete includeemptydirs="true" dir="${dist}"/>
+      <mkdir dir="${dist}"/>  
+      <copy todir="${dist}/php">
+          <fileset dir="php">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+      <copy todir="${dist}/examples">
+          <fileset dir="examples">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+
+      <copy todir="${dist}/include">
+          <fileset dir="include">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+      <copy todir="${dist}/doc">
+          <fileset dir="doc">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+      <copy todir="${dist}/tests">
+          <fileset dir="tests">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+      <copy todir="${dist}/projects">
+          <fileset dir="projects">
+              <exclude name="**/*.svn"/>
+          </fileset>
+      </copy>
+      <copy file="build.xml" todir="${dist}"/>
+      <copy file="readme.txt" todir="${dist}"/>
+
+  </target>
+
+  <target name="compile" depends="init" description="execute" >
+      <exec executable="${phpexe-win}" osfamily="windows">
+          <arg line="-l -f ${php}/runner.php"/>
+      </exec>  
+      <exec executable="${phpexe-unix}" osfamily="unix">
+          <arg line="-l -f ${php}/runner.php"/>
+      </exec>  
+  </target>
+
+  <target name="exec" depends="compile" description="execute" >
+      <exec executable="${phpexe-win}" osfamily="windows">
+          <arg line="-f ${php}/runner.php"/>
+      </exec>  
+      <exec executable="${phpexe-unix}" osfamily="unix">
+          <arg line="-f ${php}/runner.php"/>
+      </exec>  
+  </target>
+
+  <target name="gdoc" depends="init" description="make documentation" >
+      <delete dir="${doc}"/>  
+      <mkdir dir="${doc}"/>
+      <exec executable="${phpexe-win}" osfamily="windows">
+          <arg line="${phpdoc-win} -t ${doc} -o HTML:frames:default -d ${php}"/>
+      </exec>  
+  </target>
+
+  <target name="tests" depends="init" description="execute unit-tests">
+      <exec executable="cmd" osfamily="windows" dir="${phpunit-win}" failonerror="true" >
+          <arg line="/c ${phpunitexe-win}/phpunit.bat texloginfoTest ${tests}/php/test_runner.php"/>
+      </exec>  
+      <exec executable="${phpunitexe-unix}/phpunit" osfamily="unix" dir="${phpunit-unix}" failonerror="true" >
+          <arg line="texloginfoTest ${tests}/php/test_runner.php"/>
+      </exec>  
+  </target>
+
+  <target name="clean" description="clean up" >
+    <delete dir="${doc}"/>
+    <delete includeemptydirs="true">
+        <fileset dir="${projects}" includes="**/*"/>
+    </delete>
+  </target>
+</project>
+
