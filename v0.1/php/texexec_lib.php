@@ -58,8 +58,8 @@
         mkdir($proj_path);
     }
 
-    $fname = substr($fpath, strrpos($fpath,"/")+1);
-    $nfpath = $proj_path . "/" . $fname;
+    $fname = substr($fpath, strrpos($fpath,DIRECTORY_SEPARATOR)+1);
+    $nfpath = $proj_path . DIRECTORY_SEPARATOR . $fname;
 
     if (!copy($fpath, $nfpath)) {
         echo "File $file was'nt copied...\n";
@@ -153,7 +153,6 @@
     }
     putenv($env_name . "=". $env_value);
  }
-
 /**
  * It is constant used when stream was'nt set
  */
@@ -176,22 +175,22 @@
       * @param $err_stream stream stream of errors
       * @param $miss_stream stream stream of misses
       */
-    function __construct($warn_stream = None, $err_stream = None, $miss_stream = None) {
+    function texloginfo($warn_stream = None, $err_stream = None, $miss_stream = None) {
         $need_return = 0;
         if (None == $warn_stream) {    
-            $this->warn_stream = new stream();
+            $this->warn_stream =& new stream();
         } else {
-            $this->warn_stream = $warn_stream;        
+            $this->warn_stream =& $warn_stream;        
         }
         if (None == $err_stream) {    
-            $this->err_stream = new stream();
+            $this->err_stream =& new stream();
         } else {
-            $this->err_stream = $err_stream;        
+            $this->err_stream =& $err_stream;        
         }
         if (None == $miss_stream) {    
-            $this->miss_stream = new stream();        
+            $this->miss_stream =& new stream();        
         } else {
-            $this->miss_stream = $miss_stream;        
+            $this->miss_stream =& $miss_stream;        
         }
         $this->missed_seen = array();
     }   
@@ -322,7 +321,7 @@
  class re {
     var $regexp;
     var $matches;
-    function __construct($regexp) {
+    function re($regexp) {
         $this->regexp = $regexp; 
     }
     function match($str) {
@@ -344,7 +343,7 @@
  class stream {
      var $file;
      var $is_file;
-     function __construct($filename = false, $mode = false) {
+     function stream($filename = false, $mode = false) {
           if (!($filename==false && $mode==false)) {
               $this->file = fopen($filename, $mode);
               $this->is_file = true;

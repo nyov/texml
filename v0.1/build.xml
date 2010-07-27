@@ -11,6 +11,7 @@
   <property name="tests" location="tests"/>
   <!-- windows specific -->
   <property name="phpexe-win" location="D:\programs\php\php.exe"/>
+  <property name="php4exe-win" location="D:\programs\php4\php.exe"/>
   <property name="phpdoc-win" location="D:\programs\PhpDocumentor\phpdoc"/>
   <property name="phpunit-win" location="D:\programs\PHPUnit"/>
   <property name="phpunitexe-win" location="D:\programs\PHPUnit"/>
@@ -62,6 +63,16 @@
       <copy file="build.xml" todir="${dist}"/>
       <copy file="readme.txt" todir="${dist}"/>
 
+  </target>
+
+  <target name="check4" depends="init" description="execute" >
+      <echo message="PHP4 compatibility..."/>
+      <exec executable="${php4exe-win}" osfamily="windows">
+          <arg line="-l -f ${php}/runner.php"/>
+      </exec>  
+      <exec executable="${php4exe-win}" osfamily="windows">
+          <arg line="-f ${php}/runner.php"/>
+      </exec>  
   </target>
 
   <target name="compile" depends="init" description="execute" >
