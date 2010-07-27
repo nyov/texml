@@ -16,7 +16,7 @@
   <property name="phpunitexe-win" location="D:\programs\PHPUnit"/>
   <!-- unix specific -->
   <property name="phpexe-unix" location="/usr/bin/php"/>
-  <property name="phpdoc-unix" location="/usr/bin/phpdoc"/>
+  <property name="phpdoc-unix" location="/usr/programs/PhpDocumentor/phpdoc"/>
   <property name="phpunit-unix" location="/usr/share/php/PHPUnit"/>
   <property name="phpunitexe-unix" location="/usr/bin"/>
 
@@ -87,6 +87,9 @@
       <mkdir dir="${doc}"/>
       <exec executable="${phpexe-win}" osfamily="windows">
           <arg line="${phpdoc-win} -t ${doc} -o HTML:frames:default -d ${php}"/>
+      </exec>  
+      <exec executable="${phpexe-unix}" osfamily="unix">
+          <arg line="${phpdoc-unix} -t ${doc} -o HTML:frames:default -d ${php}"/>
       </exec>  
   </target>
 

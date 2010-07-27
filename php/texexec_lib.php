@@ -262,10 +262,10 @@
      * @param $filename string Name of file
      */
     function parse_log_file($filename) {
-        try {
-            $in_stream = new stream($filename, "rt");    
-        } catch (Exception $e) { // IOError
-            echo "Exception: " . $e->getMessage();
+        $in_stream = null;
+        $in_stream = new stream($filename, "rt");    
+        if ($in_stream == null) {
+            echo "Erorr in the during of instancion of the stream class\n";
             return;
         }
         $this->parse_log_stream($in_stream);
