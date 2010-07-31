@@ -1,0 +1,65 @@
+<project name="TeXML processor" default="dist" basedir=".">
+  <description>
+      TeXML processor build file
+  </description>
+  <!-- set global properties for this build -->
+  <property name="dist" location="dist/TeXMLproc"/>
+  <property name="php" location="php"/>
+  <property name="run" location="scripts"/>
+  <property name="lib" location="lib"/>
+  <property name="doc" location="doc"/>
+  <property name="tests" location="tests"/>
+  <!-- windows specific -->
+  <property name="phpexe-win" location="D:\programs\php\php.exe"/>
+  <property name="php4exe-win" location="D:\programs\php4\php.exe"/>
+  <property name="phpdoc-win" location="D:\programs\PhpDocumentor\phpdoc"/>
+  <property name="phpunit-win" location="D:\programs\PHPUnit"/>
+  <property name="phpunitexe-win" location="D:\programs\PHPUnit"/>
+  <!-- unix specific -->
+  <property name="phpexe-unix" location="/usr/bin/php"/>
+  <property name="phpdoc-unix" location="/usr/programs/PhpDocumentor/phpdoc"/>
+  <property name="phpunit-unix" location="/usr/share/php/PHPUnit"/>
+  <property name="phpunitexe-unix" location="/usr/bin"/>
+
+  <target name="init">
+      <!-- Create the time stamp -->
+      <tstamp/>
+  </target>
+
+  <target name="check4" depends="init" description="execute" >
+      <echo message="PHP4 compatibility..."/>
+      <exec executable="${php4exe-win}" osfamily="windows">
+          <arg line="-l -f ${run}/runner.php"/>
+      </exec>  
+      <exec executable="${php4exe-win}" osfamily="windows">
+          <arg line="-f ${run}/runner.php"/>
+      </exec>  
+  </target>
+
+  <target name="compile" depends="init" description="execute" >
+      <exec executable="${phpexe-win}" osfamily="windows">
+          <arg line="-l -f ${run}/runner.php"/>
+      </exec>  
+      <exec executable="${phpexe-unix}" osfamily="unix">
+          <arg line="-l -f ${run}/runner.php"/>
+      </exec>  
+  </target>
+
+  <target name="exec" depends="compile" description="execute" >
+      <exec executable="${phpexe-win}" osfamily="windows">
+          <arg line="-f ${run}/runner.php"/>
+      </exec>  
+      <exec executable="${phpexe-unix}" osfamily="unix">
+          <arg line="-f ${run}/runner.php"/>
+      </exec>  
+  </target>
+
+
+  <target name="clean" description="clean up" >
+    <delete dir="${doc}"/>
+    <delete includeemptydirs="true">
+        <fileset dir="${projects}" includes="**/*"/>
+    </delete>
+  </target>
+</project>
+
