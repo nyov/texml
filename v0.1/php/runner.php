@@ -1,6 +1,6 @@
 <?php
 /**
- * TeX executor
+ * Runner for TeX executor
  * @package texexec
  * @author Roman Domrachev 
  * @version 0.1, 12.07.2010
@@ -104,7 +104,7 @@
         echo "unfortunately generation was not done\n";
     }
 
-    // Other exaples
+    // Other examples
     echo "Other examples\n";
     set_texinputs("c:\\", "d:\\somepath\\somesub");
     echo "TEXINPUTS=". getenv("TEXINPUTS") . "\n";

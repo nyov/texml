@@ -8,6 +8,8 @@
  * @copyright (c) 2010+ by getfo.org project
  */
 
+ require "common_getfo_lib.php";
+
 /**
  * Remove the directory including all files inside.
  *
@@ -262,7 +264,7 @@
      */
     function parse_log_file($filename) {
         $in_stream = null;
-        $in_stream = new stream($filename, "rt");    
+        $in_stream =& new fstream($filename, "rt");    
         if ($in_stream == null) {
             echo "Erorr in the during of instancion of the stream class\n";
             return;
@@ -313,76 +315,4 @@
 
  }
 
-/**
- * Class of regular expressions 
- * 
- * @package texexec
- */
- class re {
-    var $regexp;
-    var $matches;
-    function re($regexp) {
-        $this->regexp = $regexp; 
-    }
-    function match($str) {
-        return preg_match($this->regexp, trim($str), $this->matches);
-    }        
-    function group($n) {
-        return $this->matches[$n];
-    }
-    function search($str) {
-        return $this->match($str);
-    }
-
- }
-/**
- * Class of stream
- * 
- * @package texexec
- */
- class stream {
-     var $file;
-     var $is_file;
-     function stream($filename = false, $mode = false) {
-          if (!($filename==false && $mode==false)) {
-              $this->file = fopen($filename, $mode);
-              $this->is_file = true;
-          } else {
-              $this->is_file = false;
-          }
-     }
-     function nexto() {
-        if ($this->is_file) {
-            if (!feof($this->file)) {
-                return fgets($this->file);
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-     }
-     function printo($str) {
-        if ($this->is_file) {
-            fwrite($this->file, trim($str));
-        } else {
-            $this->file .= trim($str) . "\n";
-        }
-     }
-     function getvalue() {
-        if ($this->is_file) {
-            return file_get_contents($this->file);
-        } else {
-            return $this->file;
-        }
-     }
-     function closet() {
-        if ($this->is_file) {
-            fclose($this->file);
-        } else {
-            unset($this->file);
-            $this->file = null;
-        }
-     }
- }
 ?>
