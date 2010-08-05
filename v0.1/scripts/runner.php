@@ -14,16 +14,13 @@
  ini_set('zend.ze1_compatibility_mode', 'On');
 
  require("config.php");
- require(phpcode . DIRECTORY_SEPARATOR . "processor.php");
  require(phpcode . DIRECTORY_SEPARATOR . "common_getfo_lib.php");
 
- $encoding      = 'ascii';
- $always_ascii  = 0;
- $width         = 62;
+ require(phpcode . DIRECTORY_SEPARATOR . "processor.php");
 
  $xmlfile_name = "examples" . DIRECTORY_SEPARATOR . "texmlapis.xml";
  $outfile =& new stream();
 
- processor.process($xmlfile_name, $outfile, $encoding, $width, $always_ascii);
+ processor.process($xmlfile_name, $outfile);
 
 ?>

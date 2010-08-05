@@ -84,5 +84,64 @@
          fclose(parent::get_file());
      }
  }
+/**
+ * Common class for exceptions
+ * 
+ * @package common_getfo_lib
+ */
+ class PException {
+    function PException() {
+        // some actions
+    }
+ }
+/**
+ * Common class for errors
+ * 
+ * @package common_getfo_lib
+ */
+ class PError {
+ }
+/**
+ * Error of the value
+ * 
+ * @package common_getfo_lib
+ */
+ class ValueError extends PError {
+    function ValueError() {
+        // some actions
+    }
+ }
+/**
+ * Call by case of an exception
+ * 
+ * @param $ename string the exception class name 
+ * @param $msg string the message about an occurence
+ */
+ function raise($ename, $msg) {
+     new $ename();
+     die($msg);
+ }
+/**
+ * Get line separator
+ * 
+ */
+ function get_linespr() {
+     return "\n";
+ }
+/**
+ * Get value from set by key
+ * 
+ * @param array $values the set of values 
+ * @param string $key key that to get
+ * @param string $default the default value for return if key was'nt found
+ * @return string the value 
+ */
+ function get_value($values, $key, $default) {
+     if (array_key_exist($key ,$values)) {
+         return $values[$key];
+     } else {
+         return $default;
+     }
+ }
 
 ?>
