@@ -10,13 +10,6 @@
 
  require('specmap.php');
  require('unimap.php');
- /**
- * Modes of processing of special characters
- */
- define('DEFAULT', 0);
- define('TEXT'   , 1);
- define('MATH'   , 2);
- define('ASIS'   , 3);
 
  /**
  * It is constant used when variable was'nt set
@@ -40,18 +33,16 @@
      var $ligatures_stack; 
      var $emptylines;      
      var $emptylines_stack;
-     var $mode;
-     var $mode_stack;
+     var $bad_enc_warned;  
 
      /**
       * Remember output stream, initialize data structures
       * 
-      * @param object $stream stream for writing
+      * @param object &$stream stream for writing
       */
      function texmlwr(&$stream) {
          // Tune output stream
-         $encoding = "UTF-8";
-         $this->stream =& new stream_encoder($stream, $encoding);
+         $this->stream =& new stream_encoder($stream);
          //if ($this->stream == None) {
          //   $e = "unknown reason";
          //   raise('ValueError', sprintf("Can't create encoder: '%s'", $e));
@@ -67,10 +58,19 @@
          $this->ligatures_stack  = array();
          $this->emptylines       = 0;
          $this->emptylines_stack = array();
-         $this->mode             = TEXT;
-         $this->mode_stack       = array();
+         $this->bad_enc_warned   = 0;
 
      }
+     /**
+      * Set input encoding for stream encoder
+      * 
+      * @param string $in_enc the input encoding
+      */
+     function set_in_enc($in_enc) {
+         $s =& $this->stream;
+         $s->set_in_enc($in_enc);
+     }
+
      /**
       * Set if escaping is required. Remember old value.
       * 
@@ -138,10 +138,11 @@
       * @param integer $esc_specials flag for escaping specials, 0 - don't it. 
       */
      function writech($ch, $esc_specials) {
+     //echo "c=".$ch ."\n";
          //
          // Handle well-known standard TeX ligatures
          //
-         if (not($this->ligatures)) {
+         if (!($this->ligatures)) {
              if (!strcmp('-', $ch)) {
                  if (!strcmp('-', $this->last_ch)) {
                      $this->writech('{', 0);
@@ -184,7 +185,7 @@
              //
              // Now create newline, update counters and return
              //
-             $s = $this->stream; 
+             $s =& $this->stream; 
              $s->write(get_linespr());
              $this->last_ch       = $ch;
              $this->line_is_blank = 1;
@@ -197,65 +198,44 @@
          //
          // Reset the flag of a blank line
          //
-         if (not(in_array($ch, array('\x20', '\x09')))) {
+         if (!(in_array($ch, array('\x20', '\x09')))) {
              $this->line_is_blank = 0;
          }
          //
          // Handle specials
          //
          if ($this->esc_specials) {
-             if ($this->mode == TEXT) {
-                 $this->write($textescmap[$ch], 0);
-             } else {
-                 $this->write($mathescmap[$ch], 0);
-             }
+             $this->write($textescmap[$ch], 0);
              return; // return
          }                                                 
          //
          // First attempt to write symbol as-is
          //
-         $s = $this->stream;
+         $s =& $this->stream;
          if ($s->write($ch)) {
+              //echo "as-is\n";
               return; // return
          }
          //
-         // Symbol have to be rewritten. Let start with math mode.
+         // Symbol have to be rewritten. 
          //
          $chord = ord($ch);
-         if ($this->mode == TEXT) {
+         //
+         // Text mode, lookup text map
+         //
+         if ($this->write($textmap[$chord], 0)) {
+             return; // return
+         } else {
              //
-             // Text mode, lookup text map
+             // Text mode, lookup math map
              //
-             if ($this->write($textmap[$chord], 0)) {
-                 return; // return
-             } else {
-                 //
-                 // Text mode, lookup math map
-                 //
-                 $tostr = get_value($mathmap, $chord, None);
-             }
-         } else { // $this->mode == MATH:
-             //
-             // Math mode, lookup math map
-             //
-             if ($this->write($mathmap[$chord], 0)) {
-                 return; // return
-             } else {
-                 //
-                 // Math mode, lookup text map
-                 //
-                 $tostr = get_value($textmap, $chord, None);
-             }
+             $tostr = get_value($mathmap, $chord, None);
          }
          //
          // If mapping in another mode table is found, use a wrapper
          //
          if ($tostr != None) {
-             if ($this->mode == TEXT) {
-                 $this->write('\\ensuremath{', 0);
-             } else {
-                 $this->write('\\ensuretext{', 0);
-             }
+             $this->write('\\ensuremath{', 0);
              $this->write($tostr, 0);
              $this->writech('}', 0);
              return; // return 
@@ -281,8 +261,9 @@
         if (None == $escape) {
             $escape = $this->escape;
         }
-        foreach($str as $ch) {
-            $this->writech($ch, $escape);
+        $i=0;
+        for (; $i < strlen($str); $i++) {
+            $this->writech($str[$i], $escape);
         }
         return true;
      }
@@ -293,13 +274,19 @@
  * @package texml_proc
  */
  class stream_encoder {
+     var $stream;
+     var $in_enc;
+     var $out_enc;
      /**
       * Construct a wrapper by stream and encoding
       * 
       * @param object $stream stream for processing 
-      * @param string $encoding encoding for result output 
+      * @param string $in_enc the input encoding
       */
-     function stream_encoder(&$stream, $encoding) {
+     function stream_encoder(&$stream, $in_enc = "UTF-8") {
+         $this->in_enc = $in_enc;
+         $this->out_enc = "UTF-8";
+         $this->stream =& $stream;
      }
      /**
       * Write string encoded
@@ -308,8 +295,22 @@
       * @return bool true - if writing was successful, false - else.  
       */
      function write($str) {
+         $s =& $this->stream;
+         //$s->write(iconv($this->in_enc, $this->out_enc, $str));
+         //$cstr = iconv($this->in_enc, $this->out_enc, $str);
+         //if($cstr !== false)
+         $s->write($str);
          return true;
      }
+     /**
+      * Set input encoding for stream encoder
+      * 
+      * @param string $inc_enc the input encoding
+      */
+     function set_in_enc($in_enc) {
+         $this->$in_enc = $in_enc;
+     }
+
      /**
       * Close underlying stream
       * 

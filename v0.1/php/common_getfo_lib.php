@@ -40,13 +40,23 @@
  class stream {
      var $file;
      function stream() {
+         echo "start\n";
          //die("Cannot create abstract stream class!");
      }
      function nexto() {
          return false;
      }
      function printo($str) {
-         $this->file .= trim($str) . "\n";
+         $this->write($str);
+         $this->write("\n");
+     }
+     function write($str) {
+         echo "instr=". $str . "\n";
+         //$f =& $this->file;
+         //$f = $this->file . trim($str);
+         //$this->file = $f;
+         $this->file .= trim($str);
+         echo "instr1=". $this->file . "\n";
      }
      function getvalue() {
          return $this->file;
@@ -74,7 +84,10 @@
      function nexto() {
          return fgets(parent::get_file());
      }
-     function printo($str) {
+     //function printo($str) {
+     //    $this->write($str);
+     //}
+     function write($str) {
          fwrite(parent::get_file(), trim($str));
      }
      function getvalue() {
@@ -137,7 +150,7 @@
  * @return string the value 
  */
  function get_value($values, $key, $default) {
-     if (array_key_exist($key ,$values)) {
+     if (array_key_exists($key ,$values)) {
          return $values[$key];
      } else {
          return $default;

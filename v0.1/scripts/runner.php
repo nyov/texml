@@ -18,9 +18,12 @@
 
  require(phpcode . DIRECTORY_SEPARATOR . "processor.php");
 
- $xmlfile_name = "examples" . DIRECTORY_SEPARATOR . "texmlapis.xml";
- $outfile =& new stream();
+ $filename = "texmlex1";
+ $xmlfile_name = "examples" . DIRECTORY_SEPARATOR . $filename . ".xml";
+ //$outfile =& new stream();
+ $outfile =& new fstream($filename . ".out", "wt");
 
- processor.process($xmlfile_name, $outfile);
+ processor.process($xmlfile_name, $outfile, "UTF-8");
 
+ //echo "r=" . $outfile->get_file();
 ?>

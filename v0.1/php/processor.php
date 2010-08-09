@@ -1,15 +1,20 @@
 <?php
- require('handler.php');
- require('texmlwr.php');
+ require_once('handler.php');
+ require_once('texmlwr.php');
 /**
  * Start process 
  * 
  * @param $in_stream object input stream 
  * @param $out_stream object output stream 
+ * @param string $in_enc the input encoding
  */
- function process($xmlfile_name, &$out_stream) {
+ function process($xmlfile_name, &$out_stream, $in_enc = null) {
     $transform_obj =& new ParseFile();
     $texml_writer =& new texmlwr($out_stream);
-    $transform_obj->parse_file($texml_writer, $xmlfile_name);
+    if ($in_enc != null) {
+        $transform_obj->parse_file($texml_writer, $xmlfile_name, $in_enc);
+    } else {
+        $transform_obj->parse_file($texml_writer, $xmlfile_name);
+    }
  }
 ?>

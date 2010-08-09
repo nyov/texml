@@ -25,10 +25,26 @@
  * @package texml_proc
  */
  class ParseFile {
-    function parse_file(&$texml_writer, $filename) {
+   /**
+    * Parse the xml file
+    *
+    * @param object &$texml_writer the writer
+    * @param string $filename the xml filename
+    * @param string $in_enc the input encoding
+    */
+    function parse_file(&$texml_writer, $filename, $in_enc = null) {
 
+        if ($in_enc != null) {
+            $parser = xml_parser_create($in_enc);
+        } else {
+            $parser = xml_parser_create();
+        }
+
+        xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+        $inc_enc = xml_parser_get_option($parser, XML_OPTION_TARGET_ENCODING);
+        $texml_writer->set_in_enc($in_enc);
         $handler =& new glue_handler($texml_writer);
-        $parser = xml_parser_create_ns();
+
         xml_set_object($parser, $handler);
         xml_set_element_handler($parser,"startElement","endElement");
         xml_set_character_data_handler($parser, "characters");
@@ -65,13 +81,16 @@
  class glue_handler {
      var $c; // content for process
      var $h; // real handler
+     var $w; // writer
     /**
      * Initialize of the properties of the class
      * 
      * @param $texml_writer object the TeXML writer  
      */
      function glue_handler(&$texml_writer) {
+        $this->w =& $texml_writer; 
         $this->c = None;
+        //echo "construct-";
         $this->h =& new Handler($texml_writer);
      }
     /**
@@ -81,6 +100,7 @@
     function startDocument() {
         $this->c = None;
         $h =& $this->h;
+
         $h->startDocument();
     }
     /**
@@ -106,9 +126,9 @@
     /**
      * The method is executed when start-xml-tag was occured. 
      * 
-     * @param $parser object the SAX-parser
-     * @param $local_name string the local name of the element
-     * @param $attrs array the attributes of the element
+     * @param object $parser the SAX-parser
+     * @param string $local_name the local name of the element
+     * @param array $attrs the attributes of the element
      */
     function startElement($parser, $local_name, $attrs) {
         // get the column and line number and use the handler
@@ -123,8 +143,8 @@
     /**
      * The method is executed when end-xml-tag was occured. 
      * 
-     * @param $parser object the SAX-parser
-     * @param $local_name string the local name of the element 
+     * @param object $parser the SAX-parser
+     * @param string $local_name the local name of the element 
      */
     function endElement($parser, $local_name) {
         $h =& $this->h; 
@@ -143,17 +163,21 @@
      * is reported twice ('... aa  ' and ' bb ...')
      * instead of onece ('... aa    bb ...')
      *
-     * @param $parser object the SAX-parser
-     * @param $target string the parameter contains the processing-instruction-target
-     * @param $data string the parameter contains the processing-instruction-data
+     * @param object $parser the SAX-parser
+     * @param string $target the parameter contains the processing-instruction-target
+     * @param strig $data the parameter contains the processing-instruction-data
      */
     function processingInstruction($parser, $target, $data) {
         $this->flushChars();
     }
-
+    /**
+     * Handle text data
+     *
+     * @param object $parser the parser 
+     * @param string $content the text content of element 
+     */
     function characters($parser, $content) {        
         $h =& $this->h; 
-        
         $col_num = xml_get_current_column_number($parser);
         $line_num =  xml_get_current_line_number($parser);
         $h->set_location($col_num, $line_num);
@@ -210,7 +234,7 @@
      * @param $texml_writer object the texml_writer object
      */
     function Handler(&$texml_writer) {
-        echo "Handler";
+        echo "Handler\n";
         // Set properties
         $this->writer =& $texml_writer;
         $this->cmdname_stack = array();
@@ -244,7 +268,8 @@
           'opt' =>    'on_opt_end',
           'parm' =>   'on_parm_end',
         );
-            
+        
+
     }
     /**
      * Set location of the position of the parsing 
@@ -253,6 +278,7 @@
      * @param $line integer current line number for an XML parser
      */
     function set_location($col, $line) {
+        
         $this->__col_num = $col;
         $this->__line_num = $line;
     }
@@ -263,7 +289,7 @@
      * @param $local_name string the local name of the element 
      */
     function invalid_xml($local_name) {
-        $msg = sprintf("Invalid XML %s, %s: ", $this->__col_num , $this->__line_num);
+        $msg = sprintf(" Invalid XML %s, %s: ", $this->__col_num , $this->__line_num);
         $msg .= sprintf('%s not expected', $this->local_name);
 
         raise('InvalidXmlException', $msg);
@@ -290,8 +316,6 @@
      * 
      */
     function endDocument() {
-        //$w =& $this->writer;
-        //$w->conditionalNewline();
     }
     /**
      * Handle start of an element
@@ -299,20 +323,20 @@
      * @param parser object the SAX-parser 
      * @param name string the name of the element
      * @param attrs array the attribues of the element 
-     */
+     */           
     function startElement($name, $attrs) {
-        if (array_key_exists($name, $this->model)) {
-            call_user_func_array(array(get_class($this), $this->model[$name]), $attrs);
+        $m =& $this->model;
+        if (array_key_exists($name, $m)) {
+            call_user_func_array(array(get_class($this), $m[$name]), array($attrs));
         } else {
             $this->invalid_xml($name);
         }
-
-    }
+    }               
     /**
      * Handle text data
      *
      * @param content string the text content of element 
-     */
+     */          
     function characters($content) {
         //
         // First, check if content allowed at all
@@ -334,32 +358,34 @@
                 $this->invalid_xml_other($msg);
             }
             return;       
-        }                                          
+        }
         //
         // Finally, write content
         //
         $w =& $this->writer;
         $w->write($content);
-    }
 
+    }
+                   
     /**
      * Handle end of en element
      *
      * @param name string the name of the element
-     */
+     */      
     function endElement($name) {
         call_user_func(array(get_class($this), $this->end_handlers[$name]));
         $this->unstack_model();
-    }
+    }       
     /**
      * Remember content model of parent and set model for current node
      *
-     * @param model string the name of the model 
+     * @param string $model the name of the model 
      */
     function stack_model($model) {
-        $ms = $this->model_stack;
-        $value = current($model); 
-        $ms[key($model)] = $value;
+        if ($model == null) {
+            return;
+        }
+        array_push($this->model_stack, $model);
         $this->model = $model;
     }
     /**
@@ -367,10 +393,8 @@
      *
      */
     function unstack_model() {
-        $value = end($this->model_stack);
-        $this->model = array(key($this->model_stack) => $value);
         array_pop($this->model_stack);
-        
+        $this->model = end($this->model_stack);
     }
     // -----------------------------------------------------------------
     /**
@@ -378,13 +402,17 @@
      *
      * Raises error in other cases.
      *
-     * @param attrs array the attributes  
-     * @param aname string the name of the attribute
-     * @param default string the default value
-     * @return integer  returns 1 if aname is in the attrs, 0 if aname is'nt in the attrs and default if attribute not exists.   
+     * @param array $attrs the attributes  
+     * @param string $aname string the name of the attribute
+     * @param string $default the default value
+     * @return integer returns 1 if aname is in the attrs, 0 if aname is'nt in the attrs and default if attribute not exists.   
      */
     function get_boolean($attrs, $aname, $default) {
-        $aval = array_key_exist($attrs, $aname);
+
+        if ($attrs == null) {
+            $attrs = array();
+        }
+        $aval = array_key_exists($aname, $attrs);
         if (None == $aval) {
             return $default;
         } else if (true == $aval) {
@@ -401,10 +429,16 @@
     /**
      * Handle TeXML element
      *
-     * @param attrs array the attributes  
+     * @param array $attrs the attributes  
      */
-    function on_texml($attrs) {
-        $this->stack_model($this->model_content);
+    function on_texml($attrs = null) {
+        if ($attrs == null) {
+            $attrs = array();
+        }
+
+        $mc =& $this->model_content;
+        
+        $this->stack_model($mc);
         $emptylines = $this->get_boolean($attrs, 'emptylines', None);
         $escape     = $this->get_boolean($attrs, 'escape',     None);
         $ligatures  = $this->get_boolean($attrs, 'ligatures',  None);
@@ -422,14 +456,13 @@
         $w->unstack_ligatures();
         $w->unstack_escape();
         $w->unstack_emptylines();
-        $w->unstack_mode();
-    }
+    }      
     // -----------------------------------------------------------------
     /**
      * Handle 'cmd' element
      *
      * @param attts array the attributes 
-     */
+     */    
     function on_cmd($attrs) {
         $this->stack_model($this->model_cmd);
         //
@@ -459,7 +492,7 @@
     /**
      * Finalize of the handling of the 'cmd' element
      *
-     */
+     */ 
     function on_cmd_end() {
         $this->text_is_only_spaces = 0;
     }
@@ -467,7 +500,7 @@
      * Handle 'opt' element
      *
      * @param attts array the attributes 
-     */
+     */ 
     function on_opt($attrs) {
         $this->on_opt_parm('[', $attrs);
     }
@@ -475,21 +508,21 @@
      * Handle 'parm' element
      *
      * @param attts array the attributes 
-     */
+     */  
     function on_parm($attrs) {
         $this->on_opt_parm('{', $attrs);
     }
     /**
      * Finalize of the handling of the 'opt' element
      *
-     */
+     */  
     function on_opt_end() {
         $this->on_opt_parm_end(']');
     }
     /**
      * Finalize of the handling of the 'parm' element
      *
-     */
+     */  
     function on_parm_end() {
         $this->on_opt_parm_end('}');
     }
@@ -498,8 +531,8 @@
      *
      * @param ch string the character
      * @param attrs array the attributes 
-     */
-    function on_opt_parm($ch, &$attrs) {
+     */  
+    function on_opt_parm($ch, $attrs) {
         $this->stack_model($this->model_opt);
         $w =& $this->writer; 
         $w->writech($ch, 0);
@@ -509,15 +542,15 @@
      * Finalize of the handling of the 'opt' and 'parm' element
      *
      * @param ch string character
-     */
+     */   
     function on_opt_parm_end($ch) {
         $w =& $this->writer; 
         $w->writech($ch, 0);
         $this->has_parm            = 1; // At the end to avoid collision of nesting
         // <opt/> can be only inside <cmd/> or (very rarely) in <env/>
         $last_ms = end($this->model_stack);
-        $curr_me = current($this->model_env);
-        if (!((key($this->model_stack) == key($this->model_env)) && $last_ms == $curr_me)) {
+
+        if (count(array_diff_assoc($last_ms, $this->model_env)) > 0) { // maps not equal
           $this->text_is_only_spaces = 1;
         } else {
           $this->text_is_only_spaces = 0;
@@ -528,7 +561,7 @@
      * Handle 'env' element
      *
      * @param attrs array the attributes 
-     */
+     */    
     function on_env($attrs) {
         $this->stack_model($this->model_env);
         //
@@ -546,13 +579,14 @@
             $msg .= "Attribute env/@name is empty"; 
             $this->invalid_xml_other($msg);
         }
-        $begenv;
+        /*$begenv;
         $begin_is = array_key_exists('begin', $attrs);
         if ($begin_is == None or $begin_is == false) {
             $begenv = '';
         } else {
             $begenv = $attrs['begin'];
-        }
+        } */
+        $begenv = get_value($attrs, 'begin', 'begin');
 
         $cmdname_s = $this->cmdname_stack;
         array_push($cmdname_s, $this->cmdname);
@@ -560,12 +594,15 @@
         array_push($endenv_s, $this->endenv);
         $this->cmdname = $name;
 
+        /*
         $end_is = array_key_exists('end', $attrs);
         if ($end_is == None or $end_is == false) {
             $this->endenv = '';
         } else {
             $this->endenv = $attrs['end'];
-        }
+        } */
+        $this->endenv = get_value($attrs, 'end', 'end');
+
 
         $w =& $this->writer; 
         $w->write(sprintf('\%s{%s}',$begenv, $name), 0);
@@ -573,18 +610,18 @@
     /**
      * Finalize of the handling of the 'env' element
      *
-     */
+     */     
     function on_env_end() {
         $w =& $this->writer; 
-        $w->writer.write(sprintf('\%s{%s}', $this->endenv, $this->cmdname), 0);
-        $this->cmdname = self.cmdname_stack.pop();
-        $this->endenv  = self.endenv_stack.pop();
+        $w->write(sprintf('\%s{%s}', $this->endenv, $this->cmdname), 0);
+        $this->cmdname = array_pop($this->cmdname_stack);
+        $this->endenv  = array_pop($this->endenv_stack);
     }
     /**
      * Handle 'group' element
      *
      * @param attrs array the attributes 
-     */
+     */     
     function on_group($attrs) {
         $w =& $this->writer; 
         $this->stack_model($this->model_content);
@@ -593,11 +630,11 @@
     /**
      * Finalize of the handling 'group' element
      *
-     */
+     */    
     function on_group_end() {
         $w =& $this->writer; 
         $w->writech('}', 0);
-    }
+    }    
  }
 
 ?>
