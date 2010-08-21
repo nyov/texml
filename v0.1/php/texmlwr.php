@@ -8,9 +8,7 @@
  * @copyright (c) 2010+ by getfo.org project
  */
 
- require('specmap.php');
- require('unimap.php');
-
+ require_once('specmap.php');
  /**
  * It is constant used when variable was'nt set
  */
@@ -34,6 +32,7 @@
      var $emptylines;      
      var $emptylines_stack;
      var $bad_enc_warned;  
+     var $textescmap;
 
      /**
       * Remember output stream, initialize data structures
@@ -59,6 +58,8 @@
          $this->emptylines       = 0;
          $this->emptylines_stack = array();
          $this->bad_enc_warned   = 0;
+         $tem =& new textescmap(); 
+         $this->textescmap =& $tem->get();
 
      }
      /**
@@ -138,28 +139,27 @@
       * @param integer $esc_specials flag for escaping specials, 0 - don't it. 
       */
      function writech($ch, $esc_specials) {
-     //echo "c=".$ch ."\n";
          //
          // Handle well-known standard TeX ligatures
          //
          if (!($this->ligatures)) {
-             if (!strcmp('-', $ch)) {
-                 if (!strcmp('-', $this->last_ch)) {
-                     $this->writech('{', 0);
-                     $this->writech('}', 0);
+             if (!strcmp("\x2D", $ch)) { // -
+                 if (!strcmp("\x2D", $this->last_ch)) {
+                     $this->writech("\x7B", 0); // {
+                     $this->writech("\x7C", 0); // }
+                 }                
+             } else if (!strcmp("\x27", $ch)) { // '
+                 if (!strcmp("\x27", $this->last_ch)) {
+                     $this->writech("\x7B", 0); // {
+                     $this->writech("\x7C", 0); // }
                  }
-             } else if (!strcmp("'", $ch)) {
-                 if (!strcmp("'", $this->last_ch)) {
-                     $this->writech('{', 0);
-                     $this->writech('}', 0);
-                 }
-             } else if (!strcmp('`',$ch)) {
-                 if (!strcmp('`', $this->last_ch) || !strcmp('!', $this->last_ch) || !strcmp('?', $this->last_ch)) {
-                     $this->writech('{', 0);
-                     $this->writech('}', 0);
+             } else if (!strcmp("\x60",$ch)) { // `
+                 if (!strcmp("\x60", $this->last_ch) || !strcmp("\x21", $this->last_ch) || !strcmp("\x3F", $this->last_ch)) { // ` ! ?
+                     $this->writech("\x7B", 0); // {
+                     $this->writech("\x7C", 0); // }
                  }
              }
-         }
+         } 
          //
          // Handle end-of-line symbols.
          // XML spec says: 2.11 End-of-Line Handling:
@@ -167,20 +167,20 @@
          // a standalone literal #xD, an XML processor must pass to the
          // application the single character #xA.
          //
-         if (!strcmp('\n', $ch) || !strcmp('\r', $ch)) {
+         if (!strcmp("\x0A", $ch) || !strcmp("\x0D", $ch)) { // \n \r
              //
              // We should never get '\r', but only '\n'.
              // Anyway, someone will copy and paste this code, and code will
              // get '\r'. In this case rewrite '\r' as '\n'.
              //
-             if (!strcmp('\r', $ch)) { 
-                 $ch = '\n';
+             if (!strcmp("\x0D", $ch)) { 
+                 $ch = "\x0A";
              }
              //
              // TeX interprets empty line as \par, fix this problem
              //
-             if ($this->line_is_blank && not($this->emptylines)) {
-                 $this->writech('%', 0);
+             if ($this->line_is_blank && !($this->emptylines)) {
+                 $this->writech("\x25", 0); // %
              }
              //
              // Now create newline, update counters and return
@@ -198,14 +198,15 @@
          //
          // Reset the flag of a blank line
          //
-         if (!(in_array($ch, array('\x20', '\x09')))) {
+         if (!(in_array($ch, array("\x20", "\x09")))) {
              $this->line_is_blank = 0;
-         }
-         //
+         }      
+         //     
          // Handle specials
-         //
-         if ($this->esc_specials) {
-             $this->write($textescmap[$ch], 0);
+         //  
+         $tem =& $this->textescmap;  
+         if ($esc_specials && array_key_exists($ch, $tem)) {
+             $this->write($tem[$ch], 0);
              return; // return
          }                                                 
          //
@@ -213,42 +214,8 @@
          //
          $s =& $this->stream;
          if ($s->write($ch)) {
-              //echo "as-is\n";
               return; // return
          }
-         //
-         // Symbol have to be rewritten. 
-         //
-         $chord = ord($ch);
-         //
-         // Text mode, lookup text map
-         //
-         if ($this->write($textmap[$chord], 0)) {
-             return; // return
-         } else {
-             //
-             // Text mode, lookup math map
-             //
-             $tostr = get_value($mathmap, $chord, None);
-         }
-         //
-         // If mapping in another mode table is found, use a wrapper
-         //
-         if ($tostr != None) {
-             $this->write('\\ensuremath{', 0);
-             $this->write($tostr, 0);
-             $this->writech('}', 0);
-             return; // return 
-         }                                               
-         //
-         // Finally, warn about bad symbol and write it in the &#xNNN; form
-         //
-         if (not($this->bad_enc_warned)) {
-             echo("texml: not all XML symbols are converted\n");
-             $this->bad_enc_warned = 1;
-         }
-         $this->write(sprintf('\\unicodechar{%d}', $chord), 0);
-
      }
      /**
       * Write symbols char-by-char in current mode of escaping
@@ -258,12 +225,12 @@
       * @return bool true - if writing was successful, false - else. 
       */
      function write($str, $escape = None) {
-        if (None == $escape) {
+        if ($escape === None) {       
             $escape = $this->escape;
         }
         $i=0;
-        for (; $i < strlen($str); $i++) {
-            $this->writech($str[$i], $escape);
+        for (; $i < mb_strlen($str); $i++) {
+            $this->writech(mb_substr($str,$i,1), $escape);
         }
         return true;
      }
@@ -296,9 +263,6 @@
       */
      function write($str) {
          $s =& $this->stream;
-         //$s->write(iconv($this->in_enc, $this->out_enc, $str));
-         //$cstr = iconv($this->in_enc, $this->out_enc, $str);
-         //if($cstr !== false)
          $s->write($str);
          return true;
      }

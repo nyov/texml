@@ -1,6 +1,7 @@
 <?php
  require_once('handler.php');
  require_once('texmlwr.php');
+
 /**
  * Start process 
  * 
@@ -9,6 +10,9 @@
  * @param string $in_enc the input encoding
  */
  function process($xmlfile_name, &$out_stream, $in_enc = null) {
+    // set encoding for processing 
+    mb_internal_encoding("UTF-8");
+
     $transform_obj =& new ParseFile();
     $texml_writer =& new texmlwr($out_stream);
     if ($in_enc != null) {

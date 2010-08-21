@@ -88,7 +88,7 @@
      //    $this->write($str);
      //}
      function write($str) {
-         fwrite(parent::get_file(), trim($str));
+         fwrite(parent::get_file(), $str);
      }
      function getvalue() {
          return file_get_contents(parent::get_file());        
@@ -139,7 +139,7 @@
  * 
  */
  function get_linespr() {
-     return "\n";
+     return "\x0A";
  }
 /**
  * Get value from set by key

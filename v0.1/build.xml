@@ -54,6 +54,14 @@
       </exec>  
   </target>
 
+  <target name="tests" depends="init" description="execute unit-tests">
+      <exec executable="cmd" osfamily="windows" dir="${phpunit-win}" failonerror="true" >
+          <arg line="/c ${phpunitexe-win}/phpunit.bat processorDataTest ${tests}/php/test_runner.php"/>
+      </exec>  
+      <exec executable="${phpunitexe-unix}/phpunit" osfamily="unix" dir="${phpunit-unix}" failonerror="true" >
+          <arg line="processorDataTest ${tests}/php/test_runner.php"/>
+      </exec>  
+  </target>
 
   <target name="clean" description="clean up" >
     <delete dir="${doc}"/>

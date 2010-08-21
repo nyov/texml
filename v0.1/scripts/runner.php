@@ -21,7 +21,7 @@
  $filename = "texmlex1";
  $xmlfile_name = "examples" . DIRECTORY_SEPARATOR . $filename . ".xml";
  //$outfile =& new stream();
- $outfile =& new fstream($filename . ".out", "wt");
+ $outfile =& new fstream($filename . ".out", "w");
 
  processor.process($xmlfile_name, $outfile, "UTF-8");
 

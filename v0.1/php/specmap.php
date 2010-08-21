@@ -1,75 +1,45 @@
 <?php
-    // text escape map and math escape map should contain the same keys
+    // class-wrapper for escape table
+    class textescmap {
+        var $tem;
+        // text escape map and math escape map should contain the same keys
+        function textescmap() {
+            $this->tem = array(
+                '\\' => '\textbackslash{}',
+                '{' => '\{',
+                '}' => '\}',
+                '$' => '\textdollar{}',
+                '&' => '\&',
+                '#' => '\#',
+                '^' => '\^{}',
+                '_' => '\_',
+                '~' => '\textasciitilde{}',
+                '%' => '\%',
+                '|' => '\textbar{}',
+                '<' => '\textless{}',
+                '>' => '\textgreater{}',
+                // not special but typography
+                "\x00a9" => '\textcopyright{}',
+                "\x2011" => '\mbox{-}'
+            );
+            //
+            // Although these symbols are not special, it is better to escape them
+            // because in as-is form they are not so good
+            //
+            $typographymap = array(
+                "\x00a0" => '~'
+            );
+            // update array
+            $this->tem = array_merge($this->tem, $typographymap); 
 
-    $textescmap = array(
-        '\\' => '\textbackslash{}',
-        '{' => '\{',
-        '}' => '\}',
-        '$' => '\textdollar{}',
-        '&' => '\&',
-        '#' => '\#',
-        '^' => '\^{}',
-        '_' => '\_',
-        '~' => '\textasciitilde{}',
-        '%' => '\%',
-        '|' => '\textbar{}',
-        '<' => '\textless{}',
-        '>' => '\textgreater{}'
-        // not special but typography
-        //u'\u00a9' => '\textcopyright{}',
-        //u'\u2011' => '\mbox{-}'
-    );
+        }
 
-    $mathescmap = array(
-        '\\' => '\backslash{}',
-        '{' => '\{',
-        '}' => '\}',
-        '$' => '\$',
-        '&' => '\&',
-        '#' => '\#',
-        '^' => '\^{}',
-        '_' => '\_',
-        '~' => '\~{}',
-        '%' => '\%',
-        '|' => '|',
-        '<' => '<',
-        '>' => '>'
-        // not special but typography
-        //u'\u00a9' => '\copyright{}',
-        //u'\u2011' => '-'
-    );
+        function get() {
+            return $this->tem;
+        }
+    }
 
-    //
-    // Although these symbols are not special, it is better to escape them
-    // because in as-is form they are not so good
-    //
-    //typographymap = {
-    //  u'\u00a0' => '~'
-    //}
 
     //textescmap.update(typographymap)
-    //mathescmap.update(typographymap)
-
-    //
-    // Mapping from spec/@cat to symbols
-    //
-    $tocharmap = array(
-        'esc'     => '\\',
-        'bg'      => '{',
-        'eg'      => '}',
-        'mshift'  => '$',
-        'align'   => '&',
-        'parm'    => '#',
-        'sup'     => '^',
-        'sub'     => '_',
-        'tilde'   => '~',
-        'comment' => '%',
-        'vert'    => '|',
-        'lt'      => '<',
-        'gt'      => '>',
-        'nl'      => '\n',
-        'space'   => ' ',
-        'nil'     => ''
-    );
 
 ?>

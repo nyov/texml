@@ -41,6 +41,7 @@
         }
 
         xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+        xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
         $inc_enc = xml_parser_get_option($parser, XML_OPTION_TARGET_ENCODING);
         $texml_writer->set_in_enc($in_enc);
         $handler =& new glue_handler($texml_writer);
@@ -234,7 +235,6 @@
      * @param $texml_writer object the texml_writer object
      */
     function Handler(&$texml_writer) {
-        echo "Handler\n";
         // Set properties
         $this->writer =& $texml_writer;
         $this->cmdname_stack = array();
@@ -351,7 +351,8 @@
         // Element <env/> may have <opt/> and <parm/>, so we do
         // magic to delete whitespace at beginning of environment
         if ($this->text_is_only_spaces) {
-            //$stripped = content.lstrip()
+            
+            $stripped = ltrim($content);
             if (0 != strlen($stripped)) {
                 $msg = sprintf('Invalid XML %s, %s: ', $this->__col_num, $this->__line_num);
                 //$msg .= sprintf("Only whitespaces are expected, not text content: '%s'", content.encode('latin-1', 'replace')
@@ -363,8 +364,7 @@
         // Finally, write content
         //
         $w =& $this->writer;
-        $w->write($content);
-
+        $w->write(trim($content));
     }
                    
     /**
@@ -495,6 +495,8 @@
      */ 
     function on_cmd_end() {
         $this->text_is_only_spaces = 0;
+        $w =& $this->writer; 
+        $w->writech(get_linespr(), 0);
     }
     /**
      * Handle 'opt' element
@@ -606,6 +608,7 @@
 
         $w =& $this->writer; 
         $w->write(sprintf('\%s{%s}',$begenv, $name), 0);
+        $w->writech(get_linespr(), 0);
     }
     /**
      * Finalize of the handling of the 'env' element
@@ -613,7 +616,9 @@
      */     
     function on_env_end() {
         $w =& $this->writer; 
+        $w->writech(get_linespr(), 0);
         $w->write(sprintf('\%s{%s}', $this->endenv, $this->cmdname), 0);
+        $w->writech(get_linespr(), 0);
         $this->cmdname = array_pop($this->cmdname_stack);
         $this->endenv  = array_pop($this->endenv_stack);
     }
