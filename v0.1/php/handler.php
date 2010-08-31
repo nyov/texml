@@ -242,6 +242,8 @@
         $this->cmdname       = '';
         $this->endenv        = '';
         $this->has_parm      = 0;
+        $this->gr            = 1;
+        $this->gr_stack      = array();
         $this->no_text_content     = 0;
         $this->text_is_only_spaces = 0;
         // Create handler maps
@@ -412,7 +414,14 @@
         if ($attrs == null) {
             $attrs = array();
         }
-        $aval = array_key_exists($aname, $attrs);
+
+        $aexist = array_key_exists($aname, $attrs);
+        if ($aexist) {
+            $aval = $attrs[$aname];         
+        } else {
+            $aval = None;
+        }
+
         if (None == $aval) {
             return $default;
         } else if (true == $aval) {
@@ -488,6 +497,10 @@
         //
         $this->has_parm            = 0;
         $this->text_is_only_spaces = 1;
+
+        $gr_s = $this->gr_stack;
+        array_push($gr_s, $this->gr);
+        $this->gr = $this->get_boolean($attrs, 'gr', 1);
     }
     /**
      * Finalize of the handling of the 'cmd' element
@@ -496,7 +509,18 @@
     function on_cmd_end() {
         $this->text_is_only_spaces = 0;
         $w =& $this->writer; 
-        $w->writech(get_linespr(), 0);
+
+        if (!$this->has_parm) {
+            if ($this->gr) {
+                $w->write('{}', 0);
+            } else {
+                //self.writer.writeWeakWS()
+                $w->writech(get_linespr(), 0);
+            }
+        } else {
+            $w->writech(get_linespr(), 0);
+        }
+        $this->gr = array_pop($this->gr_stack);
     }
     /**
      * Handle 'opt' element

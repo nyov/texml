@@ -15,11 +15,11 @@
         public function test_empty() {
             $this->fTest->run("empty");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
-        }  /*
+        }  
         public function test_quick() {
-            $this->fTest->run("quick");
+            $this->fTest->run("quick_lt");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
-        }    */
+        }    
         public function test_thesis_basic_lt() {
             $this->fTest->run("thesis_basic_lt");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
