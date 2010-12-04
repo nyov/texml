@@ -11,7 +11,7 @@
         protected function setUp() {
             $this->fTest =& new fileTest("tests/results/data/", "tests/samples/data/");
         }
-        
+        /*
         public function test_empty() {
             $this->fTest->run("empty");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
@@ -24,13 +24,36 @@
             $this->fTest->run("thesis_basic_lt");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
         }
-        /*public function test_endline1() {
-            $this->fTest->run("endline1");
+        */
+        /*
+        public function test_cmd() {
+            $this->fTest->run("cmd");
             $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
-        } */
-
+        } 
+        */
+        /*
+        public function test_cmdnest() {
+            $this->fTest->run("cmdnest_lt");
+            $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
+        } 
         
-       
+        public function test_emptyline() {
+            $this->fTest->run("emptyline");
+            $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
+        } 
+        public function test_entity() {
+            $this->fTest->run("entity");
+            $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
+        } 
+        public function test_escape() {
+            $this->fTest->run("escape");
+            $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
+        } 
+        */
+        public function test_fordocs() {
+            $this->fTest->run("fordocs");
+            $this->assertFileEquals($this->fTest->exp_path, $this->fTest->res_path);
+        } 
     }
 
     class fileTest {

@@ -142,6 +142,15 @@
      return "\x0A";
  }
 /**
+ * Check that the char is whitespace symbol
+ * 
+ * @param string $ch the char  
+ */
+ function is_ws_ch($ch) {
+     //echo "*". $ch . "=" . in_array($ch, array("\x20", "\x09", "\x0B", "\x0A", "\x0D", "\x0C"))  . "*";
+     return in_array($ch, array("\x20", "\x09", "\x0B", "\x0A", "\x0D", "\x0C"));
+ }
+/**
  * Get value from set by key
  * 
  * @param array $values the set of values 

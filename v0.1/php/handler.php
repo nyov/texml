@@ -91,7 +91,6 @@
      function glue_handler(&$texml_writer) {
         $this->w =& $texml_writer; 
         $this->c = None;
-        //echo "construct-";
         $this->h =& new Handler($texml_writer);
      }
     /**
@@ -214,6 +213,8 @@
     var $model;
     var $model_stack;
     var $end_handlers;
+    var $process_ws;
+    var $process_ws_stack;
     /**
      * Set writer and other properties, create maps
      * 
@@ -246,6 +247,8 @@
         $this->gr_stack      = array();
         $this->no_text_content     = 0;
         $this->text_is_only_spaces = 0;
+        $this->process_ws          = 1;
+        $this->process_ws_stack    = array();
         // Create handler maps
         $this->model_nomath = array(
           'TeXML' => 'on_texml',
@@ -318,6 +321,8 @@
      * 
      */
     function endDocument() {
+        $w =& $this->writer;
+        $w->conditionalNewline();
     }
     /**
      * Handle start of an element
@@ -345,7 +350,7 @@
         //
         if ($this->no_text_content) {
            $msg = sprintf('Invalid XML %s, %s: ', $this->__col_num, $this->__line_num);
-           //msg .= sprintf("Text content is not expected: '%s'", $content.encode('latin-1', 'replace')
+           //msg.= sprintf("Text content is not expected: '%s'", $content.encode('latin-1', 'replace')
            $this->invalid_xml_other($msg);
         }
         // Element <cmd/> should not have text content,
@@ -353,7 +358,6 @@
         // Element <env/> may have <opt/> and <parm/>, so we do
         // magic to delete whitespace at beginning of environment
         if ($this->text_is_only_spaces) {
-            
             $stripped = ltrim($content);
             if (0 != strlen($stripped)) {
                 $msg = sprintf('Invalid XML %s, %s: ', $this->__col_num, $this->__line_num);
@@ -363,10 +367,29 @@
             return;       
         }
         //
+        // Eliminate whitespaces
+        //
+        $post_content_ws = 0;
+        $w =& $this->writer;
+        if ($this->process_ws) {
+            $content2 = ltrim($content);
+            if (strlen($content2) != strlen($content)) {
+                $w->writeWeakWS();
+            }
+            $content = rtrim($content2);
+            if (strlen($content2) != strlen($content)) {
+                $post_content_ws = 1;
+            }
+
+        }
+        //
         // Finally, write content
         //
-        $w =& $this->writer;
-        $w->write(trim($content));
+        $w->write($content);
+        if ($post_content_ws) {
+            $w->writeWeakWS();
+        }
+        
     }
                    
     /**
@@ -455,16 +478,26 @@
         $w->stack_emptylines($emptylines);
         $w->stack_escape($escape);
         $w->stack_ligatures($ligatures);
+        $ws = $this->get_boolean($attrs, 'ws', None);
+        array_push($this->process_ws_stack, $this->process_ws);
+       
+        if ($ws != None) {
+            $this->process_ws = ((0 == $ws) ? 1 : 0);
+            $weak_ws_to_nl = $this->process_ws;
+            $w->set_allow_weak_ws_to_nl($weak_ws_to_nl);
+        }
     }
     /**
      * Finalize of handling TeXML element 
      *
      */
     function on_texml_end() {
-        $w =& $this->writer; 
+        $w =& $this->writer;
         $w->unstack_ligatures();
         $w->unstack_escape();
         $w->unstack_emptylines();
+        $this->process_ws = array_pop($this->process_ws_stack);
+        $w->set_allow_weak_ws_to_nl(0);
     }      
     // -----------------------------------------------------------------
     /**
@@ -489,7 +522,7 @@
             $msg .= "Attribute cmd/@name is empty"; 
             $this->invalid_xml_other($msg);
         }
-        $w =& $this->writer; 
+        $w =& $this->writer;
         $w->writech('\\', 0);
         $w->write($name, 0);
         //
@@ -510,15 +543,12 @@
         $this->text_is_only_spaces = 0;
         $w =& $this->writer; 
 
-        if (!$this->has_parm) {
+        if (!($this->has_parm)) {
             if ($this->gr) {
                 $w->write('{}', 0);
             } else {
-                //self.writer.writeWeakWS()
-                $w->writech(get_linespr(), 0);
+                $w->writeWeakWS();
             }
-        } else {
-            $w->writech(get_linespr(), 0);
         }
         $this->gr = array_pop($this->gr_stack);
     }
@@ -560,7 +590,13 @@
      */  
     function on_opt_parm($ch, $attrs) {
         $this->stack_model($this->model_opt);
-        $w =& $this->writer; 
+        $w =& $this->writer;
+        $last_ms = end($this->model_stack);
+        if ($last_ms != null) {
+            if (count(array_diff_assoc($last_ms, $this->model_env)) > 0) { // maps not equal
+                $w->ungetWeakWS();
+            }
+        }
         $w->writech($ch, 0);
         $this->text_is_only_spaces = 0;
     }
@@ -572,15 +608,16 @@
     function on_opt_parm_end($ch) {
         $w =& $this->writer; 
         $w->writech($ch, 0);
-        $this->has_parm            = 1; // At the end to avoid collision of nesting
+        $this->has_parm = 1; // At the end to avoid collision of nesting
         // <opt/> can be only inside <cmd/> or (very rarely) in <env/>
         $last_ms = end($this->model_stack);
 
-        if (count(array_diff_assoc($last_ms, $this->model_env)) > 0) { // maps not equal
-          $this->text_is_only_spaces = 1;
-        } else {
-          $this->text_is_only_spaces = 0;
-        }
+        //if (count(array_diff_assoc($last_ms, $this->model_env)) > 0) { // maps not equal
+        //  $this->text_is_only_spaces = 1;
+        //} else {
+        //  $this->text_is_only_spaces = 0;
+        //}
+        $this->text_is_only_spaces = 1;
     }
     // -----------------------------------------------------------------
     /**
@@ -605,13 +642,6 @@
             $msg .= "Attribute env/@name is empty"; 
             $this->invalid_xml_other($msg);
         }
-        /*$begenv;
-        $begin_is = array_key_exists('begin', $attrs);
-        if ($begin_is == None or $begin_is == false) {
-            $begenv = '';
-        } else {
-            $begenv = $attrs['begin'];
-        } */
         $begenv = get_value($attrs, 'begin', 'begin');
 
         $cmdname_s = $this->cmdname_stack;
@@ -620,29 +650,23 @@
         array_push($endenv_s, $this->endenv);
         $this->cmdname = $name;
 
-        /*
-        $end_is = array_key_exists('end', $attrs);
-        if ($end_is == None or $end_is == false) {
-            $this->endenv = '';
-        } else {
-            $this->endenv = $attrs['end'];
-        } */
         $this->endenv = get_value($attrs, 'end', 'end');
 
-
         $w =& $this->writer; 
+	$w->conditionalNewline();
         $w->write(sprintf('\%s{%s}',$begenv, $name), 0);
-        $w->writech(get_linespr(), 0);
+	$w->writeWeakWS($w->weak_is_newline);
     }
     /**
      * Finalize of the handling of the 'env' element
      *
      */     
     function on_env_end() {
-        $w =& $this->writer; 
-        $w->writech(get_linespr(), 0);
+        $w =& $this->writer;
+	$w->conditionalNewline();
         $w->write(sprintf('\%s{%s}', $this->endenv, $this->cmdname), 0);
-        $w->writech(get_linespr(), 0);
+	$w->writeWeakWS($w->weak_is_newline);
+
         $this->cmdname = array_pop($this->cmdname_stack);
         $this->endenv  = array_pop($this->endenv_stack);
     }
