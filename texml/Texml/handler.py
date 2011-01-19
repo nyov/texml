@@ -4,12 +4,21 @@
 import xml.sax.handler
 from xml.sax.handler import feature_namespaces
 
-
 import texmlwr
 import specmap
 import StringIO
 import string
 import os, sys
+
+# Unbreakable spaces should not be deleted by strip(), but it happens:
+# http://uucode.com/blog/2010/06/01/python-wtf-strip-eats-too-much/
+# The solution from the web page does not work with old versions
+# of python, therefore let's define a fallback functionality.
+try:
+  "dummy".strip(string.whitespace)
+  strip_args = (string.whitespace, )
+except:
+  strip_args = ()
 
 #
 # TeXML SAX handler works correct but misfeaturely when SAX parser
@@ -286,7 +295,7 @@ class Handler:
     # Element <env/> may have <opt/> and <parm/>, so we do
     # magic to delete whitespace at beginning of environment
     if self.text_is_only_spaces:
-      stripped = content.lstrip(string.whitespace)
+      stripped = content.lstrip(*strip_args)
       if 0 != len(stripped):
         msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
         msg += "Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace')
@@ -297,10 +306,10 @@ class Handler:
     #
     post_content_ws = 0
     if self.process_ws:
-      content2 = content.lstrip(string.whitespace)
+      content2 = content.lstrip(*strip_args)
       if len(content2) != len(content):
         self.writer.writeWeakWS()
-      content  = content2.rstrip(string.whitespace)
+      content  = content2.rstrip(*strip_args)
       if len(content2) != len(content):
         post_content_ws = 1
     #
