@@ -1,7 +1,7 @@
 #!python
 # $Id: texml.py,v 1.20 2006-07-20 03:56:49 olpa Exp $
 
-VERSION = "2.0.1"; # GREPVERSION # Format of this string is important
+VERSION = "2.0.2"; # GREPVERSION # Format of this string is important
 usage = """Convert TeXML markup to [La]TeX markup. v.%s. Usage:
 python texml.py [-e encoding] [-w auto_width] [-c|--context] [-a|--ascii] in_file out_file""" % VERSION
 
