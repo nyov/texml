@@ -1,3 +1,9 @@
+2011-01-19  Oleg Parashchenko  olpa@users.sourceforge.net
+
+* Texml/handler.py: wrapper around strip() to support very
+old python version
+* scripts/texml.py: version number is changed to 2.0.2.
+
 2006-07-20  Oleg Parashchenko  olpa@users.sourceforge.net
 
 * Texml/texml.py: try to write a symbol in the ^^XX form first,
