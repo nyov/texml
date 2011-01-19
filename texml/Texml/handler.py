@@ -286,7 +286,7 @@ class Handler:
     # Element <env/> may have <opt/> and <parm/>, so we do
     # magic to delete whitespace at beginning of environment
     if self.text_is_only_spaces:
-      stripped = content.lstrip()
+      stripped = content.lstrip(string.whitespace)
       if 0 != len(stripped):
         msg = 'Invalid XML %s, %s: ' % (self.__col_num, self.__line_num)
         msg += "Only whitespaces are expected, not text content: '%s'" % content.encode('latin-1', 'replace')
@@ -297,10 +297,10 @@ class Handler:
     #
     post_content_ws = 0
     if self.process_ws:
-      content2 = content.lstrip()
+      content2 = content.lstrip(string.whitespace)
       if len(content2) != len(content):
         self.writer.writeWeakWS()
-      content  = content2.rstrip()
+      content  = content2.rstrip(string.whitespace)
       if len(content2) != len(content):
         post_content_ws = 1
     #
