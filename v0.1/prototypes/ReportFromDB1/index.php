@@ -20,13 +20,13 @@ $query =
 //$result =  mysql_query($query) or die(mysql_error());
 // Now begin forming document 
 $doc = esla_doc();
-esla_add(textt, $doc, "All Items - Published: 04.01.2011");
-esla_add(textt, $doc, "Books");
-$table = &esla_add(textb, $doc);
+$doc->text("All Items - Published: 04.01.2011");
+$doc->text("Books");
+$table =& $doc->table();
 //esla_add(textr, $table, "Title Author Status Replacement value ISBN-Barcode");
-esla_add(textr, $table, "Title"); 
-esla_add(textr, $table, "Book1");
-esla_add(textr, $table, "Book2");
+$table->row("Title"); 
+$table->row("Book1");
+$table->row("Book2");
 //while ($row=mysql_fetch_array($result))  {
     //esla_add(textt, $table, $row['author'] ." ". $row['status'] ." ". $row['repval'] ." ". $row['isbn']);
 //}

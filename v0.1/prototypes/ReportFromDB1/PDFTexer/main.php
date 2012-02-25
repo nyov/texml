@@ -1,6 +1,8 @@
 <?php
+require('php4_api.php');
 /**
  * Forming document object and marshalling it to TeX 
+ *
  * @package pdftexer
  * @author Roman Domrachev 
  * @version 0.1, 21.02.2012
@@ -9,91 +11,96 @@
  */
 
 // TeX marshalling
-/**
- * Marshals header for TeX-file.
- * 
- * @param type $file TeX-file object 
- */
-function esla_marsh_head($file) {
-    fwrite($file, "\documentclass{article}\n");
-    fwrite($file, "\usepackage{cals}\n");
-} 
 
 /**
- * Marshals document object to TeX-format. 
- * 
- * @param type $doc document object
- * @param type $file TeX-file object
+ * Class for marshalling document object to TeX representation
  */
-function esla_marshal(&$doc, $file) {
-    esla_marsh_head($file);
-    esla_marsh_item($file, $doc);
-}
-
-/**
- * Marashals item of document in recursieve mode.
- * 
- * @param type $file TeX-file object  
- * @param type $item item of document object
- */
-function esla_marsh_item($file, &$item) {
-    if (!array_key_exists('childs', $item)) { 
-        if (array_key_exists('name', $item)) { // it is command
-            esla_marsh_cmd($file, $item);
-        } else { // it is text
-            esla_marsh_text($file, $item);
+class EslaMarshaller {
+    var $file;
+    /**
+     * Marshal document to Tex-file
+     * 
+     * @param type $doc document object
+     * @param type $filename name of the file 
+     */
+    function marshal(&$doc, $filename) {
+        $texfilename = $filename . ".tex";
+        $this->file = fopen($texfilename, "w");
+        
+        $this->marsh_head();
+        $this->marsh_item($doc);
+        
+        fclose($this->file); 
+    }
+    /**
+     * Marshal header for TeX-file.
+     */
+    function marsh_head() {
+        fwrite($this->file, "\documentclass{article}\n");
+        fwrite($this->file, "\usepackage{cals}\n");
+    }
+    
+    /**
+     * Marashals item of document
+     * 
+     * Method marsh_env() can call this method recursively. 
+     * 
+     * @param type $item item of the document object
+     */
+    function marsh_item(&$item) {
+        switch ($item) {
+            case ($item instanceof EslaCommand):
+                $this->marsh_cmd($item);
+                break;    
+            case ($item instanceof EslaText): 
+                $this->marsh_text($item);
+                break;
+            case ($item instanceof EslaEnvironment):
+                $this->marsh_env($item);
+                break;
         }
-    } else { // it is environment
-        esla_marsh_begin($file, $item);
-        $childs = $item['childs'];
-        if ($childs != null) {
+    }
+    
+    /**
+     * Marshal TeX-command
+     * 
+     * @param type $item command object
+     */
+    function marsh_cmd(&$item) {
+        if ($item->getData() != null) {
+            $cmd = "\\" . $item->getName() . "{" . $item->getData() . "}\n";    
+        } else {
+            $cmd = "\\" . $item->getName() . "\n"; 
+        }
+        fwrite($this->file,  $cmd);
+    }
+    
+    /**
+     * Marshal text
+     * 
+     * @param type $item text object
+     */
+    function marsh_text(&$item) {
+        fwrite($this->file, $item->getData() . "\\\\ \n");
+    }
+    
+    /**
+     * Marshal TeX-environment
+     * 
+     * There is recursive call of method marsh_item  
+     * 
+     * @param type $item environment object
+     */
+    function marsh_env(&$item) {
+        fwrite($this->file, "\n\begin{" . $item->getName() ."}\n");
+        if ($item->getCountChilds() > 0) {
+            $childs =& $item->getChilds(); 
             foreach($childs as $c) {
-                esla_marsh_item($file, $c);
+                $this->marsh_item($c);
             }
         }
-        esla_marsh_end($file, $item);
+        fwrite($this->file, "\end{" . $item->getName() ."}\n");
     }
-}
-/**
- * Marshals TeX-command.
- * 
- * @param type $file TeX-file object
- * @param type $item item of document object
- */
-function esla_marsh_cmd($file, &$item) {
-    if (array_key_exists('data', $item)) {
-        $cmd = "\\" . $item['name'] . "{" . $item['data'] . "}\n";    
-    } else {
-        $cmd = "\\" . $item['name'] . "\n"; 
-    }        
-    fwrite($file,  $cmd);
-}
-/**
- * Marshals text.
- * 
- * @param type $file TeX-file object
- * @param type $item item of document object
- */
-function esla_marsh_text($file, &$item) {
-    fwrite($file, $item['data'] . "\\\\ \n");
-}
-/**
- * Marshals begin of environment.
- * 
- * @param type $file TeX-file object
- * @param type $item item of document object
- */
-function esla_marsh_begin($file, &$item) {
-    fwrite($file, "\n\begin{" . $item['name'] ."}\n");
-}
-/**
- * Marshals end of environment.
- * 
- * @param type $file TeX-file object
- * @param type $item item of document object
- */
-function esla_marsh_end($file, &$item) {
-    fwrite($file, "\end{" . $item['name'] ."}\n");
 }
 
 /**
@@ -103,99 +110,114 @@ function esla_marsh_end($file, &$item) {
  * @param type $filename name of PDF-file
  */
 function esla_pdf(&$doc, $filename) {
-    $texfilename = $filename . ".tex";
-    $file = fopen($texfilename, "w");
-    esla_marshal($doc, $file);
-    fclose($file); 
+    $marshaller = new EslaMarshaller();
+    $marshaller->marshal($doc, $filename);
     // todo: execute TeX util for making PDF from TeX-file 
 }
+
 // Tex object forming
-define("textt", "esla_text");
-define("textb", "esla_table");
-define("textr", "esla_row");
-/**
- * Add TeX-item to other TeX-item.
- * Note: PHP can return by reference item of array only (but not array).
- * @param type $tex_cmd name of function for adding TeX-item
- * @param type $item item of document object
- */
-function &esla_add($tex_cmd, &$item) {
-    $cmd_args = func_get_args();
-    switch ($tex_cmd) {
-        case "esla_text":
-            esla_text($item, $cmd_args[2]);
-            return $text;
-            break;
-        case "esla_table":
-            $i = &esla_table($item);
-            $childs =& $item['childs'];
-            $c = &$childs[$i];
-            return $c;
-            break;
-        case "esla_row":
-            esla_row($item, $cmd_args[2]);
-            return $row;
-            break;
-    }
-    
-        
-}
-
-
-/**
- * Add text to item of document object.
- * @param array $item the item
- * @param type $text text
- */
-function esla_text(&$item, $text) {
-    $childs = &$item['childs'];
-    if ($childs == null) {
-        $childs = array();
-    }
-    $t = array('data' => $text);
-    array_push($childs, $t);
-}
-
-/**
- * Add table to item of document object
- * @param array $item the item
- * @return type index of table item in childs array
- */
-function &esla_table(&$item) {
-    $childs = &$item['childs'];
-    if ($childs == null) {
-        $childs = array();
-    }    
-    array_push($childs, array('name' => 'calstable'));
-    $index = count($childs) - 1;
-    return $index;
-}
- 
-/**
- * Add row to item of document object
- * @param array $item the item
- */ 
-function esla_row(&$item, $text) {
-    $childs = &$item['childs'];
-    if ($childs == null) {
-        $childs = array();
-    }
-    array_push($childs, array('name' => 'brow'));
-    // cell
-    $c = array('name' => 'cell', 'data' => $text);
-    array_push($childs, $c);
-    array_push($childs, array('name' => 'erow'));
-}
 
 /**
  * Returns new document object.
  * 
- * The Document object represents an array.
- *   
- * @return type 
+ * @return type the object
  */
 function esla_doc() {
-    return array('name' => 'document');
+    return new EslaEnvironment("document");
+}
+
+/**
+ * Class for text object
+ */
+class EslaText {
+    var $data;
+    /**
+     * Constructor
+     * 
+     * @param type $data the text data
+     */
+    function EslaText($data) {
+        $this->data = $data; 
+    }
+    /**
+     * Getter
+     * 
+     * @return type data 
+     */
+    function getData() {
+        return $this->data;
+    }
+}
+
+/**
+ * Class for TeX command object
+ */
+class EslaCommand {
+    var $name;
+    var $data;
+    /**
+     * Constructor
+     * 
+     * @param type $name name of the command
+     * @param type $data \\name{data}
+     */
+    function EslaCommand($name, $data = null) {
+        $this->name = $name;
+        $this->data = $data;
+    }
+    /**
+     * Getter
+     * 
+     * @return type data of the command 
+     */
+    function getData() {
+        return $this->data;
+    } 
+    /**
+     * Getter 
+     * 
+     * @return type name of the command
+     */
+    function getName() {
+        return $this->name;
+    }
+}
+
+/**
+ * Class for TeX environment object 
+ */
+class EslaEnvironment extends EslaBase {
+    var $name;
+    /**
+     * Constructor
+     * 
+     * @param type $name name of environment 
+     */
+    function EslaEnvironment($name) {
+        $this->name = $name;
+    }
+    /**
+     * Get count of childs array
+     */
+    function getCountChilds() {
+        return count($this->childs);
+    }
+    /**
+     * Getter
+     * 
+     * @return type childs
+     */
+    function& getChilds() {
+        return $this->childs;
+    }
+    /**
+     * Getter
+     * 
+     * @return type name 
+     */
+    function getName() {
+        return $this->name;
+    }
 }
 
 ?>
