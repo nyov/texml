@@ -1,11 +1,11 @@
 <?php
 require('base_api.php');
 /**
- * It is that using PHP4 OOP style
+ * It is that using PHP5 OOP style
  *   
  * @package pdftexer
  * @author Roman Domrachev 
- * @version 0.1, 25.02.2012
+ * @version 0.1, 12.03.2012
  * @since engine v.0.1
  * @copyright (c) 2012+ by getfo.org project
  */
@@ -19,7 +19,7 @@ class EslaBase extends EslaCommonBase {
      * 
      * @param type $text text
      */
-    function& text($text) {
+    function text($text) {
         return $this->common_text($text);
     }
     /**
@@ -29,7 +29,7 @@ class EslaBase extends EslaCommonBase {
      * 
      * @return EslaTable reference on table object 
      */
-    function& table() {
+    function table() {
         $args = func_get_args();
         return $this->common_table($args);
     }
@@ -39,7 +39,7 @@ class EslaBase extends EslaCommonBase {
      * @param type $name name of style 
      * @param type $data data of style
      */
-    function& style($name = null, $data = null) {
+    function style($name = null, $data = null) {
         $this->common_style($name, $data);
         return $this;
     }    

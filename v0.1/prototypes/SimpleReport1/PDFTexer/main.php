@@ -1,5 +1,5 @@
 <?php
-require('php4_api.php');
+require(ESLA_PHP_VERSION . "_api.php");
 /**
  * Forming document object and marshalling it to TeX 
  *
@@ -17,6 +17,7 @@ require('php4_api.php');
  */
 class EslaMarshaller {
     var $file;
+
     /**
      * Marshal document to Tex-file
      * 
@@ -38,7 +39,8 @@ class EslaMarshaller {
      * @param type $item item of the document object
      */
     function marsh_head(&$item) {
-        fwrite($this->file, "\documentclass{article}\n");
+        fwrite($this->file, "\documentclass[a4paper]{article}\n");
+        fwrite($this->file, "\usepackage[width=180mm,height=270mm]{geometry}\n");
         fwrite($this->file, "\usepackage{cals}\n");
         foreach($item->getPackages() as $name) {
             fwrite($this->file, "\usepackage{". $name ."}\n");
@@ -82,7 +84,8 @@ class EslaMarshaller {
     function marsh_cmd(&$item) {
         $cmd = "";
         if ($item->getData() != null) {
-            $cmd .= "\\" . $item->getName() . "{" . $item->getData() . "}\n";    
+            $cmd .= "\\" . $item->getName() . "{" 
+                    . $item->getData() . "}\n";    
         } else {            
             if ($item->getCountChilds() > 0) { // it is grouped command
                 $childs =& $item->getChilds();
@@ -105,7 +108,7 @@ class EslaMarshaller {
      * @param type $item text object
      */
     function marsh_text(&$item) {
-        fwrite($this->file, $item->getData() . "\\\\ \n");
+        fwrite($this->file, $item->getData() . "\n");
     }
     
     /**
