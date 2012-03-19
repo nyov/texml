@@ -226,6 +226,17 @@ class EslaCommand {
         }
     }
     /**
+     * Setter
+     * 
+     * @param type $childs child array 
+     */
+    function setChilds(&$childs) {
+        $this->data = null;
+        foreach($childs as $part) {
+            array_push($this->childs, $part);
+        }
+    }
+    /**
      * Getter
      * 
      * @return type data of the command 
@@ -291,6 +302,14 @@ class EslaEnvironment extends EslaBase {
      */
     function getName() {
         return $this->name;
+    }
+    /**
+     * Setter
+     * 
+     * @param type $name name 
+     */
+    function setName($name) {
+        $this->name = $name;
     }
 }
 

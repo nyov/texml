@@ -35,12 +35,12 @@ class EslaBase extends EslaCommonBase {
     }
     /**
      * Apply style to item of document object
-     * 
-     * @param type $name name of style 
-     * @param type $data data of style
+     *
+     * Parameters are style function arguments 
      */
-    function& style($name = null, $data = null) {
-        $this->common_style($name, $data);
+    function& style() {
+        $fargs = func_get_args();
+        $this->common_style($fargs);
         return $this;
     }    
 }

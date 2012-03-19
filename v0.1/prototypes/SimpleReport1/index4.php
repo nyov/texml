@@ -1,6 +1,6 @@
 <?php
 require('php4_config.php');
-require('PDFTexer\main.php');
+require('PDFTexer/main.php');
 $table_data = array (
     array("Legacy","Danielle Steel","","Wishlist","13.38","9780593063033"),
     array("Other Peoples Secrets","Louise Candlish","Arts & Photography","Wishlist","7.20","9781847443892"),
@@ -16,7 +16,7 @@ $doc->text("All Items - Published: " . date("d.m.Y"))->style("HeadI");
 $doc->ws(5);
 $doc->text("Books")->style("HeadII");
 $doc->ws(5);
-$table =& $doc->table(10, 40, 40, 30, 15, 22, 28)->style("mytable");
+$table =& $doc->table(10, 40, 40, 30, 15, 22, 28)->style("mytable", "TheadPara", "TbodyPara", "TfootPara");
 $table->row("#", "Title", "Author", "Subject", "Status", "Replacement value", "ISBN-Barcode");
 $i = 0;
 $sum = 0.0;
