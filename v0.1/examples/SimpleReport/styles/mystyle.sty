@@ -1,0 +1,38 @@
+\ProvidesPackage{mystyle}[2012/02/27 Examplple of style]
+
+\comment{%%% character styles}
+
+\newcommand\ChHeadI{\fontsize{10mm}{12mm}\fontseries{b}\selectfont}
+\newcommand\ChHeadII{\fontsize{8mm}{10mm}\fontseries{b}\selectfont}
+\newcommand\ChBody{\fontsize{4.5mm}{5mm}\fontseries{b}\selectfont}
+\newcommand\ChTable{\fontsize{3.5mm}{4mm}\fontseries{b}\selectfont}
+
+\comment{%%% paragraph styles}
+
+\newenvironment{HeadI}{\ignorespaces\ChHeadI}{\par\ignorespaces}
+\newenvironment{HeadII}{\ignorespaces\ChHeadII}{\par\ignorespaces}
+
+\comment{%%% customized table}
+\makeatletter
+
+\newenvironment{mytable}
+{\begin{calstable}
+\def\cals@framecs@width{0.3mm}
+\def\cals@framers@width{0.3mm}
+\def\cals@bodyrs@width{0.14mm}
+\def\cals@rs@width{0.14mm}
+\def\cals@cs@width{0.14mm}
+\cals@setpadding{x}
+\tolerance=10000
+\ChTable
+}
+{\end{calstable}}
+
+\newenvironment{TheadPara}{\ignorespaces
+\fontsize{3.5mm}{4mm}\fontseries{b}\selectfont}{\par\ignorespaces}
+
+\newenvironment{TbodyPara}{\ignorespaces
+\fontsize{3.5mm}{4mm}\selectfont}{\par\ignorespaces}
+
+\newenvironment{TfootPara}{\ignorespaces
+\fontsize{3.5mm}{4mm}\selectfont}{\par\ignorespaces}
