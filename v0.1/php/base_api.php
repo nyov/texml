@@ -77,6 +77,7 @@ class EslaCommonBase {
             foreach($colwidths as $width) {
                 $widths .= "{" . $width . "mm}";
             }
+            // TODO: it should be as commmand with multiple parameters
             $cmd = new EslaCommand('colwidths', $widths);
             array_push($table->getChilds(), $cmd);
         }        
@@ -228,13 +229,14 @@ class EslaCommonBase {
     function change_cellstyle(&$cells, $stylename) {
         for($i=1; $i < count($cells)-1; $i++) {
             $c = $cells[$i];
-            if ($c->getCountChilds() > 0) {
+            if ($c->isGroupped()) {
                 $childs =& $c->getChilds();
                 $childs[0]->setName($stylename);
             } else {
                 $style_env = new EslaEnvironment($stylename);
                 $env_childs =& $style_env->getChilds();
-                array_push($env_childs, new EslaText($c->getData()));
+                $cell_data =& $c->getChilds(); 
+                array_push($env_childs, new EslaText($cell_data[0]));
                 $c->setChilds(array($style_env));
             }           
         }
@@ -282,11 +284,11 @@ class EslaCommonBase {
                 $this->tfoot_style = $style_args[3];
             }
         } else {
-            $data = null;
-            if ($count > 1) {
-                $data = $style_args[1];
+            if ($count == 1) {
+                array_push($this->childs, new EslaCommand($name));
+            } else {
+                array_push($this->childs, new EslaCommand($style_args));
             }
-            array_push($this->childs, new EslaCommand($name, $data));
         }
         return $this;
     }  

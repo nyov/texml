@@ -84,23 +84,27 @@ class EslaMarshaller {
      * @param type $item command object
      */
     function marsh_cmd(&$item) {
-        $cmd = "";
-        if ($item->getData() != null) {
-            $cmd .= "\\" . $item->getName() . "{" 
-                    . $item->getData() . "}\n";    
-        } else {            
-            if ($item->getCountChilds() > 0) { // it is grouped command
-                $childs =& $item->getChilds();
-                $cmd .= "\\" . $item->getName() . "{\n";
+        $cmd = "\\" . $item->getName();
+        fwrite($this->file,  $cmd);
+        if ($item->getCountChilds() > 0) { 
+            $childs =& $item->getChilds();
+            if ($item->isGroupped()) {
+                $cmd = "{\n";
                 fwrite($this->file,  $cmd);
                 foreach($childs as $c) {
                     $this->marsh_item($c);
                 }
-                $cmd = "}\n";
-            } else {
-                $cmd .= "\\" . $item->getName() . "\n";
+                $cmd = "}";
+                fwrite($this->file,  $cmd);
+            } else { 
+                $cmd_params = "";
+                foreach($childs as $c) {
+                    $cmd_params .= "{" . $c . "}";
+                }
+                fwrite($this->file,  $cmd_params);
             }
         }
+        $cmd = "\n";
         fwrite($this->file,  $cmd);
     }
     
@@ -214,24 +218,49 @@ class EslaText {
  */
 class EslaCommand {
     var $name = null;
-    var $data = null;
+    var $groupped = false;
     var $childs = array();
     /**
      * Constructor
      * 
-     * @param type $name name of the command
-     * @param type $data \\name{data}
+     * Parameters:
+     * first parameter is name of command
+     * N - number of parameters
+     * if first parameter is array then
+     *  
+     * if second parameter is array then 
+     *     \\name{ subobject1 .. subobjectN }
+     * else // number of brace pairs equals N-1  
+     *     \\name{}..{}
      */
-    function EslaCommand($name, $data = null) {
-        $this->name = $name;
+    function EslaCommand() {
+        $params = func_get_args();
+        $first_param = null;
+        $second_param = null;
+        if (func_num_args() > 0) {
+            $first_param =  $params[0];
+        }
         
-        if (is_array($data)) {
-            foreach($data as $part) {
+        if (func_num_args() > 1) {
+            $second_param = $params[1];
+        }
+        
+        if (is_array($second_param)) {
+            foreach($second_param as $part) {
                 array_push($this->childs, $part);
             }
+            $this->groupped = true;
+            $this->name = $first_param;
         } else {
-            $childs = array();
-            $this->data = $data;
+            if (is_array($first_param)) {
+                $this->name = $first_param[0];
+                $params = $first_param;
+            } else {
+                $this->name = $first_param;
+            }
+            for ($i=1; $i < count($params); $i++) {
+                array_push($this->childs, $params[$i]);
+            }
         }
     }
     /**
@@ -248,10 +277,10 @@ class EslaCommand {
     /**
      * Getter
      * 
-     * @return type data of the command 
+     * @return type of the command 
      */
-    function getData() {
-        return $this->data;
+    function isGroupped() {
+        return $this->groupped;
     } 
     /**
      * Getter 
