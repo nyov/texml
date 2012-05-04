@@ -50,14 +50,21 @@ class EslaCommonBase {
     var $thead_style;
     var $tbody_style;
     var $tfoot_style;
-
+    var $instances = array();
+    
     /**
      * Add text object to the environment object
+     * If there aren't arguments then paragraph is made
+     * @param type $fargs arguments
      * 
-     * @param type $text text
      */
-    function& common_text($text) {
-        $texto = new EslaText(esla_escape($text));
+    function& common_text(&$fargs) {
+        $texto = "";
+        if (count($fargs) > 0) {
+            $texto = new EslaText(esla_escape($fargs[0]));
+        } else {
+            $texto = new EslaText("");
+        }
         array_push($this->childs, $texto);
         return $texto;
     }
@@ -200,7 +207,28 @@ class EslaCommonBase {
             array_push($childs, new EslaCommand('cell', $cmd_data));
         }
     } 
-    
+    /**
+     * Make declare instance eobject
+     * @param type $instance_name the instance name
+     * @param type $style_args style arguments
+     */
+    function make_instance($instance_name, &$style_args) {
+        $params = "";
+        for($i=2; $i < count($style_args)-1; $i++) {
+            $params .= $style_args[$i] . ",";            
+        }
+        $params .= $style_args[count($style_args)-1];
+        array_push(
+            $this->instances, 
+            new EslaCommand(
+                'DeclareInstance', 
+                $style_args[0], 
+                $instance_name, 
+                $style_args[1], 
+                $params
+            )
+        );
+    }
     /**
      * Wrap text in style (environment)
      * 
@@ -263,6 +291,14 @@ class EslaCommonBase {
     function& getPackages() {
         return $this->packages;
     }
+    
+    /**
+     * Get instances
+     * @return type instances
+     */
+    function& getInstances() {
+        return $this->instances;
+    } 
     /**
      * Apply style to item of document object
      * 
@@ -287,7 +323,31 @@ class EslaCommonBase {
             if ($count == 1) {
                 array_push($this->childs, new EslaCommand($name));
             } else {
-                array_push($this->childs, new EslaCommand($style_args));
+                if ($count > 2) {                                  
+                    if (!strcmp($style_args[2], "")) { // not need make instance
+                        $use_instance_args = 
+                            array(
+                                "UseInstance",
+                                $style_args[0], 
+                                $style_args[1]
+                            );
+                        array_push($this->childs, new EslaCommand($use_instance_args));
+                    } else {
+                        $instance_name = "instance" . microtime();
+                        $instance_name = str_replace(" ", "", $instance_name);
+                        $instance_name = str_replace(".", "", $instance_name);
+                        $use_instance_args = 
+                            array(
+                                "UseInstance",
+                                $style_args[0], 
+                                $instance_name                                
+                            );
+                        $this->make_instance($instance_name, $style_args);
+                        array_push($this->childs, new EslaCommand($use_instance_args));
+                    }
+                } else { // old style
+                    array_push($this->childs, new EslaCommand($style_args));
+                }
             }
         }
         return $this;

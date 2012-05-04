@@ -31,6 +31,7 @@ class EslaMarshaller {
         $this->file = fopen($texfilename, "w");
         
         $this->marsh_head($doc);
+        $this->marsh_inst($doc);
         $this->marsh_item($doc);
         
         fclose($this->file); 
@@ -49,6 +50,18 @@ class EslaMarshaller {
         }
     }
     
+    /**
+     * Marshal instances for XGalley styles
+     * @param type $item item of the document object
+     */
+    function marsh_inst(&$item) {
+        fwrite($this->file, "\ExplSyntaxOn\n");
+        $instances = $item->getInstances();
+        foreach($instances as $inst) {
+            $this->marsh_item($inst);
+        }
+        fwrite($this->file, "\ExplSyntaxOff\n");
+    }
     /**
      * Marashals item of document
      * 
@@ -181,6 +194,7 @@ function esla_doc() {
 class EslaText {
     var $data;
     var $styleName = null;
+    var $doc_root; // not used
     /**
      * Constructor
      * 
@@ -220,6 +234,7 @@ class EslaCommand {
     var $name = null;
     var $groupped = false;
     var $childs = array();
+    var $doc_root; // mot used
     /**
      * Constructor
      * 
@@ -317,7 +332,7 @@ class EslaEnvironment extends EslaBase {
      * @param type $name name of environment 
      */
     function EslaEnvironment($name) {
-        $this->name = $name;
+        $this->name = $name;       
     }
     /**
      * Get count of childs array

@@ -39,7 +39,7 @@ define('texrun_cmdline', '"$PATHxelatex$EXE" -no-shell-escape -interaction=batch
  * The TeX executable is expected to be
  * "texrun_texhome/bin/xelatex" or "texrun_texhome/bin/xelatex.exe"
  */
-define("texrun_binpath", 'I:/nonsort/programs/MiKTeX/miktex/bin');
+define("texrun_binpath", 'F:/programs/MiKTeX/miktex/bin');
 //define("texrun_binpath", 'D:/programs/MiKTeX 2.8/miktex');
 //define('texrun_binpath', '/opt/texlive/dvd/bin/i386-linux');
 

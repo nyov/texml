@@ -16,11 +16,12 @@ require(dirname(__FILE__) . '/base_api.php');
 class EslaBase extends EslaCommonBase {
     /**
      * Add text object to the environment object
+     * 1st agrument is text
      * 
-     * @param type $text text
      */
-    function& text($text) {
-        return $this->common_text($text);
+    function& text() {
+        $fargs = func_get_args();
+        return $this->common_text($fargs);
     }
     /**
      * Add table object to the environment object
