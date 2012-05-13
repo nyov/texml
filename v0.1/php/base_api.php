@@ -298,7 +298,43 @@ class EslaCommonBase {
      */
     function& getInstances() {
         return $this->instances;
-    } 
+    }
+    /**
+     * Apply style to item of document object (xgalley)
+     *
+     * @param type $style_args 
+     */ 
+    function& common_xstyle(&$style_args) {
+        if (count($style_args) == 1) {
+            $style_args =& $style_args[0];
+        }
+        $return_object = null;
+        if (count($style_args) == 2) { // not need make instance
+            $use_instance_args = 
+                array(
+                    "UseInstance",
+                    $style_args[0], 
+                    $style_args[1]
+                );
+            $return_object = new EslaCommand($use_instance_args);
+            array_push($this->childs, $return_object);
+        } else {
+            $instance_name = "instance" . microtime();
+            $instance_name = str_replace(" ", "", $instance_name);
+            $instance_name = str_replace(".", "", $instance_name);
+            $use_instance_args = 
+                array(
+                    "UseInstance",
+                    $style_args[0], 
+                    $instance_name                                
+                );
+            $this->make_instance($instance_name, $style_args);
+            $return_object = new EslaCommand($use_instance_args);
+            array_push($this->childs, $return_object);
+        }
+        return $return_object;
+    }
+    
     /**
      * Apply style to item of document object
      * 
@@ -306,9 +342,11 @@ class EslaCommonBase {
      * or table row styles (head row style, body row style, row foot style) 
      */
     function& common_style(&$style_args) {
+        $return_object = null;
         $name = $style_args[0];
         $count = count($style_args);
         if ($this->isTable && $name != null) {
+            $return_object = $this;
             $this->name = $name;            
             if ($count > 1) {
                 $this->thead_style = $style_args[1];
@@ -321,36 +359,14 @@ class EslaCommonBase {
             }
         } else {
             if ($count == 1) {
-                array_push($this->childs, new EslaCommand($name));
+                $return_object = new EslaCommand($name);
+                array_push($this->childs, $return_object);
             } else {
-                if ($count > 2) {                                  
-                    if (!strcmp($style_args[2], "")) { // not need make instance
-                        $use_instance_args = 
-                            array(
-                                "UseInstance",
-                                $style_args[0], 
-                                $style_args[1]
-                            );
-                        array_push($this->childs, new EslaCommand($use_instance_args));
-                    } else {
-                        $instance_name = "instance" . microtime();
-                        $instance_name = str_replace(" ", "", $instance_name);
-                        $instance_name = str_replace(".", "", $instance_name);
-                        $use_instance_args = 
-                            array(
-                                "UseInstance",
-                                $style_args[0], 
-                                $instance_name                                
-                            );
-                        $this->make_instance($instance_name, $style_args);
-                        array_push($this->childs, new EslaCommand($use_instance_args));
-                    }
-                } else { // old style
-                    array_push($this->childs, new EslaCommand($style_args));
-                }
+                $return_object = new EslaCommand($style_args);
+                array_push($this->childs, $return_object);
             }
         }
-        return $this;
+        return $return_object;
     }  
 
 }

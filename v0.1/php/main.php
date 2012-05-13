@@ -45,6 +45,7 @@ class EslaMarshaller {
         fwrite($this->file, "\documentclass[a4paper]{article}\n");
         fwrite($this->file, "\usepackage[width=180mm,height=270mm]{geometry}\n");
         fwrite($this->file, "\usepackage{cals}\n");
+        fwrite($this->file, "\usepackage{xgalley}\n");
         foreach($item->getPackages() as $name) {
             fwrite($this->file, "\usepackage{". $name ."}\n");
         }
@@ -189,6 +190,41 @@ function esla_doc() {
 }
 
 /**
+ * Instance style object
+ * 
+ * first argument is style name, other arguments are style parameters 
+ * @return type reference to style object 
+ */
+function& esla_style() {
+    $env = new EslaEnvironment("env");
+    $fargs = func_get_args();
+    return $env->style($fargs);
+}
+
+/**
+ * Instance style object (xgalley)
+ * 
+ * first argument is style name, other arguments are style parameters 
+ * @return type reference to style object 
+ */
+function& esla_xstyle() {
+    $env = new EslaEnvironment("env");
+    $fargs = func_get_args();
+    return $env->xstyle($fargs);
+}
+
+/**
+ * Instance text object
+ * 
+ * @param type $text text
+ * @return \EslaText reference to text object 
+ */
+function& esla_text($text) {
+    $to = new EslaText($text);
+    return $to;
+} 
+
+/**
  * Class for text object
  */
 class EslaText {
@@ -269,7 +305,12 @@ class EslaCommand {
         } else {
             if (is_array($first_param)) {
                 $this->name = $first_param[0];
-                $params = $first_param;
+                if (count($first_param)>1 && is_array($first_param[1])) {
+                    $params =& $first_param[1];
+                    $this->groupped = true;
+                } else {
+                    $params = $first_param;
+                }            
             } else {
                 $this->name = $first_param;
             }

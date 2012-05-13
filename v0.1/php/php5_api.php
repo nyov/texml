@@ -37,13 +37,24 @@ class EslaBase extends EslaCommonBase {
     /**
      * Apply style to item of document object
      * 
-     * Parameters are style function arguments 
+     * Parameters are style function arguments
+     * @return style object   
      */
     function style() {
         $fargs = func_get_args();
-        $this->common_style($fargs);
-        return $this;
+        return $this->common_style($fargs);
+    }
+    /**
+     * Apply style to item of document object (xgalley)
+     * 
+     * Parameters are style function arguments
+     * @return style object   
+     */
+    function xstyle() {
+        $fargs = func_get_args();
+        return $this->common_xstyle($fargs);
     }    
+    
 }
 
 
