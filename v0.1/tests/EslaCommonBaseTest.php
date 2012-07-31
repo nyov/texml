@@ -2,6 +2,35 @@
 
 class EslaCommonBaseTest extends PHPUnit_Framework_TestCase {
 
+    public function testXStyle() {
+        $marshaller = new EslaMarshaller();
+               
+        $doc = new EslaEnvironment("document");
+        
+        $doc->xstyle("justification", "ragged-left");
+        $xs1 = $doc->xstyle("hyphenation", "std", "enable = false")->iname(); // make instance
+
+        $table =& $doc->table()->xstyle(
+            'testable', 
+            esla_xstyle("justification", "ragged-centered"),
+            esla_xstyle("justification", "ragged-right"),
+            esla_xstyle("justification", "ragged-left")
+        );
+
+        $table->row('head1', 'head2');
+        $table->row('cell1', 'cell2');
+        $table->row('span foot');
+        
+        $marshaller->marshal($doc, 'results/XStyle1');
+        
+        $actual=file_get_contents('results/XStyle1.tex');
+        $sample=file_get_contents('samples/XStyle1.tex');
+        
+        $expected = str_replace('instance1x', $xs1, $sample);  
+                
+        $this->assertEquals($actual, $expected);
+    }
+    
     public function testStyle() {
         $marshaller = new EslaMarshaller();
                
@@ -90,6 +119,6 @@ class EslaCommonBaseTest extends PHPUnit_Framework_TestCase {
         $marshaller->marshal($doc, 'results/Table1');
         
         $this->assertFileEquals('results/Table1.tex', 'samples/Table1.tex');
-    }    
+    } 
 }
 ?>

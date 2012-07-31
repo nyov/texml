@@ -5,7 +5,7 @@ require(dirname(__FILE__) . '/base_api.php');
  *   
  * @package pdftexer
  * @author Roman Domrachev 
- * @version 0.1, 25.02.2012
+ * @version 0.1, 31.07.2012
  * @since engine v.0.1
  * @copyright (c) 2012+ by getfo.org project
  */
@@ -17,7 +17,7 @@ class EslaBase extends EslaCommonBase {
     /**
      * Add text object to the environment object
      * 1st agrument is text
-     * 
+     * @return object reference to the object
      */
     function& text() {
         $fargs = func_get_args();
@@ -28,7 +28,7 @@ class EslaBase extends EslaCommonBase {
      * 
      * Parameters are widths for columns
      * 
-     * @return EslaTable reference on table object 
+     * @return EslaEnvironment reference on table object 
      */
     function& table() {
         $args = func_get_args();
@@ -38,7 +38,7 @@ class EslaBase extends EslaCommonBase {
      * Apply style to item of document object
      *
      * Parameters are style function arguments 
-     * @return style object
+     * @return object in dependence from stylized object
      */
     function& style() {
         $fargs = func_get_args();
@@ -48,7 +48,7 @@ class EslaBase extends EslaCommonBase {
      * Apply style to item of document object (xgalley)
      *
      * Parameters are style function arguments 
-     * @return style object
+     * @return object in dependence from stylized object
      */
     function& xstyle() {
         $fargs = func_get_args();

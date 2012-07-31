@@ -7,7 +7,7 @@ require(dirname(__FILE__) . '/../' . ESLA_LIB_PATH . '/phptexrun/texrun.php');
  *
  * @package pdftexer
  * @author Roman Domrachev 
- * @version 0.1, 21.02.2012
+ * @version 0.1, 31.07.2012
  * @since engine v.0.1
  * @copyright (c) 2012+ by getfo.org project
  */
@@ -23,8 +23,8 @@ class EslaMarshaller {
     /**
      * Marshal document to Tex-file
      * 
-     * @param type $doc document object
-     * @param type $filename name of the file 
+     * @param object $doc document object
+     * @param string $filename name of the file 
      */
     function marshal(&$doc, $filename) {
         $texfilename = $filename . ".tex";
@@ -39,7 +39,7 @@ class EslaMarshaller {
     /**
      * Marshal header for TeX-file.
      * 
-     * @param type $item item of the document object
+     * @param object $item item of the document object
      */
     function marsh_head(&$item) {
         fwrite($this->file, "\documentclass[a4paper]{article}\n");
@@ -53,7 +53,7 @@ class EslaMarshaller {
     
     /**
      * Marshal instances for XGalley styles
-     * @param type $item item of the document object
+     * @param object $item item of the document object
      */
     function marsh_inst(&$item) {
         fwrite($this->file, "\ExplSyntaxOn\n");
@@ -68,7 +68,7 @@ class EslaMarshaller {
      * 
      * Method marsh_env() can call this method recursively. 
      * 
-     * @param type $item item of the document object
+     * @param object $item item of the document object
      */
     function marsh_item(&$item) {
         switch ($item) {
@@ -95,11 +95,13 @@ class EslaMarshaller {
      * 
      * There is recursive call of method marsh_cmd  
      * 
-     * @param type $item command object
+     * @param object $item command object
      */
     function marsh_cmd(&$item) {
-        $cmd = "\\" . $item->getName();
-        fwrite($this->file,  $cmd);
+        if ($item->getName() != null) { 
+            $cmd = "\\" . $item->getName();
+            fwrite($this->file,  $cmd);
+        } else { } // group
         if ($item->getCountChilds() > 0) { 
             $childs =& $item->getChilds();
             if ($item->isGroupped()) {
@@ -125,7 +127,7 @@ class EslaMarshaller {
     /**
      * Marshal text
      * 
-     * @param type $item text object
+     * @param object $item text object
      */
     function marsh_text(&$item) {
         fwrite($this->file, $item->getData() . "\n");
@@ -136,7 +138,7 @@ class EslaMarshaller {
      * 
      * There is recursive call of method marsh_item  
      * 
-     * @param type $item environment object
+     * @param object $item environment object
      */
     function marsh_env(&$item) {
         fwrite($this->file, "\n\begin{" . $item->getName() ."}\n");
@@ -153,9 +155,9 @@ class EslaMarshaller {
 /**
  * Execute operations for making document in PDF-format.
  *  
- * @param type $doc document object
- * @param type $filename name of PDF-file
- * @param type $include_path path to include directory
+ * @param object $doc document object
+ * @param string $filename name of PDF-file
+ * @param string $include_path path to include directory
  */
 function esla_pdf(&$doc, $filename, $include_path = null) {
     $marshaller = new EslaMarshaller();
@@ -177,7 +179,7 @@ function esla_pdf(&$doc, $filename, $include_path = null) {
  * Parameters for the function are packages for TeX-document.
  * (\usepackage{<stylename>})
  * 
- * @return type the object
+ * @return object the object
  */
 function esla_doc() {
     $doc = new EslaEnvironment("document");
@@ -193,7 +195,7 @@ function esla_doc() {
  * Instance style object
  * 
  * first argument is style name, other arguments are style parameters 
- * @return type reference to style object 
+ * @return object reference to style object 
  */
 function& esla_style() {
     $env = new EslaEnvironment("env");
@@ -205,7 +207,7 @@ function& esla_style() {
  * Instance style object (xgalley)
  * 
  * first argument is style name, other arguments are style parameters 
- * @return type reference to style object 
+ * @return object reference to style object 
  */
 function& esla_xstyle() {
     $env = new EslaEnvironment("env");
@@ -216,8 +218,8 @@ function& esla_xstyle() {
 /**
  * Instance text object
  * 
- * @param type $text text
- * @return \EslaText reference to text object 
+ * @param string $text text
+ * @return EslaText reference to text object 
  */
 function& esla_text($text) {
     $to = new EslaText($text);
@@ -225,7 +227,7 @@ function& esla_text($text) {
 } 
 
 /**
- * Class for text object
+ * Class for text TeX object
  */
 class EslaText {
     var $data;
@@ -234,7 +236,7 @@ class EslaText {
     /**
      * Constructor
      * 
-     * @param type $data the text data
+     * @param string $data the text data
      */
     function EslaText($data) {
         $this->data = $data; 
@@ -242,7 +244,7 @@ class EslaText {
     /**
      * Getter
      * 
-     * @return type data 
+     * @return string data 
      */
     function getData() {
         return $this->data;
@@ -250,13 +252,14 @@ class EslaText {
     /**
      * Apply style for the text
      * 
-     * @param type $name name of style 
+     * @param string $name name of style 
      */
     function style($name = null) {
         $this->styleName = $name;
     }
     /**
      * Get name of the text style 
+     * @return string 
      */
     function getStyle() {
         return $this->styleName;
@@ -290,6 +293,8 @@ class EslaCommand {
         $second_param = null;
         if (func_num_args() > 0) {
             $first_param =  $params[0];
+        } else {
+            $this->groupped = true;
         }
         
         if (func_num_args() > 1) {
@@ -322,7 +327,7 @@ class EslaCommand {
     /**
      * Setter
      * 
-     * @param type $childs child array 
+     * @param array $childs child array 
      */
     function setChilds(&$childs) {
         $this->data = null;
@@ -333,7 +338,7 @@ class EslaCommand {
     /**
      * Getter
      * 
-     * @return type of the command 
+     * @return bool of the command 
      */
     function isGroupped() {
         return $this->groupped;
@@ -341,13 +346,21 @@ class EslaCommand {
     /**
      * Getter 
      * 
-     * @return type name of the command
+     * @return string name of the command
      */
     function getName() {
         return $this->name;
     }
     /**
+     * Get instance name  
+     * @return string the name of instance
+     */
+    function iname() {
+        return $this->childs[1];
+    }
+    /**
      * Get count of childs array
+     * @return integer the count 
      */
     function getCountChilds() {
         return count($this->childs);
@@ -355,7 +368,7 @@ class EslaCommand {
     /**
      * Getter
      * 
-     * @return type childs
+     * @return array childs
      */
     function& getChilds() {
         return $this->childs;
@@ -370,13 +383,14 @@ class EslaEnvironment extends EslaBase {
     /**
      * Constructor
      * 
-     * @param type $name name of environment 
+     * @param string $name name of environment 
      */
     function EslaEnvironment($name) {
         $this->name = $name;       
     }
     /**
      * Get count of childs array
+     * @return integer the count
      */
     function getCountChilds() {
         return count($this->childs);
@@ -384,7 +398,7 @@ class EslaEnvironment extends EslaBase {
     /**
      * Getter
      * 
-     * @return type childs
+     * @return array childs
      */
     function& getChilds() {
         return $this->childs;
@@ -392,7 +406,7 @@ class EslaEnvironment extends EslaBase {
     /**
      * Getter
      * 
-     * @return type name 
+     * @return string name 
      */
     function getName() {
         return $this->name;
@@ -400,7 +414,7 @@ class EslaEnvironment extends EslaBase {
     /**
      * Setter
      * 
-     * @param type $name name 
+     * @param string $name name 
      */
     function setName($name) {
         $this->name = $name;
